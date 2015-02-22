@@ -39,6 +39,8 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'event_manager',
     'rest_framework',
+    'kronos',
+    'alarms',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -64,6 +66,8 @@ WSGI_APPLICATION = 'domotina.wsgi.application'
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
 
 DATABASES = {}
+
+# DATABASES = {}
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.6/topics/i18n/
@@ -99,3 +103,4 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
 
+UPLOADED_FILE_PATH = 'static/img_up/'

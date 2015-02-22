@@ -16,7 +16,7 @@ class Place(models.Model):
     owner = models.ForeignKey(User)
     building = models.ForeignKey(Building, verbose_name="building", related_name="places")
     name = models.CharField('place', max_length=100)
-    map = models.ImageField('model', upload_to=settings.UPLOADED_MAP_FILE_PATH)
+    map = models.ImageField('map image', upload_to=settings.UPLOADED_MAP_FILE_PATH)
     class Meta:
         verbose_name = 'place'
         verbose_name_plural = 'places'

@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.conf import settings
+from event_manager.models import Event
 
 # Create your models here.
 class Status(models.Model):
@@ -82,31 +83,6 @@ class Sensor(models.Model):
 
     def __unicode__(self):
         return self.pk + " - " + self.type
-
-
-class TypeEvent(models.Model):
-    type = models.CharField('type', max_length=50)
-
-    class Meta:
-        verbose_name = 'type_event'
-        verbose_name_plural = 'type_events'
-
-    def __unicode__(self):
-        return self.type
-
-
-class Event(models.Model):
-    sensor = models.ForeignKey(Sensor)
-    type = models.ForeignKey(TypeEvent)
-    date = models.DateTimeField('date')
-
-    class Meta:
-        verbose_name = 'event'
-        verbose_name_plural = 'events'
-
-    def __unicode__(self):
-        return self.pk + ' ' + self.sensor
-
 
 class Alarm(models.Model):
     event = models.ForeignKey(Event)

@@ -105,3 +105,4 @@ STATICFILES_DIRS = (
 )
 
 UPLOADED_FILE_PATH = 'static/img_up/'
+UPLOADED_MAP_FILE_PATH = 'map/static/img/uploaded/'

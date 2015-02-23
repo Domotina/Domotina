@@ -22,7 +22,7 @@ class SensorType(models.Model):
         return self.type
 
 class Sensor(models.Model):
-    installed = models.ForeignKey(Place)
+    place = models.ForeignKey(Place)
     type = models.ForeignKey(SensorType)
     description = models.TextField('description')
     status = models.ForeignKey(SensorStatus)

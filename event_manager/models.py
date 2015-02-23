@@ -1,4 +1,5 @@
 from django.db import models
+from sensor.models import Sensor
 
 # Create your models here.
 
@@ -15,7 +16,7 @@ class EventType(models.Model):
 
 
 class Event(models.Model):
-#    sensor = models.ForeignKey(Sensor)
+    sensor = models.ForeignKey(Sensor)
     type = models.ForeignKey(EventType)
     timestamp = models.DateTimeField('date', auto_now_add=True)
 

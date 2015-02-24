@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+{% load static %}
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]> <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]> <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title> Domotina - {% block title %}{% endblock %} </title>
+
+    <link rel="stylesheet" href='{% static "css/app.css" %}'>
+    <script src='{% static "js/vendor/jquery-1.11.1.min.js" %}'></script>
+    <script src='{% static "js/vendor/jquery.slides.min.js" %}'></script>
+</head>
+<body style="background: url('{% static "img/body.jpg" %}');">
+    <div class="header">
+        <div class="bar">
+            <img src='{% static "img/domotinaLogo.png" %}'/>
+            <ul>
+                <li> Actives </li>
+                <li> Alarms </li>
+                <li> Events </li>
+            </ul>
+        </div>
+
+        <div class="slider" id="slides">
+            <img src='{% static "img/slider1.jpg" %}'/>
+            <img src='{% static "img/slider2.jpg" %}'/>
+            <img src='{% static "img/slider3.jpg" %}'/>
+        </div>
+    </div>
+
+    <div class="wrapper">
+        {% block content %} {% endblock %}
+    </div>
+
+    <div class="footer">
+        <div class="left">
+            <img src='{% static "img/domotinaLogo.png" %}'/>
+            <p> Andes University: Privacy Policy</p>
+        </div>
+        <div class="right">
+            <div>
+                <p>Our contacts: </p>
+            </div>
+            <div>
+                <p> Andes University - Master Software Engineering</p>
+                <p> Member Team: Cindy, Andres, David, Esteban, Felipe, Raul</p>
+                <p> cv.hernandez10@uniandes.edu.co</p>
+            </div>
+        </div>
+    </div>
+
+    <script src='{% static "js/app.js" %}'></script>
+</body>
+</html>

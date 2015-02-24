@@ -7,7 +7,7 @@ class Asset(models.Model):
     name = models.CharField('name', max_length=50)
     description = models.TextField('description')
     creation = models.DateField('date of registration', auto_now_add=True)
-    status = models.ForeignKey(Status)
+    #status = models.ForeignKey(Status)
 
     class Meta:
         verbose_name = 'asset'

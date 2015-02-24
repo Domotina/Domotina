@@ -3,7 +3,7 @@ from map.models import Place
 from assets.models import Asset
 
 # Create your models here.
-class SensorStatus:
+class SensorStatus(models.Model):
     name = models.CharField('type',max_length=20)
     class Meta:
         verbose_name = 'sensor_status'

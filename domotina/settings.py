@@ -42,6 +42,8 @@ INSTALLED_APPS = (
     'kronos',
     'alarms',
     'map',
+    'sensor',
+    'assets',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -85,7 +87,7 @@ USE_TZ = True
 
 # Parse database configuration from $DATABASE_URL
 import dj_database_url
-DATABASES['default'] =  dj_database_url.config()
+DATABASES['default'] = dj_database_url.config()
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
@@ -105,3 +107,14 @@ STATICFILES_DIRS = (
 )
 
 UPLOADED_FILE_PATH = 'static/img_up/'
+UPLOADED_MAP_FILE_PATH = 'map/static/img/uploaded/'
+
+## Configuracion de Correo
+
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+#EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+#EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
+EMAIL_HOST_USER = 'agiltest10@gmail.com'
+EMAIL_HOST_PASSWORD = ''

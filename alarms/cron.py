@@ -1,11 +1,13 @@
 # app/cron.py
 
 import kronos
-from random import randint
 from django.contrib.auth.models import User
+from alarms.models import Alarm
+from alarms import notificator
 
 @kronos.register('* * * * *')
 def check_alarms():
-    list = User.objects.all();
-    for user in list:
-        print user
+    current_alarms = Alarm.objects.get(activated=True)
+    for alarm in current_alarms:
+        notificator.send_email(alarm)
+

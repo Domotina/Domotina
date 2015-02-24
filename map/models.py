@@ -4,6 +4,7 @@ from django.contrib.auth.models import User
 
 class Building(models.Model):
     name = models.CharField('building', max_length=100)
+
     class Meta:
         verbose_name = 'building'
         verbose_name_plural = 'buildings'
@@ -12,15 +13,17 @@ class Building(models.Model):
     def __unicode__(self):
         return '%s' % self.name
 
+
 class Place(models.Model):
     owner = models.ForeignKey(User)
     building = models.ForeignKey(Building, verbose_name="building", related_name="places")
     name = models.CharField('place', max_length=100)
-    map = models.ImageField('model', upload_to=settings.UPLOADED_FILE_PATH)
+    map = models.ImageField('map image', upload_to=settings.UPLOADED_MAP_FILE_PATH)
+
     class Meta:
         verbose_name = 'place'
         verbose_name_plural = 'places'
-        ordering = ['name']
+        ordering = ['building', 'name']
 
     def __unicode__(self):
         return '%s %s' % (self.building.name, self.name)
@@ -32,13 +35,15 @@ class Door(models.Model):
     coord_x = models.PositiveIntegerField('coord X in map', blank=True, null=True)
     coord_y = models.PositiveIntegerField('coord Y in map', blank=True, null=True)
     is_locked = models.BooleanField('locked?', default=True)
+
     class Meta:
         verbose_name = 'door'
         verbose_name_plural = 'doors'
-        ordering = ['name']
+        ordering = ['place', 'name']
 
     def __unicode__(self):
-        return '%s: %s(%s,%s)' % (self.place, self.name, self.coord_x, self.coord_y)
+        return '%s: %s (%s,%s)' % (self.place, self.name, self.coord_x, self.coord_y)
+
 
 class Window(models.Model):
     place = models.ForeignKey(Place, verbose_name="place", related_name="windows")
@@ -46,13 +51,15 @@ class Window(models.Model):
     coord_x = models.PositiveIntegerField('coord X in map', blank=True, null=True)
     coord_y = models.PositiveIntegerField('coord Y in map', blank=True, null=True)
     is_locked = models.BooleanField('locked?', default=True)
+
     class Meta:
         verbose_name = 'window'
         verbose_name_plural = 'windows'
-        ordering = ['name']
+        ordering = ['place', 'name']
 
     def __unicode__(self):
-        return '%s: %s(%s,%s)' % (self.place, self.name, self.coord_x, self.coord_y)
+        return '%s: %s (%s,%s)' % (self.place, self.name, self.coord_x, self.coord_y)
+
 
 class Device(models.Model):
     place = models.ForeignKey(Place, verbose_name = "place", related_name = "devices")
@@ -60,10 +67,11 @@ class Device(models.Model):
     coord_x = models.PositiveIntegerField('coord X in model', blank=True, null=True)
     coord_y = models.PositiveIntegerField('coord Y in model', blank=True, null=True)
     is_locked = models.BooleanField('locked?', default=True)
+
     class Meta:
         verbose_name = 'device'
         verbose_name_plural = 'devices'
-        ordering = ['name']
+        ordering = ['place', 'name']
 
     def __unicode__(self):
-        return '%s' % self.name
+        return '%s: %s (%s,%s)' % (self.place, self.name, self.coord_x, self.coord_y)

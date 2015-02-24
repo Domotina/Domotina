@@ -49,12 +49,12 @@ def place_view(request, pk):
 
     # Split map page into its filename and extension
     map_page = '%s://%s/%s%s' % (request.META['wsgi.url_scheme'], request.META['HTTP_HOST'],
-                                          settings.UPLOADED_FILE_PATH[4:len(settings.UPLOADED_FILE_PATH)],
+                                          settings.UPLOADED_MAP_FILE_PATH[4:len(settings.UPLOADED_MAP_FILE_PATH)],
                                           place.map)
     filename, file_ext = splitext(basename(urlparse(map_page).path))
 
     context = {'place': place, 'show_icons_script': show_icons_script,
                'map_url': '%s://%s/%s%s%s' % (request.META['wsgi.url_scheme'], request.META['HTTP_HOST'],
-                                          settings.UPLOADED_FILE_PATH[4:len(settings.UPLOADED_FILE_PATH)],
+                                          settings.UPLOADED_MAP_FILE_PATH[4:len(settings.UPLOADED_MAP_FILE_PATH)],
                                           filename, file_ext)}
     return render(request, 'myplaces.html', context)

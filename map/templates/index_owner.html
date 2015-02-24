@@ -2,15 +2,28 @@
 {% load static %}
 
 {% block content %}
-<div class="alarm">
-
-</div>
-
 <div class="map">
     <img src='{% static "img/apto_model1.png" %}'>
 </div>
 
-<div class="event">
+<div class="info">
+    <div class="panel panel-success">
+        <div class="panel-heading">
+            <h3 class="panel-title">ALARMS</h3>
+        </div>
+        <div class="panel-body">
+            Se cargaran las alarmas
+        </div>
+    </div>
 
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">EVENTS</h3>
+        </div>
+        <div class="panel-body">
+            Se cargaran los eventos
+        </div>
+    </div>
 </div>
+
 {% endblock %}

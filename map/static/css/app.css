@@ -104,7 +104,7 @@ a.active{
 
 .wrapper{
     width: 80%;
-    height: 500px;
+    height: 640px;
     margin: 10px 10%;
 }
 
@@ -115,21 +115,20 @@ a.active{
 
 }
 
-.alarm{
-    width: 15%;
-    height: 100%;
-    margin: 0 2% 0 0;
-}
-
-.event{
-    width: 15%;
+.info{
+    width: 20%;
     height: 100%;
     margin: 0 0 0 2%;
     float: right;
 }
 
+.info > div{
+    height: 50%;
+    margin: 2% 0 2% 0;
+}
+
 .map{
-    width: 64%;
+    width: 75%;
     height: 100%;
 }
 

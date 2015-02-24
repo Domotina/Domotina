@@ -5,11 +5,12 @@ from sensor.models import Sensor
 
 class EventType(models.Model):
     name = models.CharField('type', max_length=50)
+    description = models.CharField('description', max_length=400)
     is_critical = models.BooleanField('is critical')
 
     class Meta:
-        verbose_name = 'type_event'
-        verbose_name_plural = 'type_events'
+        verbose_name = 'event type'
+        verbose_name_plural = 'event types'
 
     def __unicode__(self):
         return self.type

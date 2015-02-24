@@ -41,11 +41,16 @@ def place_view(request, pk):
         show_icons_script = \
             '%s var window_icon%s  = new Image(); \
                 window_icon%s.src = "%simg/%s"; \
+                window_icon%s.title = "Test for tooltip"; \
                 ctx.drawImage(window_icon%s, %s, %s);' \
-                % (show_icons_script, window.id, window.id, server_path, lock_icon,
+                % (show_icons_script, window.id,
+                   window.id, server_path, lock_icon,
+                   window.id,
                    window.id, window.coord_x, window.coord_y)
 
     show_icons_script = show_icons_script + '});';
+
+    print show_icons_script
 
     # Split map page into its filename and extension
     map_page = '%s://%s/%s%s' % (request.META['wsgi.url_scheme'], request.META['HTTP_HOST'],
@@ -57,7 +62,7 @@ def place_view(request, pk):
                'map_url': '%s://%s/%s%s%s' % (request.META['wsgi.url_scheme'], request.META['HTTP_HOST'],
                                           settings.UPLOADED_MAP_FILE_PATH[4:len(settings.UPLOADED_MAP_FILE_PATH)],
                                           filename, file_ext)}
-    return render(request, 'myplaces.html', context)
+    return render(request, 'index.html', context)
 
 def init(request):
     return render(request, 'index_owner.html')

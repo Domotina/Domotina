@@ -2,8 +2,11 @@
 {% load static %}
 
 {% block content %}
-<div class="map">
-    <img src='{% static "img/apto_model1.png" %}'>
+
+<div class="map" style='background-image:url("{{ map_url }}");'>
+    <canvas id="apartment_canvas" width="800" height="640">
+        Your browser does not support the HTML5 canvas tag.
+    </canvas>
 </div>
 
 <div class="info">

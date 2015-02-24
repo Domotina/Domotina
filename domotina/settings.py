@@ -37,13 +37,11 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'event_manager',
-    'rest_framework',
-    'kronos',
-    'alarms',
+    #'event_manager',
+    #'rest_framework',
+    #'kronos',
+    #'alarms',
     'map',
-    'sensor',
-    'assets',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -55,10 +53,10 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-REST_FRAMEWORK = {
-    'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.IsAdminUser',),
-    'PAGINATE_BY': 10
-}
+# REST_FRAMEWORK = {
+#     'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.IsAdminUser',),
+#     'PAGINATE_BY': 10
+# }
 
 ROOT_URLCONF = 'domotina.urls'
 
@@ -86,8 +84,8 @@ USE_L10N = True
 USE_TZ = True
 
 # Parse database configuration from $DATABASE_URL
-import dj_database_url
-DATABASES['default'] = dj_database_url.config()
+#import dj_database_url
+#DATABASES['default'] =  dj_database_url.config()
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
@@ -107,14 +105,15 @@ STATICFILES_DIRS = (
 )
 
 UPLOADED_FILE_PATH = 'static/img_up/'
-UPLOADED_MAP_FILE_PATH = 'map/static/img/uploaded/'
 
-## Configuracion de Correo
 
-EMAIL_USE_TLS = True
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
-#EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
-#EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
-EMAIL_HOST_USER = 'agiltest10@gmail.com'
-EMAIL_HOST_PASSWORD = ''
+DATABASES = {
+	'default': {
+		'ENGINE': 'django.db.backends.postgresql_psycopg2',
+		'NAME': 'domotina',
+		'USER': 'postgres',
+		'PASSWORD': 'postgres',
+		'HOST': 'localhost',
+		'PORT': '5432',
+	}
+}

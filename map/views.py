@@ -6,7 +6,7 @@ from os.path import splitext, basename
 
 
 def home(request):
-    return render(request, 'index.html')
+    return render(request, 'index_owner.html')
 
 def place_view(request, pk):
     server_path = "%s://%s%s" % (request.META['wsgi.url_scheme'], request.META['HTTP_HOST'], settings.STATIC_URL)
@@ -58,3 +58,6 @@ def place_view(request, pk):
                                           settings.UPLOADED_MAP_FILE_PATH[4:len(settings.UPLOADED_MAP_FILE_PATH)],
                                           filename, file_ext)}
     return render(request, 'myplaces.html', context)
+
+def init(request):
+    return render(request, 'index_owner.html')

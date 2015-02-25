@@ -1,6 +1,5 @@
 from django.conf import settings
 from django.db import models
-from map.models import Place
 from django.contrib.auth.models import User
 
 class Neighborhood(models.Model):

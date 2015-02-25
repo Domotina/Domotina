@@ -33,7 +33,7 @@ INSTALLED_APPS = (
     'rest_framework',
     'kronos',
     'alarms',
-    'sensor',
+    'map',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -82,8 +82,8 @@ STATICFILES_DIRS = (
 )
 
 UPLOADED_FILE_PATH = 'static/img_up/'
-SENSOR_MAP_FILE_PATH = 'sensor/static/img/maps/'
-SENSOR_ICONS_FILE_PATH = 'sensor/static/img/icons/'
+MAP_FILE_PATH = 'map/static/img/maps/'
+MAP_ICONS_FILE_PATH = 'map/static/img/icons/'
 
 ## Configuracion de Correo
 EMAIL_USE_TLS = True

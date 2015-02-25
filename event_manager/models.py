@@ -1,5 +1,5 @@
 from django.db import models
-from sensor.models import Sensor
+from map.models import Sensor
 
 # Create your models here.
 

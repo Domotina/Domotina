@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from .models import Event, EventType
-from sensor.models import Sensor
+from map.models import Sensor
 
 
 class EventSerializer(serializers.HyperlinkedModelSerializer):

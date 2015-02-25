@@ -20,7 +20,7 @@ class Place(models.Model):
     owner = models.ForeignKey(User, verbose_name="owner", related_name="places")
     neighborhood = models.ForeignKey(Neighborhood, verbose_name="neighborhood", related_name="places")
     name = models.CharField("place", max_length=100)
-    map = models.ImageField("map image", upload_to=settings.SENSOR_MAP_FILE_PATH)
+    map = models.ImageField("map image", upload_to=settings.MAP_FILE_PATH)
     date_created = models.DateTimeField("date created", auto_now_add=True)
     date_updated = models.DateTimeField("date updated", auto_now_add=True)
 
@@ -65,7 +65,7 @@ class SensorType(models.Model):
 class SensorStatus(models.Model):
     type = models.ForeignKey(SensorType)
     name = models.CharField("status", max_length=50)
-    icon = models.ImageField("icon", upload_to=settings.SENSOR_ICONS_FILE_PATH)
+    icon = models.ImageField("icon", upload_to=settings.MAP_ICONS_FILE_PATH)
     is_enabled = models.BooleanField("enabled?", default=True)
 
     class Meta:

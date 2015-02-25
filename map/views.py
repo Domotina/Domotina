@@ -37,9 +37,9 @@ def place_view(request, pk):
     # Split map place url into its filename and extension
     filename, file_ext = splitext(basename(str(place.map)))
     map_url = '%s://%s/%s%s%s' % (request.META['wsgi.url_scheme'], request.META['HTTP_HOST'],
-                                  settings.SENSOR_MAP_FILE_PATH[7:len(settings.SENSOR_MAP_FILE_PATH)],
+                                  settings.MAP_FILE_PATH[4:len(settings.MAP_FILE_PATH)],
                                           filename, file_ext)
 
     context = {'place': place, 'show_icons_script': show_icons_script,
                'map_url': map_url}
-    return render(request, 'myplaces.html', context)
+    return render(request, 'index.html', context)

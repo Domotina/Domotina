@@ -33,9 +33,7 @@ INSTALLED_APPS = (
     'rest_framework',
     'kronos',
     'alarms',
-    'map',
     'sensor',
-    'assets',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -82,8 +80,11 @@ STATIC_ROOT = 'staticfiles'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
+
 UPLOADED_FILE_PATH = 'static/img_up/'
-UPLOADED_MAP_FILE_PATH = 'map/static/img/uploaded/'
+SENSOR_MAP_FILE_PATH = 'sensor/static/img/maps/'
+SENSOR_ICONS_FILE_PATH = 'sensor/static/img/icons/'
+
 ## Configuracion de Correo
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'

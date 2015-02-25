@@ -130,11 +130,15 @@ a.active{
 .map{
     width: 800px;
     height: 100%;
+    background: #f0f0f0;
+    background-size:800px 640px;
+    background-repeat: no-repeat;
+    border:1px solid #d3d3d3;
 }
 
 .map img{
     width: 100%;
-    height: 100%;
+    height: 640;
 }
 
 .footer{

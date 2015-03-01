@@ -1,5 +1,3 @@
-# -*- coding: latin-1 -*-
-from alarms.models import Alarm
 from datetime import datetime
 import os
 from django.core.mail import EmailMessage

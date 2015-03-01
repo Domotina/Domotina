@@ -1,9 +1,10 @@
 # app/cron.py
 
 import kronos
-from django.contrib.auth.models import User
-from alarms.models import Alarm
-from alarms import notificator
+
+from event_manager import notificator
+from event_manager.models import Alarm
+
 
 @kronos.register('* * * * *')
 def check_alarms():

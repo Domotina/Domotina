@@ -2,6 +2,9 @@ from django.conf import settings
 from django.db import models
 from django.contrib.auth.models import User
 from actstream import registry
+from actstream.actions import follow
+from django.dispatch import receiver
+from django.db.models.signals import post_save
 
 class Neighborhood(models.Model):
     name = models.CharField("neighborhood", max_length=100)
@@ -99,3 +102,8 @@ class Sensor(models.Model):
 registry.register(Sensor)
 registry.register(Asset)
 registry.register(Place)
+registry.register(User)
+
+@receiver(post_save, sender=Asset)
+def myHandler(sender, instance, **kwargs):
+    follow(instance.place.owner, instance, actor_only=False)

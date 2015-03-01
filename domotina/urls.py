@@ -11,4 +11,5 @@ urlpatterns = patterns('',
     url(r'^api/', include(router.urls)),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^map/', include('map.urls')),
+    url('^activity/', include('actstream.urls')),
 )

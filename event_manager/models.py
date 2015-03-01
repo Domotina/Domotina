@@ -26,6 +26,7 @@ class Event(models.Model):
     timestamp = models.DateTimeField('date', auto_now_add=True)
     pos_x = models.IntegerField('x position', default=0)
     pos_y = models.IntegerField('y position', default=0)
+    status = models.IntegerField('status', default=0)
 
     class Meta:
         verbose_name = 'event'

@@ -2,7 +2,7 @@ from django.shortcuts import render
 # Create your views here.
 from rest_framework import viewsets
 from .models import Event, EventType
-from .serializers import EventSerializer, EventTypeSerializer
+from .serializers import EventSerializer
 
 
 class EventViewSet(viewsets.ModelViewSet):
@@ -11,8 +11,3 @@ class EventViewSet(viewsets.ModelViewSet):
     """
     queryset = Event.objects.all()
     serializer_class = EventSerializer
-
-
-class EventTypeViewSet(viewsets.ModelViewSet):
-    queryset = EventType.objects.all()
-    serializer_class = EventTypeSerializer

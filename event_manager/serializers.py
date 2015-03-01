@@ -9,9 +9,4 @@ class EventSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Event
-        fields = ('id', 'timestamp', 'type', 'sensor', 'pos_x', 'pos_y')
-
-class EventTypeSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = EventType
-        fields = ('id', 'name', 'description', 'is_critical')
+        fields = ('id', 'timestamp', 'type', 'sensor', 'pos_x', 'pos_y', 'status')

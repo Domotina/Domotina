@@ -83,12 +83,15 @@ class SensorStatus(models.Model):
 
 class Sensor(models.Model):
     asset = models.ForeignKey(Asset, verbose_name="asset", related_name="sensors")
-    status = models.ForeignKey(SensorStatus, verbose_name="status", related_name="sensors")
-    pos_x = models.PositiveIntegerField("X position in map", default=1)
-    pos_y = models.PositiveIntegerField("Y position in map", default=1)
+    type = models.ForeignKey(SensorType, verbose_name="types", related_name="sensors")
     description = models.TextField("description", blank=True, null=True)
     date_created = models.DateTimeField("date created", auto_now_add=True)
     date_updated = models.DateTimeField("date updated", auto_now_add=True)
+    # This columns are saved by event_manager
+    current_status_id = models.PositiveIntegerField("current status id", default=0)
+    current_pos_x = models.PositiveIntegerField("current X position in map", default=1)
+    current_pos_y = models.PositiveIntegerField("current Y position in map", default=1)
+    current_date = models.DateTimeField("current date")
 
     class Meta:
         verbose_name = "sensor"

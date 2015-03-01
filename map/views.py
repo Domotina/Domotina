@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from models import Place, Asset, Sensor
+from models import Place, Asset, Sensor, SensorStatus
 from django.conf import settings
 from urlparse import urlparse
 from os.path import splitext, basename
@@ -18,19 +18,25 @@ def place_view(request, pk):
         var ctx = c.getContext("2d");'
     place = get_object_or_404(Place, pk=pk)
 
-    # Get all assets in current place
+    # Get all assets in the current place
     assets = Asset.objects.filter(place=place)
     for asset in assets:
         sensors = Sensor.objects.filter(asset=asset)
         for sensor in sensors:
-            filename, file_ext = splitext(basename(str(sensor.status.icon)))
-            show_icons_script = \
-                '%s var sensor_icon%s  = new Image(); \
-                sensor_icon%s.src = "%simg/icons/%s%s"; \
-                ctx.drawImage(sensor_icon%s, %s, %s);' \
-                % (show_icons_script, sensor.id,
-                   sensor.id, server_path, filename, file_ext,
-                   sensor.id, sensor.pos_x, sensor.pos_y)
+            # Get the sensor status based on current_status_id saved by event_manager previously
+            try:
+                status = SensorStatus.objects.get(id=sensor.current_status_id)
+                filename, file_ext = splitext(basename(str(status.icon)))
+                show_icons_script = \
+                    '%s var sensor_icon%s  = new Image(); \
+                    sensor_icon%s.src = "%simg/icons/%s%s"; \
+                    ctx.drawImage(sensor_icon%s, %s, %s);' \
+                    % (show_icons_script, sensor.id,
+                       sensor.id, server_path, filename, file_ext,
+                       sensor.id, sensor.current_pos_x, sensor.current_pos_y)
+            except SensorStatus.DoesNotExist:
+                print "Status %s not found. Skipinng..." % (status)
+                pass
 
     show_icons_script = show_icons_script + '});';
 

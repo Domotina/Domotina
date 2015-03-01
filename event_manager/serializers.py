@@ -5,6 +5,7 @@ from map.models import Sensor
 
 class EventSerializer(serializers.HyperlinkedModelSerializer):
     sensor = serializers.PrimaryKeyRelatedField(queryset=Sensor.objects.all())
+    type = serializers.PrimaryKeyRelatedField(queryset=EventType.objects.all())
 
     class Meta:
         model = Event

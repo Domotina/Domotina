@@ -1,4 +1,7 @@
 # Domotina
+## Estado
+[![Build Status](https://travis-ci.org/Domotina/domotina.svg?branch=dev)](https://travis-ci.org/Domotina/domotina)
+[![Codacy Badge](https://www.codacy.com/project/badge/1e19fe0af18b4c4981ce27578a6944e0)](https://www.codacy.com/public/kaosterra/domotina)
 ## Introducción
 Durante los últimos años, el avance de la tecnología en dispositivos móviles, sensores inalámbricos, avances en sistemas de domótica y sistemas embebidos han hecho posible la automatización de soluciones de monitoreo remoto y automatización de viviendas inteligentes. Particularmente, en este último campo, el uso de internet y dispositivos móviles abren todo un nuevo campo de acción para automatización de tareas domésticas, control remoto de viviendas, manejo proactivo de alarmas, control de activos e interacción con electrodomésticos en tiempo real.
 

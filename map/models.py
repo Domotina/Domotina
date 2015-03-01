@@ -1,6 +1,7 @@
 from django.conf import settings
 from django.db import models
 from django.contrib.auth.models import User
+from actstream import registry
 
 class Neighborhood(models.Model):
     name = models.CharField("neighborhood", max_length=100)
@@ -13,7 +14,7 @@ class Neighborhood(models.Model):
         ordering = ["name"]
 
     def __unicode__(self):
-        return "%s" % self.name
+        return self.name
 
 
 class Place(models.Model):
@@ -30,7 +31,7 @@ class Place(models.Model):
         ordering = ["neighborhood", "name"]
 
     def __unicode__(self):
-        return "%s %s" % (self.neighborhood.name, self.name)
+        return self.name
 
 
 class Asset(models.Model):
@@ -46,7 +47,7 @@ class Asset(models.Model):
         ordering = ["place", "name"]
 
     def __unicode__(self):
-        return "%s %s: %s" % (self.place.neighborhood.name, self.place.name, self.name)
+        return self.name
 
 
 class SensorType(models.Model):
@@ -59,7 +60,7 @@ class SensorType(models.Model):
         ordering = ["name"]
 
     def __unicode__(self):
-        return "%s" % (self.name)
+        return self.name
 
 
 class SensorStatus(models.Model):
@@ -92,4 +93,9 @@ class Sensor(models.Model):
         ordering = ["asset"]
 
     def __unicode__(self):
-        return "SENSOR MONITORING %s" % (self.asset.name)
+        return "Sensor %d" % self.pk
+
+
+registry.register(Sensor)
+registry.register(Asset)
+registry.register(Place)

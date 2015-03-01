@@ -1,10 +1,14 @@
 from django.db import models
 from map.models import Sensor
+from actstream import registry, action
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 # Create your models here.
 
+
 class EventType(models.Model):
-    name = models.CharField('type', max_length=50)
+    name = models.CharField('name', max_length=50)
     description = models.CharField('description', max_length=400)
     is_critical = models.BooleanField('is critical', default=False)
 
@@ -13,7 +17,7 @@ class EventType(models.Model):
         verbose_name_plural = 'event types'
 
     def __unicode__(self):
-        return self.type
+        return self.name
 
 
 class Event(models.Model):
@@ -28,7 +32,7 @@ class Event(models.Model):
         verbose_name_plural = 'events'
 
     def __unicode__(self):
-        return self.pk + ' ' + self.sensor
+        return "%(type) on %(timestamp)" % {'type': self.type, 'timestamp': self.timestamp}
 
 
 class Alarm(models.Model):
@@ -42,4 +46,12 @@ class Alarm(models.Model):
         verbose_name_plural = 'alarms'
 
     def __unicode__(self):
-        return self.pk + ' - Event: ' + self.event
+        return "%(id) - Event: %(event)" % {'id': self.pk, 'event': self.event}
+
+
+registry.register(Event)
+registry.register(EventType)
+
+@receiver(post_save, sender=Event)
+def myHandler(sender, instance, **kwargs):
+    action.send(instance.sensor, verb="reported", action_object=instance.type, target=instance.sensor.asset)

@@ -55,6 +55,9 @@ registry.register(EventType)
 
 @receiver(post_save, sender=Event)
 def myHandler(sender, instance, **kwargs):
+    if instance.type.is_critical:
+        alarm = Alarm(event=instance)
+        alarm.save()
     action.send(instance.sensor, verb="reported", action_object=instance.type, target=instance.sensor.asset.place)
     instance.sensor.current_status_id = instance.status
     instance.sensor.current_pos_x = instance.pos_x

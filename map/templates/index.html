@@ -1,5 +1,6 @@
 {% extends "base_owner.html"%}
 {% load static %}
+{% load activity_tags %}
 
 {% block content %}
 
@@ -27,7 +28,10 @@
             <h3 class="panel-title">EVENTS</h3>
         </div>
         <div class="panel-body">
-            Se cargaran los eventos
+            {% activity_stream 'user' user %}
+            {% for action in stream %}
+                {% display_action action %}
+            {% endfor %}
         </div>
     </div>
 </div>

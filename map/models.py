@@ -88,7 +88,7 @@ class Sensor(models.Model):
     type = models.ForeignKey(SensorType, verbose_name="types", related_name="sensors")
     description = models.TextField("description", blank=True, null=True)
     date_created = models.DateTimeField("date created", auto_now_add=True)
-    date_updated = models.DateTimeField("date updated", auto_now_add=True)
+    date_updated = models.DateTimeField("date updated", auto_now=True)
     # This columns are saved by event_manager
     current_status_id = models.PositiveIntegerField("current status id", default=0)
     current_pos_x = models.PositiveIntegerField("current X position in map", default=1)
@@ -101,7 +101,7 @@ class Sensor(models.Model):
         ordering = ["asset"]
 
     def __unicode__(self):
-        return "Sensor %d" % self.pk
+        return "Sensor on %s" % self.asset
 
 
 registry.register(Sensor)
@@ -109,6 +109,6 @@ registry.register(Asset)
 registry.register(Place)
 registry.register(User)
 
-@receiver(post_save, sender=Asset)
+@receiver(post_save, sender=Place)
 def myHandler(sender, instance, **kwargs):
-    follow(instance.place.owner, instance, actor_only=False)
+    follow(instance.owner, instance, actor_only=False)

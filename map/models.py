@@ -58,6 +58,7 @@ class SensorType(models.Model):
     is_enabled = models.BooleanField("enabled?", default=True)
 
     class Meta:
+        db_table = 'map_sensor_type'
         verbose_name = "sensor type"
         verbose_name_plural = "sensor types"
         ordering = ["name"]
@@ -73,6 +74,7 @@ class SensorStatus(models.Model):
     is_enabled = models.BooleanField("enabled?", default=True)
 
     class Meta:
+        db_table = 'map_sensor_status'
         verbose_name = "sensor status"
         verbose_name_plural = "sensor status"
         ordering = ["type", "name"]

@@ -32,7 +32,6 @@ INSTALLED_APPS = (
     'event_manager',
     'rest_framework',
     'kronos',
-    'alarms',
     'map',
 )
 

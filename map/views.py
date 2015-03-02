@@ -35,7 +35,7 @@ def place_view(request, pk):
                        sensor.id, server_path, filename, file_ext,
                        sensor.id, sensor.current_pos_x, sensor.current_pos_y)
             except SensorStatus.DoesNotExist:
-                print "Status %s not found. Skipinng..." % (status)
+                print "Status %s not found. Skipping..." % (sensor.current_status_id)
                 pass
 
     show_icons_script = show_icons_script + '});';

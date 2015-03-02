@@ -26,6 +26,7 @@ class Event(models.Model):
     timestamp = models.DateTimeField('date', auto_now_add=True)
     pos_x = models.IntegerField('x position', default=0)
     pos_y = models.IntegerField('y position', default=0)
+    status = models.IntegerField('status', default=0)
 
     class Meta:
         verbose_name = 'event'
@@ -54,4 +55,12 @@ registry.register(EventType)
 
 @receiver(post_save, sender=Event)
 def myHandler(sender, instance, **kwargs):
-    action.send(instance.sensor, verb="reported", action_object=instance.type, target=instance.sensor.asset)
+    if instance.type.is_critical:
+        alarm = Alarm(event=instance)
+        alarm.save()
+    action.send(instance.sensor, verb="reported", action_object=instance.type, target=instance.sensor.asset.place)
+    instance.sensor.current_status_id = instance.status
+    instance.sensor.current_pos_x = instance.pos_x
+    instance.sensor.current_pos_y = instance.pos_y
+    instance.sensor.current_date = instance.timestamp
+    instance.sensor.save()

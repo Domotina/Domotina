@@ -45,60 +45,8 @@ body, html{
     color: #58ACFA;
 }
 
-.slider{
-    width: 80%;
-    height: 100%;
-    position: relative;
-    margin: 0 auto;
-}
-
-.slider .slidesjs-container{
-    height: 90%;
-}
-
-.slider a{
-    text-decoration: none;
-    color: #000;
-    margin: 10px 5px;
-    display: inline-block;
-}
-
-.slidesjs-control{
-    height: 100%;
-}
-
-.slidesjs-control img{
-    height: 100% !important;
-}
-
-.slidesjs-navigation{
-    display: none !important;
-}
-
-.slidesjs-pagination-item a{
-    color: rgba(0,0,0,0);
-    border-radius: 50%;
-    border: 2px solid #333;
-    background-color: #FFF;
-    width: 15px;
-    height: 15px;
-}
-
 a.active{
     background-color: #000;
-}
-
-.slider ul{
-    display: inline;
-    float: right;
-    margin: 0px 15px 0 0;
-    padding: 0;
-}
-
-.slider ul li{
-    display: inline-block;
-    margin: 0 7px;
-
 }
 
 .wrapper{

@@ -1,8 +1,10 @@
 {% if user.is_authenticated %}
 <ul class="nav navbar-nav navbar-right">
     <li class="dropdown">
-        <a class="dropdown-toggle" id="dropuser" data-toggle="dropdown"
-            href="#">{{ user.username }} <b class="caret"></b></a>
+        <a class="dropdown-toggle" id="dropuser" data-toggle="dropdown" href="#">
+            {{ user.username }}
+            <b class="caret"></b>
+        </a>
         <ul class="dropdown-menu" role="menu" aria-labelledby="dropuser">
             <li><a href='{% url "app_contact_list_user" user.username %}'>My contact lists</a></li>
             <li><a href='{% url "auth_logout" %}'>Logout</a></li>

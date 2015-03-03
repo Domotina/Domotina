@@ -29,11 +29,12 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'index',
     'event_manager',
     'rest_framework',
     'kronos',
     'map',
-    'actstream', #Favor dejar este siempre de ultimo
+    'actstream',#Favor dejar este siempre de ultimo
 )
 
 MIDDLEWARE_CLASSES = (
@@ -96,4 +97,3 @@ EMAIL_PORT = 587
 # EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
 #EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 EMAIL_HOST_USER = 'agiltest10@gmail.com'
-

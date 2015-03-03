@@ -1,7 +1,7 @@
 $(document).ready( function(){
     $("#slides").slidesjs({
         width: '100%',
-        height: 400,
+        height: 800,
         play: {
           active: true,
           auto: true,

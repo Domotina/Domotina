@@ -5,7 +5,7 @@ from urlparse import urlparse
 from os.path import splitext, basename
 
 def home(request):
-    return render(request, 'index.html')
+    return render(request, 'index_owner.html')
 
 def place_view(request, pk):
     server_path = "%s://%s%s" % (request.META['wsgi.url_scheme'], request.META['HTTP_HOST'], settings.STATIC_URL)
@@ -48,4 +48,4 @@ def place_view(request, pk):
 
     context = {'place': place, 'show_icons_script': show_icons_script,
                'map_url': map_url}
-    return render(request, 'index.html', context)
+    return render(request, 'index_owner.html', context)

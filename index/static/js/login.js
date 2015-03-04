@@ -1,14 +1,13 @@
-$(document).ready( function(){
-    $("#slides").slidesjs({
-        width: '100%',
-        height: 800,
-        play: {
-          active: true,
-          auto: true,
-          interval: 4000,
-          swap: true,
-          pauseOnHover: true,
-          restartDelay: 2500
+var login = document.getElementById('login');
+
+login.onclick = function(evt){
+    var modal = document.getElementById('modal');
+	modal.style.display = "block";
+
+	modal.onclick = function(evt){
+        if(evt.target.id == "modal"){
+            var modal = document.getElementById('modal');
+            modal.style.display = "none";
         }
-      });
-});
+	}
+}

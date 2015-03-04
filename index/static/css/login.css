@@ -1,102 +1,103 @@
-.slider{
-    width: 80%;
-    height: 100%;
-    position: relative;
-    margin: 0 auto;
+.modal{
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	margin: 0;
+	padding: 0;
+	top: 0;
+	left: 0;
+	background: rgba(0,0,0,0.3);
+	display: none;
 }
 
-.slider .slidesjs-container{
-    height: 90%;
+.login-form{
+	width: 400px;
+	height: 230px;
+	margin: 100px auto;
+	background: #EAEAEA;
+	background-image: url('../image/border_bg.png');
+	background-repeat: no-repeat;
+	background-position: top;
+	background-size: 100% auto;
+	position: relative;
 }
 
-.slider a{
-    text-decoration: none;
-    color: #000;
-    margin: 10px 5px;
-    display: inline-block;
+.login-icon{
+	margin: -31px 170px 0 170px;
+	z-index: 11;
 }
 
-.slidesjs-control{
-    height: 100%;
+.input-wrapper{
+	width: 90%;
+	height: 40px;
+	margin: 20px 5% 0 5%;
+	border: solid 1px #D6D6D6;
+	float: left;
 }
 
-.slidesjs-control img{
-    height: 100% !important;
+.input-wrapper.first{
+	margin: 10px 5% 0 5%;
 }
 
-.slidesjs-navigation{
-    display: none !important;
+.input-wrapper label.user{
+	width: 40px;
+	height: 100%;
+	background: #00829C;
+	background-image: url('../image/user_ico.png');
+	background-position: center;
+	background-repeat: no-repeat;
+	display: inline-block;
 }
 
-.slidesjs-pagination-item a{
-    color: rgba(0,0,0,0);
-    border-radius: 50%;
-    border: 2px solid #333;
-    background-color: #FFF;
-    width: 15px;
-    height: 15px;
+.input-wrapper label.password{
+	width: 40px;
+	height: 100%;
+	background: #00829C;
+	background-image: url('../image/password_ico.png');
+	background-position: center;
+	background-repeat: no-repeat;
+	display: inline-block;
 }
 
-.slider ul{
-    display: inline;
-    float: right;
-    margin: 0px 15px 0 0;
-    padding: 0;
+.input-wrapper input{
+	width: 313px;
+	height: 100%;
+	line-height: 40px;
+	color: #00829C;
+	display: inline-block;
+	margin: 0;
+	padding: 0;
+	padding-left: 20px;
+	border: none;
+	vertical-align: top;
 }
 
-.slider ul li{
-    display: inline-block;
-    margin: 0 7px;
-
+.error-msg{
+	color: #F00;
+	width: 100%;
+	font-weight: bold;
+	text-align: center;
 }
 
-.footer{
-    bottom: 0;
-    width: 80%;
-    height: 50px;
-    border-top: 3px solid #000;
-    margin: 0 10%;
-    line-height: 50px;
+.login-submit{
+	width: 90%;
+	margin: 15px 5%;
+	display: inline-block;
 }
 
-.footer .left{
-    float: left;
-    width: 200px;
-    height: 100%;
-    margin-left: 20px;
-    font-size: 12px;
-    line-height: initial;
+.login-submit a{
+	color: #2F97AC;
+	text-decoration: none;
+	cursor: pointer;
+	display: inline-block;
+	line-height: 30px;
 }
 
-.footer .left img{
-    width: 50px;
-    height: auto;
-    margin: 20px 0 0 0;
-}
-
-.footer .left p{
-    color: #666;
-    margin: 0;
-}
-
-.footer .right{
-    float: right;
-    width: 50%;
-    margin-right: 20px;
-    line-height: initial;
-    font-size: 12px;
-}
-
-.footer .right > div{
-    display: inline-block;
-    vertical-align: top;
-    margin: 0 0 0 5px;
-}
-
-.footer .right > div:first-child p{
-    color: #58ACFA;
-}
-
-.footer .right > div p{
-    color: #666;
+.login-submit button{
+	float: right;
+	width: 85px;
+	height: 30px;
+	border: solid 1px #D6D6D6;
+	border-radius: 5px;
+	background: #F8F8F8;
 }

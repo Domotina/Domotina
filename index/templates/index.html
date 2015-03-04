@@ -1,56 +1,67 @@
 <!DOCTYPE html>
 {% load static %}
-<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]> <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]> <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+<!--[if lt IE 7]>
+<html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>
+<html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>
+<html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js"> <!--<![endif]-->
 <html>
-    <head lang="en">
-        <meta charset="UTF-8">
-        <title>Domotina</title>
-        <link rel="stylesheet" href='{% static "css/app.css" %}'>
-        <link rel="stylesheet" href='{% static "css/bootstrap.min.cyborg.css" %}'>
-        <script src='{% static "js/vendor/jquery-1.11.1.min.js" %}'></script>
-        <script src='{% static "js/vendor/jquery.slides.min.js" %}'></script>
-    </head>
-    <body>
-        <div>
-            <a href="#" class="btn btn-primary">Primary</a>
-        </div>
-        <div class="header">
-            <div class="bar">
-               <ul>
-                    <li> Home </li>
-                    <li> About Smart Home </li>
-                    <li> About Domotina </li>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Domotina</title>
+    <link rel="stylesheet" href='{% static "css/index.css" %}'>
+    <link rel="stylesheet" href='{% static "css/login.css" %}'>
+    <link rel="stylesheet" href='{% static "css/bootstrap.min.flatly.css" %}'>
+    <script src='{% static "js/vendor/jquery-1.11.1.min.js" %}'></script>
+    <script src='{% static "js/vendor/jquery.slides.min.js" %}'></script>
+</head>
+<body>
+    <div class="header">
+        <img src='{% static "image/domotinaLogo.png" %}'>
+        <a href="javascript:void(0)" id="login" class="btn btn-primary">Login</a>
+    </div>
+    {% block login %}
+        {% include "login2.html" %}
+    {% endblock %}
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li><a href="#">Home <span class="sr-only">(current)</span></a></li>
+                    <li><a href="#">About Smart Home</a></li>]
+                    <li><a href="#">About Domotina</a></li>]
                 </ul>
             </div>
         </div>
-        <div class="slider" id="slides">
-            <img src='{% static "image/automatizacion.png" %}'/>
-            <img src='{% static "image/control_inteligente.jpg" %}'/>
-            <img src='{% static "image/display.jpg" %}'/>
-            <img src='{% static "image/Domotica.jpg" %}'/>
-            <img src='{% static "image/domotica.jpg" %}'/>
-            <img src='{% static "image/smart-remote.jpg" %}'/>
-        </div>
-        <div class="footer">
-            <div class="left">
-                <img src='{% static "img/domotinaLogo.png" %}'/>
-                <p> Andes University: Privacy Policy</p>
-            </div>
-            <div class="right">
-                <div>
-                    <p>Our contacts: </p>
-                </div>
-                <div>
-                    <p> Andes University - Master Software Engineering</p>
-                    <p> Member Team: Cindy, Andres, David, Esteban, Felipe, Raul</p>
-                    <p> cv.hernandez10@uniandes.edu.co</p>
-                </div>
-            </div>
-        </div>
+    </nav>
+    <div class="slider" id="slides">
+        <img src='{% static "image/automatizacion.png" %}'/>
+        <img src='{% static "image/control_inteligente.jpg" %}'/>
+        <img src='{% static "image/display.jpg" %}'/>
+        <img src='{% static "image/Domotica.jpg" %}'/>
+        <img src='{% static "image/domotica.jpg" %}'/>
+        <img src='{% static "image/smart-remote.jpg" %}'/>
+    </div>
+    <div class="footer">
+        <div class="left">
+            <img src='{% static "img/domotinaLogo.png" %}'/>
 
-        <script src='{% static "js/login.js" %}'></script>
-    </body>
+            <p> Andes University: Privacy Policy</p>
+        </div>
+        <div class="right">
+            <div>
+                <p>Our contacts: </p>
+            </div>
+            <div>
+                <p> Andes University - Master Software Engineering</p>
+                <p> Member Team: Cindy, Andres, David, Esteban, Felipe, Raul</p>
+                <p> cv.hernandez10@uniandes.edu.co</p>
+            </div>
+        </div>
+    </div>
+    <script src='{% static "js/index.js" %}'></script>
+</body>
 </html>

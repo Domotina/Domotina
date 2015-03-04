@@ -25,6 +25,7 @@
 .login-icon{
 	margin: -31px 170px 0 170px;
 	z-index: 11;
+	width: 60px;
 }
 
 .input-wrapper{

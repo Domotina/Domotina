@@ -1,6 +1,5 @@
 from django.db import models
 from map.models import Sensor
-from actstream import registry, action
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
@@ -33,7 +32,7 @@ class Event(models.Model):
         verbose_name_plural = 'events'
 
     def __unicode__(self):
-        return "%(type) on %(timestamp)" % {'type': self.type, 'timestamp': self.timestamp}
+        return "%s at %s" % (self.type, self.timestamp)
 
 
 class Alarm(models.Model):
@@ -47,18 +46,14 @@ class Alarm(models.Model):
         verbose_name_plural = 'alarms'
 
     def __unicode__(self):
-        return "%(id) - Event: %(event)" % {'id': self.pk, 'event': self.event}
+        return "Alarm from %s" % self.event
 
-
-registry.register(Event)
-registry.register(EventType)
 
 @receiver(post_save, sender=Event)
 def myHandler(sender, instance, **kwargs):
     if instance.type.is_critical:
         alarm = Alarm(event=instance)
         alarm.save()
-    action.send(instance.sensor, verb="reported", action_object=instance.type, target=instance.sensor.asset.place)
     instance.sensor.current_status_id = instance.status
     instance.sensor.current_pos_x = instance.pos_x
     instance.sensor.current_pos_y = instance.pos_y

@@ -34,7 +34,6 @@ INSTALLED_APPS = (
     'rest_framework',
     'kronos',
     'map',
-    'actstream',#Favor dejar este siempre de ultimo
 )
 
 MIDDLEWARE_CLASSES = (
@@ -49,10 +48,6 @@ MIDDLEWARE_CLASSES = (
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.IsAdminUser',),
     'PAGINATE_BY': 10
-}
-
-ACTSTREAM_SETTINGS = {
-    'FETCH_RELATIONS': False,
 }
 
 ROOT_URLCONF = 'domotina.urls'

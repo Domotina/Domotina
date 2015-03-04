@@ -1,8 +1,8 @@
 from django.shortcuts import render, get_object_or_404
 from models import Place, Asset, Sensor, SensorStatus
 from django.conf import settings
-from urlparse import urlparse
 from os.path import splitext, basename
+from event_manager.models import Event, Alarm
 
 def home(request):
     return render(request, 'index_owner.html')
@@ -46,6 +46,9 @@ def place_view(request, pk):
                                   settings.MAP_FILE_PATH[4:len(settings.MAP_FILE_PATH)],
                                           filename, file_ext)
 
+    alarms = Alarm.objects.filter(event__sensor__asset__place__owner=request.user).order_by('-activation_date')
+    events = Event.objects.filter(sensor__asset__place__owner=request.user).order_by('-timestamp')
+
     context = {'place': place, 'show_icons_script': show_icons_script,
-               'map_url': map_url}
+               'map_url': map_url, 'events': events, 'alarms': alarms}
     return render(request, 'index_owner.html', context)

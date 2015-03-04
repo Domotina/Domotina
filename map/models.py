@@ -1,10 +1,6 @@
 from django.conf import settings
 from django.db import models
 from django.contrib.auth.models import User
-from actstream import registry
-from actstream.actions import follow
-from django.dispatch import receiver
-from django.db.models.signals import post_save
 
 class Neighborhood(models.Model):
     name = models.CharField("neighborhood", max_length=100)
@@ -34,7 +30,7 @@ class Place(models.Model):
         ordering = ["neighborhood", "name"]
 
     def __unicode__(self):
-        return "%s %s" % (self.neighborhood, self.name)
+        return self.name
 
 
 class Asset(models.Model):
@@ -50,7 +46,7 @@ class Asset(models.Model):
         ordering = ["place", "name"]
 
     def __unicode__(self):
-        return "%s IN %s" % (self.name, self.place)
+        return self.name
 
 
 class SensorType(models.Model):
@@ -101,14 +97,4 @@ class Sensor(models.Model):
         ordering = ["asset"]
 
     def __unicode__(self):
-        return "SENSOR ON %s" % (self.asset)
-
-
-registry.register(Sensor)
-registry.register(Asset)
-registry.register(Place)
-registry.register(User)
-
-@receiver(post_save, sender=Place)
-def myHandler(sender, instance, **kwargs):
-    follow(instance.owner, instance, actor_only=False)
+        return "Sensor on %s" % self.asset

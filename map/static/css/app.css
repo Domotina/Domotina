@@ -25,6 +25,7 @@ canvas {
     background-size:800px 640px;
     background-repeat: no-repeat;
     border:1px solid #d3d3d3;
+    margin: 10px;
 }
 
 .map img{

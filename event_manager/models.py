@@ -2,6 +2,7 @@ from django.db import models
 from map.models import Sensor
 from django.db.models.signals import post_save
 from django.dispatch import receiver
+from notificator import send_email
 
 # Create your models here.
 
@@ -59,3 +60,12 @@ def myHandler(sender, instance, **kwargs):
     instance.sensor.current_pos_y = instance.pos_y
     instance.sensor.current_date = instance.timestamp
     instance.sensor.save()
+
+
+@receiver(post_save, sender=Alarm)
+def alarmHandler(sender, instance, created, **kwargs):
+    if(created):
+        send_email(instance)
+        instance.notified = True
+        instance.activated = False
+        instance.save()

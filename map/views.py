@@ -4,8 +4,10 @@ from django.conf import settings
 from os.path import splitext, basename
 from event_manager.models import Event, Alarm
 
-def home(request):
-    return render(request, 'index_owner.html')
+def my_places(request):
+    places = Place.objects.filter(owner=request.user)
+    context = {'user': request.user, 'places': places}
+    return render(request, 'myplaces.html', context)
 
 def place_view(request, pk):
     server_path = "%s://%s%s" % (request.META['wsgi.url_scheme'], request.META['HTTP_HOST'], settings.STATIC_URL)
@@ -35,7 +37,6 @@ def place_view(request, pk):
                        sensor.id, server_path, filename, file_ext,
                        sensor.id, sensor.current_pos_x, sensor.current_pos_y)
             except SensorStatus.DoesNotExist:
-                print "Status %s not found. Skipping..." % (sensor.current_status_id)
                 pass
 
     show_icons_script = show_icons_script + '});';

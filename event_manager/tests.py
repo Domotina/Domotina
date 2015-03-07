@@ -19,6 +19,7 @@ class SimpleEventTest(TestCase):
 
 
 class APITests(APITestCase):
+    fixtures = ['test_fx.json']
     def test_get_success(self):
         url = '/api/events/'
         self.client.login(username='domotina', password='domotina')
@@ -36,3 +37,9 @@ class APITests(APITestCase):
         self.client.login(username='domotina', password='domotina')
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+    def test_post_success(self):
+        url = '/api/events/'
+        data = {'type': 1, 'sensor': 1}
+        self.client.login(username='domotina', password='domotina')
+        response = self.client.post(url, data, format='json')
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)

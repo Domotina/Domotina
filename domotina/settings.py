@@ -49,6 +49,8 @@ REST_FRAMEWORK = {
     'PAGINATE_BY': 10
 }
 
+LOGIN_REDIRECT_URL='/map/'
+
 ROOT_URLCONF = 'domotina.urls'
 WSGI_APPLICATION = 'domotina.wsgi.application'
 

@@ -63,6 +63,9 @@ def myHandler(sender, instance, **kwargs):
 
 
 @receiver(post_save, sender=Alarm)
-def alarmHandler(sender, instance, **kwargs):
-    if(instance.activated):
+def alarmHandler(sender, instance, created, **kwargs):
+    if(created):
         send_email(instance)
+        instance.notified = True
+        instance.activated = False
+        instance.save()

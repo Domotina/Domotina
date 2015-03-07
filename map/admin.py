@@ -1,11 +1,9 @@
 from django.contrib import admin
-from django.conf import settings
-from django import forms
-from forms import PlaceForm
-from models import Building, Place, Device, Door, Window
+from models import Neighborhood, Place, Asset, SensorType, SensorStatus, Sensor
 
-admin.site.register(Building)
+admin.site.register(Neighborhood)
 admin.site.register(Place)
-admin.site.register(Door)
-admin.site.register(Window)
-admin.site.register(Device)
+admin.site.register(Asset)
+admin.site.register(SensorType)
+admin.site.register(SensorStatus)
+admin.site.register(Sensor)

@@ -1,0 +1,134 @@
+body{
+    background-color: #F0DDAA;
+}
+
+.header{
+    width: 80%;
+    margin: 0 auto;
+    background-color: #E42D40;
+    border-radius: 3px;
+}
+
+.header img{
+    width: auto;
+    height: 50px;
+    margin: 1%;
+}
+
+.header a{
+    display: inline-block;
+    float: right;
+    margin: 1% 20px 0 0;
+}
+
+.slider{
+    width: 80%;
+    height: 500px;
+    position: relative;
+    margin: 10px auto;
+}
+
+.slider .slidesjs-container{
+    height: 90%;
+}
+
+.slider a{
+    text-decoration: none;
+    color: #000;
+    margin: 10px 5px;
+    display: inline-block;
+}
+
+.slidesjs-control{
+    height: 100%;
+}
+
+.slidesjs-control img{
+    height: 100% !important;
+}
+
+.slidesjs-navigation{
+    display: none !important;
+}
+
+.slidesjs-pagination-item a{
+    color: rgba(0,0,0,0);
+    border-radius: 50%;
+    border: 2px solid #333;
+    background-color: #FFF;
+    width: 15px;
+    height: 15px;
+}
+
+.slidesjs-pagination-item a.active{
+    background-color: #000;
+}
+
+.slidesjs-pagination-item a:hover, .slidesjs-pagination-item a:visited{
+   text-decoration:none;
+   color: rgba(0,0,0,0);
+}
+
+.slider ul{
+    display: inline;
+    float: right;
+    margin: 0px 15px 0 0;
+    padding: 0;
+}
+
+.slider ul li{
+    display: inline-block;
+    margin: 0 7px;
+
+}
+
+.footer{
+    bottom: 0;
+    width: 80%;
+    height: 50px;
+    border-top: 3px solid #000;
+    margin: 0 10%;
+    line-height: 50px;
+}
+
+.footer .left{
+    float: left;
+    width: 200px;
+    height: 100%;
+    margin-left: 20px;
+    font-size: 12px;
+    line-height: initial;
+}
+
+.footer .left img{
+    width: 50px;
+    height: auto;
+    margin: 20px 0 0 0;
+}
+
+.footer .left p{
+    color: #666;
+    margin: 0;
+}
+
+.footer .right{
+    float: right;
+    width: 50%;
+    margin-right: 20px;
+    line-height: initial;
+    font-size: 12px;
+}
+
+.footer .right > div{
+    display: inline-block;
+    vertical-align: top;
+    margin: 0 0 0 5px;
+}
+
+.footer .right > div:first-child p{
+    color: #58ACFA;
+}
+
+.footer .right > div p{
+    color: #666;
+}

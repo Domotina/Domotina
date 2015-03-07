@@ -1,10 +1,13 @@
 from django.db import models
-from sensor.models import Sensor
+from map.models import Sensor
+from django.db.models.signals import post_save
+from django.dispatch import receiver
 
 # Create your models here.
 
+
 class EventType(models.Model):
-    name = models.CharField('type', max_length=50)
+    name = models.CharField('name', max_length=50)
     description = models.CharField('description', max_length=400)
     is_critical = models.BooleanField('is critical', default=False)
 
@@ -13,7 +16,7 @@ class EventType(models.Model):
         verbose_name_plural = 'event types'
 
     def __unicode__(self):
-        return self.type
+        return self.name
 
 
 class Event(models.Model):
@@ -22,10 +25,37 @@ class Event(models.Model):
     timestamp = models.DateTimeField('date', auto_now_add=True)
     pos_x = models.IntegerField('x position', default=0)
     pos_y = models.IntegerField('y position', default=0)
+    status = models.IntegerField('status', default=0)
 
     class Meta:
         verbose_name = 'event'
         verbose_name_plural = 'events'
 
     def __unicode__(self):
-        return self.pk + ' ' + self.sensor
+        return "%s at %s" % (self.type, self.timestamp)
+
+
+class Alarm(models.Model):
+    event = models.ForeignKey(Event)
+    activation_date = models.DateTimeField('activation date', auto_now_add=True)
+    activated = models.BooleanField('Is activated?', default=True)
+    notified = models.BooleanField('Is notified?', default=False)
+
+    class Meta:
+        verbose_name = 'alarm'
+        verbose_name_plural = 'alarms'
+
+    def __unicode__(self):
+        return "Alarm from %s" % self.event
+
+
+@receiver(post_save, sender=Event)
+def myHandler(sender, instance, **kwargs):
+    if instance.type.is_critical:
+        alarm = Alarm(event=instance)
+        alarm.save()
+    instance.sensor.current_status_id = instance.status
+    instance.sensor.current_pos_x = instance.pos_x
+    instance.sensor.current_pos_y = instance.pos_y
+    instance.sensor.current_date = instance.timestamp
+    instance.sensor.save()

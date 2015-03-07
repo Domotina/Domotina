@@ -146,7 +146,7 @@
         "pk":1,
         "model":"event_manager.eventtype",
         "fields":{
-            "is_critical":true,
+            "is_critical":false,
             "name":"Movement",
             "description":"there was movement"
         }

@@ -1,0 +1,51 @@
+html {
+  position: relative;
+}
+
+.logo-sm{
+    max-height: 20px;
+}
+
+.logo-md{
+    max-height: 100px;
+}
+
+body{
+    padding-top: 65px;
+    margin-bottom: 60px;
+    font-family: 'Helvetica';
+}
+
+canvas {
+  width: 100%;
+  height: 100%;
+}
+
+.map{
+    background-size:800px 640px;
+    background-repeat: no-repeat;
+    border:1px solid #d3d3d3;
+    margin-bottom: 40px;
+}
+
+.map img{
+    width: 100%;
+    height: 640;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+}
+
+.apartment {
+    width:800px;
+    height:640px;
+    background: #f0f0f0;
+    background-size:800px 640px;
+    background-repeat: no-repeat;
+    border:1px solid #d3d3d3;
+}

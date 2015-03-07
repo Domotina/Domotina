@@ -6,12 +6,14 @@ My places
 {% endblock %}
 
 {% block content %}
-<ul class="list-unstyled">
-    {% for place in places %}
-    <li><a class="btn" href='{% url "map_place_view" place.pk %}'>
-        <img src='{% static "img/home-icon.png" %}' class="img-rounded"/>
-        <p>{{place.name}}</p>
-    </a></li>
-    {% endfor %}
-</ul>
+<div class="well">
+    <ul class="list-unstyled">
+        {% for place in places %}
+        <li class="btn"><a href='{% url "map_place_view" place.pk %}'>
+            <img src='{% static "img/home-icon.png" %}' class="img-rounded"/>
+            <p>{{place.name}}</p>
+        </a></li>
+        {% endfor %}
+    </ul>
+</div>
 {% endblock %}

@@ -21,20 +21,6 @@ body{
     margin: 1% 20px 0 0;
 }
 
-.navbar{
-    width: 80%;
-    margin: 0 auto;
-}
-
-.nav.navbar-nav{
-    width: 100%;
-}
-
-.navbar-nav > li {
-    width: 30%;
-    text-align: center;
-}
-
 .slider{
     width: 80%;
     height: 500px;

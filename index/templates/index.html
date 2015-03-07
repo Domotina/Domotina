@@ -8,60 +8,79 @@
 <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!-->
 <html class="no-js"> <!--<![endif]-->
+
 <html>
 <head lang="en">
     <meta charset="UTF-8">
     <title>Domotina</title>
     <link rel="stylesheet" href='{% static "css/index.css" %}'>
     <link rel="stylesheet" href='{% static "css/login.css" %}'>
-    <link rel="stylesheet" href='{% static "css/bootstrap.min.flatly.css" %}'>
+    <link rel="stylesheet" href='{% static "css/app.css" %}'>
+    <link rel="stylesheet" href='{% static "css/bootstrap.min.cyborg.css" %}'>
     <script src='{% static "js/vendor/jquery-1.11.1.min.js" %}'></script>
     <script src='{% static "js/vendor/jquery.slides.min.js" %}'></script>
+    <script src='{% static "js/vendor/bootstrap.min.js" %}'></script>
 </head>
 <body>
-    <div class="header">
-        <img src='{% static "image/domotinaLogo.png" %}'>
-        <a href="javascript:void(0)" id="login" class="btn btn-primary">Login</a>
-    </div>
-    {% block login %}
-        {% include "login2.html" %}
-    {% endblock %}
-    <nav class="navbar navbar-default">
-        <div class="container-fluid">
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav">
-                    <li><a href="#">Home <span class="sr-only">(current)</span></a></li>
-                    <li><a href="#">About Smart Home</a></li>]
-                    <li><a href="#">About Domotina</a></li>]
-                </ul>
-            </div>
+{% block login %}
+{% include "login2.html" %}
+{% endblock %}
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#navbar-content">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#/">
+                <span><img class="logo-sm" src='{% static "img/domotinaLogo.png" %}'/></span> Domotina
+            </a>
         </div>
-    </nav>
-    <div class="slider" id="slides">
-        <img src='{% static "image/automatizacion.png" %}'/>
-        <img src='{% static "image/control_inteligente.jpg" %}'/>
-        <img src='{% static "image/display.jpg" %}'/>
-        <img src='{% static "image/Domotica.jpg" %}'/>
-        <img src='{% static "image/domotica.jpg" %}'/>
-        <img src='{% static "image/smart-remote.jpg" %}'/>
-    </div>
-    <div class="footer">
-        <div class="left">
-            <img src='{% static "img/domotinaLogo.png" %}'/>
 
-            <p> Andes University: Privacy Policy</p>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="navbar-content">
+            <ul class="nav navbar-nav">
+                <li><a href>Home <span class="sr-only">(current)</span></a></li>
+                <li><a href>About Smart Home</a></li>
+                <li><a href>About Domotina</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <a href="javascript:void(0)" id="login" class="btn btn-primary">Login</a>
+            </ul>
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.container-fluid -->
+</nav>
+<div class="slider" id="slides">
+    <img src='{% static "image/automatizacion.png" %}'/>
+    <img src='{% static "image/control_inteligente.jpg" %}'/>
+    <img src='{% static "image/display.jpg" %}'/>
+    <img src='{% static "image/Domotica.jpg" %}'/>
+    <img src='{% static "image/domotica.jpg" %}'/>
+    <img src='{% static "image/smart-remote.jpg" %}'/>
+</div>
+<div class="footer">
+    <div class="left">
+        <img src='{% static "img/domotinaLogo.png" %}'/>
+
+        <p> Andes University: Privacy Policy</p>
+    </div>
+    <div class="right">
+        <div>
+            <p>Our contacts: </p>
         </div>
-        <div class="right">
-            <div>
-                <p>Our contacts: </p>
-            </div>
-            <div>
-                <p> Andes University - Master Software Engineering</p>
-                <p> Member Team: Cindy, Andres, David, Esteban, Felipe, Raul</p>
-                <p> cv.hernandez10@uniandes.edu.co</p>
-            </div>
+        <div>
+            <p> Andes University - Master Software Engineering</p>
+
+            <p> Member Team: Cindy, Andres, David, Esteban, Felipe, Raul</p>
+
+            <p> cv.hernandez10@uniandes.edu.co</p>
         </div>
     </div>
-    <script src='{% static "js/index.js" %}'></script>
+</div>
+<script src='{% static "js/index.js" %}'></script>
 </body>
 </html>

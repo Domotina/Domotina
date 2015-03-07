@@ -1,14 +1,16 @@
 from django.shortcuts import render, get_object_or_404
 from models import Place, Asset, Sensor, SensorStatus
 from django.conf import settings
-from os.path import splitext, basename
 from event_manager.models import Event, Alarm
+from django.contrib.auth.decorators import login_required
 
+@login_required
 def my_places(request):
     places = Place.objects.filter(owner=request.user)
     context = {'user': request.user, 'places': places}
     return render(request, 'myplaces.html', context)
 
+@login_required
 def place_view(request, pk):
     server_path = "%s://%s%s" % (request.META['wsgi.url_scheme'], request.META['HTTP_HOST'], settings.STATIC_URL)
 

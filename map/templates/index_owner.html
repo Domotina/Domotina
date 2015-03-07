@@ -25,6 +25,8 @@ Place {{place}}
         <ul class="list-group">
             {% for event in events %}
             <li class="list-group-item">{{event.timestamp}} - {{event.sensor}} reported {{event.type}}</li>
+            {% empty %}
+            <li class="list-group-item">There are no events in this place</li>
             {% endfor %}
         </ul>
     </div>
@@ -40,6 +42,8 @@ Place {{place}}
                 <li class="list-group-item">{{alarm.activation_date}} - Alarm generated from {{alarm.event.type}} on
                     {{alarm.event.sensor}}
                 </li>
+                {% empty %}
+                <li class="list-group-item">There are no alarms in this place</li>
                 {% endfor %}
             </ul>
         </div>

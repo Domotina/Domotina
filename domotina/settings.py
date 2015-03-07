@@ -48,7 +48,7 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.IsAdminUser',),
     'PAGINATE_BY': 10
 }
-
+LOGIN_URL='/api-auth/login/'
 LOGIN_REDIRECT_URL='/map/'
 
 ROOT_URLCONF = 'domotina.urls'

@@ -15,7 +15,7 @@ def place_view(request, pk):
     # TODO: Check if the current user has permission to view this place
 
     show_icons_script = \
-        '$(document).ready(function() { \
+        'function showIcons(jQuery) { \
         var c = document.getElementById("place_canvas"); \
         var ctx = c.getContext("2d");'
     place = get_object_or_404(Place, pk=pk)
@@ -39,7 +39,9 @@ def place_view(request, pk):
             except SensorStatus.DoesNotExist:
                 pass
 
-    show_icons_script = show_icons_script + '});';
+    show_icons_script = "%s }" \
+                        "$(document).ready(showIcons);" \
+                        "$(window).load(showIcons);" % (show_icons_script);
 
     '''# Split map place url into its filename and extension
     filename, file_ext = splitext(basename(str(place.map)))

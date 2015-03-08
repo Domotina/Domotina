@@ -1,0 +1,521 @@
+[
+{
+    "pk": 1, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_logentry", 
+        "name": "Can add log entry", 
+        "content_type": 1
+    }
+},
+{
+    "pk": 2, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_logentry", 
+        "name": "Can change log entry", 
+        "content_type": 1
+    }
+},
+{
+    "pk": 3, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_logentry", 
+        "name": "Can delete log entry", 
+        "content_type": 1
+    }
+},
+{
+    "pk": 4, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_permission", 
+        "name": "Can add permission", 
+        "content_type": 2
+    }
+},
+{
+    "pk": 5, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_permission", 
+        "name": "Can change permission", 
+        "content_type": 2
+    }
+},
+{
+    "pk": 6, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_permission", 
+        "name": "Can delete permission", 
+        "content_type": 2
+    }
+},
+{
+    "pk": 7, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_group", 
+        "name": "Can add group", 
+        "content_type": 3
+    }
+},
+{
+    "pk": 8, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_group", 
+        "name": "Can change group", 
+        "content_type": 3
+    }
+},
+{
+    "pk": 9, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_group", 
+        "name": "Can delete group", 
+        "content_type": 3
+    }
+},
+{
+    "pk": 10, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_user", 
+        "name": "Can add user", 
+        "content_type": 4
+    }
+},
+{
+    "pk": 11, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_user", 
+        "name": "Can change user", 
+        "content_type": 4
+    }
+},
+{
+    "pk": 12, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_user", 
+        "name": "Can delete user", 
+        "content_type": 4
+    }
+},
+{
+    "pk": 13, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_contenttype", 
+        "name": "Can add content type", 
+        "content_type": 5
+    }
+},
+{
+    "pk": 14, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_contenttype", 
+        "name": "Can change content type", 
+        "content_type": 5
+    }
+},
+{
+    "pk": 15, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_contenttype", 
+        "name": "Can delete content type", 
+        "content_type": 5
+    }
+},
+{
+    "pk": 16, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_session", 
+        "name": "Can add session", 
+        "content_type": 6
+    }
+},
+{
+    "pk": 17, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_session", 
+        "name": "Can change session", 
+        "content_type": 6
+    }
+},
+{
+    "pk": 18, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_session", 
+        "name": "Can delete session", 
+        "content_type": 6
+    }
+},
+{
+    "pk": 19, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_eventtype", 
+        "name": "Can add event type", 
+        "content_type": 7
+    }
+},
+{
+    "pk": 20, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_eventtype", 
+        "name": "Can change event type", 
+        "content_type": 7
+    }
+},
+{
+    "pk": 21, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_eventtype", 
+        "name": "Can delete event type", 
+        "content_type": 7
+    }
+},
+{
+    "pk": 22, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_event", 
+        "name": "Can add event", 
+        "content_type": 8
+    }
+},
+{
+    "pk": 23, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_event", 
+        "name": "Can change event", 
+        "content_type": 8
+    }
+},
+{
+    "pk": 24, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_event", 
+        "name": "Can delete event", 
+        "content_type": 8
+    }
+},
+{
+    "pk": 25, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_alarm", 
+        "name": "Can add alarm", 
+        "content_type": 9
+    }
+},
+{
+    "pk": 26, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_alarm", 
+        "name": "Can change alarm", 
+        "content_type": 9
+    }
+},
+{
+    "pk": 27, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_alarm", 
+        "name": "Can delete alarm", 
+        "content_type": 9
+    }
+},
+{
+    "pk": 28, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_neighborhood", 
+        "name": "Can add neighborhood", 
+        "content_type": 10
+    }
+},
+{
+    "pk": 29, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_neighborhood", 
+        "name": "Can change neighborhood", 
+        "content_type": 10
+    }
+},
+{
+    "pk": 30, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_neighborhood", 
+        "name": "Can delete neighborhood", 
+        "content_type": 10
+    }
+},
+{
+    "pk": 31, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_place", 
+        "name": "Can add place", 
+        "content_type": 11
+    }
+},
+{
+    "pk": 32, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_place", 
+        "name": "Can change place", 
+        "content_type": 11
+    }
+},
+{
+    "pk": 33, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_place", 
+        "name": "Can delete place", 
+        "content_type": 11
+    }
+},
+{
+    "pk": 34, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_asset", 
+        "name": "Can add asset", 
+        "content_type": 12
+    }
+},
+{
+    "pk": 35, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_asset", 
+        "name": "Can change asset", 
+        "content_type": 12
+    }
+},
+{
+    "pk": 36, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_asset", 
+        "name": "Can delete asset", 
+        "content_type": 12
+    }
+},
+{
+    "pk": 37, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_sensortype", 
+        "name": "Can add sensor type", 
+        "content_type": 13
+    }
+},
+{
+    "pk": 38, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_sensortype", 
+        "name": "Can change sensor type", 
+        "content_type": 13
+    }
+},
+{
+    "pk": 39, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_sensortype", 
+        "name": "Can delete sensor type", 
+        "content_type": 13
+    }
+},
+{
+    "pk": 40, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_sensorstatus", 
+        "name": "Can add sensor status", 
+        "content_type": 14
+    }
+},
+{
+    "pk": 41, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_sensorstatus", 
+        "name": "Can change sensor status", 
+        "content_type": 14
+    }
+},
+{
+    "pk": 42, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_sensorstatus", 
+        "name": "Can delete sensor status", 
+        "content_type": 14
+    }
+},
+{
+    "pk": 43, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_sensor", 
+        "name": "Can add sensor", 
+        "content_type": 15
+    }
+},
+{
+    "pk": 44, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_sensor", 
+        "name": "Can change sensor", 
+        "content_type": 15
+    }
+},
+{
+    "pk": 45, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_sensor", 
+        "name": "Can delete sensor", 
+        "content_type": 15
+    }
+},
+{
+    "pk": 1, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "domotina", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": true, 
+        "is_staff": true, 
+        "last_login": "2015-03-07T23:13:16.187Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$12000$x3lT4KMme86s$WjpUEcnrX2Re7mFn0UZ7QO2otPYlMPjFM7XY5yHWuqI=", 
+        "email": "agiltest10@gmail.com", 
+        "date_joined": "2015-03-07T23:12:31.433Z"
+    }
+},
+{
+    "pk": 1, 
+    "model": "event_manager.eventtype", 
+    "fields": {
+        "is_critical": false, 
+        "name": "Movement", 
+        "description": "there was movement"
+    }
+},
+{
+    "pk": 1, 
+    "model": "map.neighborhood", 
+    "fields": {
+        "date_updated": "2015-03-07T23:18:31.750Z", 
+        "date_created": "2015-03-07T23:18:31.750Z", 
+        "name": "Downtown"
+    }
+},
+{
+    "pk": 2, 
+    "model": "map.place", 
+    "fields": {
+        "map": "http://www.homeplandrafting.com/images/2d-house-plan.JPG", 
+        "neighborhood": 1, 
+        "name": "Home", 
+        "date_updated": "2015-03-07T23:22:52.386Z", 
+        "owner": 1, 
+        "date_created": "2015-03-07T23:22:52.386Z"
+    }
+},
+{
+    "pk": 1, 
+    "model": "map.asset", 
+    "fields": {
+        "date_updated": "2015-03-08T00:05:15.999Z", 
+        "date_created": "2015-03-08T00:05:15.999Z", 
+        "place": 2, 
+        "name": "TV LED 42\"", 
+        "description": ""
+    }
+},
+{
+    "pk": 1, 
+    "model": "map.sensortype", 
+    "fields": {
+        "is_enabled": true, 
+        "name": "Luz"
+    }
+},
+{
+    "pk": 1, 
+    "model": "map.sensorstatus", 
+    "fields": {
+        "is_enabled": true, 
+        "type": 1, 
+        "name": "On", 
+        "icon": "http://domotina.host56.com/images/bulb_on.png"
+    }
+},
+{
+    "pk": 2, 
+    "model": "map.sensorstatus", 
+    "fields": {
+        "is_enabled": true, 
+        "type": 1, 
+        "name": "Off", 
+        "icon": "http://domotina.host56.com/images/bulb_off.png"
+    }
+},
+{
+    "pk": 1, 
+    "model": "map.sensor", 
+    "fields": {
+        "current_pos_x": 1, 
+        "description": "", 
+        "date_updated": "2015-03-08T00:10:36.685Z", 
+        "current_status_id": 2, 
+        "current_date": "2015-03-08T00:10:36.619Z", 
+        "asset": 1, 
+        "date_created": "2015-03-08T00:05:29.813Z", 
+        "type": 1, 
+        "current_pos_y": 1
+    }
+},
+{
+    "pk": 1,
+    "model": "event_manager.event",
+    "fields": {
+        "status": 2,
+        "pos_x": 1,
+        "pos_y": 1,
+        "sensor": 1,
+        "timestamp": "2015-03-08T00:10:36.619Z",
+        "type": 1
+    }
+}
+]

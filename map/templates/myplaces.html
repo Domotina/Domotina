@@ -1,22 +1,19 @@
-<!DOCTYPE html>
+{% extends "base_owner.html"%}
 {% load static %}
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title></title>
-    <link rel="stylesheet" href='{% static "css/bootstrap-theme.min.css" %}'>
-    <link rel="stylesheet" href='{% static "css/app.css" %}'>
-    <script src='{% static "js/vendor/modernizr-2.6.2-respond-1.1.0.min.js" %}'></script>
-    <script src='{% static "js/vendor/jquery-1.11.1.min.js" %}'></script>
-</head>
-<body>
-    <div class="apartment" style='background-image:url("{{ map_url }}");'>
-        <canvas id="apartment_canvas" width="800" height="640">
-            Your browser does not support the HTML5 canvas tag.
-        </canvas>
-    <script>
-    {{ show_icons_script|safe}}
-    </script>
-    </div>
-</body>
-</html>
+
+{% block title %}
+My places
+{% endblock %}
+
+{% block content %}
+<div class="well">
+    <ul class="list-unstyled">
+        {% for place in places %}
+        <li class="btn"><a href='{% url "map_place_view" place.pk %}'>
+            <img src='{% static "img/home-icon.png" %}' class="img-rounded"/>
+            <p>{{place.name}}</p>
+        </a></li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

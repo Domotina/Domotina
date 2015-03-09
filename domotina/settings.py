@@ -32,7 +32,6 @@ INSTALLED_APPS = (
     'index',
     'event_manager',
     'rest_framework',
-    'kronos',
     'map',
 )
 
@@ -49,6 +48,8 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.IsAdminUser',),
     'PAGINATE_BY': 10
 }
+LOGIN_URL='/api-auth/login/'
+LOGIN_REDIRECT_URL='/map/'
 
 ROOT_URLCONF = 'domotina.urls'
 WSGI_APPLICATION = 'domotina.wsgi.application'
@@ -85,10 +86,10 @@ UPLOADED_FILE_PATH = 'static/img_up/'
 MAP_FILE_PATH = 'map/static/img/maps/'
 MAP_ICONS_FILE_PATH = 'map/static/img/icons/'
 
-## Configuracion de Correo
-EMAIL_USE_TLS = True
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
-# EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
-#EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
-EMAIL_HOST_USER = 'agiltest10@gmail.com'
+# Configuracion de Correo
+EMAIL_USE_TLS = os.environ.get('EMAIL_USE_TLS')
+EMAIL_HOST = os.environ.get('EMAIL_HOST')
+EMAIL_PORT = os.environ.get('EMAIL_PORT')
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
+URL = os.environ.get('URL')

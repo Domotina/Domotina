@@ -61,3 +61,8 @@ target/
 
 #Django
 staticfiles
+
+# Tests pages for the "map" app
+ map/templates/testplaces.html
+ map/templates/testplaces2.html
+

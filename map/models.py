@@ -20,7 +20,8 @@ class Place(models.Model):
     owner = models.ForeignKey(User, verbose_name="owner", related_name="places")
     neighborhood = models.ForeignKey(Neighborhood, verbose_name="neighborhood", related_name="places")
     name = models.CharField("place", max_length=100)
-    map = models.ImageField("map image", upload_to=settings.MAP_FILE_PATH)
+    #map = models.ImageField("map image", upload_to=settings.MAP_FILE_PATH)
+    map = models.CharField("map image", max_length=255)
     date_created = models.DateTimeField("date created", auto_now_add=True)
     date_updated = models.DateTimeField("date updated", auto_now_add=True)
 
@@ -66,7 +67,8 @@ class SensorType(models.Model):
 class SensorStatus(models.Model):
     type = models.ForeignKey(SensorType)
     name = models.CharField("status", max_length=50)
-    icon = models.ImageField("icon", upload_to=settings.MAP_ICONS_FILE_PATH)
+    #icon = models.ImageField("icon", upload_to=settings.MAP_ICONS_FILE_PATH)
+    icon = models.CharField("icon", max_length=255)
     is_enabled = models.BooleanField("enabled?", default=True)
 
     class Meta:
@@ -81,7 +83,7 @@ class SensorStatus(models.Model):
 
 class Sensor(models.Model):
     asset = models.ForeignKey(Asset, verbose_name="asset", related_name="sensors")
-    type = models.ForeignKey(SensorType, verbose_name="types", related_name="sensors")
+    type = models.ForeignKey(SensorType, verbose_name="type", related_name="sensors")
     description = models.TextField("description", blank=True, null=True)
     date_created = models.DateTimeField("date created", auto_now_add=True)
     date_updated = models.DateTimeField("date updated", auto_now=True)

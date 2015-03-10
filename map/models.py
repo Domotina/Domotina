@@ -69,7 +69,7 @@ class SensorStatus(models.Model):
     name = models.CharField("status", max_length=50)
     icon = models.CharField("icon", max_length=255)
     is_enabled = models.BooleanField("enabled?", default=True)
-    ref_code = models.PositiveIntegerField('ref code', default=0)
+    ref_code = models.IntegerField('ref code', default=0)
 
     class Meta:
         db_table = 'map_sensor_status'

@@ -24,9 +24,9 @@ class Event(models.Model):
     sensor = models.ForeignKey(Sensor)
     type = models.ForeignKey(EventType)
     timestamp = models.DateTimeField('date', auto_now_add=True)
-    pos_x = models.IntegerField('x position', default=0)
-    pos_y = models.IntegerField('y position', default=0)
-    status = models.IntegerField('status', default=0)
+    pos_x = models.IntegerField('x position', blank=True, null=True)
+    pos_y = models.IntegerField('y position', blank=True, null=True)
+    status = models.IntegerField('status', blank=True, null=True)
 
     class Meta:
         verbose_name = 'event'
@@ -55,9 +55,12 @@ def myHandler(sender, instance, **kwargs):
     if instance.type.is_critical:
         alarm = Alarm(event=instance)
         alarm.save()
-    instance.sensor.current_status_id = instance.status
-    instance.sensor.current_pos_x = instance.pos_x
-    instance.sensor.current_pos_y = instance.pos_y
+    if instance.status is not None:
+        instance.sensor.current_status_id = instance.status
+    if instance.pos_x is not None:
+        instance.sensor.current_pos_x = instance.pos_x
+    if instance.pos_y is not None:
+        instance.sensor.current_pos_y = instance.pos_y
     instance.sensor.current_date = instance.timestamp
     instance.sensor.save()
 

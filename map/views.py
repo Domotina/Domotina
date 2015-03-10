@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from middleware.http import Http403
-from models import Place, Asset, Sensor
+from models import Place, Asset, Sensor, SensorStatus
 from django.conf import settings
 from event_manager.models import Event, Alarm
 from django.contrib.auth.decorators import login_required
@@ -30,6 +30,7 @@ def place_view(request, pk):
         sensors = Sensor.objects.filter(asset=asset)
         for sensor in sensors:
             # Get the sensor status based on current_status_id saved by event_manager previously
+            try:
                 status = sensor.type.sensorstatus_set.filter(ref_code=sensor.current_status_id)[:1].get()
                 if status:
                     show_icons_script = \
@@ -39,6 +40,8 @@ def place_view(request, pk):
                         % (show_icons_script, sensor.id,
                            sensor.id, status.icon,
                            sensor.id, sensor.current_pos_x, sensor.current_pos_y)
+            except SensorStatus.DoesNotExist:
+                pass
 
     show_icons_script = "%s }" \
                         "$(document).ready(showIcons);" \

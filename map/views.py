@@ -1,4 +1,5 @@
 from django.shortcuts import render, get_object_or_404
+from middleware.http import Http403
 from models import Place, Asset, Sensor, SensorStatus
 from django.conf import settings
 from event_manager.models import Event, Alarm
@@ -14,13 +15,14 @@ def my_places(request):
 def place_view(request, pk):
     server_path = "%s://%s%s" % (request.META['wsgi.url_scheme'], request.META['HTTP_HOST'], settings.STATIC_URL)
 
-    # TODO: Check if the current user has permission to view this place
-
     show_icons_script = \
         'function showIcons(jQuery) { \
         var c = document.getElementById("place_canvas"); \
         var ctx = c.getContext("2d");'
     place = get_object_or_404(Place, pk=pk)
+
+    if request.user != place.owner:
+        raise Http403
 
     # Get all assets in the current place
     assets = Asset.objects.filter(place=place)

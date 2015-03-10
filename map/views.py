@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from middleware.http import Http403
-from models import Place, Asset, Sensor, SensorStatus
+from models import Place, Asset, Sensor
 from django.conf import settings
 from event_manager.models import Event, Alarm
 from django.contrib.auth.decorators import login_required
@@ -30,18 +30,15 @@ def place_view(request, pk):
         sensors = Sensor.objects.filter(asset=asset)
         for sensor in sensors:
             # Get the sensor status based on current_status_id saved by event_manager previously
-            try:
-                status = SensorStatus.objects.get(id=sensor.current_status_id)
-                #filename, file_ext = splitext(basename(str(status.icon)))
-                show_icons_script = \
-                    '%s var sensor_icon%s  = new Image();' \
-                    'sensor_icon%s.src = "%s"; \
-                    ctx.drawImage(sensor_icon%s, %s, %s);' \
-                    % (show_icons_script, sensor.id,
-                       sensor.id, status.icon, #server_path, filename, file_ext,
-                       sensor.id, sensor.current_pos_x, sensor.current_pos_y)
-            except SensorStatus.DoesNotExist:
-                pass
+                status = sensor.type.sensorstatus_set.filter(ref_code=sensor.current_status_id)[:1].get()
+                if status:
+                    show_icons_script = \
+                        '%s var sensor_icon%s  = new Image();' \
+                        'sensor_icon%s.src = "%s"; \
+                        ctx.drawImage(sensor_icon%s, %s, %s);' \
+                        % (show_icons_script, sensor.id,
+                           sensor.id, status.icon,
+                           sensor.id, sensor.current_pos_x, sensor.current_pos_y)
 
     show_icons_script = "%s }" \
                         "$(document).ready(showIcons);" \

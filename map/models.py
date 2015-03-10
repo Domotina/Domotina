@@ -67,9 +67,9 @@ class SensorType(models.Model):
 class SensorStatus(models.Model):
     type = models.ForeignKey(SensorType)
     name = models.CharField("status", max_length=50)
-    #icon = models.ImageField("icon", upload_to=settings.MAP_ICONS_FILE_PATH)
     icon = models.CharField("icon", max_length=255)
     is_enabled = models.BooleanField("enabled?", default=True)
+    ref_code = models.PositiveIntegerField('ref code', default=0)
 
     class Meta:
         db_table = 'map_sensor_status'

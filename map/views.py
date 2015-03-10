@@ -53,8 +53,8 @@ def place_view(request, pk):
                                   settings.MAP_FILE_PATH[4:len(settings.MAP_FILE_PATH)],
                                           filename, file_ext)'''
 
-    alarms = Alarm.objects.filter(event__sensor__asset__place__owner=request.user).order_by('-activation_date')
-    events = Event.objects.filter(sensor__asset__place__owner=request.user).order_by('-timestamp')
+    alarms = Alarm.objects.filter(event__sensor__asset__place=place).order_by('-activation_date')
+    events = Event.objects.filter(sensor__asset__place=place).order_by('-timestamp')
 
     context = {'place': place, 'show_icons_script': show_icons_script,
                'map_url': place.map, 'events': events, 'alarms': alarms}

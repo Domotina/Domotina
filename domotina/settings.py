@@ -42,6 +42,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'middleware.http.Http403Middleware',
 )
 
 REST_FRAMEWORK = {
@@ -57,7 +58,6 @@ WSGI_APPLICATION = 'domotina.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.6/ref/settings/#databases
 DATABASES = {}
-# DATABASES = {}
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.6/topics/i18n/
@@ -68,7 +68,7 @@ USE_L10N = True
 USE_TZ = True
 
 # Parse database configuration from $DATABASE_URL
-import dj_database_url
+#import dj_database_url
 DATABASES['default'] = dj_database_url.config()
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')

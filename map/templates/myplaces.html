@@ -1,22 +1,53 @@
-<!DOCTYPE html>
+{% extends "base.html"%}
 {% load static %}
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title></title>
-    <link rel="stylesheet" href='{% static "css/bootstrap-theme.min.css" %}'>
-    <link rel="stylesheet" href='{% static "css/app.css" %}'>
-    <script src='{% static "js/vendor/modernizr-2.6.2-respond-1.1.0.min.js" %}'></script>
-    <script src='{% static "js/vendor/jquery-1.11.1.min.js" %}'></script>
-</head>
-<body>
-    <div class="apartment" style='background-image:url("{{ map_url }}");'>
-        <canvas id="apartment_canvas" width="800" height="640">
-            Your browser does not support the HTML5 canvas tag.
-        </canvas>
-    <script>
-    {{ show_icons_script|safe}}
-    </script>
+
+{% block title %}
+My places
+{% endblock %}
+
+{% block bar %}
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#navbar-content">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#/">
+                <span><img class="logo-sm" src='{% static "img/domotinaLogo.png" %}'/></span> Domotina
+            </a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="navbar-content">
+            <ul class="nav navbar-nav">
+                <li><a href='{% url "map_home" %}'>Places</a></li>
+                <li><a href>Alarms</a></li>
+                <li><a href>Events</a></li>
+            </ul>
+            {% block toggle_login %}
+                {% include "login.html" %}
+            {% endblock %}
+        </div>
+        <!-- /.navbar-collapse -->
     </div>
-</body>
-</html>
+    <!-- /.container-fluid -->
+</nav>
+{% endblock %}
+
+{% block content %}
+<div class="well">
+    <ul class="list-unstyled">
+        {% for place in places %}
+        <li class="btn"><a href='{% url "map_place_view" place.pk %}'>
+            <img src='{% static "img/home-icon.png" %}' class="img-rounded"/>
+            <p>{{place.name}}</p>
+        </a></li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

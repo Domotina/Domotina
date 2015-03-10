@@ -1,30 +1,7 @@
-<!DOCTYPE html>
+{% extends "base.html"%}
 {% load static %}
-<!--[if lt IE 7]>
-<html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>
-<html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>
-<html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!-->
-<html class="no-js"> <!--<![endif]-->
 
-<html>
-<head lang="en">
-    <meta charset="UTF-8">
-    <title>Domotina</title>
-    <link rel="stylesheet" href='{% static "css/index.css" %}'>
-    <link rel="stylesheet" href='{% static "css/login.css" %}'>
-    <link rel="stylesheet" href='{% static "css/app.css" %}'>
-    <link rel="stylesheet" href='{% static "css/bootstrap.min.cyborg.css" %}'>
-    <script src='{% static "js/vendor/jquery-1.11.1.min.js" %}'></script>
-    <script src='{% static "js/vendor/jquery.slides.min.js" %}'></script>
-    <script src='{% static "js/vendor/bootstrap.min.js" %}'></script>
-</head>
-<body>
-{% block login %}
-{% include "login2.html" %}
-{% endblock %}
+{% block bar %}
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
@@ -48,12 +25,23 @@
                 <li><a href>About Smart Home</a></li>
                 <li><a href>About Domotina</a></li>
             </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <a href="javascript:void(0)" id="login" class="btn btn-primary">Login</a>
-            </ul>
-        </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
+            <!--<ul class="nav navbar-nav navbar-right">-->
+            <!--<a href="javascript:void(0)" id="login" class="btn btn-primary">Login</a>-->
+            <!--</ul>-->
+            {% block toggle_login %}
+                {% include "login.html" %}
+            {% endblock %}
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
 </nav>
+<!--{% block login %}-->
+<!--{% include "login2.html" %}-->
+<!--{% endblock %}-->
+{% endblock %}
+
+{% block content %}
 <div class="slider" id="slides">
     <img src='{% static "image/automatizacion.png" %}'/>
     <img src='{% static "image/control_inteligente.jpg" %}'/>
@@ -62,25 +50,5 @@
     <img src='{% static "image/domotica.jpg" %}'/>
     <img src='{% static "image/smart-remote.jpg" %}'/>
 </div>
-<div class="footer">
-    <div class="left">
-        <img src='{% static "img/domotinaLogo.png" %}'/>
-
-        <p> Andes University: Privacy Policy</p>
-    </div>
-    <div class="right">
-        <div>
-            <p>Our contacts: </p>
-        </div>
-        <div>
-            <p> Andes University - Master Software Engineering</p>
-
-            <p> Member Team: Cindy, Andres, David, Esteban, Felipe, Raul</p>
-
-            <p> cv.hernandez10@uniandes.edu.co</p>
-        </div>
-    </div>
-</div>
-<script src='{% static "js/index.js" %}'></script>
-</body>
-</html>
+{% endblock %}
+<!--<script src='{% static "js/index.js" %}'></script>-->

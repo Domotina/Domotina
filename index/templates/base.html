@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+    <head lang="en">
+        <meta charset="UTF-8">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title> Domotina - {% block title %}{% endblock %} </title>
+        <link rel="stylesheet" href='{% static "css/bootstrap.min.cyborg.css" %}'>
+        <link rel="stylesheet" href='{% static "css/app.css" %}'>
+        <link rel="stylesheet" href='{% static "css/index.css" %}'>
+        <script src='{% static "js/vendor/jquery-1.11.1.min.js" %}'></script>
+        <script src='{% static "js/vendor/jquery.slides.min.js" %}'></script>
+        <script src='{% static "js/vendor/bootstrap.min.js" %}'></script>
+    </head>
+    <body style="background: url('{% static 'img/body.jpg' %}');">
+        {% block bar %} {% endblock %}
+        <div class="container">
+            {% block content %} {% endblock %}
+        </div>
+        <div class="footer">
+            <div class="left">
+                <p> &copy; Andes University: Privacy Policy</p>
+            </div>
+            <div class="right">
+                <div>
+                    <p>Our contacts: </p>
+                </div>
+                <div>
+                    <p> Andes University - Master Software Engineering</p>
+
+                    <p> Member Team: Cindy, Andres, David, Esteban, Felipe, Raul</p>
+                </div>
+            </div>
+        </div>
+        <script src='{% static "js/app.js" %}'></script>
+    </body>
+</html>

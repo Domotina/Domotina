@@ -408,18 +408,36 @@
     "pk": 1, 
     "model": "auth.user", 
     "fields": {
-        "username": "djimenez", 
+        "username": "domotina", 
         "first_name": "", 
         "last_name": "", 
         "is_active": true, 
         "is_superuser": true, 
         "is_staff": true, 
-        "last_login": "2015-03-07T20:02:38.753Z", 
+        "last_login": "2015-03-10T18:13:45Z", 
         "groups": [], 
         "user_permissions": [], 
-        "password": "pbkdf2_sha256$12000$h39yW9vHCyU5$0ml4OfAEGGyqORryaVHno4WW7VppeKq9BJIjE1w+PIw=", 
+        "password": "pbkdf2_sha256$12000$jTeDaK4UwLqY$ytI9/vmZ15Z6Kvj8xKPmQCXGJlKBOcRPeDKxcXPRfBo=", 
         "email": "djimenez@ingenieros.com", 
-        "date_joined": "2015-03-07T20:01:23.490Z"
+        "date_joined": "2015-03-07T20:01:23Z"
+    }
+},
+{
+    "pk": 1, 
+    "model": "event_manager.eventtype", 
+    "fields": {
+        "is_critical": true, 
+        "name": "Movement", 
+        "description": "There was movement"
+    }
+},
+{
+    "pk": 2, 
+    "model": "event_manager.eventtype", 
+    "fields": {
+        "is_critical": false, 
+        "name": "Toggle Power", 
+        "description": "power was turned on or off"
     }
 },
 {
@@ -865,6 +883,7 @@
     "model": "map.sensorstatus", 
     "fields": {
         "is_enabled": true, 
+        "ref_code": 1, 
         "type": 2, 
         "name": "Locked", 
         "icon": "http://domotina.host56.com/images/lock_icon.png"
@@ -875,6 +894,7 @@
     "model": "map.sensorstatus", 
     "fields": {
         "is_enabled": true, 
+        "ref_code": 0, 
         "type": 2, 
         "name": "Unlocked", 
         "icon": "http://domotina.host56.com/images/unlock_icon.png"
@@ -885,6 +905,7 @@
     "model": "map.sensorstatus", 
     "fields": {
         "is_enabled": true, 
+        "ref_code": 1, 
         "type": 3, 
         "name": "On", 
         "icon": "http://domotina.host56.com/images/bulb_on.png"
@@ -895,6 +916,7 @@
     "model": "map.sensorstatus", 
     "fields": {
         "is_enabled": true, 
+        "ref_code": 0, 
         "type": 3, 
         "name": "Off", 
         "icon": "http://domotina.host56.com/images/bulb_off.png"
@@ -905,6 +927,7 @@
     "model": "map.sensorstatus", 
     "fields": {
         "is_enabled": true, 
+        "ref_code": 1, 
         "type": 1, 
         "name": "Yes", 
         "icon": "http://domotina.host56.com/images/move.png"
@@ -915,6 +938,7 @@
     "model": "map.sensorstatus", 
     "fields": {
         "is_enabled": true, 
+        "ref_code": 0, 
         "type": 1, 
         "name": "No", 
         "icon": "http://domotina.host56.com/images/no_move.png"
@@ -941,8 +965,8 @@
     "fields": {
         "current_pos_x": 468, 
         "description": "", 
-        "date_updated": "2015-03-08T00:33:32.382Z", 
-        "current_status_id": 3, 
+        "date_updated": "2015-03-10T18:25:11.733Z", 
+        "current_status_id": 1, 
         "current_date": "2015-03-07T17:11:47Z", 
         "asset": 2, 
         "date_created": "2015-03-07T22:11:49.552Z", 
@@ -956,8 +980,8 @@
     "fields": {
         "current_pos_x": 462, 
         "description": "", 
-        "date_updated": "2015-03-08T01:44:53.537Z", 
-        "current_status_id": 3, 
+        "date_updated": "2015-03-10T18:25:11.750Z", 
+        "current_status_id": 1, 
         "current_date": "2015-03-07T20:30:49Z", 
         "asset": 4, 
         "date_created": "2015-03-08T01:30:52.231Z", 
@@ -971,8 +995,8 @@
     "fields": {
         "current_pos_x": 125, 
         "description": "", 
-        "date_updated": "2015-03-08T01:39:17.947Z", 
-        "current_status_id": 6, 
+        "date_updated": "2015-03-10T18:25:11.799Z", 
+        "current_status_id": 0, 
         "current_date": "2015-03-07T20:31:33Z", 
         "asset": 3, 
         "date_created": "2015-03-08T01:31:36.824Z", 
@@ -986,8 +1010,8 @@
     "fields": {
         "current_pos_x": 462, 
         "description": "", 
-        "date_updated": "2015-03-08T01:46:45.557Z", 
-        "current_status_id": 2, 
+        "date_updated": "2015-03-10T18:25:11.766Z", 
+        "current_status_id": 0, 
         "current_date": "2015-03-07T20:45:16Z", 
         "asset": 5, 
         "date_created": "2015-03-08T01:45:24.740Z", 
@@ -1001,8 +1025,8 @@
     "fields": {
         "current_pos_x": 425, 
         "description": "", 
-        "date_updated": "2015-03-08T02:38:51.171Z", 
-        "current_status_id": 3, 
+        "date_updated": "2015-03-10T18:25:11.883Z", 
+        "current_status_id": 1, 
         "current_date": "2015-03-07T21:25:38Z", 
         "asset": 8, 
         "date_created": "2015-03-08T02:25:43.315Z", 
@@ -1016,8 +1040,8 @@
     "fields": {
         "current_pos_x": 570, 
         "description": "", 
-        "date_updated": "2015-03-08T02:37:28.428Z", 
-        "current_status_id": 3, 
+        "date_updated": "2015-03-10T18:25:11.900Z", 
+        "current_status_id": 1, 
         "current_date": "2015-03-07T21:29:04Z", 
         "asset": 7, 
         "date_created": "2015-03-08T02:29:07.638Z", 
@@ -1061,8 +1085,8 @@
     "fields": {
         "current_pos_x": 408, 
         "description": "", 
-        "date_updated": "2015-03-08T02:38:51.266Z", 
-        "current_status_id": 6, 
+        "date_updated": "2015-03-10T18:25:11.916Z", 
+        "current_status_id": 0, 
         "current_date": "2015-03-07T21:31:32Z", 
         "asset": 10, 
         "date_created": "2015-03-08T02:31:35.039Z", 
@@ -1076,8 +1100,8 @@
     "fields": {
         "current_pos_x": 52, 
         "description": "", 
-        "date_updated": "2015-03-08T02:55:09.331Z", 
-        "current_status_id": 3, 
+        "date_updated": "2015-03-10T18:25:11.933Z", 
+        "current_status_id": 1, 
         "current_date": "2015-03-07T21:46:41Z", 
         "asset": 12, 
         "date_created": "2015-03-08T02:46:44.004Z", 
@@ -1091,8 +1115,8 @@
     "fields": {
         "current_pos_x": 150, 
         "description": "", 
-        "date_updated": "2015-03-08T02:53:45.099Z", 
-        "current_status_id": 3, 
+        "date_updated": "2015-03-10T18:25:11.949Z", 
+        "current_status_id": 1, 
         "current_date": "2015-03-07T21:47:19Z", 
         "asset": 13, 
         "date_created": "2015-03-08T02:47:20.973Z", 
@@ -1121,8 +1145,8 @@
     "fields": {
         "current_pos_x": 585, 
         "description": "", 
-        "date_updated": "2015-03-08T02:54:19.696Z", 
-        "current_status_id": 3, 
+        "date_updated": "2015-03-10T18:25:12.008Z", 
+        "current_status_id": 1, 
         "current_date": "2015-03-07T21:48:30Z", 
         "asset": 14, 
         "date_created": "2015-03-08T02:48:32.039Z", 
@@ -1136,8 +1160,8 @@
     "fields": {
         "current_pos_x": 660, 
         "description": "", 
-        "date_updated": "2015-03-08T02:53:45.149Z", 
-        "current_status_id": 6, 
+        "date_updated": "2015-03-10T18:25:12.091Z", 
+        "current_status_id": 0, 
         "current_date": "2015-03-07T21:48:58Z", 
         "asset": 15, 
         "date_created": "2015-03-08T02:49:00.267Z", 
@@ -1151,8 +1175,8 @@
     "fields": {
         "current_pos_x": 362, 
         "description": "", 
-        "date_updated": "2015-03-08T03:01:08.122Z", 
-        "current_status_id": 6, 
+        "date_updated": "2015-03-10T18:25:12.116Z", 
+        "current_status_id": 0, 
         "current_date": "2015-03-07T21:57:20Z", 
         "asset": 17, 
         "date_created": "2015-03-08T02:57:22.793Z", 
@@ -1166,8 +1190,8 @@
     "fields": {
         "current_pos_x": 335, 
         "description": "", 
-        "date_updated": "2015-03-08T03:00:30.339Z", 
-        "current_status_id": 2, 
+        "date_updated": "2015-03-10T18:25:12.133Z", 
+        "current_status_id": 0, 
         "current_date": "2015-03-07T21:57:45Z", 
         "asset": 16, 
         "date_created": "2015-03-08T02:57:47.926Z", 
@@ -1181,8 +1205,8 @@
     "fields": {
         "current_pos_x": 65, 
         "description": "", 
-        "date_updated": "2015-03-08T03:03:44.884Z", 
-        "current_status_id": 4, 
+        "date_updated": "2015-03-10T18:25:11.783Z", 
+        "current_status_id": 0, 
         "current_date": "2015-03-07T22:03:17Z", 
         "asset": 18, 
         "date_created": "2015-03-08T03:03:19.204Z", 
@@ -1211,8 +1235,8 @@
     "fields": {
         "current_pos_x": 248, 
         "description": "", 
-        "date_updated": "2015-03-08T03:14:12.825Z", 
-        "current_status_id": 5, 
+        "date_updated": "2015-03-10T18:25:11.816Z", 
+        "current_status_id": 1, 
         "current_date": "2015-03-07T22:07:02Z", 
         "asset": 20, 
         "date_created": "2015-03-08T03:07:04.306Z", 
@@ -1226,8 +1250,8 @@
     "fields": {
         "current_pos_x": 340, 
         "description": "", 
-        "date_updated": "2015-03-08T03:13:05.486Z", 
-        "current_status_id": 4, 
+        "date_updated": "2015-03-10T18:25:11.866Z", 
+        "current_status_id": 0, 
         "current_date": "2015-03-07T22:08:05Z", 
         "asset": 22, 
         "date_created": "2015-03-08T03:08:09.763Z", 
@@ -1241,8 +1265,8 @@
     "fields": {
         "current_pos_x": 369, 
         "description": "", 
-        "date_updated": "2015-03-08T03:16:00.202Z", 
-        "current_status_id": 6, 
+        "date_updated": "2015-03-10T18:25:11.849Z", 
+        "current_status_id": 0, 
         "current_date": "2015-03-07T22:08:34Z", 
         "asset": 21, 
         "date_created": "2015-03-08T03:08:36.495Z", 
@@ -1256,8 +1280,8 @@
     "fields": {
         "current_pos_x": 200, 
         "description": "", 
-        "date_updated": "2015-03-08T03:17:44.597Z", 
-        "current_status_id": 2, 
+        "date_updated": "2015-03-10T18:25:11.833Z", 
+        "current_status_id": 0, 
         "current_date": "2015-03-07T22:17:42Z", 
         "asset": 23, 
         "date_created": "2015-03-08T03:17:44.597Z", 
@@ -1271,8 +1295,8 @@
     "fields": {
         "current_pos_x": 355, 
         "description": "", 
-        "date_updated": "2015-03-08T03:46:21.409Z", 
-        "current_status_id": 2, 
+        "date_updated": "2015-03-10T18:25:11.666Z", 
+        "current_status_id": 0, 
         "current_date": "2015-03-07T22:41:26Z", 
         "asset": 24, 
         "date_created": "2015-03-08T03:41:30.150Z", 
@@ -1286,8 +1310,8 @@
     "fields": {
         "current_pos_x": 355, 
         "description": "", 
-        "date_updated": "2015-03-08T03:46:21.490Z", 
-        "current_status_id": 3, 
+        "date_updated": "2015-03-10T18:25:11.716Z", 
+        "current_status_id": 1, 
         "current_date": "2015-03-07T22:41:54Z", 
         "asset": 25, 
         "date_created": "2015-03-08T03:41:56.596Z", 
@@ -1301,8 +1325,8 @@
     "fields": {
         "current_pos_x": 355, 
         "description": "", 
-        "date_updated": "2015-03-08T03:46:21.473Z", 
-        "current_status_id": 6, 
+        "date_updated": "2015-03-10T18:25:11.700Z", 
+        "current_status_id": 0, 
         "current_date": "2015-03-07T22:42:26Z", 
         "asset": 26, 
         "date_created": "2015-03-08T03:42:28.174Z", 
@@ -1331,8 +1355,8 @@
     "fields": {
         "current_pos_x": 37, 
         "description": "", 
-        "date_updated": "2015-03-08T03:50:55.820Z", 
-        "current_status_id": 6, 
+        "date_updated": "2015-03-10T18:25:11.623Z", 
+        "current_status_id": 0, 
         "current_date": "2015-03-07T22:48:58Z", 
         "asset": 28, 
         "date_created": "2015-03-08T03:49:08.223Z", 
@@ -1346,8 +1370,8 @@
     "fields": {
         "current_pos_x": 100, 
         "description": "", 
-        "date_updated": "2015-03-08T03:56:18.614Z", 
-        "current_status_id": 3, 
+        "date_updated": "2015-03-10T18:25:11.649Z", 
+        "current_status_id": 1, 
         "current_date": "2015-03-07T22:53:08Z", 
         "asset": 29, 
         "date_created": "2015-03-08T03:53:10.052Z", 
@@ -1361,8 +1385,8 @@
     "fields": {
         "current_pos_x": 120, 
         "description": "", 
-        "date_updated": "2015-03-08T03:56:41.181Z", 
-        "current_status_id": 4, 
+        "date_updated": "2015-03-10T18:25:11.683Z", 
+        "current_status_id": 0, 
         "current_date": "2015-03-07T22:53:41Z", 
         "asset": 30, 
         "date_created": "2015-03-08T03:53:46.127Z", 

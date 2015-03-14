@@ -41,12 +41,11 @@ Place {{place}}
 
 {% block content %}
 <div class="col-md-8">
-    <div class="col-md-12">
-        <div style='background-image:url("{{ map_url }}");' class="map">
-            <canvas id="place_canvas" width="700" height="400">
-                Your browser does not support the HTML5 canvas tag.
-            </canvas>
-            <script>
+    <div style='background-image:url("{{ map_url }}");' class="map">
+        <canvas id="place_canvas" width="700" height="400">
+            Your browser does not support the HTML5 canvas tag.
+        </canvas>
+        <script>
                 var sensors = [{{sensors | safe}}];
                 function showIcons() {
                     var c = document.getElementById("place_canvas");
@@ -61,41 +60,7 @@ Place {{place}}
                 $(document).ready(showIcons);
                 $(window).load(showIcons);
 
-            </script>
-        </div>
-    </div>
-    <div class="col-md-12">
-        <div class="panel panel-primary">
-            <div class="panel-heading">
-                <h3 class="panel-title">EVENTS</h3>
-            </div>
-            <ul class="list-group">
-                {% for event in events %}
-                <li class="list-group-item">{{event.timestamp}} - {{event.sensor}} reported {{event.type}}</li>
-                {% empty %}
-                <li class="list-group-item">There are no events in this place</li>
-                {% endfor %}
-            </ul>
-        </div>
-        <nav>
-            <ul class="pager">
-                {% if events.has_previous %}
-                    <li class="previous"><a href="?page={{ events.previous_page_number }}">previous</a></li>
-                {% else %}
-                    <li class="previous disabled"><a href>previous</a></li>
-                {% endif %}
-
-                <span class="current">
-                    Page {{ events.number }} of {{ events.paginator.num_pages }}
-                </span>
-
-                {% if events.has_next %}
-                    <li class="next"><a href="?page={{ events.next_page_number }}">next</a></li>
-                {% else %}
-                    <li class="next disabled"><a href>next</a></li>
-                {% endif %}
-            </ul>
-        </nav>
+        </script>
     </div>
 </div>
 <div class="col-md-4">
@@ -113,5 +78,38 @@ Place {{place}}
             {% endfor %}
         </ul>
     </div>
+</div>
+<div class="col-md-12">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">EVENTS</h3>
+        </div>
+        <ul class="list-group">
+            {% for event in events %}
+            <li class="list-group-item">{{event.timestamp}} - {{event.sensor}} reported {{event.type}}</li>
+            {% empty %}
+            <li class="list-group-item">There are no events in this place</li>
+            {% endfor %}
+        </ul>
+    </div>
+    <nav>
+        <ul class="pager">
+            {% if events.has_previous %}
+            <li class="previous"><a href="?page={{ events.previous_page_number }}">previous</a></li>
+            {% else %}
+            <li class="previous disabled"><a>previous</a></li>
+            {% endif %}
+
+                <span class="current">
+                    Page {{ events.number }} of {{ events.paginator.num_pages }}
+                </span>
+
+            {% if events.has_next %}
+            <li class="next"><a href="?page={{ events.next_page_number }}">next</a></li>
+            {% else %}
+            <li class="next disabled"><a>next</a></li>
+            {% endif %}
+        </ul>
+    </nav>
 </div>
 {% endblock %}

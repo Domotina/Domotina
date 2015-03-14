@@ -30,7 +30,7 @@ Place {{place}}
                 <li><a href>Events</a></li>
             </ul>
             {% block toggle_login %}
-                {% include "login.html" %}
+            {% include "login.html" %}
             {% endblock %}
         </div>
         <!-- /.navbar-collapse -->
@@ -47,8 +47,19 @@ Place {{place}}
                 Your browser does not support the HTML5 canvas tag.
             </canvas>
             <script>
-                {{ show_icons_script|safe}}
-
+                var sensors = [{{sensors | safe}}];
+                function showIcons() {
+                    var c = document.getElementById("place_canvas");
+                    var ctx = c.getContext("2d");
+                    var currentSensor;
+                    for (var i in sensors) {
+                        currentSensor = new Image();
+                        currentSensor.src = sensors[i].url;
+                        ctx.drawImage(currentSensor, sensors[i].pos_x, sensors[i].pos_y);
+                    }
+                }
+                $(document).ready(showIcons);
+                $(window).load(showIcons);
             </script>
         </div>
     </div>

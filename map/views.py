@@ -13,12 +13,6 @@ def my_places(request):
 
 @login_required
 def place_view(request, pk):
-    server_path = "%s://%s%s" % (request.META['wsgi.url_scheme'], request.META['HTTP_HOST'], settings.STATIC_URL)
-
-    show_icons_script = \
-        'function showIcons(jQuery) { \
-        var c = document.getElementById("place_canvas"); \
-        var ctx = c.getContext("2d");'
     place = get_object_or_404(Place, pk=pk)
 
     if request.user != place.owner:
@@ -26,6 +20,7 @@ def place_view(request, pk):
 
     # Get all assets in the current place
     assets = Asset.objects.filter(place=place)
+    sensors_array = []
     for asset in assets:
         sensors = Sensor.objects.filter(asset=asset)
         for sensor in sensors:
@@ -33,29 +28,18 @@ def place_view(request, pk):
             try:
                 status = sensor.type.sensorstatus_set.filter(ref_code=sensor.current_status_id)[:1].get()
                 if status:
-                    show_icons_script = \
-                        '%s var sensor_icon%s  = new Image();' \
-                        'sensor_icon%s.src = "%s"; \
-                        ctx.drawImage(sensor_icon%s, %s, %s);' \
-                        % (show_icons_script, sensor.id,
-                           sensor.id, status.icon,
-                           sensor.id, sensor.current_pos_x, sensor.current_pos_y)
+                    current_sensor = '{url: "%s",'\
+                        'pos_x: %d,' \
+                        'pos_y: %d}' \
+                        % (status.icon, sensor.current_pos_x, sensor.current_pos_y)
+                    sensors_array.append(current_sensor)
             except SensorStatus.DoesNotExist:
                 pass
 
-    show_icons_script = "%s }" \
-                        "$(document).ready(showIcons);" \
-                        "$(window).load(showIcons);" % (show_icons_script);
-
-    '''# Split map place url into its filename and extension
-    filename, file_ext = splitext(basename(str(place.map)))
-    map_url = '%s://%s/%s%s%s' % (request.META['wsgi.url_scheme'], request.META['HTTP_HOST'],
-                                  settings.MAP_FILE_PATH[4:len(settings.MAP_FILE_PATH)],
-                                          filename, file_ext)'''
-
+    sensors_json = ','.join(sensors_array)
     alarms = Alarm.objects.filter(event__sensor__asset__place=place).order_by('-activation_date')
     events = Event.objects.filter(sensor__asset__place=place).order_by('-timestamp')
 
-    context = {'place': place, 'show_icons_script': show_icons_script,
+    context = {'place': place, 'sensors': sensors_json,
                'map_url': place.map, 'events': events, 'alarms': alarms}
     return render(request, 'index_owner.html', context)

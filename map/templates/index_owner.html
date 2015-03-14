@@ -60,6 +60,7 @@ Place {{place}}
                 $(document).ready(showIcons);
                 $(window).load(showIcons);
 
+
         </script>
     </div>
 </div>
@@ -78,6 +79,25 @@ Place {{place}}
             {% endfor %}
         </ul>
     </div>
+    <nav>
+        <ul class="pager">
+            {% if alarms.has_previous %}
+            <li class="previous"><a href="?alarm_page={{ alarms.previous_page_number }}">previous</a></li>
+            {% else %}
+            <li class="previous disabled"><a>previous</a></li>
+            {% endif %}
+
+            <li>
+                Page {{ alarms.number }} of {{ alarms.paginator.num_pages }}
+            </li>
+
+            {% if alarms.has_next %}
+            <li class="next"><a href="?alarm_page={{ alarms.next_page_number }}">next</a></li>
+            {% else %}
+            <li class="next disabled"><a>next</a></li>
+            {% endif %}
+        </ul>
+    </nav>
 </div>
 <div class="col-md-12">
     <div class="panel panel-primary">
@@ -95,17 +115,17 @@ Place {{place}}
     <nav>
         <ul class="pager">
             {% if events.has_previous %}
-            <li class="previous"><a href="?page={{ events.previous_page_number }}">previous</a></li>
+            <li class="previous"><a href="?event_page={{ events.previous_page_number }}">previous</a></li>
             {% else %}
             <li class="previous disabled"><a>previous</a></li>
             {% endif %}
 
-                <span class="current">
-                    Page {{ events.number }} of {{ events.paginator.num_pages }}
-                </span>
+            <li>
+                Page {{ events.number }} of {{ events.paginator.num_pages }}
+            </li>
 
             {% if events.has_next %}
-            <li class="next"><a href="?page={{ events.next_page_number }}">next</a></li>
+            <li class="next"><a href="?event_page={{ events.next_page_number }}">next</a></li>
             {% else %}
             <li class="next disabled"><a>next</a></li>
             {% endif %}

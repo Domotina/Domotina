@@ -41,7 +41,7 @@ def place_view(request, pk):
     event_qs = Event.objects.filter(sensor__asset__place=place).order_by('-timestamp')
 
     events_paginator = Paginator(event_qs, 5)
-    page = request.GET.get('page')
+    page = request.GET.get('event_page')
     try:
         events = events_paginator.page(page)
     except PageNotAnInteger:
@@ -51,6 +51,17 @@ def place_view(request, pk):
         # If page is out of range (e.g. 9999), deliver last page of results.
         events = events_paginator.page(events_paginator.num_pages)
 
+    alarms_paginator = Paginator(alarm_qs, 5)
+    page = request.GET.get('alarm_page')
+    try:
+        alarms = alarms_paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        alarms = alarms_paginator.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page of results.
+        alarms = alarms_paginator.page(alarms_paginator.num_pages)
+
     context = {'place': place, 'sensors': sensors_json,
-               'map_url': place.map, 'events': events, 'alarms': alarm_qs}
+               'map_url': place.map, 'events': events, 'alarms': alarms}
     return render(request, 'index_owner.html', context)

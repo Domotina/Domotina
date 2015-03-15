@@ -56,7 +56,7 @@ class SensorType(models.Model):
     is_continuous = models.BooleanField("continuous", default=False)
     max_continuous = models.FloatField("max continuous")
     min_continuous = models.FloatField("min continuous")
-    
+
     class Meta:
         db_table = 'map_sensor_type'
         verbose_name = "sensor type"
@@ -73,6 +73,7 @@ class SensorStatus(models.Model):
     icon = models.CharField("icon", max_length=255)
     is_enabled = models.BooleanField("enabled?", default=True)
     ref_code = models.IntegerField('ref code', default=0)
+    value = models.FloatField("Value (if continuous)")
 
     class Meta:
         db_table = 'map_sensor_status'

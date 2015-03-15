@@ -895,7 +895,8 @@
         "ref_code": 1, 
         "type": 2, 
         "name": "Locked", 
-        "icon": "http://domotina.host56.com/images/lock_icon.png"
+        "icon": "http://domotina.host56.com/images/lock_icon.png",
+        "value": 0
     }
 },
 {
@@ -906,7 +907,8 @@
         "ref_code": 0, 
         "type": 2, 
         "name": "Unlocked", 
-        "icon": "http://domotina.host56.com/images/unlock_icon.png"
+        "icon": "http://domotina.host56.com/images/unlock_icon.png",
+        "value": 0
     }
 },
 {
@@ -917,7 +919,8 @@
         "ref_code": 1, 
         "type": 3, 
         "name": "On", 
-        "icon": "http://domotina.host56.com/images/bulb_on.png"
+        "icon": "http://domotina.host56.com/images/bulb_on.png",
+        "value": 0
     }
 },
 {
@@ -928,7 +931,8 @@
         "ref_code": 0, 
         "type": 3, 
         "name": "Off", 
-        "icon": "http://domotina.host56.com/images/bulb_off.png"
+        "icon": "http://domotina.host56.com/images/bulb_off.png",
+        "value": 0
     }
 },
 {
@@ -939,7 +943,8 @@
         "ref_code": 1, 
         "type": 1, 
         "name": "Yes", 
-        "icon": "http://domotina.host56.com/images/move.png"
+        "icon": "http://domotina.host56.com/images/move.png",
+        "value": 0
     }
 },
 {
@@ -950,7 +955,8 @@
         "ref_code": 0, 
         "type": 1, 
         "name": "No", 
-        "icon": "http://domotina.host56.com/images/no_move.png"
+        "icon": "http://domotina.host56.com/images/no_move.png",
+        "value": 0
     }
 },
 {

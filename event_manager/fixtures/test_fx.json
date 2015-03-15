@@ -176,7 +176,8 @@
         "model":"map.sensortype",
         "fields":{
             "is_enabled":true,
-            "name":"Movement"
+            "name":"Movement",
+            "is_continuous": false
         }
     },
     {

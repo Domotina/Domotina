@@ -480,8 +480,7 @@
     "pk": 1, 
     "model": "map.place", 
     "fields": {
-        "map": "http://domotina.host56.com/images/ap_model1.png", 
-        "neighborhood": 1, 
+        "neighborhood": 1,
         "name": "T10 AP602", 
         "date_updated": "2015-03-07T20:59:03.888Z", 
         "owner": 1, 
@@ -492,8 +491,7 @@
     "pk": 2, 
     "model": "map.place", 
     "fields": {
-        "map": "http://domotina.host56.com/images/ap_model2.png", 
-        "neighborhood": 1, 
+        "neighborhood": 1,
         "name": "T10 AP603", 
         "date_updated": "2015-03-07T20:59:27.651Z", 
         "owner": 1, 
@@ -504,8 +502,7 @@
     "pk": 3, 
     "model": "map.place", 
     "fields": {
-        "map": "http://domotina.host56.com/images/ap_model3.png", 
-        "neighborhood": 3, 
+        "neighborhood": 3,
         "name": "Kr 69D St 25-04", 
         "date_updated": "2015-03-08T02:24:08.983Z", 
         "owner": 1, 
@@ -516,11 +513,54 @@
     "pk": 4, 
     "model": "map.place", 
     "fields": {
-        "map": "http://domotina.host56.com/images/of_model1.png", 
-        "neighborhood": 4, 
+        "neighborhood": 4,
         "name": "Office 201", 
         "date_updated": "2015-03-08T03:37:22.536Z", 
         "owner": 1, 
+        "date_created": "2015-03-08T03:37:22.536Z"
+    }
+},
+{
+    "pk": 1,
+    "model": "map.floor",
+    "fields": {
+        "place": 1,
+        "number": 1,
+        "map": "http://domotina.host56.com/images/ap_model1.png",
+        "date_updated": "2015-03-08T03:37:22.536Z",
+        "date_created": "2015-03-08T03:37:22.536Z"
+    }
+},
+{
+    "pk": 2,
+    "model": "map.floor",
+    "fields": {
+        "place": 2,
+        "number": 1,
+        "map": "http://domotina.host56.com/images/ap_model2.png",
+        "date_updated": "2015-03-08T03:37:22.536Z",
+        "date_created": "2015-03-08T03:37:22.536Z"
+    }
+},
+{
+    "pk": 3,
+    "model": "map.floor",
+    "fields": {
+        "place": 3,
+        "number": 1,
+        "map": "http://domotina.host56.com/images/ap_model3.png",
+        "date_updated": "2015-03-08T03:37:22.536Z",
+        "date_created": "2015-03-08T03:37:22.536Z"
+    }
+},
+{
+    "pk": 4,
+    "model": "map.floor",
+    "fields": {
+        "place": 4,
+        "number": 1,
+        "map": "http://domotina.host56.com/images/of_model1.png",
+        "date_updated": "2015-03-08T03:37:22.536Z",
         "date_created": "2015-03-08T03:37:22.536Z"
     }
 },
@@ -530,7 +570,7 @@
     "fields": {
         "date_updated": "2015-03-07T21:46:27.963Z", 
         "date_created": "2015-03-07T21:46:27.963Z", 
-        "place": 1, 
+        "floor": 1,
         "name": "Main Access Door", 
         "description": ""
     }
@@ -541,7 +581,7 @@
     "fields": {
         "date_updated": "2015-03-07T21:47:07.591Z", 
         "date_created": "2015-03-07T21:47:07.591Z", 
-        "place": 1, 
+        "floor": 1,
         "name": "Dinning Room Light", 
         "description": ""
     }
@@ -552,7 +592,7 @@
     "fields": {
         "date_updated": "2015-03-08T01:29:36.532Z", 
         "date_created": "2015-03-08T01:29:36.532Z", 
-        "place": 1, 
+        "floor": 1,
         "name": "Main Room Tv Plasma", 
         "description": ""
     }
@@ -563,7 +603,7 @@
     "fields": {
         "date_updated": "2015-03-08T01:29:56.416Z", 
         "date_created": "2015-03-08T01:29:56.416Z", 
-        "place": 1, 
+        "floor": 1,
         "name": "Living Room Light", 
         "description": ""
     }
@@ -574,7 +614,7 @@
     "fields": {
         "date_updated": "2015-03-08T01:40:19.043Z", 
         "date_created": "2015-03-08T01:40:19.043Z", 
-        "place": 1, 
+        "floor": 1,
         "name": "Living Room Window", 
         "description": ""
     }
@@ -585,7 +625,7 @@
     "fields": {
         "date_updated": "2015-03-08T01:56:00.400Z", 
         "date_created": "2015-03-08T01:56:00.400Z", 
-        "place": 2, 
+        "floor": 2,
         "name": "Main Access Door", 
         "description": ""
     }
@@ -596,7 +636,7 @@
     "fields": {
         "date_updated": "2015-03-08T01:56:23.275Z", 
         "date_created": "2015-03-08T01:56:23.275Z", 
-        "place": 2, 
+        "floor": 2,
         "name": "Living Room Light", 
         "description": ""
     }
@@ -607,7 +647,7 @@
     "fields": {
         "date_updated": "2015-03-08T01:56:32.209Z", 
         "date_created": "2015-03-08T01:56:32.209Z", 
-        "place": 2, 
+        "floor": 2,
         "name": "Dinning Room Light", 
         "description": ""
     }
@@ -618,7 +658,7 @@
     "fields": {
         "date_updated": "2015-03-08T01:57:11.042Z", 
         "date_created": "2015-03-08T01:57:11.042Z", 
-        "place": 2, 
+        "floor": 2,
         "name": "Main Room Access Door", 
         "description": ""
     }
@@ -629,7 +669,7 @@
     "fields": {
         "date_updated": "2015-03-08T01:58:24.401Z", 
         "date_created": "2015-03-08T01:58:24.401Z", 
-        "place": 2, 
+        "floor": 2,
         "name": "Study Room Laptop", 
         "description": ""
     }
@@ -640,7 +680,7 @@
     "fields": {
         "date_updated": "2015-03-08T02:42:32.691Z", 
         "date_created": "2015-03-08T02:42:32.691Z", 
-        "place": 3, 
+        "floor": 3,
         "name": "Main Access Door", 
         "description": ""
     }
@@ -651,7 +691,7 @@
     "fields": {
         "date_updated": "2015-03-08T02:42:53.786Z", 
         "date_created": "2015-03-08T02:42:53.786Z", 
-        "place": 3, 
+        "floor": 3,
         "name": "Dinning Room Light", 
         "description": ""
     }
@@ -662,7 +702,7 @@
     "fields": {
         "date_updated": "2015-03-08T02:43:01.553Z", 
         "date_created": "2015-03-08T02:43:01.553Z", 
-        "place": 3, 
+        "floor": 3,
         "name": "Living Room Light", 
         "description": ""
     }
@@ -673,7 +713,7 @@
     "fields": {
         "date_updated": "2015-03-08T02:43:54.355Z", 
         "date_created": "2015-03-08T02:43:54.355Z", 
-        "place": 3, 
+        "floor": 3,
         "name": "Main Room Light", 
         "description": ""
     }
@@ -684,7 +724,7 @@
     "fields": {
         "date_updated": "2015-03-08T02:44:43.738Z", 
         "date_created": "2015-03-08T02:44:43.738Z", 
-        "place": 3, 
+        "floor": 3,
         "name": "Main Room Smart Curved UHD TV", 
         "description": ""
     }
@@ -695,7 +735,7 @@
     "fields": {
         "date_updated": "2015-03-08T02:56:07.419Z", 
         "date_created": "2015-03-08T02:56:07.419Z", 
-        "place": 3, 
+        "floor": 3,
         "name": "Study Room Window", 
         "description": ""
     }
@@ -706,7 +746,7 @@
     "fields": {
         "date_updated": "2015-03-08T02:56:19.749Z", 
         "date_created": "2015-03-08T02:56:19.749Z", 
-        "place": 3, 
+        "floor": 3,
         "name": "Study Room Laptop", 
         "description": ""
     }
@@ -717,7 +757,7 @@
     "fields": {
         "date_updated": "2015-03-08T03:02:40.245Z", 
         "date_created": "2015-03-08T03:02:40.245Z", 
-        "place": 1, 
+        "floor": 1,
         "name": "Main Room Light", 
         "description": ""
     }
@@ -728,7 +768,7 @@
     "fields": {
         "date_updated": "2015-03-08T03:04:44.934Z", 
         "date_created": "2015-03-08T03:04:44.934Z", 
-        "place": 1, 
+        "floor": 1,
         "name": "Main Room Window", 
         "description": ""
     }
@@ -739,7 +779,7 @@
     "fields": {
         "date_updated": "2015-03-08T03:05:16.668Z", 
         "date_created": "2015-03-08T03:05:16.668Z", 
-        "place": 1, 
+        "floor": 1,
         "name": "Secondary Room Laptop", 
         "description": ""
     }
@@ -750,7 +790,7 @@
     "fields": {
         "date_updated": "2015-03-08T03:05:32.755Z", 
         "date_created": "2015-03-08T03:05:32.755Z", 
-        "place": 1, 
+        "floor": 1,
         "name": "Study Room Laptop", 
         "description": ""
     }
@@ -761,7 +801,7 @@
     "fields": {
         "date_updated": "2015-03-08T03:05:49.097Z", 
         "date_created": "2015-03-08T03:05:49.097Z", 
-        "place": 1, 
+        "floor": 1,
         "name": "Study Room Light", 
         "description": ""
     }
@@ -772,7 +812,7 @@
     "fields": {
         "date_updated": "2015-03-08T03:17:10.105Z", 
         "date_created": "2015-03-08T03:17:10.105Z", 
-        "place": 1, 
+        "floor": 1,
         "name": "Secondary Room Window", 
         "description": ""
     }
@@ -783,7 +823,7 @@
     "fields": {
         "date_updated": "2015-03-08T03:38:48.628Z", 
         "date_created": "2015-03-08T03:38:48.628Z", 
-        "place": 4, 
+        "floor": 4,
         "name": "Main Access Door", 
         "description": ""
     }
@@ -794,7 +834,7 @@
     "fields": {
         "date_updated": "2015-03-08T03:40:29.507Z", 
         "date_created": "2015-03-08T03:40:29.507Z", 
-        "place": 4, 
+        "floor": 4,
         "name": "Waiting Room Light", 
         "description": ""
     }
@@ -805,7 +845,7 @@
     "fields": {
         "date_updated": "2015-03-08T03:40:39.456Z", 
         "date_created": "2015-03-08T03:40:39.456Z", 
-        "place": 4, 
+        "floor": 4,
         "name": "Waiting Room Laptop", 
         "description": ""
     }
@@ -816,7 +856,7 @@
     "fields": {
         "date_updated": "2015-03-08T03:47:27.820Z", 
         "date_created": "2015-03-08T03:47:27.820Z", 
-        "place": 4, 
+        "floor": 4,
         "name": "Boss Office Window", 
         "description": ""
     }
@@ -827,7 +867,7 @@
     "fields": {
         "date_updated": "2015-03-08T03:47:43.703Z", 
         "date_created": "2015-03-08T03:47:43.703Z", 
-        "place": 4, 
+        "floor": 4,
         "name": "Boss Office Laptop", 
         "description": ""
     }
@@ -838,7 +878,7 @@
     "fields": {
         "date_updated": "2015-03-08T03:52:03.741Z", 
         "date_created": "2015-03-08T03:52:03.741Z", 
-        "place": 4, 
+        "floor": 4,
         "name": "Boss Office Light", 
         "description": ""
     }
@@ -849,7 +889,7 @@
     "fields": {
         "date_updated": "2015-03-08T03:52:30.135Z", 
         "date_created": "2015-03-08T03:52:30.135Z", 
-        "place": 4, 
+        "floor": 4,
         "name": "Meeting Room Light", 
         "description": ""
     }

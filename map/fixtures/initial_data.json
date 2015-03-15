@@ -859,7 +859,10 @@
     "model": "map.sensortype", 
     "fields": {
         "is_enabled": true, 
-        "name": "Movement"
+        "name": "Movement",
+        "is_continuous": false,
+        "max_continuous":0.0,
+        "min_continuous": 0.0
     }
 },
 {
@@ -867,7 +870,10 @@
     "model": "map.sensortype", 
     "fields": {
         "is_enabled": true, 
-        "name": "Locked"
+        "name": "Locked",
+        "is_continuous": false,
+        "max_continuous":0.0,
+        "min_continuous": 0.0
     }
 },
 {
@@ -875,7 +881,10 @@
     "model": "map.sensortype", 
     "fields": {
         "is_enabled": true, 
-        "name": "Light"
+        "name": "Light",
+        "is_continuous": false,
+        "max_continuous":0.0,
+        "min_continuous": 0.0
     }
 },
 {

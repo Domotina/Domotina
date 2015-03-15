@@ -53,7 +53,10 @@ class Asset(models.Model):
 class SensorType(models.Model):
     name = models.CharField("type", max_length=50)
     is_enabled = models.BooleanField("enabled?", default=True)
-
+    is_continuous = models.BooleanField("continuous", default=False)
+    max_continuous = models.FloatField("max continuous")
+    min_continuous = models.FloatField("min continuous")
+    
     class Meta:
         db_table = 'map_sensor_type'
         verbose_name = "sensor type"

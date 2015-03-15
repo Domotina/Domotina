@@ -1,11 +1,13 @@
 from django.contrib import admin
 from models import Neighborhood, Place, Asset, SensorType, SensorStatus, Sensor
 
+
 class PlaceAdmin(admin.ModelAdmin):
     list_display = ("owner", "neighborhood", "name", "map")
     list_editable = ("name", "map")
     list_filter = ("owner", "neighborhood", "name", "map")
     search_fields = ("owner", "neighborhood", "name", "map")
+
 
 class AssetAdmin(admin.ModelAdmin):
     list_display = ("get_neighborhood", "place", "name")
@@ -16,6 +18,7 @@ class AssetAdmin(admin.ModelAdmin):
     def get_neighborhood(self, obj):
         return '%s' % (obj.place.neighborhood)
     get_neighborhood.short_description = 'Neighborhood'
+
 
 class SensorAdmin(admin.ModelAdmin):
     list_display = ("get_place", "asset", "current_status_id", "current_pos_x", "current_pos_y")

@@ -1,0 +1,85 @@
+    {% extends "base.html"%}
+    {% load static %}
+
+    {% block title %}
+    Central home :D
+    {% endblock %}
+
+    {% block bar %}
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target="#navbar-content">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#/">
+                    <span><img class="logo-sm" src='{% static "img/domotinaLogo.png" %}'/></span> Domotina
+                </a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="navbar-content">
+                <ul class="nav navbar-nav">
+                    <li><a href='{% url "map_home" %}'>Places</a></li>
+                    <li><a href>Alarms</a></li>
+                    <li><a href>Events</a></li>
+                </ul>
+                {% block toggle_login %}
+                {% include "login.html" %}
+                {% endblock %}
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+    {% endblock %}
+
+    {% block content %}
+    <link rel="stylesheet" href='{% static "css/central-forms.css" %}'>
+    <script src='{% static "js/vendor/jquery.easing.min.js" %}'></script>
+    <script src='{% static "js/form-central-function.js" %}'></script>
+
+    <div class="col-md-12">
+        <form id="msform">
+        <!-- progressbar -->
+            <ul id="progressbar">
+            <li class="active">Site</li>
+            <li class="">Data</li>
+            <li class="">Complete!</li>
+            </ul>
+        <!-- fieldsets -->
+        <fieldset>
+             <h2 class="fs-title">Step 1</h2>
+             <h3 class="fs-subtitle">This is step 1</h3>
+             <input type="text" name="email" placeholder="Email" />
+             <input type="password" name="pass" placeholder="Password" />
+             <input type="password" name="cpass" placeholder="Confirm Password" />
+             <input type="button" name="next" class="next action-button" value="Next" />
+        </fieldset>
+        <fieldset>
+            <h2 class="fs-title">Step 2</h2>
+            <h3 class="fs-subtitle">Your presence on the social network</h3>
+            <input type="text" name="twitter" placeholder="Twitter" />
+            <input type="text" name="facebook" placeholder="Facebook" />
+            <input type="text" name="gplus" placeholder="Google Plus" />
+            <input type="button" name="previous" class="previous action-button" value="Previous" />
+            <input type="button" name="next" class="next action-button" value="Next" />
+        </fieldset>
+        <fieldset>
+            <h2 class="fs-title">Step 3</h2>
+            <h3 class="fs-subtitle">We will never sell it</h3>
+            <input type="text" name="fname" placeholder="First Name" />
+            <input type="text" name="lname" placeholder="Last Name" />
+            <input type="text" name="phone" placeholder="Phone" />
+            <textarea name="address" placeholder="Address"></textarea>
+            <input type="button" name="previous" class="previous action-button" value="Previous" />
+            <input type="submit" name="submit" class="submit action-button" value="Submit" />
+        </fieldset>
+        </form>
+    </div>
+    {% endblock %}

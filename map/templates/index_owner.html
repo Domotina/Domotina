@@ -82,7 +82,7 @@ Place {{place}}
     <nav>
         <ul class="pager">
             {% if alarms.has_previous %}
-            <li class="previous"><a href="?alarm_page={{ alarms.previous_page_number }}">previous</a></li>
+            <li class="previous"><a href="?alarm_page={{ alarms.previous_page_number }}&event_page={{ events.number }}">previous</a></li>
             {% else %}
             <li class="previous disabled"><a>previous</a></li>
             {% endif %}
@@ -92,7 +92,7 @@ Place {{place}}
             </li>
 
             {% if alarms.has_next %}
-            <li class="next"><a href="?alarm_page={{ alarms.next_page_number }}">next</a></li>
+            <li class="next"><a href="?alarm_page={{ alarms.next_page_number }}&event_page={{ events.number }}">next</a></li>
             {% else %}
             <li class="next disabled"><a>next</a></li>
             {% endif %}
@@ -115,7 +115,7 @@ Place {{place}}
     <nav>
         <ul class="pager">
             {% if events.has_previous %}
-            <li class="previous"><a href="?event_page={{ events.previous_page_number }}">previous</a></li>
+            <li class="previous"><a href="?event_page={{ events.previous_page_number }}&alarm_page={{ alarms.number }}">previous</a></li>
             {% else %}
             <li class="previous disabled"><a>previous</a></li>
             {% endif %}
@@ -125,7 +125,7 @@ Place {{place}}
             </li>
 
             {% if events.has_next %}
-            <li class="next"><a href="?event_page={{ events.next_page_number }}">next</a></li>
+            <li class="next"><a href="?event_page={{ events.next_page_number }}&alarm_page={{ alarms.number }}">next</a></li>
             {% else %}
             <li class="next disabled"><a>next</a></li>
             {% endif %}

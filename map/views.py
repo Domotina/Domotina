@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from middleware.http import Http403
-from models import Place, Asset, Sensor, SensorStatus
+from models import Place, Asset, Sensor, SensorStatus, SensorType
 from event_manager.models import Event, Alarm
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -21,8 +21,16 @@ def place_view(request, pk):
     # Get all assets in the current place
     assets = Asset.objects.filter(place=place)
     sensors_array = []
+    type = request.GET.get('type')
+    if type is None:
+        type_param = ''
+    else:
+        type_param = '&type='+type
     for asset in assets:
-        sensors = Sensor.objects.filter(asset=asset)
+        if type is None:
+            sensors = Sensor.objects.filter(asset=asset)
+        else:
+            sensors = Sensor.objects.filter(asset=asset, type=type)
         for sensor in sensors:
             # Get the sensor status based on current_status_id saved by event_manager previously
             try:
@@ -39,6 +47,7 @@ def place_view(request, pk):
     sensors_json = ','.join(sensors_array)
     alarm_qs = Alarm.objects.filter(event__sensor__asset__place=place).order_by('-activation_date')
     event_qs = Event.objects.filter(sensor__asset__place=place).order_by('-timestamp')
+    types = SensorType.objects.all()
 
     events_paginator = Paginator(event_qs, 5)
     page = request.GET.get('event_page')
@@ -63,5 +72,5 @@ def place_view(request, pk):
         alarms = alarms_paginator.page(alarms_paginator.num_pages)
 
     context = {'place': place, 'sensors': sensors_json,
-               'map_url': place.map, 'events': events, 'alarms': alarms}
+               'map_url': place.map, 'events': events, 'alarms': alarms, 'types': types, 'type_param': type_param}
     return render(request, 'index_owner.html', context)

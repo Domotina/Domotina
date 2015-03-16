@@ -40,7 +40,7 @@ Place {{place}}
 {% endblock %}
 
 {% block content %}
-<div class="col-md-8">
+<div class="col-md-8 map-container">
     <div style='background-image:url("{{ map_url }}");' class="map">
         <canvas id="place_canvas" width="700" height="400">
             Your browser does not support the HTML5 canvas tag.
@@ -63,6 +63,17 @@ Place {{place}}
 
         </script>
     </div>
+    <div class="btn-group">
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+            Filter by type <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" role="menu">
+            <li><a href="?alarm_page={{ alarms.number }}&event_page={{ events.number }}">All</a></li>
+            {% for type in types %}
+            <li><a href="?alarm_page={{ alarms.number }}&event_page={{ events.number }}&type={{ type.pk }}">{{type.name}}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
 </div>
 <div class="col-md-4">
     <div class="panel panel-warning">
@@ -82,7 +93,8 @@ Place {{place}}
     <nav>
         <ul class="pager">
             {% if alarms.has_previous %}
-            <li class="previous"><a href="?alarm_page={{ alarms.previous_page_number }}&event_page={{ events.number }}">previous</a></li>
+            <li class="previous"><a href="?alarm_page={{ alarms.previous_page_number }}&event_page={{ events.number }}{{ type_param }}">previous</a>
+            </li>
             {% else %}
             <li class="previous disabled"><a>previous</a></li>
             {% endif %}
@@ -92,7 +104,8 @@ Place {{place}}
             </li>
 
             {% if alarms.has_next %}
-            <li class="next"><a href="?alarm_page={{ alarms.next_page_number }}&event_page={{ events.number }}">next</a></li>
+            <li class="next"><a href="?alarm_page={{ alarms.next_page_number }}&event_page={{ events.number }}{{ type_param }}">next</a>
+            </li>
             {% else %}
             <li class="next disabled"><a>next</a></li>
             {% endif %}
@@ -115,7 +128,8 @@ Place {{place}}
     <nav>
         <ul class="pager">
             {% if events.has_previous %}
-            <li class="previous"><a href="?event_page={{ events.previous_page_number }}&alarm_page={{ alarms.number }}">previous</a></li>
+            <li class="previous"><a href="?event_page={{ events.previous_page_number }}&alarm_page={{ alarms.number }}{{ type_param }}">previous</a>
+            </li>
             {% else %}
             <li class="previous disabled"><a>previous</a></li>
             {% endif %}
@@ -125,7 +139,8 @@ Place {{place}}
             </li>
 
             {% if events.has_next %}
-            <li class="next"><a href="?event_page={{ events.next_page_number }}&alarm_page={{ alarms.number }}">next</a></li>
+            <li class="next"><a href="?event_page={{ events.next_page_number }}&alarm_page={{ alarms.number }}{{ type_param }}">next</a>
+            </li>
             {% else %}
             <li class="next disabled"><a>next</a></li>
             {% endif %}

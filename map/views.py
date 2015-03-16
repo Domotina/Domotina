@@ -18,31 +18,30 @@ def place_view(request, pk):
     if request.user != place.owner:
         raise Http403
 
-    # Get all assets in the current place
-    assets = Asset.objects.filter(place=place)
     sensors_array = []
     type = request.GET.get('type')
     if type is None:
         type_param = ''
     else:
         type_param = '&type='+type
-    for asset in assets:
-        if type is None:
-            sensors = Sensor.objects.filter(asset=asset)
-        else:
-            sensors = Sensor.objects.filter(asset=asset, type=type)
-        for sensor in sensors:
-            # Get the sensor status based on current_status_id saved by event_manager previously
-            try:
-                status = sensor.type.sensorstatus_set.filter(ref_code=sensor.current_status_id)[:1].get()
-                if status:
-                    current_sensor = '{url: "%s",'\
-                        'pos_x: %d,' \
-                        'pos_y: %d}' \
-                        % (status.icon, sensor.current_pos_x, sensor.current_pos_y)
-                    sensors_array.append(current_sensor)
-            except SensorStatus.DoesNotExist:
-                pass
+
+    if type is None:
+        sensors = Sensor.objects.filter(asset__place=place)
+    else:
+        sensors = Sensor.objects.filter(asset__place=place, type=type)
+
+    for sensor in sensors:
+        # Get the sensor status based on current_status_id saved by event_manager previously
+        try:
+            status = sensor.type.sensorstatus_set.filter(ref_code=sensor.current_status_id)[:1].get()
+            if status:
+                current_sensor = '{url: "%s",'\
+                    'pos_x: %d,' \
+                    'pos_y: %d}' \
+                    % (status.icon, sensor.current_pos_x, sensor.current_pos_y)
+                sensors_array.append(current_sensor)
+        except SensorStatus.DoesNotExist:
+            pass
 
     sensors_json = ','.join(sensors_array)
     alarm_qs = Alarm.objects.filter(event__sensor__asset__place=place).order_by('-activation_date')

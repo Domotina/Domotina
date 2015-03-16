@@ -69,7 +69,7 @@ USE_L10N = True
 USE_TZ = True
 
 # Parse database configuration from $DATABASE_URL
-#import dj_database_url
+import dj_database_url
 DATABASES['default'] = dj_database_url.config()
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
@@ -94,3 +94,4 @@ EMAIL_PORT = os.environ.get('EMAIL_PORT')
 EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 URL = os.environ.get('URL')
+

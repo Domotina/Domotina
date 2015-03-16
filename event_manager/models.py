@@ -27,6 +27,7 @@ class Event(models.Model):
     pos_x = models.IntegerField('x position', blank=True, null=True)
     pos_y = models.IntegerField('y position', blank=True, null=True)
     status = models.IntegerField('status', blank=True, null=True)
+    value = models.FloatField('value (for continuous)', blank=True, null=True)
 
     class Meta:
         verbose_name = 'event'

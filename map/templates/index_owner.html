@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block title %}
-Place {{place}}
+Place {{floor}}
 {% endblock %}
 
 {% block bar %}
@@ -41,7 +41,7 @@ Place {{place}}
 
 {% block content %}
 <div>
-    <h3>{{ place.name }}</h3>
+    <h3>{{ floor }}</h3>
 </div>
 <div class="filter">
     <span class="label label-success" id="lb">Filter the sensors in the map, select in the combobox.</span>
@@ -108,7 +108,7 @@ Place {{place}}
         <ul class="list-group">
             {% for alarm in alarms %}
             {% empty %}
-            <li class="list-group-item">There are no alarms in this place</li>
+            <li class="list-group-item">There are no alarms in this floor</li>
             {% endfor %}
         </ul>
     </div>
@@ -164,7 +164,7 @@ Place {{place}}
         <ul class="list-group">
             {% for event in events %}
             {% empty %}
-            <li class="list-group-item">There are no events in this place</li>
+            <li class="list-group-item">There are no events in this floor</li>
             {% endfor %}
         </ul>
     </div>

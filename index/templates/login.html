@@ -5,7 +5,7 @@
            href="#">{{ user.username }} <b class="caret"></b></a>
         <ul class="dropdown-menu" role="menu" aria-labelledby="dropuser">
             <li><a href='{% url "map_home"%}'> {{ user.username }} </a></li>
-            <li><a href='{% url "auth_logout" %}'>Logout</a></li>
+            <li><a href='{% url "auth_logout" %}?next={% url "init" %}'>Logout</a></li>
         </ul>
     </li>
 </ul>

@@ -118,4 +118,4 @@ class Sensor(models.Model):
         ordering = ["floor"]
 
     def __unicode__(self):
-        return "Sensor on %s" % self.asset
+        return "Sensor on %s" % self.floor

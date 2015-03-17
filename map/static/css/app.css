@@ -39,3 +39,12 @@ canvas {
   /* Set the fixed height of the footer here */
   height: 60px;
 }
+
+.filter{
+    margin: 6px 3px !important;
+}
+
+span#lb {
+    font-size: 18px;
+    margin: 14px;
+}

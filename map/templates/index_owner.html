@@ -40,6 +40,23 @@ Place {{place}}
 {% endblock %}
 
 {% block content %}
+<div>
+    <h3>{{ place.name }}</h3>
+</div>
+<div class="filter">
+    <span class="label label-success" id="lb">Filter the sensors in the map, select in the combobox.</span>
+    <div class="btn-group">
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+            Filter by type <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" role="menu">
+            <li><a href="?alarm_page={{ alarms.number }}&event_page={{ events.number }}">All</a></li>
+            {% for type in types %}
+            <li><a href="?alarm_page={{ alarms.number }}&event_page={{ events.number }}&type={{ type.pk }}">{{type.name}}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
 <div class="col-md-8 map-container">
     <div style='background-image:url("{{ map_url }}");' class="map">
         <canvas id="place_canvas" width="700" height="400">
@@ -60,17 +77,6 @@ Place {{place}}
                 $(document).ready(showIcons);
                 $(window).load(showIcons);
         </script>
-    </div>
-    <div class="btn-group">
-        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-            Filter by type <span class="caret"></span>
-        </button>
-        <ul class="dropdown-menu" role="menu">
-            <li><a href="?alarm_page={{ alarms.number }}&event_page={{ events.number }}">All</a></li>
-            {% for type in types %}
-            <li><a href="?alarm_page={{ alarms.number }}&event_page={{ events.number }}&type={{ type.pk }}">{{type.name}}</a></li>
-            {% endfor %}
-        </ul>
     </div>
 </div>
 <div class="col-md-4">

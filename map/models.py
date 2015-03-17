@@ -46,7 +46,7 @@ class Floor(models.Model):
         ordering = ["place", "number"]
 
     def __unicode__(self):
-        return "%s floor %s" % (self.place, self.number)
+        return "Floor %s" % (self.number)
 
 
 '''class Asset(models.Model):

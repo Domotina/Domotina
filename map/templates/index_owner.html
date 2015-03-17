@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block title %}
-Place {{floor}}
+Place {{floor.place}}
 {% endblock %}
 
 {% block bar %}
@@ -41,7 +41,7 @@ Place {{floor}}
 
 {% block content %}
 <div>
-    <h3>{{ floor }}</h3>
+    <h4>{{ floor.place }}</h4>
 </div>
 <div class="filter">
     <span class="label label-success" id="lb">Filter the sensors in the map, select in the combobox.</span>
@@ -50,34 +50,61 @@ Place {{floor}}
             Filter by type <span class="caret"></span>
         </button>
         <ul class="dropdown-menu" role="menu">
-            <li><a href="?alarm_page={{ alarms.number }}&event_page={{ events.number }}">All</a></li>
+            <li><a href="?floor_page={{ floors.number }}&alarm_page={{ alarms.number }}&event_page={{ events.number }}">All</a></li>
             {% for type in types %}
-            <li><a href="?alarm_page={{ alarms.number }}&event_page={{ events.number }}&type={{ type.pk }}">{{type.name}}</a></li>
+            <li><a href="?floor_page={{ floors.number }}&alarm_page={{ alarms.number }}&event_page={{ events.number }}&type={{ type.pk }}">{{type.name}}</a></li>
             {% endfor %}
         </ul>
     </div>
 </div>
 <div class="col-md-8 map-container">
-    <div style='background-image:url("{{ map_url }}");' class="map">
-        <canvas id="place_canvas" width="700" height="400">
-            Your browser does not support the HTML5 canvas tag.
-        </canvas>
-        <script>
-                var sensors = [{{sensors | safe}}];
-                function showIcons() {
-                    var c = document.getElementById("place_canvas");
-                    var ctx = c.getContext("2d");
-                    var currentSensor;
-                    for (var i in sensors) {
-                        currentSensor = new Image();
-                        currentSensor.src = sensors[i].url;
-                        ctx.drawImage(currentSensor, sensors[i].pos_x, sensors[i].pos_y);
+    <div class="panel panel-primary">
+        <div style='background-image:url("{{ floor.map }}");' class="map">
+            <canvas id="place_canvas" width="700" height="400">
+                Your browser does not support the HTML5 canvas tag.
+            </canvas>
+            <script>
+                    var sensors = [{{sensors | safe}}];
+                    function showIcons() {
+                        var c = document.getElementById("place_canvas");
+                        var ctx = c.getContext("2d");
+                        var currentSensor;
+                        for (var i in sensors) {
+                            currentSensor = new Image();
+                            currentSensor.src = sensors[i].url;
+                            ctx.drawImage(currentSensor, sensors[i].pos_x, sensors[i].pos_y);
+                        }
                     }
-                }
-                $(document).ready(showIcons);
-                $(window).load(showIcons);
-        </script>
+                    $(document).ready(showIcons);
+                    $(window).load(showIcons);
+            </script>
+        </div>
     </div>
+    {% if floors.paginator.num_pages > 1 %}
+        <nav>
+            <ul class="pager">
+                {% if floors.has_previous %}
+                    <li class="previous">
+                        <a href="?floor_page={{ floors.previous_page_number }}&alarm_page={{ alarms.number }}&event_page={{ events.number }}{{ type_param }}">previous</a>
+                    </li>
+                {% else %}
+                    <li class="previous disabled"><a>previous</a></li>
+                {% endif %}
+
+                <li>
+                    Floor {{ floors.number }} of {{ floors.paginator.num_pages }}
+                </li>
+
+                {% if floors.has_next %}
+                    <li class="next">
+                        <a href="?floor_page={{ floors.next_page_number }}&alarm_page={{ alarms.number }}&event_page={{ events.number }}{{ type_param }}">next</a>
+                    </li>
+                {% else %}
+                    <li class="next disabled"><a>next</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    {% endif %}
 </div>
 <div class="col-md-4">
     <div class="panel panel-warning">
@@ -115,7 +142,7 @@ Place {{floor}}
     <nav>
         <ul class="pager">
             {% if alarms.has_previous %}
-            <li class="previous"><a href="?alarm_page={{ alarms.previous_page_number }}&event_page={{ events.number }}{{ type_param }}">previous</a>
+            <li class="previous"><a href="?floor_page={{ floors.number }}&alarm_page={{ alarms.previous_page_number }}&event_page={{ events.number }}{{ type_param }}">previous</a>
             </li>
             {% else %}
             <li class="previous disabled"><a>previous</a></li>
@@ -126,7 +153,7 @@ Place {{floor}}
             </li>
 
             {% if alarms.has_next %}
-            <li class="next"><a href="?alarm_page={{ alarms.next_page_number }}&event_page={{ events.number }}{{ type_param }}">next</a>
+            <li class="next"><a href="?floor_page={{ floors.number }}&alarm_page={{ alarms.next_page_number }}&event_page={{ events.number }}{{ type_param }}">next</a>
             </li>
             {% else %}
             <li class="next disabled"><a>next</a></li>
@@ -171,7 +198,7 @@ Place {{floor}}
     <nav>
         <ul class="pager">
             {% if events.has_previous %}
-            <li class="previous"><a href="?event_page={{ events.previous_page_number }}&alarm_page={{ alarms.number }}{{ type_param }}">previous</a>
+            <li class="previous"><a href="?floor_page={{ floors.number }}&event_page={{ events.previous_page_number }}&alarm_page={{ alarms.number }}{{ type_param }}">previous</a>
             </li>
             {% else %}
             <li class="previous disabled"><a>previous</a></li>
@@ -182,7 +209,7 @@ Place {{floor}}
             </li>
 
             {% if events.has_next %}
-            <li class="next"><a href="?event_page={{ events.next_page_number }}&alarm_page={{ alarms.number }}{{ type_param }}">next</a>
+            <li class="next"><a href="?floor_page={{ floors.number }}&event_page={{ events.next_page_number }}&alarm_page={{ alarms.number }}{{ type_param }}">next</a>
             </li>
             {% else %}
             <li class="next disabled"><a>next</a></li>

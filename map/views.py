@@ -16,8 +16,20 @@ def my_places(request):
 def place_view(request, pk):
     place = get_object_or_404(Place, pk=pk)
 
-    # TODO: Display all the floors. For now, it just displays one floor by default
-    floor = Floor.objects.filter(place=place)[:1].get()
+    floor_qs = Floor.objects.filter(place=place).order_by("number")
+    floor_paginator = Paginator(floor_qs, 1)
+    page = request.GET.get("floor_page")
+    try:
+        floors = floor_paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        floors = floor_paginator.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page of results.
+        floors = floor_paginator.page(floor_paginator.num_pages)
+
+    #floor = Floor.objects.filter(place=place)[:1].get()
+    current_floor = floors.object_list[0]
 
     if request.user != place.owner:
         raise Http403
@@ -30,9 +42,9 @@ def place_view(request, pk):
         type_param = '&type='+type
 
     if type is None:
-        sensors = Sensor.objects.filter(floor=floor)
+        sensors = Sensor.objects.filter(floor=current_floor)
     else:
-        sensors = Sensor.objects.filter(floor=floor, type=type)
+        sensors = Sensor.objects.filter(floor=current_floor, type=type)
 
     for sensor in sensors:
         # Get the sensor status based on current_status_id saved by event_manager previously
@@ -48,8 +60,9 @@ def place_view(request, pk):
             pass
 
     sensors_json = ','.join(sensors_array)
-    alarm_qs = Alarm.objects.filter(event__sensor__floor=floor).order_by('-activation_date')
-    event_qs = Event.objects.filter(sensor__floor=floor).order_by('-timestamp')
+    alarm_qs = Alarm.objects.filter(event__sensor__floor=current_floor).order_by('-activation_date')
+    event_qs = Event.objects.filter(sensor__floor=current_floor).order_by('-timestamp')
+
     types = SensorType.objects.all()
 
     events_paginator = Paginator(event_qs, 5)
@@ -74,6 +87,6 @@ def place_view(request, pk):
         # If page is out of range (e.g. 9999), deliver last page of results.
         alarms = alarms_paginator.page(alarms_paginator.num_pages)
 
-    context = {'floor': floor, 'sensors': sensors_json,
-               'map_url': floor.map, 'events': events, 'alarms': alarms, 'types': types, 'type_param': type_param}
-    return render(request, 'index_owner.html', context)
+    context = {'floor': current_floor, 'sensors': sensors_json, 'floors': floors,
+               'events': events, 'alarms': alarms, 'types': types, 'type_param': type_param}
+    return render(request, 'floor.html', context)

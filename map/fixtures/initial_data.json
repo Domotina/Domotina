@@ -1,6 +1,959 @@
 [
 {
     "pk": 1, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+        "model": "logentry", 
+        "name": "log entry", 
+        "app_label": "admin"
+    }
+},
+{
+    "pk": 2, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+        "model": "permission", 
+        "name": "permission", 
+        "app_label": "auth"
+    }
+},
+{
+    "pk": 3, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+        "model": "group", 
+        "name": "group", 
+        "app_label": "auth"
+    }
+},
+{
+    "pk": 4, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+        "model": "user", 
+        "name": "user", 
+        "app_label": "auth"
+    }
+},
+{
+    "pk": 5, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+        "model": "contenttype", 
+        "name": "content type", 
+        "app_label": "contenttypes"
+    }
+},
+{
+    "pk": 6, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+        "model": "session", 
+        "name": "session", 
+        "app_label": "sessions"
+    }
+},
+{
+    "pk": 7, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+        "model": "eventtype", 
+        "name": "event type", 
+        "app_label": "event_manager"
+    }
+},
+{
+    "pk": 8, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+        "model": "event", 
+        "name": "event", 
+        "app_label": "event_manager"
+    }
+},
+{
+    "pk": 9, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+        "model": "alarm", 
+        "name": "alarm", 
+        "app_label": "event_manager"
+    }
+},
+{
+    "pk": 10, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+        "model": "neighborhood", 
+        "name": "neighborhood", 
+        "app_label": "map"
+    }
+},
+{
+    "pk": 11, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+        "model": "place", 
+        "name": "place", 
+        "app_label": "map"
+    }
+},
+{
+    "pk": 12, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+        "model": "floor", 
+        "name": "floor", 
+        "app_label": "map"
+    }
+},
+{
+    "pk": 13, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+        "model": "sensortype", 
+        "name": "sensor type", 
+        "app_label": "map"
+    }
+},
+{
+    "pk": 14, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+        "model": "sensorstatus", 
+        "name": "sensor status", 
+        "app_label": "map"
+    }
+},
+{
+    "pk": 15, 
+    "model": "contenttypes.contenttype", 
+    "fields": {
+        "model": "sensor", 
+        "name": "sensor", 
+        "app_label": "map"
+    }
+},
+{
+    "pk": "ln24k0om3244r809v8m2qcbgd9uzvw0x", 
+    "model": "sessions.session", 
+    "fields": {
+        "expire_date": "2015-03-31T17:10:55.371Z", 
+        "session_data": "NDM2NzQ5MDNkMzNiZTI3MjVjMWMxZDNkN2YwYjAyYmQzNmI0ZTViMDp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6MX0="
+    }
+},
+{
+    "pk": 1, 
+    "model": "event_manager.eventtype", 
+    "fields": {
+        "is_critical": true, 
+        "name": "Movement", 
+        "description": "There was movement"
+    }
+},
+{
+    "pk": 2, 
+    "model": "event_manager.eventtype", 
+    "fields": {
+        "is_critical": false, 
+        "name": "Toggle Power", 
+        "description": "power was turned on or off"
+    }
+},
+{
+    "pk": 1, 
+    "model": "map.neighborhood", 
+    "fields": {
+        "date_updated": "2015-03-07T20:03:16.745Z", 
+        "date_created": "2015-03-07T20:03:16.745Z", 
+        "name": "Ostende's Park"
+    }
+},
+{
+    "pk": 2, 
+    "model": "map.neighborhood", 
+    "fields": {
+        "date_updated": "2015-03-07T20:04:34.685Z", 
+        "date_created": "2015-03-07T20:04:34.685Z", 
+        "name": "Capellania's Towers"
+    }
+},
+{
+    "pk": 3, 
+    "model": "map.neighborhood", 
+    "fields": {
+        "date_updated": "2015-03-08T02:21:47.907Z", 
+        "date_created": "2015-03-08T02:21:47.907Z", 
+        "name": "Salitre City"
+    }
+},
+{
+    "pk": 4, 
+    "model": "map.neighborhood", 
+    "fields": {
+        "date_updated": "2015-03-08T03:36:52.714Z", 
+        "date_created": "2015-03-08T03:36:52.714Z", 
+        "name": "BD Bacata Building"
+    }
+},
+{
+    "pk": 1, 
+    "model": "map.floor", 
+    "fields": {
+        "date_updated": "2015-03-08T03:37:22.536Z", 
+        "map": "http://domotina.host56.com/images/ap_model1.png", 
+        "place": 1, 
+        "number": 1, 
+        "date_created": "2015-03-08T03:37:22.536Z"
+    }
+},
+{
+    "pk": 2, 
+    "model": "map.floor", 
+    "fields": {
+        "date_updated": "2015-03-08T03:37:22.536Z", 
+        "map": "http://domotina.host56.com/images/ap_model2.png", 
+        "place": 2, 
+        "number": 1, 
+        "date_created": "2015-03-08T03:37:22.536Z"
+    }
+},
+{
+    "pk": 3, 
+    "model": "map.floor", 
+    "fields": {
+        "date_updated": "2015-03-08T03:37:22.536Z", 
+        "map": "http://domotina.host56.com/images/ap_model3.png", 
+        "place": 3, 
+        "number": 1, 
+        "date_created": "2015-03-08T03:37:22.536Z"
+    }
+},
+{
+    "pk": 4, 
+    "model": "map.floor", 
+    "fields": {
+        "date_updated": "2015-03-08T03:37:22.536Z", 
+        "map": "http://domotina.host56.com/images/of_model1.png", 
+        "place": 4, 
+        "number": 1, 
+        "date_created": "2015-03-08T03:37:22.536Z"
+    }
+},
+{
+    "pk": 5, 
+    "model": "map.floor", 
+    "fields": {
+        "date_updated": "2015-03-17T17:25:33.362Z", 
+        "map": "http://domotina.host56.com/images/ap_model6_p1.png", 
+        "place": 5, 
+        "number": 1, 
+        "date_created": "2015-03-17T17:25:33.362Z"
+    }
+},
+{
+    "pk": 6, 
+    "model": "map.floor", 
+    "fields": {
+        "date_updated": "2015-03-17T17:25:52.885Z", 
+        "map": "http://domotina.host56.com/images/ap_model6_p2.png", 
+        "place": 5, 
+        "number": 2, 
+        "date_created": "2015-03-17T17:25:52.885Z"
+    }
+},
+{
+    "pk": 1, 
+    "model": "map.sensortype", 
+    "fields": {
+        "is_enabled": true, 
+        "is_continuous": false, 
+        "name": "Movement"
+    }
+},
+{
+    "pk": 2, 
+    "model": "map.sensortype", 
+    "fields": {
+        "is_enabled": true, 
+        "is_continuous": false, 
+        "name": "Locked"
+    }
+},
+{
+    "pk": 3, 
+    "model": "map.sensortype", 
+    "fields": {
+        "is_enabled": true, 
+        "is_continuous": false, 
+        "name": "Light"
+    }
+},
+{
+    "pk": 1, 
+    "model": "map.sensorstatus", 
+    "fields": {
+        "is_enabled": true, 
+        "ref_code": 1, 
+        "min_continuous": 0.0, 
+        "name": "Locked", 
+        "max_continuous": 0.0, 
+        "type": 2, 
+        "icon": "http://domotina.host56.com/images/lock_icon.png"
+    }
+},
+{
+    "pk": 2, 
+    "model": "map.sensorstatus", 
+    "fields": {
+        "is_enabled": true, 
+        "ref_code": 0, 
+        "min_continuous": 0.0, 
+        "name": "Unlocked", 
+        "max_continuous": 0.0, 
+        "type": 2, 
+        "icon": "http://domotina.host56.com/images/unlock_icon.png"
+    }
+},
+{
+    "pk": 3, 
+    "model": "map.sensorstatus", 
+    "fields": {
+        "is_enabled": true, 
+        "ref_code": 1, 
+        "min_continuous": 0.0, 
+        "name": "On", 
+        "max_continuous": 0.0, 
+        "type": 3, 
+        "icon": "http://domotina.host56.com/images/bulb_on.png"
+    }
+},
+{
+    "pk": 4, 
+    "model": "map.sensorstatus", 
+    "fields": {
+        "is_enabled": true, 
+        "ref_code": 0, 
+        "min_continuous": 0.0, 
+        "name": "Off", 
+        "max_continuous": 0.0, 
+        "type": 3, 
+        "icon": "http://domotina.host56.com/images/bulb_off.png"
+    }
+},
+{
+    "pk": 5, 
+    "model": "map.sensorstatus", 
+    "fields": {
+        "is_enabled": true, 
+        "ref_code": 1, 
+        "min_continuous": 0.0, 
+        "name": "Yes", 
+        "max_continuous": 0.0, 
+        "type": 1, 
+        "icon": "http://domotina.host56.com/images/move.png"
+    }
+},
+{
+    "pk": 6, 
+    "model": "map.sensorstatus", 
+    "fields": {
+        "is_enabled": true, 
+        "ref_code": 0, 
+        "min_continuous": 0.0, 
+        "name": "No", 
+        "max_continuous": 0.0, 
+        "type": 1, 
+        "icon": "http://domotina.host56.com/images/no_move.png"
+    }
+},
+{
+    "pk": 1, 
+    "model": "map.sensor", 
+    "fields": {
+        "current_pos_x": 600, 
+        "description": "", 
+        "floor": 1, 
+        "date_updated": "2015-03-08T00:37:18.436Z", 
+        "current_status_id": 1, 
+        "current_date": "2015-03-07T16:48:50Z", 
+        "date_created": "2015-03-07T21:48:52.275Z", 
+        "type": 2, 
+        "current_pos_y": 350
+    }
+},
+{
+    "pk": 2, 
+    "model": "map.sensor", 
+    "fields": {
+        "current_pos_x": 468, 
+        "description": "", 
+        "floor": 1, 
+        "date_updated": "2015-03-10T18:25:11.733Z", 
+        "current_status_id": 1, 
+        "current_date": "2015-03-07T17:11:47Z", 
+        "date_created": "2015-03-07T22:11:49.552Z", 
+        "type": 3, 
+        "current_pos_y": 310
+    }
+},
+{
+    "pk": 3, 
+    "model": "map.sensor", 
+    "fields": {
+        "current_pos_x": 462, 
+        "description": "", 
+        "floor": 1, 
+        "date_updated": "2015-03-10T18:25:11.750Z", 
+        "current_status_id": 1, 
+        "current_date": "2015-03-07T20:30:49Z", 
+        "date_created": "2015-03-08T01:30:52.231Z", 
+        "type": 3, 
+        "current_pos_y": 123
+    }
+},
+{
+    "pk": 4, 
+    "model": "map.sensor", 
+    "fields": {
+        "current_pos_x": 125, 
+        "description": "", 
+        "floor": 1, 
+        "date_updated": "2015-03-10T18:25:11.799Z", 
+        "current_status_id": 0, 
+        "current_date": "2015-03-07T20:31:33Z", 
+        "date_created": "2015-03-08T01:31:36.824Z", 
+        "type": 1, 
+        "current_pos_y": 145
+    }
+},
+{
+    "pk": 5, 
+    "model": "map.sensor", 
+    "fields": {
+        "current_pos_x": 462, 
+        "description": "", 
+        "floor": 1, 
+        "date_updated": "2015-03-10T18:25:11.766Z", 
+        "current_status_id": 0, 
+        "current_date": "2015-03-07T20:45:16Z", 
+        "date_created": "2015-03-08T01:45:24.740Z", 
+        "type": 2, 
+        "current_pos_y": 40
+    }
+},
+{
+    "pk": 6, 
+    "model": "map.sensor", 
+    "fields": {
+        "current_pos_x": 425, 
+        "description": "", 
+        "floor": 2, 
+        "date_updated": "2015-03-10T18:25:11.883Z", 
+        "current_status_id": 1, 
+        "current_date": "2015-03-07T21:25:38Z", 
+        "date_created": "2015-03-08T02:25:43.315Z", 
+        "type": 3, 
+        "current_pos_y": 95
+    }
+},
+{
+    "pk": 7, 
+    "model": "map.sensor", 
+    "fields": {
+        "current_pos_x": 570, 
+        "description": "", 
+        "floor": 2, 
+        "date_updated": "2015-03-10T18:25:11.900Z", 
+        "current_status_id": 1, 
+        "current_date": "2015-03-07T21:29:04Z", 
+        "date_created": "2015-03-08T02:29:07.638Z", 
+        "type": 3, 
+        "current_pos_y": 135
+    }
+},
+{
+    "pk": 8, 
+    "model": "map.sensor", 
+    "fields": {
+        "current_pos_x": 640, 
+        "description": "", 
+        "floor": 2, 
+        "date_updated": "2015-03-08T02:34:32.622Z", 
+        "current_status_id": 1, 
+        "current_date": "2015-03-07T21:30:23Z", 
+        "date_created": "2015-03-08T02:30:27.347Z", 
+        "type": 2, 
+        "current_pos_y": 335
+    }
+},
+{
+    "pk": 9, 
+    "model": "map.sensor", 
+    "fields": {
+        "current_pos_x": 193, 
+        "description": "", 
+        "floor": 2, 
+        "date_updated": "2015-03-08T02:38:25.564Z", 
+        "current_status_id": 1, 
+        "current_date": "2015-03-07T21:30:59Z", 
+        "date_created": "2015-03-08T02:31:02.069Z", 
+        "type": 2, 
+        "current_pos_y": 205
+    }
+},
+{
+    "pk": 10, 
+    "model": "map.sensor", 
+    "fields": {
+        "current_pos_x": 408, 
+        "description": "", 
+        "floor": 2, 
+        "date_updated": "2015-03-10T18:25:11.916Z", 
+        "current_status_id": 0, 
+        "current_date": "2015-03-07T21:31:32Z", 
+        "date_created": "2015-03-08T02:31:35.039Z", 
+        "type": 1, 
+        "current_pos_y": 280
+    }
+},
+{
+    "pk": 11, 
+    "model": "map.sensor", 
+    "fields": {
+        "current_pos_x": 52, 
+        "description": "", 
+        "floor": 3, 
+        "date_updated": "2015-03-10T18:25:11.933Z", 
+        "current_status_id": 1, 
+        "current_date": "2015-03-07T21:46:41Z", 
+        "date_created": "2015-03-08T02:46:44.004Z", 
+        "type": 2, 
+        "current_pos_y": 265
+    }
+},
+{
+    "pk": 12, 
+    "model": "map.sensor", 
+    "fields": {
+        "current_pos_x": 150, 
+        "description": "", 
+        "floor": 3, 
+        "date_updated": "2015-03-10T18:25:11.949Z", 
+        "current_status_id": 1, 
+        "current_date": "2015-03-07T21:47:19Z", 
+        "date_created": "2015-03-08T02:47:20.973Z", 
+        "type": 3, 
+        "current_pos_y": 295
+    }
+},
+{
+    "pk": 13, 
+    "model": "map.sensor", 
+    "fields": {
+        "current_pos_x": 32, 
+        "description": "", 
+        "floor": 3, 
+        "date_updated": "2015-03-08T03:01:08.067Z", 
+        "current_status_id": 1, 
+        "current_date": "2015-03-07T21:48:01Z", 
+        "date_created": "2015-03-08T02:48:02.937Z", 
+        "type": 2, 
+        "current_pos_y": 335
+    }
+},
+{
+    "pk": 14, 
+    "model": "map.sensor", 
+    "fields": {
+        "current_pos_x": 585, 
+        "description": "", 
+        "floor": 3, 
+        "date_updated": "2015-03-10T18:25:12.008Z", 
+        "current_status_id": 1, 
+        "current_date": "2015-03-07T21:48:30Z", 
+        "date_created": "2015-03-08T02:48:32.039Z", 
+        "type": 3, 
+        "current_pos_y": 115
+    }
+},
+{
+    "pk": 15, 
+    "model": "map.sensor", 
+    "fields": {
+        "current_pos_x": 660, 
+        "description": "", 
+        "floor": 3, 
+        "date_updated": "2015-03-10T18:25:12.091Z", 
+        "current_status_id": 0, 
+        "current_date": "2015-03-07T21:48:58Z", 
+        "date_created": "2015-03-08T02:49:00.267Z", 
+        "type": 1, 
+        "current_pos_y": 105
+    }
+},
+{
+    "pk": 16, 
+    "model": "map.sensor", 
+    "fields": {
+        "current_pos_x": 362, 
+        "description": "", 
+        "floor": 3, 
+        "date_updated": "2015-03-10T18:25:12.116Z", 
+        "current_status_id": 0, 
+        "current_date": "2015-03-07T21:57:20Z", 
+        "date_created": "2015-03-08T02:57:22.793Z", 
+        "type": 1, 
+        "current_pos_y": 130
+    }
+},
+{
+    "pk": 17, 
+    "model": "map.sensor", 
+    "fields": {
+        "current_pos_x": 335, 
+        "description": "", 
+        "floor": 3, 
+        "date_updated": "2015-03-10T18:25:12.133Z", 
+        "current_status_id": 0, 
+        "current_date": "2015-03-07T21:57:45Z", 
+        "date_created": "2015-03-08T02:57:47.926Z", 
+        "type": 2, 
+        "current_pos_y": 80
+    }
+},
+{
+    "pk": 18, 
+    "model": "map.sensor", 
+    "fields": {
+        "current_pos_x": 65, 
+        "description": "", 
+        "floor": 1, 
+        "date_updated": "2015-03-10T18:25:11.783Z", 
+        "current_status_id": 0, 
+        "current_date": "2015-03-07T22:03:17Z", 
+        "date_created": "2015-03-08T03:03:19.204Z", 
+        "type": 3, 
+        "current_pos_y": 150
+    }
+},
+{
+    "pk": 19, 
+    "model": "map.sensor", 
+    "fields": {
+        "current_pos_x": 65, 
+        "description": "", 
+        "floor": 1, 
+        "date_updated": "2015-03-08T03:13:05.280Z", 
+        "current_status_id": 1, 
+        "current_date": "2015-03-07T22:06:25Z", 
+        "date_created": "2015-03-08T03:06:27.477Z", 
+        "type": 2, 
+        "current_pos_y": 40
+    }
+},
+{
+    "pk": 20, 
+    "model": "map.sensor", 
+    "fields": {
+        "current_pos_x": 248, 
+        "description": "", 
+        "floor": 1, 
+        "date_updated": "2015-03-10T18:25:11.816Z", 
+        "current_status_id": 1, 
+        "current_date": "2015-03-07T22:07:02Z", 
+        "date_created": "2015-03-08T03:07:04.306Z", 
+        "type": 1, 
+        "current_pos_y": 141
+    }
+},
+{
+    "pk": 21, 
+    "model": "map.sensor", 
+    "fields": {
+        "current_pos_x": 340, 
+        "description": "", 
+        "floor": 1, 
+        "date_updated": "2015-03-10T18:25:11.866Z", 
+        "current_status_id": 0, 
+        "current_date": "2015-03-07T22:08:05Z", 
+        "date_created": "2015-03-08T03:08:09.763Z", 
+        "type": 3, 
+        "current_pos_y": 345
+    }
+},
+{
+    "pk": 22, 
+    "model": "map.sensor", 
+    "fields": {
+        "current_pos_x": 369, 
+        "description": "", 
+        "floor": 1, 
+        "date_updated": "2015-03-10T18:25:11.849Z", 
+        "current_status_id": 0, 
+        "current_date": "2015-03-07T22:08:34Z", 
+        "date_created": "2015-03-08T03:08:36.495Z", 
+        "type": 1, 
+        "current_pos_y": 372
+    }
+},
+{
+    "pk": 23, 
+    "model": "map.sensor", 
+    "fields": {
+        "current_pos_x": 200, 
+        "description": "", 
+        "floor": 1, 
+        "date_updated": "2015-03-10T18:25:11.833Z", 
+        "current_status_id": 0, 
+        "current_date": "2015-03-07T22:17:42Z", 
+        "date_created": "2015-03-08T03:17:44.597Z", 
+        "type": 2, 
+        "current_pos_y": 40
+    }
+},
+{
+    "pk": 24, 
+    "model": "map.sensor", 
+    "fields": {
+        "current_pos_x": 355, 
+        "description": "", 
+        "floor": 4, 
+        "date_updated": "2015-03-10T18:25:11.666Z", 
+        "current_status_id": 0, 
+        "current_date": "2015-03-07T22:41:26Z", 
+        "date_created": "2015-03-08T03:41:30.150Z", 
+        "type": 2, 
+        "current_pos_y": 375
+    }
+},
+{
+    "pk": 25, 
+    "model": "map.sensor", 
+    "fields": {
+        "current_pos_x": 355, 
+        "description": "", 
+        "floor": 4, 
+        "date_updated": "2015-03-10T18:25:11.716Z", 
+        "current_status_id": 1, 
+        "current_date": "2015-03-07T22:41:54Z", 
+        "date_created": "2015-03-08T03:41:56.596Z", 
+        "type": 3, 
+        "current_pos_y": 325
+    }
+},
+{
+    "pk": 26, 
+    "model": "map.sensor", 
+    "fields": {
+        "current_pos_x": 355, 
+        "description": "", 
+        "floor": 4, 
+        "date_updated": "2015-03-10T18:25:11.700Z", 
+        "current_status_id": 0, 
+        "current_date": "2015-03-07T22:42:26Z", 
+        "date_created": "2015-03-08T03:42:28.174Z", 
+        "type": 1, 
+        "current_pos_y": 292
+    }
+},
+{
+    "pk": 27, 
+    "model": "map.sensor", 
+    "fields": {
+        "current_pos_x": 7, 
+        "description": "", 
+        "floor": 4, 
+        "date_updated": "2015-03-08T03:50:55.866Z", 
+        "current_status_id": 1, 
+        "current_date": "2015-03-07T22:48:34Z", 
+        "date_created": "2015-03-08T03:48:36.483Z", 
+        "type": 2, 
+        "current_pos_y": 75
+    }
+},
+{
+    "pk": 28, 
+    "model": "map.sensor", 
+    "fields": {
+        "current_pos_x": 37, 
+        "description": "", 
+        "floor": 4, 
+        "date_updated": "2015-03-10T18:25:11.623Z", 
+        "current_status_id": 0, 
+        "current_date": "2015-03-07T22:48:58Z", 
+        "date_created": "2015-03-08T03:49:08.223Z", 
+        "type": 1, 
+        "current_pos_y": 110
+    }
+},
+{
+    "pk": 29, 
+    "model": "map.sensor", 
+    "fields": {
+        "current_pos_x": 100, 
+        "description": "", 
+        "floor": 4, 
+        "date_updated": "2015-03-10T18:25:11.649Z", 
+        "current_status_id": 1, 
+        "current_date": "2015-03-07T22:53:08Z", 
+        "date_created": "2015-03-08T03:53:10.052Z", 
+        "type": 3, 
+        "current_pos_y": 90
+    }
+},
+{
+    "pk": 30, 
+    "model": "map.sensor", 
+    "fields": {
+        "current_pos_x": 120, 
+        "description": "", 
+        "floor": 4, 
+        "date_updated": "2015-03-10T18:25:11.683Z", 
+        "current_status_id": 0, 
+        "current_date": "2015-03-07T22:53:41Z", 
+        "date_created": "2015-03-08T03:53:46.127Z", 
+        "type": 3, 
+        "current_pos_y": 290
+    }
+},
+{
+    "pk": 31, 
+    "model": "map.sensor", 
+    "fields": {
+        "current_pos_x": 120, 
+        "description": "Living Room Light", 
+        "floor": 5, 
+        "date_updated": "2015-03-17T21:55:22.867Z", 
+        "current_status_id": 1, 
+        "current_date": "2015-03-17T16:43:23Z", 
+        "date_created": "2015-03-17T21:43:46.428Z", 
+        "type": 3, 
+        "current_pos_y": 280
+    }
+},
+{
+    "pk": 32, 
+    "model": "map.sensor", 
+    "fields": {
+        "current_pos_x": 340, 
+        "description": "Dinning Room Ligth", 
+        "floor": 5, 
+        "date_updated": "2015-03-17T21:57:17.220Z", 
+        "current_status_id": 1, 
+        "current_date": "2015-03-17T16:44:36Z", 
+        "date_created": "2015-03-17T21:44:37.925Z", 
+        "type": 3, 
+        "current_pos_y": 300
+    }
+},
+{
+    "pk": 33, 
+    "model": "map.sensor", 
+    "fields": {
+        "current_pos_x": 680, 
+        "description": "Main Access Door", 
+        "floor": 5, 
+        "date_updated": "2015-03-17T21:57:54.306Z", 
+        "current_status_id": 1, 
+        "current_date": "2015-03-17T16:45:52Z", 
+        "date_created": "2015-03-17T21:45:55.032Z", 
+        "type": 2, 
+        "current_pos_y": 350
+    }
+},
+{
+    "pk": 34, 
+    "model": "map.sensor", 
+    "fields": {
+        "current_pos_x": 195, 
+        "description": "Study Room Laptop", 
+        "floor": 5, 
+        "date_updated": "2015-03-17T21:56:49.176Z", 
+        "current_status_id": 0, 
+        "current_date": "2015-03-17T16:48:15Z", 
+        "date_created": "2015-03-17T21:48:16.956Z", 
+        "type": 1, 
+        "current_pos_y": 18
+    }
+},
+{
+    "pk": 35, 
+    "model": "map.sensor", 
+    "fields": {
+        "current_pos_x": 1, 
+        "description": "Living Room Window", 
+        "floor": 5, 
+        "date_updated": "2015-03-17T21:56:14.302Z", 
+        "current_status_id": 0, 
+        "current_date": "2015-03-17T16:49:33Z", 
+        "date_created": "2015-03-17T21:49:38.163Z", 
+        "type": 2, 
+        "current_pos_y": 250
+    }
+},
+{
+    "pk": 36, 
+    "model": "map.sensor", 
+    "fields": {
+        "current_pos_x": 135, 
+        "description": "Main Room Light", 
+        "floor": 6, 
+        "date_updated": "2015-03-17T22:02:56.365Z", 
+        "current_status_id": 1, 
+        "current_date": "2015-03-17T16:58:44Z", 
+        "date_created": "2015-03-17T21:58:45.845Z", 
+        "type": 3, 
+        "current_pos_y": 280
+    }
+},
+{
+    "pk": 37, 
+    "model": "map.sensor", 
+    "fields": {
+        "current_pos_x": 120, 
+        "description": "Secondary Room Light", 
+        "floor": 6, 
+        "date_updated": "2015-03-17T22:02:56.348Z", 
+        "current_status_id": 1, 
+        "current_date": "2015-03-17T16:59:35Z", 
+        "date_created": "2015-03-17T21:59:37.492Z", 
+        "type": 3, 
+        "current_pos_y": 90
+    }
+},
+{
+    "pk": 38, 
+    "model": "map.sensor", 
+    "fields": {
+        "current_pos_x": 1, 
+        "description": "Main Room Window", 
+        "floor": 6, 
+        "date_updated": "2015-03-17T22:03:19.611Z", 
+        "current_status_id": 1, 
+        "current_date": "2015-03-17T17:00:19Z", 
+        "date_created": "2015-03-17T22:00:20.984Z", 
+        "type": 2, 
+        "current_pos_y": 265
+    }
+},
+{
+    "pk": 39, 
+    "model": "map.sensor", 
+    "fields": {
+        "current_pos_x": 575, 
+        "description": "Second Floor Living Room Tv Plasma", 
+        "floor": 6, 
+        "date_updated": "2015-03-17T22:06:59.895Z", 
+        "current_status_id": 0, 
+        "current_date": "2015-03-17T17:05:18Z", 
+        "date_created": "2015-03-17T22:05:19.731Z", 
+        "type": 1, 
+        "current_pos_y": 177
+    }
+},
+{
+    "pk": 1, 
     "model": "auth.permission", 
     "fields": {
         "codename": "add_logentry", 
@@ -414,7 +1367,7 @@
         "is_active": true, 
         "is_superuser": true, 
         "is_staff": true, 
-        "last_login": "2015-03-10T18:13:45Z", 
+        "last_login": "2015-03-17T17:10:55.362Z", 
         "groups": [], 
         "user_permissions": [], 
         "password": "pbkdf2_sha256$12000$jTeDaK4UwLqY$ytI9/vmZ15Z6Kvj8xKPmQCXGJlKBOcRPeDKxcXPRfBo=", 
@@ -424,699 +1377,525 @@
 },
 {
     "pk": 1, 
-    "model": "event_manager.eventtype", 
-    "fields": {
-        "is_critical": true, 
-        "name": "Movement", 
-        "description": "There was movement"
-    }
-},
-{
-    "pk": 2, 
-    "model": "event_manager.eventtype", 
-    "fields": {
-        "is_critical": false, 
-        "name": "Toggle Power", 
-        "description": "power was turned on or off"
-    }
-},
-{
-    "pk": 1, 
-    "model": "map.neighborhood", 
-    "fields": {
-        "date_updated": "2015-03-07T20:03:16.745Z", 
-        "date_created": "2015-03-07T20:03:16.745Z", 
-        "name": "Ostende's Park"
-    }
-},
-{
-    "pk": 2, 
-    "model": "map.neighborhood", 
-    "fields": {
-        "date_updated": "2015-03-07T20:04:34.685Z", 
-        "date_created": "2015-03-07T20:04:34.685Z", 
-        "name": "Capellania's Towers"
-    }
-},
-{
-    "pk": 3, 
-    "model": "map.neighborhood", 
-    "fields": {
-        "date_updated": "2015-03-08T02:21:47.907Z", 
-        "date_created": "2015-03-08T02:21:47.907Z", 
-        "name": "Salitre City"
-    }
-},
-{
-    "pk": 4, 
-    "model": "map.neighborhood", 
-    "fields": {
-        "date_updated": "2015-03-08T03:36:52.714Z", 
-        "date_created": "2015-03-08T03:36:52.714Z", 
-        "name": "BD Bacata Building"
-    }
-},
-{
-    "pk": 1, 
     "model": "map.place", 
     "fields": {
-        "neighborhood": 1,
+        "owner": 1, 
+        "date_created": "2015-03-07T20:59:03.888Z", 
+        "neighborhood": 1, 
         "name": "T10 AP602", 
-        "date_updated": "2015-03-07T20:59:03.888Z", 
-        "owner": 1, 
-        "date_created": "2015-03-07T20:59:03.888Z"
+        "date_updated": "2015-03-07T20:59:03.888Z"
     }
 },
 {
     "pk": 2, 
     "model": "map.place", 
     "fields": {
-        "neighborhood": 1,
+        "owner": 1, 
+        "date_created": "2015-03-07T20:59:27.651Z", 
+        "neighborhood": 1, 
         "name": "T10 AP603", 
-        "date_updated": "2015-03-07T20:59:27.651Z", 
-        "owner": 1, 
-        "date_created": "2015-03-07T20:59:27.651Z"
+        "date_updated": "2015-03-07T20:59:27.651Z"
     }
 },
 {
     "pk": 3, 
     "model": "map.place", 
     "fields": {
-        "neighborhood": 3,
+        "owner": 1, 
+        "date_created": "2015-03-08T02:24:08.983Z", 
+        "neighborhood": 3, 
         "name": "Kr 69D St 25-04", 
-        "date_updated": "2015-03-08T02:24:08.983Z", 
-        "owner": 1, 
-        "date_created": "2015-03-08T02:24:08.983Z"
+        "date_updated": "2015-03-08T02:24:08.983Z"
     }
 },
 {
     "pk": 4, 
     "model": "map.place", 
     "fields": {
-        "neighborhood": 4,
-        "name": "Office 201", 
-        "date_updated": "2015-03-08T03:37:22.536Z", 
         "owner": 1, 
-        "date_created": "2015-03-08T03:37:22.536Z"
-    }
-},
-{
-    "pk": 1,
-    "model": "map.floor",
-    "fields": {
-        "place": 1,
-        "number": 1,
-        "map": "http://domotina.host56.com/images/ap_model1.png",
-        "date_updated": "2015-03-08T03:37:22.536Z",
-        "date_created": "2015-03-08T03:37:22.536Z"
-    }
-},
-{
-    "pk": 2,
-    "model": "map.floor",
-    "fields": {
-        "place": 2,
-        "number": 1,
-        "map": "http://domotina.host56.com/images/ap_model2.png",
-        "date_updated": "2015-03-08T03:37:22.536Z",
-        "date_created": "2015-03-08T03:37:22.536Z"
-    }
-},
-{
-    "pk": 3,
-    "model": "map.floor",
-    "fields": {
-        "place": 3,
-        "number": 1,
-        "map": "http://domotina.host56.com/images/ap_model3.png",
-        "date_updated": "2015-03-08T03:37:22.536Z",
-        "date_created": "2015-03-08T03:37:22.536Z"
-    }
-},
-{
-    "pk": 4,
-    "model": "map.floor",
-    "fields": {
-        "place": 4,
-        "number": 1,
-        "map": "http://domotina.host56.com/images/of_model1.png",
-        "date_updated": "2015-03-08T03:37:22.536Z",
-        "date_created": "2015-03-08T03:37:22.536Z"
-    }
-},
-{
-    "pk": 1, 
-    "model": "map.sensortype", 
-    "fields": {
-        "is_enabled": true, 
-        "name": "Movement",
-        "is_continuous": false
-    }
-},
-{
-    "pk": 2, 
-    "model": "map.sensortype", 
-    "fields": {
-        "is_enabled": true, 
-        "name": "Locked",
-        "is_continuous": false
-    }
-},
-{
-    "pk": 3, 
-    "model": "map.sensortype", 
-    "fields": {
-        "is_enabled": true, 
-        "name": "Light",
-        "is_continuous": false
-    }
-},
-{
-    "pk": 1, 
-    "model": "map.sensorstatus", 
-    "fields": {
-        "is_enabled": true, 
-        "ref_code": 1, 
-        "type": 2, 
-        "name": "Locked", 
-        "icon": "http://domotina.host56.com/images/lock_icon.png",
-        "max_continuous":0.0,
-        "min_continuous":0.0
-    }
-},
-{
-    "pk": 2, 
-    "model": "map.sensorstatus", 
-    "fields": {
-        "is_enabled": true, 
-        "ref_code": 0, 
-        "type": 2, 
-        "name": "Unlocked", 
-        "icon": "http://domotina.host56.com/images/unlock_icon.png",
-        "max_continuous":0.0,
-        "min_continuous":0.0
-    }
-},
-{
-    "pk": 3, 
-    "model": "map.sensorstatus", 
-    "fields": {
-        "is_enabled": true, 
-        "ref_code": 1, 
-        "type": 3, 
-        "name": "On", 
-        "icon": "http://domotina.host56.com/images/bulb_on.png",
-        "max_continuous":0.0,
-        "min_continuous":0.0
-    }
-},
-{
-    "pk": 4, 
-    "model": "map.sensorstatus", 
-    "fields": {
-        "is_enabled": true, 
-        "ref_code": 0, 
-        "type": 3, 
-        "name": "Off", 
-        "icon": "http://domotina.host56.com/images/bulb_off.png",
-        "max_continuous":0.0,
-        "min_continuous":0.0
+        "date_created": "2015-03-08T03:37:22.536Z", 
+        "neighborhood": 4, 
+        "name": "Office 201", 
+        "date_updated": "2015-03-08T03:37:22.536Z"
     }
 },
 {
     "pk": 5, 
-    "model": "map.sensorstatus", 
+    "model": "map.place", 
     "fields": {
-        "is_enabled": true, 
-        "ref_code": 1, 
-        "type": 1, 
-        "name": "Yes", 
-        "icon": "http://domotina.host56.com/images/move.png",
-        "max_continuous":0.0,
-        "min_continuous":0.0
-    }
-},
-{
-    "pk": 6, 
-    "model": "map.sensorstatus", 
-    "fields": {
-        "is_enabled": true, 
-        "ref_code": 0, 
-        "type": 1, 
-        "name": "No", 
-        "icon": "http://domotina.host56.com/images/no_move.png",
-        "max_continuous":0.0,
-        "min_continuous":0.0
+        "owner": 1, 
+        "date_created": "2015-03-17T17:24:15.155Z", 
+        "neighborhood": 3, 
+        "name": "Kr 69A St 24-12", 
+        "date_updated": "2015-03-17T17:24:15.155Z"
     }
 },
 {
     "pk": 1, 
-    "model": "map.sensor", 
+    "model": "admin.logentry", 
     "fields": {
-        "current_pos_x": 600, 
-        "description": "", 
-        "date_updated": "2015-03-08T00:37:18.436Z", 
-        "current_status_id": 1, 
-        "current_date": "2015-03-07T16:48:50Z", 
-        "floor": 1,
-        "date_created": "2015-03-07T21:48:52.275Z", 
-        "type": 2, 
-        "current_pos_y": 350
+        "action_flag": 1, 
+        "action_time": "2015-03-17T17:24:15.156Z", 
+        "object_repr": "Kr 69A St 24-12", 
+        "object_id": "5", 
+        "change_message": "", 
+        "user": 1, 
+        "content_type": 11
     }
 },
 {
     "pk": 2, 
-    "model": "map.sensor", 
+    "model": "admin.logentry", 
     "fields": {
-        "current_pos_x": 468, 
-        "description": "", 
-        "date_updated": "2015-03-10T18:25:11.733Z", 
-        "current_status_id": 1, 
-        "current_date": "2015-03-07T17:11:47Z", 
-        "floor": 1,
-        "date_created": "2015-03-07T22:11:49.552Z", 
-        "type": 3, 
-        "current_pos_y": 310
+        "action_flag": 1, 
+        "action_time": "2015-03-17T17:25:33.364Z", 
+        "object_repr": "Kr 69A St 24-12 floor 1", 
+        "object_id": "5", 
+        "change_message": "", 
+        "user": 1, 
+        "content_type": 12
     }
 },
 {
     "pk": 3, 
-    "model": "map.sensor", 
+    "model": "admin.logentry", 
     "fields": {
-        "current_pos_x": 462, 
-        "description": "", 
-        "date_updated": "2015-03-10T18:25:11.750Z", 
-        "current_status_id": 1, 
-        "current_date": "2015-03-07T20:30:49Z", 
-        "floor": 1,
-        "date_created": "2015-03-08T01:30:52.231Z", 
-        "type": 3, 
-        "current_pos_y": 123
+        "action_flag": 1, 
+        "action_time": "2015-03-17T17:25:52.887Z", 
+        "object_repr": "Kr 69A St 24-12 floor 2", 
+        "object_id": "6", 
+        "change_message": "", 
+        "user": 1, 
+        "content_type": 12
     }
 },
 {
     "pk": 4, 
-    "model": "map.sensor", 
+    "model": "admin.logentry", 
     "fields": {
-        "current_pos_x": 125, 
-        "description": "", 
-        "date_updated": "2015-03-10T18:25:11.799Z", 
-        "current_status_id": 0, 
-        "current_date": "2015-03-07T20:31:33Z", 
-        "floor": 1,
-        "date_created": "2015-03-08T01:31:36.824Z", 
-        "type": 1, 
-        "current_pos_y": 145
+        "action_flag": 1, 
+        "action_time": "2015-03-17T21:43:46.430Z", 
+        "object_repr": "Sensor on Floor 1", 
+        "object_id": "31", 
+        "change_message": "", 
+        "user": 1, 
+        "content_type": 15
     }
 },
 {
     "pk": 5, 
-    "model": "map.sensor", 
+    "model": "admin.logentry", 
     "fields": {
-        "current_pos_x": 462, 
-        "description": "", 
-        "date_updated": "2015-03-10T18:25:11.766Z", 
-        "current_status_id": 0, 
-        "current_date": "2015-03-07T20:45:16Z", 
-        "floor": 1,
-        "date_created": "2015-03-08T01:45:24.740Z", 
-        "type": 2, 
-        "current_pos_y": 40
+        "action_flag": 1, 
+        "action_time": "2015-03-17T21:44:37.926Z", 
+        "object_repr": "Sensor on Floor 1", 
+        "object_id": "32", 
+        "change_message": "", 
+        "user": 1, 
+        "content_type": 15
     }
 },
 {
     "pk": 6, 
-    "model": "map.sensor", 
+    "model": "admin.logentry", 
     "fields": {
-        "current_pos_x": 425, 
-        "description": "", 
-        "date_updated": "2015-03-10T18:25:11.883Z", 
-        "current_status_id": 1, 
-        "current_date": "2015-03-07T21:25:38Z", 
-        "floor": 2,
-        "date_created": "2015-03-08T02:25:43.315Z", 
-        "type": 3, 
-        "current_pos_y": 95
+        "action_flag": 1, 
+        "action_time": "2015-03-17T21:45:55.034Z", 
+        "object_repr": "Sensor on Floor 1", 
+        "object_id": "33", 
+        "change_message": "", 
+        "user": 1, 
+        "content_type": 15
     }
 },
 {
     "pk": 7, 
-    "model": "map.sensor", 
+    "model": "admin.logentry", 
     "fields": {
-        "current_pos_x": 570, 
-        "description": "", 
-        "date_updated": "2015-03-10T18:25:11.900Z", 
-        "current_status_id": 1, 
-        "current_date": "2015-03-07T21:29:04Z", 
-        "floor": 2,
-        "date_created": "2015-03-08T02:29:07.638Z", 
-        "type": 3, 
-        "current_pos_y": 135
+        "action_flag": 1, 
+        "action_time": "2015-03-17T21:48:16.958Z", 
+        "object_repr": "Sensor on Floor 1", 
+        "object_id": "34", 
+        "change_message": "", 
+        "user": 1, 
+        "content_type": 15
     }
 },
 {
     "pk": 8, 
-    "model": "map.sensor", 
+    "model": "admin.logentry", 
     "fields": {
-        "current_pos_x": 640, 
-        "description": "", 
-        "date_updated": "2015-03-08T02:34:32.622Z", 
-        "current_status_id": 1, 
-        "current_date": "2015-03-07T21:30:23Z", 
-        "floor": 2,
-        "date_created": "2015-03-08T02:30:27.347Z", 
-        "type": 2, 
-        "current_pos_y": 335
+        "action_flag": 1, 
+        "action_time": "2015-03-17T21:49:38.164Z", 
+        "object_repr": "Sensor on Floor 1", 
+        "object_id": "35", 
+        "change_message": "", 
+        "user": 1, 
+        "content_type": 15
     }
 },
 {
     "pk": 9, 
-    "model": "map.sensor", 
+    "model": "admin.logentry", 
     "fields": {
-        "current_pos_x": 193, 
-        "description": "", 
-        "date_updated": "2015-03-08T02:38:25.564Z", 
-        "current_status_id": 1, 
-        "current_date": "2015-03-07T21:30:59Z", 
-        "floor": 2,
-        "date_created": "2015-03-08T02:31:02.069Z", 
-        "type": 2, 
-        "current_pos_y": 205
+        "action_flag": 2, 
+        "action_time": "2015-03-17T21:50:52.236Z", 
+        "object_repr": "Sensor on Floor 1", 
+        "object_id": "35", 
+        "change_message": "Changed current_status_id, current_pos_x and current_pos_y.", 
+        "user": 1, 
+        "content_type": 15
     }
 },
 {
     "pk": 10, 
-    "model": "map.sensor", 
+    "model": "admin.logentry", 
     "fields": {
-        "current_pos_x": 408, 
-        "description": "", 
-        "date_updated": "2015-03-10T18:25:11.916Z", 
-        "current_status_id": 0, 
-        "current_date": "2015-03-07T21:31:32Z", 
-        "floor": 2,
-        "date_created": "2015-03-08T02:31:35.039Z", 
-        "type": 1, 
-        "current_pos_y": 280
+        "action_flag": 2, 
+        "action_time": "2015-03-17T21:54:23.156Z", 
+        "object_repr": "Sensor on Floor 1", 
+        "object_id": "34", 
+        "change_message": "Changed current_pos_x and current_pos_y.", 
+        "user": 1, 
+        "content_type": 15
     }
 },
 {
     "pk": 11, 
-    "model": "map.sensor", 
+    "model": "admin.logentry", 
     "fields": {
-        "current_pos_x": 52, 
-        "description": "", 
-        "date_updated": "2015-03-10T18:25:11.933Z", 
-        "current_status_id": 1, 
-        "current_date": "2015-03-07T21:46:41Z", 
-        "floor": 3,
-        "date_created": "2015-03-08T02:46:44.004Z", 
-        "type": 2, 
-        "current_pos_y": 265
+        "action_flag": 2, 
+        "action_time": "2015-03-17T21:54:23.210Z", 
+        "object_repr": "Sensor on Floor 1", 
+        "object_id": "32", 
+        "change_message": "Changed current_pos_x and current_pos_y.", 
+        "user": 1, 
+        "content_type": 15
     }
 },
 {
     "pk": 12, 
-    "model": "map.sensor", 
+    "model": "admin.logentry", 
     "fields": {
-        "current_pos_x": 150, 
-        "description": "", 
-        "date_updated": "2015-03-10T18:25:11.949Z", 
-        "current_status_id": 1, 
-        "current_date": "2015-03-07T21:47:19Z", 
-        "floor": 3,
-        "date_created": "2015-03-08T02:47:20.973Z", 
-        "type": 3, 
-        "current_pos_y": 295
+        "action_flag": 2, 
+        "action_time": "2015-03-17T21:54:23.226Z", 
+        "object_repr": "Sensor on Floor 1", 
+        "object_id": "31", 
+        "change_message": "Changed current_pos_x and current_pos_y.", 
+        "user": 1, 
+        "content_type": 15
     }
 },
 {
     "pk": 13, 
-    "model": "map.sensor", 
+    "model": "admin.logentry", 
     "fields": {
-        "current_pos_x": 32, 
-        "description": "", 
-        "date_updated": "2015-03-08T03:01:08.067Z", 
-        "current_status_id": 1, 
-        "current_date": "2015-03-07T21:48:01Z", 
-        "floor": 3,
-        "date_created": "2015-03-08T02:48:02.937Z", 
-        "type": 2, 
-        "current_pos_y": 335
+        "action_flag": 2, 
+        "action_time": "2015-03-17T21:55:22.831Z", 
+        "object_repr": "Sensor on Floor 1", 
+        "object_id": "34", 
+        "change_message": "Changed current_pos_x.", 
+        "user": 1, 
+        "content_type": 15
     }
 },
 {
     "pk": 14, 
-    "model": "map.sensor", 
+    "model": "admin.logentry", 
     "fields": {
-        "current_pos_x": 585, 
-        "description": "", 
-        "date_updated": "2015-03-10T18:25:12.008Z", 
-        "current_status_id": 1, 
-        "current_date": "2015-03-07T21:48:30Z", 
-        "floor": 3,
-        "date_created": "2015-03-08T02:48:32.039Z", 
-        "type": 3, 
-        "current_pos_y": 115
+        "action_flag": 2, 
+        "action_time": "2015-03-17T21:55:22.859Z", 
+        "object_repr": "Sensor on Floor 1", 
+        "object_id": "32", 
+        "change_message": "Changed current_pos_y.", 
+        "user": 1, 
+        "content_type": 15
     }
 },
 {
     "pk": 15, 
-    "model": "map.sensor", 
+    "model": "admin.logentry", 
     "fields": {
-        "current_pos_x": 660, 
-        "description": "", 
-        "date_updated": "2015-03-10T18:25:12.091Z", 
-        "current_status_id": 0, 
-        "current_date": "2015-03-07T21:48:58Z", 
-        "floor": 3,
-        "date_created": "2015-03-08T02:49:00.267Z", 
-        "type": 1, 
-        "current_pos_y": 105
+        "action_flag": 2, 
+        "action_time": "2015-03-17T21:55:22.876Z", 
+        "object_repr": "Sensor on Floor 1", 
+        "object_id": "31", 
+        "change_message": "Changed current_pos_x.", 
+        "user": 1, 
+        "content_type": 15
     }
 },
 {
     "pk": 16, 
-    "model": "map.sensor", 
+    "model": "admin.logentry", 
     "fields": {
-        "current_pos_x": 362, 
-        "description": "", 
-        "date_updated": "2015-03-10T18:25:12.116Z", 
-        "current_status_id": 0, 
-        "current_date": "2015-03-07T21:57:20Z", 
-        "floor": 3,
-        "date_created": "2015-03-08T02:57:22.793Z", 
-        "type": 1, 
-        "current_pos_y": 130
+        "action_flag": 2, 
+        "action_time": "2015-03-17T21:56:14.385Z", 
+        "object_repr": "Sensor on Floor 1", 
+        "object_id": "35", 
+        "change_message": "Changed current_pos_x and current_pos_y.", 
+        "user": 1, 
+        "content_type": 15
     }
 },
 {
     "pk": 17, 
-    "model": "map.sensor", 
+    "model": "admin.logentry", 
     "fields": {
-        "current_pos_x": 335, 
-        "description": "", 
-        "date_updated": "2015-03-10T18:25:12.133Z", 
-        "current_status_id": 0, 
-        "current_date": "2015-03-07T21:57:45Z", 
-        "floor": 3,
-        "date_created": "2015-03-08T02:57:47.926Z", 
-        "type": 2, 
-        "current_pos_y": 80
+        "action_flag": 2, 
+        "action_time": "2015-03-17T21:56:14.412Z", 
+        "object_repr": "Sensor on Floor 1", 
+        "object_id": "33", 
+        "change_message": "Changed current_pos_x and current_pos_y.", 
+        "user": 1, 
+        "content_type": 15
     }
 },
 {
     "pk": 18, 
-    "model": "map.sensor", 
+    "model": "admin.logentry", 
     "fields": {
-        "current_pos_x": 65, 
-        "description": "", 
-        "date_updated": "2015-03-10T18:25:11.783Z", 
-        "current_status_id": 0, 
-        "current_date": "2015-03-07T22:03:17Z", 
-        "floor": 1,
-        "date_created": "2015-03-08T03:03:19.204Z", 
-        "type": 3, 
-        "current_pos_y": 150
+        "action_flag": 2, 
+        "action_time": "2015-03-17T21:56:49.242Z", 
+        "object_repr": "Sensor on Floor 1", 
+        "object_id": "34", 
+        "change_message": "Changed current_pos_x.", 
+        "user": 1, 
+        "content_type": 15
     }
 },
 {
     "pk": 19, 
-    "model": "map.sensor", 
+    "model": "admin.logentry", 
     "fields": {
-        "current_pos_x": 65, 
-        "description": "", 
-        "date_updated": "2015-03-08T03:13:05.280Z", 
-        "current_status_id": 1, 
-        "current_date": "2015-03-07T22:06:25Z", 
-        "floor": 1,
-        "date_created": "2015-03-08T03:06:27.477Z", 
-        "type": 2, 
-        "current_pos_y": 40
+        "action_flag": 2, 
+        "action_time": "2015-03-17T21:56:49.275Z", 
+        "object_repr": "Sensor on Floor 1", 
+        "object_id": "32", 
+        "change_message": "Changed current_pos_x.", 
+        "user": 1, 
+        "content_type": 15
     }
 },
 {
     "pk": 20, 
-    "model": "map.sensor", 
+    "model": "admin.logentry", 
     "fields": {
-        "current_pos_x": 248, 
-        "description": "", 
-        "date_updated": "2015-03-10T18:25:11.816Z", 
-        "current_status_id": 1, 
-        "current_date": "2015-03-07T22:07:02Z", 
-        "floor": 1,
-        "date_created": "2015-03-08T03:07:04.306Z", 
-        "type": 1, 
-        "current_pos_y": 141
+        "action_flag": 2, 
+        "action_time": "2015-03-17T21:57:17.295Z", 
+        "object_repr": "Sensor on Floor 1", 
+        "object_id": "32", 
+        "change_message": "Changed current_pos_x and current_pos_y.", 
+        "user": 1, 
+        "content_type": 15
     }
 },
 {
     "pk": 21, 
-    "model": "map.sensor", 
+    "model": "admin.logentry", 
     "fields": {
-        "current_pos_x": 340, 
-        "description": "", 
-        "date_updated": "2015-03-10T18:25:11.866Z", 
-        "current_status_id": 0, 
-        "current_date": "2015-03-07T22:08:05Z", 
-        "floor": 1,
-        "date_created": "2015-03-08T03:08:09.763Z", 
-        "type": 3, 
-        "current_pos_y": 345
+        "action_flag": 2, 
+        "action_time": "2015-03-17T21:57:54.309Z", 
+        "object_repr": "Sensor on Floor 1", 
+        "object_id": "33", 
+        "change_message": "Changed description.", 
+        "user": 1, 
+        "content_type": 15
     }
 },
 {
     "pk": 22, 
-    "model": "map.sensor", 
+    "model": "admin.logentry", 
     "fields": {
-        "current_pos_x": 369, 
-        "description": "", 
-        "date_updated": "2015-03-10T18:25:11.849Z", 
-        "current_status_id": 0, 
-        "current_date": "2015-03-07T22:08:34Z", 
-        "floor": 1,
-        "date_created": "2015-03-08T03:08:36.495Z", 
-        "type": 1, 
-        "current_pos_y": 372
+        "action_flag": 1, 
+        "action_time": "2015-03-17T21:58:45.847Z", 
+        "object_repr": "Sensor on Floor 2", 
+        "object_id": "36", 
+        "change_message": "", 
+        "user": 1, 
+        "content_type": 15
     }
 },
 {
     "pk": 23, 
-    "model": "map.sensor", 
+    "model": "admin.logentry", 
     "fields": {
-        "current_pos_x": 200, 
-        "description": "", 
-        "date_updated": "2015-03-10T18:25:11.833Z", 
-        "current_status_id": 0, 
-        "current_date": "2015-03-07T22:17:42Z", 
-        "floor": 1,
-        "date_created": "2015-03-08T03:17:44.597Z", 
-        "type": 2, 
-        "current_pos_y": 40
+        "action_flag": 1, 
+        "action_time": "2015-03-17T21:59:37.494Z", 
+        "object_repr": "Sensor on Floor 2", 
+        "object_id": "37", 
+        "change_message": "", 
+        "user": 1, 
+        "content_type": 15
     }
 },
 {
     "pk": 24, 
-    "model": "map.sensor", 
+    "model": "admin.logentry", 
     "fields": {
-        "current_pos_x": 355, 
-        "description": "", 
-        "date_updated": "2015-03-10T18:25:11.666Z", 
-        "current_status_id": 0, 
-        "current_date": "2015-03-07T22:41:26Z", 
-        "floor": 4,
-        "date_created": "2015-03-08T03:41:30.150Z", 
-        "type": 2, 
-        "current_pos_y": 375
+        "action_flag": 1, 
+        "action_time": "2015-03-17T22:00:20.986Z", 
+        "object_repr": "Sensor on Floor 2", 
+        "object_id": "38", 
+        "change_message": "", 
+        "user": 1, 
+        "content_type": 15
     }
 },
 {
     "pk": 25, 
-    "model": "map.sensor", 
+    "model": "admin.logentry", 
     "fields": {
-        "current_pos_x": 355, 
-        "description": "", 
-        "date_updated": "2015-03-10T18:25:11.716Z", 
-        "current_status_id": 1, 
-        "current_date": "2015-03-07T22:41:54Z", 
-        "floor": 4,
-        "date_created": "2015-03-08T03:41:56.596Z", 
-        "type": 3, 
-        "current_pos_y": 325
+        "action_flag": 2, 
+        "action_time": "2015-03-17T22:02:03.829Z", 
+        "object_repr": "Sensor on Floor 2", 
+        "object_id": "38", 
+        "change_message": "Changed current_pos_y.", 
+        "user": 1, 
+        "content_type": 15
     }
 },
 {
     "pk": 26, 
-    "model": "map.sensor", 
+    "model": "admin.logentry", 
     "fields": {
-        "current_pos_x": 355, 
-        "description": "", 
-        "date_updated": "2015-03-10T18:25:11.700Z", 
-        "current_status_id": 0, 
-        "current_date": "2015-03-07T22:42:26Z", 
-        "floor": 4,
-        "date_created": "2015-03-08T03:42:28.174Z", 
-        "type": 1, 
-        "current_pos_y": 292
+        "action_flag": 2, 
+        "action_time": "2015-03-17T22:02:03.929Z", 
+        "object_repr": "Sensor on Floor 2", 
+        "object_id": "37", 
+        "change_message": "Changed current_pos_x and current_pos_y.", 
+        "user": 1, 
+        "content_type": 15
     }
 },
 {
     "pk": 27, 
-    "model": "map.sensor", 
+    "model": "admin.logentry", 
     "fields": {
-        "current_pos_x": 7, 
-        "description": "", 
-        "date_updated": "2015-03-08T03:50:55.866Z", 
-        "current_status_id": 1, 
-        "current_date": "2015-03-07T22:48:34Z", 
-        "floor": 4,
-        "date_created": "2015-03-08T03:48:36.483Z", 
-        "type": 2, 
-        "current_pos_y": 75
+        "action_flag": 2, 
+        "action_time": "2015-03-17T22:02:03.946Z", 
+        "object_repr": "Sensor on Floor 2", 
+        "object_id": "36", 
+        "change_message": "Changed current_pos_x and current_pos_y.", 
+        "user": 1, 
+        "content_type": 15
     }
 },
 {
     "pk": 28, 
-    "model": "map.sensor", 
+    "model": "admin.logentry", 
     "fields": {
-        "current_pos_x": 37, 
-        "description": "", 
-        "date_updated": "2015-03-10T18:25:11.623Z", 
-        "current_status_id": 0, 
-        "current_date": "2015-03-07T22:48:58Z", 
-        "floor": 4,
-        "date_created": "2015-03-08T03:49:08.223Z", 
-        "type": 1, 
-        "current_pos_y": 110
+        "action_flag": 2, 
+        "action_time": "2015-03-17T22:02:56.323Z", 
+        "object_repr": "Sensor on Floor 2", 
+        "object_id": "38", 
+        "change_message": "Changed current_pos_y.", 
+        "user": 1, 
+        "content_type": 15
     }
 },
 {
     "pk": 29, 
-    "model": "map.sensor", 
+    "model": "admin.logentry", 
     "fields": {
-        "current_pos_x": 100, 
-        "description": "", 
-        "date_updated": "2015-03-10T18:25:11.649Z", 
-        "current_status_id": 1, 
-        "current_date": "2015-03-07T22:53:08Z", 
-        "floor": 4,
-        "date_created": "2015-03-08T03:53:10.052Z", 
-        "type": 3, 
-        "current_pos_y": 90
+        "action_flag": 2, 
+        "action_time": "2015-03-17T22:02:56.357Z", 
+        "object_repr": "Sensor on Floor 2", 
+        "object_id": "37", 
+        "change_message": "Changed current_pos_x and current_pos_y.", 
+        "user": 1, 
+        "content_type": 15
     }
 },
 {
     "pk": 30, 
-    "model": "map.sensor", 
+    "model": "admin.logentry", 
     "fields": {
-        "current_pos_x": 120, 
-        "description": "", 
-        "date_updated": "2015-03-10T18:25:11.683Z", 
-        "current_status_id": 0, 
-        "current_date": "2015-03-07T22:53:41Z", 
-        "floor": 4,
-        "date_created": "2015-03-08T03:53:46.127Z", 
-        "type": 3, 
-        "current_pos_y": 290
+        "action_flag": 2, 
+        "action_time": "2015-03-17T22:02:56.373Z", 
+        "object_repr": "Sensor on Floor 2", 
+        "object_id": "36", 
+        "change_message": "Changed current_pos_y.", 
+        "user": 1, 
+        "content_type": 15
+    }
+},
+{
+    "pk": 31, 
+    "model": "admin.logentry", 
+    "fields": {
+        "action_flag": 2, 
+        "action_time": "2015-03-17T22:03:19.684Z", 
+        "object_repr": "Sensor on Floor 2", 
+        "object_id": "38", 
+        "change_message": "Changed current_pos_y.", 
+        "user": 1, 
+        "content_type": 15
+    }
+},
+{
+    "pk": 32, 
+    "model": "admin.logentry", 
+    "fields": {
+        "action_flag": 1, 
+        "action_time": "2015-03-17T22:05:19.732Z", 
+        "object_repr": "Sensor on Floor 2", 
+        "object_id": "39", 
+        "change_message": "", 
+        "user": 1, 
+        "content_type": 15
+    }
+},
+{
+    "pk": 33, 
+    "model": "admin.logentry", 
+    "fields": {
+        "action_flag": 2, 
+        "action_time": "2015-03-17T22:06:01.428Z", 
+        "object_repr": "Sensor on Floor 2", 
+        "object_id": "39", 
+        "change_message": "Changed current_pos_x and current_pos_y.", 
+        "user": 1, 
+        "content_type": 15
+    }
+},
+{
+    "pk": 34, 
+    "model": "admin.logentry", 
+    "fields": {
+        "action_flag": 2, 
+        "action_time": "2015-03-17T22:06:20.430Z", 
+        "object_repr": "Sensor on Floor 2", 
+        "object_id": "39", 
+        "change_message": "Changed current_pos_y.", 
+        "user": 1, 
+        "content_type": 15
+    }
+},
+{
+    "pk": 35, 
+    "model": "admin.logentry", 
+    "fields": {
+        "action_flag": 2, 
+        "action_time": "2015-03-17T22:06:42.097Z", 
+        "object_repr": "Sensor on Floor 2", 
+        "object_id": "39", 
+        "change_message": "Changed current_pos_x and current_pos_y.", 
+        "user": 1, 
+        "content_type": 15
+    }
+},
+{
+    "pk": 36, 
+    "model": "admin.logentry", 
+    "fields": {
+        "action_flag": 2, 
+        "action_time": "2015-03-17T22:06:59.969Z", 
+        "object_repr": "Sensor on Floor 2", 
+        "object_id": "39", 
+        "change_message": "Changed current_pos_y.", 
+        "user": 1, 
+        "content_type": 15
     }
 }
 ]

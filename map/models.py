@@ -68,6 +68,7 @@ class Asset(models.Model):
 class SensorType(models.Model):
     name = models.CharField("type", max_length=50)
     is_enabled = models.BooleanField("enabled?", default=True)
+    is_continuous = models.BooleanField("continuous", default=False)
 
     class Meta:
         db_table = 'map_sensor_type'
@@ -84,7 +85,9 @@ class SensorStatus(models.Model):
     name = models.CharField("status", max_length=50)
     icon = models.CharField("icon", max_length=255)
     is_enabled = models.BooleanField("enabled?", default=True)
-    ref_code = models.IntegerField('ref code', default=0)
+    ref_code = models.IntegerField('ref code', default=0, blank=True, null=True)
+    max_continuous = models.FloatField("max continuous", blank=True, null=True)
+    min_continuous = models.FloatField("min continuous", blank=True, null=True)
 
     class Meta:
         db_table = 'map_sensor_status'

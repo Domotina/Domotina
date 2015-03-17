@@ -30,5 +30,6 @@ def create_email(alarm):
 
 
 def send_email(alarm):
-    email = create_email(alarm)
-    email.send()
+    if EMAIL_HOST_USER is not None:
+        email = create_email(alarm)
+        email.send()

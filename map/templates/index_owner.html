@@ -40,7 +40,24 @@ Place {{place}}
 {% endblock %}
 
 {% block content %}
-<div class="col-md-8">
+<div>
+    <h3>{{ place.name }}</h3>
+</div>
+<div class="filter">
+    <span class="label label-success" id="lb">Filter the sensors in the map, select in the combobox.</span>
+    <div class="btn-group">
+        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+            Filter by type <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu" role="menu">
+            <li><a href="?alarm_page={{ alarms.number }}&event_page={{ events.number }}">All</a></li>
+            {% for type in types %}
+            <li><a href="?alarm_page={{ alarms.number }}&event_page={{ events.number }}&type={{ type.pk }}">{{type.name}}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+<div class="col-md-8 map-container">
     <div style='background-image:url("{{ map_url }}");' class="map">
         <canvas id="place_canvas" width="700" height="400">
             Your browser does not support the HTML5 canvas tag.
@@ -59,8 +76,6 @@ Place {{place}}
                 }
                 $(document).ready(showIcons);
                 $(window).load(showIcons);
-
-
         </script>
     </div>
 </div>
@@ -69,11 +84,29 @@ Place {{place}}
         <div class="panel-heading">
             <h3 class="panel-title">ALARMS</h3>
         </div>
+        <table class="table table-striped table-hover ">
+          <thead>
+            <tr>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Sensor</th>
+                <th>Type Sensor</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for alarm in alarms %}
+            <tr>
+              <td>{{alarm.activation_date.date}}</td>
+              <td>{{alarm.activation_date.time}}</td>
+              <td>{{alarm.event.sensor}}</td>
+              <td>{{alarm.event.type}}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+
         <ul class="list-group">
             {% for alarm in alarms %}
-            <li class="list-group-item">{{alarm.activation_date}} - Alarm generated from {{alarm.event.type}} on
-                {{alarm.event.sensor}}
-            </li>
             {% empty %}
             <li class="list-group-item">There are no alarms in this place</li>
             {% endfor %}
@@ -82,7 +115,8 @@ Place {{place}}
     <nav>
         <ul class="pager">
             {% if alarms.has_previous %}
-            <li class="previous"><a href="?alarm_page={{ alarms.previous_page_number }}">previous</a></li>
+            <li class="previous"><a href="?alarm_page={{ alarms.previous_page_number }}&event_page={{ events.number }}{{ type_param }}">previous</a>
+            </li>
             {% else %}
             <li class="previous disabled"><a>previous</a></li>
             {% endif %}
@@ -92,7 +126,8 @@ Place {{place}}
             </li>
 
             {% if alarms.has_next %}
-            <li class="next"><a href="?alarm_page={{ alarms.next_page_number }}">next</a></li>
+            <li class="next"><a href="?alarm_page={{ alarms.next_page_number }}&event_page={{ events.number }}{{ type_param }}">next</a>
+            </li>
             {% else %}
             <li class="next disabled"><a>next</a></li>
             {% endif %}
@@ -104,9 +139,30 @@ Place {{place}}
         <div class="panel-heading">
             <h3 class="panel-title">EVENTS</h3>
         </div>
+
+        <table class="table table-striped table-hover ">
+          <thead>
+            <tr>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Sensor</th>
+                <th>Type Sensor</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for event in events %}
+            <tr>
+              <td>{{event.timestamp.date}}</td>
+              <td>{{event.timestamp.time}}</td>
+              <td>{{event.sensor}}</td>
+              <td>{{event.type}}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+
         <ul class="list-group">
             {% for event in events %}
-            <li class="list-group-item">{{event.timestamp}} - {{event.sensor}} reported {{event.type}}</li>
             {% empty %}
             <li class="list-group-item">There are no events in this place</li>
             {% endfor %}
@@ -115,7 +171,8 @@ Place {{place}}
     <nav>
         <ul class="pager">
             {% if events.has_previous %}
-            <li class="previous"><a href="?event_page={{ events.previous_page_number }}">previous</a></li>
+            <li class="previous"><a href="?event_page={{ events.previous_page_number }}&alarm_page={{ alarms.number }}{{ type_param }}">previous</a>
+            </li>
             {% else %}
             <li class="previous disabled"><a>previous</a></li>
             {% endif %}
@@ -125,7 +182,8 @@ Place {{place}}
             </li>
 
             {% if events.has_next %}
-            <li class="next"><a href="?event_page={{ events.next_page_number }}">next</a></li>
+            <li class="next"><a href="?event_page={{ events.next_page_number }}&alarm_page={{ alarms.number }}{{ type_param }}">next</a>
+            </li>
             {% else %}
             <li class="next disabled"><a>next</a></li>
             {% endif %}

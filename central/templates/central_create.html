@@ -1,6 +1,10 @@
 {% extends "base.html"%}
 {% load static %}
 
+{% block title %}
+Central Create :D
+{% endblock %}
+
 {% block bar %}
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
     <div class="container-fluid">
@@ -21,9 +25,9 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="navbar-content">
             <ul class="nav navbar-nav">
-                <li><a href>Home <span class="sr-only">(current)</span></a></li>
-                <li><a href>About Smart Home</a></li>
-                <li><a href>About Domotina</a></li>
+                <li><a href='{% url "map_home" %}'>Places</a></li>
+                <li><a href>Alarms</a></li>
+                <li><a href>Events</a></li>
             </ul>
             {% block toggle_login %}
             {% include "login.html" %}
@@ -36,13 +40,4 @@
 {% endblock %}
 
 {% block content %}
-<div class="slider" id="slides">
-    <img src='{% static "image/automatizacion.png" %}'/>
-    <img src='{% static "image/control_inteligente.jpg" %}'/>
-    <img src='{% static "image/display.jpg" %}'/>
-    <img src='{% static "image/Domotica.jpg" %}'/>
-    <img src='{% static "image/domotica.jpg" %}'/>
-    <img src='{% static "image/smart-remote.jpg" %}'/>
-</div>
 {% endblock %}
-<!--<script src='{% static "js/index.js" %}'></script>-->

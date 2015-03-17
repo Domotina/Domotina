@@ -28,7 +28,7 @@ def place_view(request, pk):
         # If page is out of range (e.g. 9999), deliver last page of results.
         floors = floor_paginator.page(floor_paginator.num_pages)
 
-    #floor = Floor.objects.filter(place=place)[:1].get()
+
     current_floor = floors.object_list[0]
 
     if request.user != place.owner:
@@ -89,4 +89,4 @@ def place_view(request, pk):
 
     context = {'floor': current_floor, 'sensors': sensors_json, 'floors': floors,
                'events': events, 'alarms': alarms, 'types': types, 'type_param': type_param}
-    return render(request, 'floor.html', context)
+    return render(request, 'index_owner.html', context)

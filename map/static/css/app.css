@@ -26,6 +26,7 @@ canvas {
     background-size:700px 400px;
     background-repeat: no-repeat;
     border:1px solid #d3d3d3;
+    width: 700px;
 }
 
 .map-container {

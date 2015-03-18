@@ -41,23 +41,21 @@ Place {{floor.place}}
 
 {% block content %}
 <div>
-    <h4>{{ floor.place }}</h4>
+    <h1>{{ floor.place }}</h1>
 </div>
-<div class="filter">
-    <span class="label label-success" id="lb">Filter the sensors in the map, select in the combobox.</span>
+<div class="col-md-8 map-container">
     <div class="btn-group">
         <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-            Filter by type <span class="caret"></span>
+            {{ type|default:"All"}} sensors
+            <span class="caret"></span>
         </button>
         <ul class="dropdown-menu" role="menu">
-            <li><a href="?floor_page={{ floors.number }}&alarm_page={{ alarms.number }}&event_page={{ events.number }}">All</a></li>
+            <li><a href="?floor_page={{ floors.number }}&alarm_page={{ alarms.number }}&event_page={{ events.number }}">All sensors</a></li>
             {% for type in types %}
-            <li><a href="?floor_page={{ floors.number }}&alarm_page={{ alarms.number }}&event_page={{ events.number }}&type={{ type.pk }}">{{type.name}}</a></li>
+            <li><a href="?floor_page={{ floors.number }}&alarm_page={{ alarms.number }}&event_page={{ events.number }}&type={{ type.pk }}">{{type.name}} sensors</a></li>
             {% endfor %}
         </ul>
     </div>
-</div>
-<div class="col-md-8 map-container">
     <div style='background-image:url("{{ floor.map }}");' class="map">
         <canvas id="place_canvas" width="700" height="400">
             Your browser does not support the HTML5 canvas tag.

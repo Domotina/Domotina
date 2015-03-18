@@ -36,10 +36,11 @@ def place_view(request, pk):
 
     sensors_array = []
     type = request.GET.get('type')
-    if type is None:
-        type_param = ''
-    else:
+    if type is not None:
         type_param = '&type='+type
+        type = SensorType.objects.get(pk=type)
+    else:
+        type_param = ''
 
     if type is None:
         sensors = Sensor.objects.filter(floor=current_floor)
@@ -88,5 +89,5 @@ def place_view(request, pk):
         alarms = alarms_paginator.page(alarms_paginator.num_pages)
 
     context = {'floor': current_floor, 'sensors': sensors_json, 'floors': floors,
-               'events': events, 'alarms': alarms, 'types': types, 'type_param': type_param}
+               'events': events, 'alarms': alarms, 'types': types, 'type_param': type_param, 'type': type}
     return render(request, 'index_owner.html', context)

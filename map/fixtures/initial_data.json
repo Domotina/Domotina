@@ -1,145 +1,425 @@
 [
 {
     "pk": 1, 
-    "model": "contenttypes.contenttype", 
+    "model": "auth.permission", 
     "fields": {
-        "model": "logentry", 
-        "name": "log entry", 
-        "app_label": "admin"
+        "codename": "add_logentry", 
+        "name": "Can add log entry", 
+        "content_type": 1
     }
 },
 {
     "pk": 2, 
-    "model": "contenttypes.contenttype", 
+    "model": "auth.permission", 
     "fields": {
-        "model": "permission", 
-        "name": "permission", 
-        "app_label": "auth"
+        "codename": "change_logentry", 
+        "name": "Can change log entry", 
+        "content_type": 1
     }
 },
 {
     "pk": 3, 
-    "model": "contenttypes.contenttype", 
+    "model": "auth.permission", 
     "fields": {
-        "model": "group", 
-        "name": "group", 
-        "app_label": "auth"
+        "codename": "delete_logentry", 
+        "name": "Can delete log entry", 
+        "content_type": 1
     }
 },
 {
     "pk": 4, 
-    "model": "contenttypes.contenttype", 
+    "model": "auth.permission", 
     "fields": {
-        "model": "user", 
-        "name": "user", 
-        "app_label": "auth"
+        "codename": "add_permission", 
+        "name": "Can add permission", 
+        "content_type": 2
     }
 },
 {
     "pk": 5, 
-    "model": "contenttypes.contenttype", 
+    "model": "auth.permission", 
     "fields": {
-        "model": "contenttype", 
-        "name": "content type", 
-        "app_label": "contenttypes"
+        "codename": "change_permission", 
+        "name": "Can change permission", 
+        "content_type": 2
     }
 },
 {
     "pk": 6, 
-    "model": "contenttypes.contenttype", 
+    "model": "auth.permission", 
     "fields": {
-        "model": "session", 
-        "name": "session", 
-        "app_label": "sessions"
+        "codename": "delete_permission", 
+        "name": "Can delete permission", 
+        "content_type": 2
     }
 },
 {
     "pk": 7, 
-    "model": "contenttypes.contenttype", 
+    "model": "auth.permission", 
     "fields": {
-        "model": "eventtype", 
-        "name": "event type", 
-        "app_label": "event_manager"
+        "codename": "add_group", 
+        "name": "Can add group", 
+        "content_type": 3
     }
 },
 {
     "pk": 8, 
-    "model": "contenttypes.contenttype", 
+    "model": "auth.permission", 
     "fields": {
-        "model": "event", 
-        "name": "event", 
-        "app_label": "event_manager"
+        "codename": "change_group", 
+        "name": "Can change group", 
+        "content_type": 3
     }
 },
 {
     "pk": 9, 
-    "model": "contenttypes.contenttype", 
+    "model": "auth.permission", 
     "fields": {
-        "model": "alarm", 
-        "name": "alarm", 
-        "app_label": "event_manager"
+        "codename": "delete_group", 
+        "name": "Can delete group", 
+        "content_type": 3
     }
 },
 {
     "pk": 10, 
-    "model": "contenttypes.contenttype", 
+    "model": "auth.permission", 
     "fields": {
-        "model": "neighborhood", 
-        "name": "neighborhood", 
-        "app_label": "map"
+        "codename": "add_user", 
+        "name": "Can add user", 
+        "content_type": 4
     }
 },
 {
     "pk": 11, 
-    "model": "contenttypes.contenttype", 
+    "model": "auth.permission", 
     "fields": {
-        "model": "place", 
-        "name": "place", 
-        "app_label": "map"
+        "codename": "change_user", 
+        "name": "Can change user", 
+        "content_type": 4
     }
 },
 {
     "pk": 12, 
-    "model": "contenttypes.contenttype", 
+    "model": "auth.permission", 
     "fields": {
-        "model": "floor", 
-        "name": "floor", 
-        "app_label": "map"
+        "codename": "delete_user", 
+        "name": "Can delete user", 
+        "content_type": 4
     }
 },
 {
     "pk": 13, 
-    "model": "contenttypes.contenttype", 
+    "model": "auth.permission", 
     "fields": {
-        "model": "sensortype", 
-        "name": "sensor type", 
-        "app_label": "map"
+        "codename": "add_contenttype", 
+        "name": "Can add content type", 
+        "content_type": 5
     }
 },
 {
     "pk": 14, 
-    "model": "contenttypes.contenttype", 
+    "model": "auth.permission", 
     "fields": {
-        "model": "sensorstatus", 
-        "name": "sensor status", 
-        "app_label": "map"
+        "codename": "change_contenttype", 
+        "name": "Can change content type", 
+        "content_type": 5
     }
 },
 {
     "pk": 15, 
-    "model": "contenttypes.contenttype", 
+    "model": "auth.permission", 
     "fields": {
-        "model": "sensor", 
-        "name": "sensor", 
-        "app_label": "map"
+        "codename": "delete_contenttype", 
+        "name": "Can delete content type", 
+        "content_type": 5
     }
 },
 {
-    "pk": "ln24k0om3244r809v8m2qcbgd9uzvw0x", 
-    "model": "sessions.session", 
+    "pk": 16, 
+    "model": "auth.permission", 
     "fields": {
-        "expire_date": "2015-03-31T17:10:55.371Z", 
-        "session_data": "NDM2NzQ5MDNkMzNiZTI3MjVjMWMxZDNkN2YwYjAyYmQzNmI0ZTViMDp7Il9hdXRoX3VzZXJfYmFja2VuZCI6ImRqYW5nby5jb250cmliLmF1dGguYmFja2VuZHMuTW9kZWxCYWNrZW5kIiwiX2F1dGhfdXNlcl9pZCI6MX0="
+        "codename": "add_session", 
+        "name": "Can add session", 
+        "content_type": 6
+    }
+},
+{
+    "pk": 17, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_session", 
+        "name": "Can change session", 
+        "content_type": 6
+    }
+},
+{
+    "pk": 18, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_session", 
+        "name": "Can delete session", 
+        "content_type": 6
+    }
+},
+{
+    "pk": 19, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_eventtype", 
+        "name": "Can add event type", 
+        "content_type": 7
+    }
+},
+{
+    "pk": 20, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_eventtype", 
+        "name": "Can change event type", 
+        "content_type": 7
+    }
+},
+{
+    "pk": 21, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_eventtype", 
+        "name": "Can delete event type", 
+        "content_type": 7
+    }
+},
+{
+    "pk": 22, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_event", 
+        "name": "Can add event", 
+        "content_type": 8
+    }
+},
+{
+    "pk": 23, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_event", 
+        "name": "Can change event", 
+        "content_type": 8
+    }
+},
+{
+    "pk": 24, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_event", 
+        "name": "Can delete event", 
+        "content_type": 8
+    }
+},
+{
+    "pk": 25, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_alarm", 
+        "name": "Can add alarm", 
+        "content_type": 9
+    }
+},
+{
+    "pk": 26, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_alarm", 
+        "name": "Can change alarm", 
+        "content_type": 9
+    }
+},
+{
+    "pk": 27, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_alarm", 
+        "name": "Can delete alarm", 
+        "content_type": 9
+    }
+},
+{
+    "pk": 28, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_neighborhood", 
+        "name": "Can add neighborhood", 
+        "content_type": 10
+    }
+},
+{
+    "pk": 29, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_neighborhood", 
+        "name": "Can change neighborhood", 
+        "content_type": 10
+    }
+},
+{
+    "pk": 30, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_neighborhood", 
+        "name": "Can delete neighborhood", 
+        "content_type": 10
+    }
+},
+{
+    "pk": 31, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_place", 
+        "name": "Can add place", 
+        "content_type": 11
+    }
+},
+{
+    "pk": 32, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_place", 
+        "name": "Can change place", 
+        "content_type": 11
+    }
+},
+{
+    "pk": 33, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_place", 
+        "name": "Can delete place", 
+        "content_type": 11
+    }
+},
+{
+    "pk": 34, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_asset", 
+        "name": "Can add asset", 
+        "content_type": 12
+    }
+},
+{
+    "pk": 35, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_asset", 
+        "name": "Can change asset", 
+        "content_type": 12
+    }
+},
+{
+    "pk": 36, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_asset", 
+        "name": "Can delete asset", 
+        "content_type": 12
+    }
+},
+{
+    "pk": 37, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_sensortype", 
+        "name": "Can add sensor type", 
+        "content_type": 13
+    }
+},
+{
+    "pk": 38, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_sensortype", 
+        "name": "Can change sensor type", 
+        "content_type": 13
+    }
+},
+{
+    "pk": 39, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_sensortype", 
+        "name": "Can delete sensor type", 
+        "content_type": 13
+    }
+},
+{
+    "pk": 40, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_sensorstatus", 
+        "name": "Can add sensor status", 
+        "content_type": 14
+    }
+},
+{
+    "pk": 41, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_sensorstatus", 
+        "name": "Can change sensor status", 
+        "content_type": 14
+    }
+},
+{
+    "pk": 42, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_sensorstatus", 
+        "name": "Can delete sensor status", 
+        "content_type": 14
+    }
+},
+{
+    "pk": 43, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_sensor", 
+        "name": "Can add sensor", 
+        "content_type": 15
+    }
+},
+{
+    "pk": 44, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_sensor", 
+        "name": "Can change sensor", 
+        "content_type": 15
+    }
+},
+{
+    "pk": 45, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_sensor", 
+        "name": "Can delete sensor", 
+        "content_type": 15
+    }
+},
+{
+    "pk": 1, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "domotina", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": true, 
+        "is_staff": true, 
+        "last_login": "2015-03-17T17:10:55.362Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$12000$jTeDaK4UwLqY$ytI9/vmZ15Z6Kvj8xKPmQCXGJlKBOcRPeDKxcXPRfBo=", 
+        "email": "djimenez@ingenieros.com", 
+        "date_joined": "2015-03-07T20:01:23Z"
     }
 },
 {
@@ -194,6 +474,61 @@
         "date_updated": "2015-03-08T03:36:52.714Z", 
         "date_created": "2015-03-08T03:36:52.714Z", 
         "name": "BD Bacata Building"
+    }
+},
+{
+    "pk": 1, 
+    "model": "map.place", 
+    "fields": {
+        "owner": 1, 
+        "date_created": "2015-03-07T20:59:03.888Z", 
+        "neighborhood": 1, 
+        "name": "T10 AP602", 
+        "date_updated": "2015-03-07T20:59:03.888Z"
+    }
+},
+{
+    "pk": 2, 
+    "model": "map.place", 
+    "fields": {
+        "owner": 1, 
+        "date_created": "2015-03-07T20:59:27.651Z", 
+        "neighborhood": 1, 
+        "name": "T10 AP603", 
+        "date_updated": "2015-03-07T20:59:27.651Z"
+    }
+},
+{
+    "pk": 3, 
+    "model": "map.place", 
+    "fields": {
+        "owner": 1, 
+        "date_created": "2015-03-08T02:24:08.983Z", 
+        "neighborhood": 3, 
+        "name": "Kr 69D St 25-04", 
+        "date_updated": "2015-03-08T02:24:08.983Z"
+    }
+},
+{
+    "pk": 4, 
+    "model": "map.place", 
+    "fields": {
+        "owner": 1, 
+        "date_created": "2015-03-08T03:37:22.536Z", 
+        "neighborhood": 4, 
+        "name": "Office 201", 
+        "date_updated": "2015-03-08T03:37:22.536Z"
+    }
+},
+{
+    "pk": 5, 
+    "model": "map.place", 
+    "fields": {
+        "owner": 1, 
+        "date_created": "2015-03-17T17:24:15.155Z", 
+        "neighborhood": 3, 
+        "name": "Kr 69A St 24-12", 
+        "date_updated": "2015-03-17T17:24:15.155Z"
     }
 },
 {
@@ -950,952 +1285,6 @@
         "date_created": "2015-03-17T22:05:19.731Z", 
         "type": 1, 
         "current_pos_y": 177
-    }
-},
-{
-    "pk": 1, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "add_logentry", 
-        "name": "Can add log entry", 
-        "content_type": 1
-    }
-},
-{
-    "pk": 2, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "change_logentry", 
-        "name": "Can change log entry", 
-        "content_type": 1
-    }
-},
-{
-    "pk": 3, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "delete_logentry", 
-        "name": "Can delete log entry", 
-        "content_type": 1
-    }
-},
-{
-    "pk": 4, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "add_permission", 
-        "name": "Can add permission", 
-        "content_type": 2
-    }
-},
-{
-    "pk": 5, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "change_permission", 
-        "name": "Can change permission", 
-        "content_type": 2
-    }
-},
-{
-    "pk": 6, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "delete_permission", 
-        "name": "Can delete permission", 
-        "content_type": 2
-    }
-},
-{
-    "pk": 7, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "add_group", 
-        "name": "Can add group", 
-        "content_type": 3
-    }
-},
-{
-    "pk": 8, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "change_group", 
-        "name": "Can change group", 
-        "content_type": 3
-    }
-},
-{
-    "pk": 9, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "delete_group", 
-        "name": "Can delete group", 
-        "content_type": 3
-    }
-},
-{
-    "pk": 10, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "add_user", 
-        "name": "Can add user", 
-        "content_type": 4
-    }
-},
-{
-    "pk": 11, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "change_user", 
-        "name": "Can change user", 
-        "content_type": 4
-    }
-},
-{
-    "pk": 12, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "delete_user", 
-        "name": "Can delete user", 
-        "content_type": 4
-    }
-},
-{
-    "pk": 13, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "add_contenttype", 
-        "name": "Can add content type", 
-        "content_type": 5
-    }
-},
-{
-    "pk": 14, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "change_contenttype", 
-        "name": "Can change content type", 
-        "content_type": 5
-    }
-},
-{
-    "pk": 15, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "delete_contenttype", 
-        "name": "Can delete content type", 
-        "content_type": 5
-    }
-},
-{
-    "pk": 16, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "add_session", 
-        "name": "Can add session", 
-        "content_type": 6
-    }
-},
-{
-    "pk": 17, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "change_session", 
-        "name": "Can change session", 
-        "content_type": 6
-    }
-},
-{
-    "pk": 18, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "delete_session", 
-        "name": "Can delete session", 
-        "content_type": 6
-    }
-},
-{
-    "pk": 19, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "add_eventtype", 
-        "name": "Can add event type", 
-        "content_type": 7
-    }
-},
-{
-    "pk": 20, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "change_eventtype", 
-        "name": "Can change event type", 
-        "content_type": 7
-    }
-},
-{
-    "pk": 21, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "delete_eventtype", 
-        "name": "Can delete event type", 
-        "content_type": 7
-    }
-},
-{
-    "pk": 22, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "add_event", 
-        "name": "Can add event", 
-        "content_type": 8
-    }
-},
-{
-    "pk": 23, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "change_event", 
-        "name": "Can change event", 
-        "content_type": 8
-    }
-},
-{
-    "pk": 24, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "delete_event", 
-        "name": "Can delete event", 
-        "content_type": 8
-    }
-},
-{
-    "pk": 25, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "add_alarm", 
-        "name": "Can add alarm", 
-        "content_type": 9
-    }
-},
-{
-    "pk": 26, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "change_alarm", 
-        "name": "Can change alarm", 
-        "content_type": 9
-    }
-},
-{
-    "pk": 27, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "delete_alarm", 
-        "name": "Can delete alarm", 
-        "content_type": 9
-    }
-},
-{
-    "pk": 28, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "add_neighborhood", 
-        "name": "Can add neighborhood", 
-        "content_type": 10
-    }
-},
-{
-    "pk": 29, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "change_neighborhood", 
-        "name": "Can change neighborhood", 
-        "content_type": 10
-    }
-},
-{
-    "pk": 30, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "delete_neighborhood", 
-        "name": "Can delete neighborhood", 
-        "content_type": 10
-    }
-},
-{
-    "pk": 31, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "add_place", 
-        "name": "Can add place", 
-        "content_type": 11
-    }
-},
-{
-    "pk": 32, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "change_place", 
-        "name": "Can change place", 
-        "content_type": 11
-    }
-},
-{
-    "pk": 33, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "delete_place", 
-        "name": "Can delete place", 
-        "content_type": 11
-    }
-},
-{
-    "pk": 34, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "add_asset", 
-        "name": "Can add asset", 
-        "content_type": 12
-    }
-},
-{
-    "pk": 35, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "change_asset", 
-        "name": "Can change asset", 
-        "content_type": 12
-    }
-},
-{
-    "pk": 36, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "delete_asset", 
-        "name": "Can delete asset", 
-        "content_type": 12
-    }
-},
-{
-    "pk": 37, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "add_sensortype", 
-        "name": "Can add sensor type", 
-        "content_type": 13
-    }
-},
-{
-    "pk": 38, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "change_sensortype", 
-        "name": "Can change sensor type", 
-        "content_type": 13
-    }
-},
-{
-    "pk": 39, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "delete_sensortype", 
-        "name": "Can delete sensor type", 
-        "content_type": 13
-    }
-},
-{
-    "pk": 40, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "add_sensorstatus", 
-        "name": "Can add sensor status", 
-        "content_type": 14
-    }
-},
-{
-    "pk": 41, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "change_sensorstatus", 
-        "name": "Can change sensor status", 
-        "content_type": 14
-    }
-},
-{
-    "pk": 42, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "delete_sensorstatus", 
-        "name": "Can delete sensor status", 
-        "content_type": 14
-    }
-},
-{
-    "pk": 43, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "add_sensor", 
-        "name": "Can add sensor", 
-        "content_type": 15
-    }
-},
-{
-    "pk": 44, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "change_sensor", 
-        "name": "Can change sensor", 
-        "content_type": 15
-    }
-},
-{
-    "pk": 45, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "delete_sensor", 
-        "name": "Can delete sensor", 
-        "content_type": 15
-    }
-},
-{
-    "pk": 1, 
-    "model": "auth.user", 
-    "fields": {
-        "username": "domotina", 
-        "first_name": "", 
-        "last_name": "", 
-        "is_active": true, 
-        "is_superuser": true, 
-        "is_staff": true, 
-        "last_login": "2015-03-17T17:10:55.362Z", 
-        "groups": [], 
-        "user_permissions": [], 
-        "password": "pbkdf2_sha256$12000$jTeDaK4UwLqY$ytI9/vmZ15Z6Kvj8xKPmQCXGJlKBOcRPeDKxcXPRfBo=", 
-        "email": "djimenez@ingenieros.com", 
-        "date_joined": "2015-03-07T20:01:23Z"
-    }
-},
-{
-    "pk": 1, 
-    "model": "map.place", 
-    "fields": {
-        "owner": 1, 
-        "date_created": "2015-03-07T20:59:03.888Z", 
-        "neighborhood": 1, 
-        "name": "T10 AP602", 
-        "date_updated": "2015-03-07T20:59:03.888Z"
-    }
-},
-{
-    "pk": 2, 
-    "model": "map.place", 
-    "fields": {
-        "owner": 1, 
-        "date_created": "2015-03-07T20:59:27.651Z", 
-        "neighborhood": 1, 
-        "name": "T10 AP603", 
-        "date_updated": "2015-03-07T20:59:27.651Z"
-    }
-},
-{
-    "pk": 3, 
-    "model": "map.place", 
-    "fields": {
-        "owner": 1, 
-        "date_created": "2015-03-08T02:24:08.983Z", 
-        "neighborhood": 3, 
-        "name": "Kr 69D St 25-04", 
-        "date_updated": "2015-03-08T02:24:08.983Z"
-    }
-},
-{
-    "pk": 4, 
-    "model": "map.place", 
-    "fields": {
-        "owner": 1, 
-        "date_created": "2015-03-08T03:37:22.536Z", 
-        "neighborhood": 4, 
-        "name": "Office 201", 
-        "date_updated": "2015-03-08T03:37:22.536Z"
-    }
-},
-{
-    "pk": 5, 
-    "model": "map.place", 
-    "fields": {
-        "owner": 1, 
-        "date_created": "2015-03-17T17:24:15.155Z", 
-        "neighborhood": 3, 
-        "name": "Kr 69A St 24-12", 
-        "date_updated": "2015-03-17T17:24:15.155Z"
-    }
-},
-{
-    "pk": 1, 
-    "model": "admin.logentry", 
-    "fields": {
-        "action_flag": 1, 
-        "action_time": "2015-03-17T17:24:15.156Z", 
-        "object_repr": "Kr 69A St 24-12", 
-        "object_id": "5", 
-        "change_message": "", 
-        "user": 1, 
-        "content_type": 11
-    }
-},
-{
-    "pk": 2, 
-    "model": "admin.logentry", 
-    "fields": {
-        "action_flag": 1, 
-        "action_time": "2015-03-17T17:25:33.364Z", 
-        "object_repr": "Kr 69A St 24-12 floor 1", 
-        "object_id": "5", 
-        "change_message": "", 
-        "user": 1, 
-        "content_type": 12
-    }
-},
-{
-    "pk": 3, 
-    "model": "admin.logentry", 
-    "fields": {
-        "action_flag": 1, 
-        "action_time": "2015-03-17T17:25:52.887Z", 
-        "object_repr": "Kr 69A St 24-12 floor 2", 
-        "object_id": "6", 
-        "change_message": "", 
-        "user": 1, 
-        "content_type": 12
-    }
-},
-{
-    "pk": 4, 
-    "model": "admin.logentry", 
-    "fields": {
-        "action_flag": 1, 
-        "action_time": "2015-03-17T21:43:46.430Z", 
-        "object_repr": "Sensor on Floor 1", 
-        "object_id": "31", 
-        "change_message": "", 
-        "user": 1, 
-        "content_type": 15
-    }
-},
-{
-    "pk": 5, 
-    "model": "admin.logentry", 
-    "fields": {
-        "action_flag": 1, 
-        "action_time": "2015-03-17T21:44:37.926Z", 
-        "object_repr": "Sensor on Floor 1", 
-        "object_id": "32", 
-        "change_message": "", 
-        "user": 1, 
-        "content_type": 15
-    }
-},
-{
-    "pk": 6, 
-    "model": "admin.logentry", 
-    "fields": {
-        "action_flag": 1, 
-        "action_time": "2015-03-17T21:45:55.034Z", 
-        "object_repr": "Sensor on Floor 1", 
-        "object_id": "33", 
-        "change_message": "", 
-        "user": 1, 
-        "content_type": 15
-    }
-},
-{
-    "pk": 7, 
-    "model": "admin.logentry", 
-    "fields": {
-        "action_flag": 1, 
-        "action_time": "2015-03-17T21:48:16.958Z", 
-        "object_repr": "Sensor on Floor 1", 
-        "object_id": "34", 
-        "change_message": "", 
-        "user": 1, 
-        "content_type": 15
-    }
-},
-{
-    "pk": 8, 
-    "model": "admin.logentry", 
-    "fields": {
-        "action_flag": 1, 
-        "action_time": "2015-03-17T21:49:38.164Z", 
-        "object_repr": "Sensor on Floor 1", 
-        "object_id": "35", 
-        "change_message": "", 
-        "user": 1, 
-        "content_type": 15
-    }
-},
-{
-    "pk": 9, 
-    "model": "admin.logentry", 
-    "fields": {
-        "action_flag": 2, 
-        "action_time": "2015-03-17T21:50:52.236Z", 
-        "object_repr": "Sensor on Floor 1", 
-        "object_id": "35", 
-        "change_message": "Changed current_status_id, current_pos_x and current_pos_y.", 
-        "user": 1, 
-        "content_type": 15
-    }
-},
-{
-    "pk": 10, 
-    "model": "admin.logentry", 
-    "fields": {
-        "action_flag": 2, 
-        "action_time": "2015-03-17T21:54:23.156Z", 
-        "object_repr": "Sensor on Floor 1", 
-        "object_id": "34", 
-        "change_message": "Changed current_pos_x and current_pos_y.", 
-        "user": 1, 
-        "content_type": 15
-    }
-},
-{
-    "pk": 11, 
-    "model": "admin.logentry", 
-    "fields": {
-        "action_flag": 2, 
-        "action_time": "2015-03-17T21:54:23.210Z", 
-        "object_repr": "Sensor on Floor 1", 
-        "object_id": "32", 
-        "change_message": "Changed current_pos_x and current_pos_y.", 
-        "user": 1, 
-        "content_type": 15
-    }
-},
-{
-    "pk": 12, 
-    "model": "admin.logentry", 
-    "fields": {
-        "action_flag": 2, 
-        "action_time": "2015-03-17T21:54:23.226Z", 
-        "object_repr": "Sensor on Floor 1", 
-        "object_id": "31", 
-        "change_message": "Changed current_pos_x and current_pos_y.", 
-        "user": 1, 
-        "content_type": 15
-    }
-},
-{
-    "pk": 13, 
-    "model": "admin.logentry", 
-    "fields": {
-        "action_flag": 2, 
-        "action_time": "2015-03-17T21:55:22.831Z", 
-        "object_repr": "Sensor on Floor 1", 
-        "object_id": "34", 
-        "change_message": "Changed current_pos_x.", 
-        "user": 1, 
-        "content_type": 15
-    }
-},
-{
-    "pk": 14, 
-    "model": "admin.logentry", 
-    "fields": {
-        "action_flag": 2, 
-        "action_time": "2015-03-17T21:55:22.859Z", 
-        "object_repr": "Sensor on Floor 1", 
-        "object_id": "32", 
-        "change_message": "Changed current_pos_y.", 
-        "user": 1, 
-        "content_type": 15
-    }
-},
-{
-    "pk": 15, 
-    "model": "admin.logentry", 
-    "fields": {
-        "action_flag": 2, 
-        "action_time": "2015-03-17T21:55:22.876Z", 
-        "object_repr": "Sensor on Floor 1", 
-        "object_id": "31", 
-        "change_message": "Changed current_pos_x.", 
-        "user": 1, 
-        "content_type": 15
-    }
-},
-{
-    "pk": 16, 
-    "model": "admin.logentry", 
-    "fields": {
-        "action_flag": 2, 
-        "action_time": "2015-03-17T21:56:14.385Z", 
-        "object_repr": "Sensor on Floor 1", 
-        "object_id": "35", 
-        "change_message": "Changed current_pos_x and current_pos_y.", 
-        "user": 1, 
-        "content_type": 15
-    }
-},
-{
-    "pk": 17, 
-    "model": "admin.logentry", 
-    "fields": {
-        "action_flag": 2, 
-        "action_time": "2015-03-17T21:56:14.412Z", 
-        "object_repr": "Sensor on Floor 1", 
-        "object_id": "33", 
-        "change_message": "Changed current_pos_x and current_pos_y.", 
-        "user": 1, 
-        "content_type": 15
-    }
-},
-{
-    "pk": 18, 
-    "model": "admin.logentry", 
-    "fields": {
-        "action_flag": 2, 
-        "action_time": "2015-03-17T21:56:49.242Z", 
-        "object_repr": "Sensor on Floor 1", 
-        "object_id": "34", 
-        "change_message": "Changed current_pos_x.", 
-        "user": 1, 
-        "content_type": 15
-    }
-},
-{
-    "pk": 19, 
-    "model": "admin.logentry", 
-    "fields": {
-        "action_flag": 2, 
-        "action_time": "2015-03-17T21:56:49.275Z", 
-        "object_repr": "Sensor on Floor 1", 
-        "object_id": "32", 
-        "change_message": "Changed current_pos_x.", 
-        "user": 1, 
-        "content_type": 15
-    }
-},
-{
-    "pk": 20, 
-    "model": "admin.logentry", 
-    "fields": {
-        "action_flag": 2, 
-        "action_time": "2015-03-17T21:57:17.295Z", 
-        "object_repr": "Sensor on Floor 1", 
-        "object_id": "32", 
-        "change_message": "Changed current_pos_x and current_pos_y.", 
-        "user": 1, 
-        "content_type": 15
-    }
-},
-{
-    "pk": 21, 
-    "model": "admin.logentry", 
-    "fields": {
-        "action_flag": 2, 
-        "action_time": "2015-03-17T21:57:54.309Z", 
-        "object_repr": "Sensor on Floor 1", 
-        "object_id": "33", 
-        "change_message": "Changed description.", 
-        "user": 1, 
-        "content_type": 15
-    }
-},
-{
-    "pk": 22, 
-    "model": "admin.logentry", 
-    "fields": {
-        "action_flag": 1, 
-        "action_time": "2015-03-17T21:58:45.847Z", 
-        "object_repr": "Sensor on Floor 2", 
-        "object_id": "36", 
-        "change_message": "", 
-        "user": 1, 
-        "content_type": 15
-    }
-},
-{
-    "pk": 23, 
-    "model": "admin.logentry", 
-    "fields": {
-        "action_flag": 1, 
-        "action_time": "2015-03-17T21:59:37.494Z", 
-        "object_repr": "Sensor on Floor 2", 
-        "object_id": "37", 
-        "change_message": "", 
-        "user": 1, 
-        "content_type": 15
-    }
-},
-{
-    "pk": 24, 
-    "model": "admin.logentry", 
-    "fields": {
-        "action_flag": 1, 
-        "action_time": "2015-03-17T22:00:20.986Z", 
-        "object_repr": "Sensor on Floor 2", 
-        "object_id": "38", 
-        "change_message": "", 
-        "user": 1, 
-        "content_type": 15
-    }
-},
-{
-    "pk": 25, 
-    "model": "admin.logentry", 
-    "fields": {
-        "action_flag": 2, 
-        "action_time": "2015-03-17T22:02:03.829Z", 
-        "object_repr": "Sensor on Floor 2", 
-        "object_id": "38", 
-        "change_message": "Changed current_pos_y.", 
-        "user": 1, 
-        "content_type": 15
-    }
-},
-{
-    "pk": 26, 
-    "model": "admin.logentry", 
-    "fields": {
-        "action_flag": 2, 
-        "action_time": "2015-03-17T22:02:03.929Z", 
-        "object_repr": "Sensor on Floor 2", 
-        "object_id": "37", 
-        "change_message": "Changed current_pos_x and current_pos_y.", 
-        "user": 1, 
-        "content_type": 15
-    }
-},
-{
-    "pk": 27, 
-    "model": "admin.logentry", 
-    "fields": {
-        "action_flag": 2, 
-        "action_time": "2015-03-17T22:02:03.946Z", 
-        "object_repr": "Sensor on Floor 2", 
-        "object_id": "36", 
-        "change_message": "Changed current_pos_x and current_pos_y.", 
-        "user": 1, 
-        "content_type": 15
-    }
-},
-{
-    "pk": 28, 
-    "model": "admin.logentry", 
-    "fields": {
-        "action_flag": 2, 
-        "action_time": "2015-03-17T22:02:56.323Z", 
-        "object_repr": "Sensor on Floor 2", 
-        "object_id": "38", 
-        "change_message": "Changed current_pos_y.", 
-        "user": 1, 
-        "content_type": 15
-    }
-},
-{
-    "pk": 29, 
-    "model": "admin.logentry", 
-    "fields": {
-        "action_flag": 2, 
-        "action_time": "2015-03-17T22:02:56.357Z", 
-        "object_repr": "Sensor on Floor 2", 
-        "object_id": "37", 
-        "change_message": "Changed current_pos_x and current_pos_y.", 
-        "user": 1, 
-        "content_type": 15
-    }
-},
-{
-    "pk": 30, 
-    "model": "admin.logentry", 
-    "fields": {
-        "action_flag": 2, 
-        "action_time": "2015-03-17T22:02:56.373Z", 
-        "object_repr": "Sensor on Floor 2", 
-        "object_id": "36", 
-        "change_message": "Changed current_pos_y.", 
-        "user": 1, 
-        "content_type": 15
-    }
-},
-{
-    "pk": 31, 
-    "model": "admin.logentry", 
-    "fields": {
-        "action_flag": 2, 
-        "action_time": "2015-03-17T22:03:19.684Z", 
-        "object_repr": "Sensor on Floor 2", 
-        "object_id": "38", 
-        "change_message": "Changed current_pos_y.", 
-        "user": 1, 
-        "content_type": 15
-    }
-},
-{
-    "pk": 32, 
-    "model": "admin.logentry", 
-    "fields": {
-        "action_flag": 1, 
-        "action_time": "2015-03-17T22:05:19.732Z", 
-        "object_repr": "Sensor on Floor 2", 
-        "object_id": "39", 
-        "change_message": "", 
-        "user": 1, 
-        "content_type": 15
-    }
-},
-{
-    "pk": 33, 
-    "model": "admin.logentry", 
-    "fields": {
-        "action_flag": 2, 
-        "action_time": "2015-03-17T22:06:01.428Z", 
-        "object_repr": "Sensor on Floor 2", 
-        "object_id": "39", 
-        "change_message": "Changed current_pos_x and current_pos_y.", 
-        "user": 1, 
-        "content_type": 15
-    }
-},
-{
-    "pk": 34, 
-    "model": "admin.logentry", 
-    "fields": {
-        "action_flag": 2, 
-        "action_time": "2015-03-17T22:06:20.430Z", 
-        "object_repr": "Sensor on Floor 2", 
-        "object_id": "39", 
-        "change_message": "Changed current_pos_y.", 
-        "user": 1, 
-        "content_type": 15
-    }
-},
-{
-    "pk": 35, 
-    "model": "admin.logentry", 
-    "fields": {
-        "action_flag": 2, 
-        "action_time": "2015-03-17T22:06:42.097Z", 
-        "object_repr": "Sensor on Floor 2", 
-        "object_id": "39", 
-        "change_message": "Changed current_pos_x and current_pos_y.", 
-        "user": 1, 
-        "content_type": 15
-    }
-},
-{
-    "pk": 36, 
-    "model": "admin.logentry", 
-    "fields": {
-        "action_flag": 2, 
-        "action_time": "2015-03-17T22:06:59.969Z", 
-        "object_repr": "Sensor on Floor 2", 
-        "object_id": "39", 
-        "change_message": "Changed current_pos_y.", 
-        "user": 1, 
-        "content_type": 15
     }
 }
 ]

@@ -20,8 +20,6 @@ class Place(models.Model):
     owner = models.ForeignKey(User, verbose_name="owner", related_name="places")
     neighborhood = models.ForeignKey(Neighborhood, verbose_name="neighborhood", related_name="places")
     name = models.CharField("place", max_length=100)
-    #map = models.ImageField("map image", upload_to=settings.MAP_FILE_PATH)
-    map = models.CharField("map image", max_length=255)
     date_created = models.DateTimeField("date created", auto_now_add=True)
     date_updated = models.DateTimeField("date updated", auto_now_add=True)
 
@@ -34,8 +32,25 @@ class Place(models.Model):
         return self.name
 
 
-class Asset(models.Model):
-    place = models.ForeignKey(Place, verbose_name="place", related_name="assets")
+class Floor(models.Model):
+    place = models.ForeignKey(Place, verbose_name="place", related_name="floors")
+    number = models.PositiveIntegerField("number", default=1)
+    #map = models.ImageField("map image", upload_to=settings.MAP_FILE_PATH)
+    map = models.CharField("map image", max_length=255)
+    date_created = models.DateTimeField("date created", auto_now_add=True)
+    date_updated = models.DateTimeField("date updated", auto_now_add=True)
+
+    class Meta:
+        verbose_name = "floor"
+        verbose_name_plural = "floors"
+        ordering = ["place", "number"]
+
+    def __unicode__(self):
+        return "Floor %s" % (self.number)
+
+
+'''class Asset(models.Model):
+    floor = models.ForeignKey(Floor, verbose_name="floor", related_name="assets")
     name = models.CharField("asset", max_length=50)
     description = models.TextField("description", blank=True, null=True)
     date_created = models.DateTimeField("date created", auto_now_add=True)
@@ -44,10 +59,10 @@ class Asset(models.Model):
     class Meta:
         verbose_name = "asset"
         verbose_name_plural = "assets"
-        ordering = ["place", "name"]
+        ordering = ["floor", "name"]
 
     def __unicode__(self):
-        return self.name
+        return self.name'''
 
 
 class SensorType(models.Model):
@@ -85,7 +100,8 @@ class SensorStatus(models.Model):
 
 
 class Sensor(models.Model):
-    asset = models.ForeignKey(Asset, verbose_name="asset", related_name="sensors")
+    #asset = models.ForeignKey(Asset, verbose_name="asset", related_name="sensors")
+    floor = models.ForeignKey(Floor, verbose_name="floor", related_name="sensors")
     type = models.ForeignKey(SensorType, verbose_name="type", related_name="sensors")
     description = models.TextField("description", blank=True, null=True)
     date_created = models.DateTimeField("date created", auto_now_add=True)
@@ -99,7 +115,7 @@ class Sensor(models.Model):
     class Meta:
         verbose_name = "sensor"
         verbose_name_plural = "sensors"
-        ordering = ["asset"]
+        ordering = ["floor"]
 
     def __unicode__(self):
-        return "Sensor on %s" % self.asset
+        return "Sensor on %s" % self.floor

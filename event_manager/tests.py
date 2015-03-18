@@ -19,7 +19,6 @@ class SimpleEventTest(TestCase):
 
 
 class APITests(APITestCase):
-    fixtures = ['test_fx.json']
     def test_get_success(self):
         url = '/api/events/'
         self.client.login(username='domotina', password='domotina')

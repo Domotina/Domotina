@@ -414,7 +414,7 @@
         "is_active": true, 
         "is_superuser": true, 
         "is_staff": true, 
-        "last_login": "2015-03-10T18:13:45Z", 
+        "last_login": "2015-03-17T17:10:55.362Z", 
         "groups": [], 
         "user_permissions": [], 
         "password": "pbkdf2_sha256$12000$jTeDaK4UwLqY$ytI9/vmZ15Z6Kvj8xKPmQCXGJlKBOcRPeDKxcXPRfBo=", 
@@ -480,378 +480,121 @@
     "pk": 1, 
     "model": "map.place", 
     "fields": {
-        "map": "http://domotina.host56.com/images/ap_model1.png", 
+        "owner": 1, 
+        "date_created": "2015-03-07T20:59:03.888Z", 
         "neighborhood": 1, 
         "name": "T10 AP602", 
-        "date_updated": "2015-03-07T20:59:03.888Z", 
-        "owner": 1, 
-        "date_created": "2015-03-07T20:59:03.888Z"
+        "date_updated": "2015-03-07T20:59:03.888Z"
     }
 },
 {
     "pk": 2, 
     "model": "map.place", 
     "fields": {
-        "map": "http://domotina.host56.com/images/ap_model2.png", 
+        "owner": 1, 
+        "date_created": "2015-03-07T20:59:27.651Z", 
         "neighborhood": 1, 
         "name": "T10 AP603", 
-        "date_updated": "2015-03-07T20:59:27.651Z", 
-        "owner": 1, 
-        "date_created": "2015-03-07T20:59:27.651Z"
+        "date_updated": "2015-03-07T20:59:27.651Z"
     }
 },
 {
     "pk": 3, 
     "model": "map.place", 
     "fields": {
-        "map": "http://domotina.host56.com/images/ap_model3.png", 
+        "owner": 1, 
+        "date_created": "2015-03-08T02:24:08.983Z", 
         "neighborhood": 3, 
         "name": "Kr 69D St 25-04", 
-        "date_updated": "2015-03-08T02:24:08.983Z", 
-        "owner": 1, 
-        "date_created": "2015-03-08T02:24:08.983Z"
+        "date_updated": "2015-03-08T02:24:08.983Z"
     }
 },
 {
     "pk": 4, 
     "model": "map.place", 
     "fields": {
-        "map": "http://domotina.host56.com/images/of_model1.png", 
+        "owner": 1, 
+        "date_created": "2015-03-08T03:37:22.536Z", 
         "neighborhood": 4, 
         "name": "Office 201", 
-        "date_updated": "2015-03-08T03:37:22.536Z", 
+        "date_updated": "2015-03-08T03:37:22.536Z"
+    }
+},
+{
+    "pk": 5, 
+    "model": "map.place", 
+    "fields": {
         "owner": 1, 
+        "date_created": "2015-03-17T17:24:15.155Z", 
+        "neighborhood": 3, 
+        "name": "Kr 69A St 24-12", 
+        "date_updated": "2015-03-17T17:24:15.155Z"
+    }
+},
+{
+    "pk": 1, 
+    "model": "map.floor", 
+    "fields": {
+        "date_updated": "2015-03-08T03:37:22.536Z", 
+        "map": "http://domotina.host56.com/images/ap_model1.png", 
+        "place": 1, 
+        "number": 1, 
         "date_created": "2015-03-08T03:37:22.536Z"
     }
 },
 {
-    "pk": 1, 
-    "model": "map.asset", 
-    "fields": {
-        "date_updated": "2015-03-07T21:46:27.963Z", 
-        "date_created": "2015-03-07T21:46:27.963Z", 
-        "place": 1, 
-        "name": "Main Access Door", 
-        "description": ""
-    }
-},
-{
     "pk": 2, 
-    "model": "map.asset", 
+    "model": "map.floor", 
     "fields": {
-        "date_updated": "2015-03-07T21:47:07.591Z", 
-        "date_created": "2015-03-07T21:47:07.591Z", 
-        "place": 1, 
-        "name": "Dinning Room Light", 
-        "description": ""
+        "date_updated": "2015-03-08T03:37:22.536Z", 
+        "map": "http://domotina.host56.com/images/ap_model2.png", 
+        "place": 2, 
+        "number": 1, 
+        "date_created": "2015-03-08T03:37:22.536Z"
     }
 },
 {
     "pk": 3, 
-    "model": "map.asset", 
+    "model": "map.floor", 
     "fields": {
-        "date_updated": "2015-03-08T01:29:36.532Z", 
-        "date_created": "2015-03-08T01:29:36.532Z", 
-        "place": 1, 
-        "name": "Main Room Tv Plasma", 
-        "description": ""
+        "date_updated": "2015-03-08T03:37:22.536Z", 
+        "map": "http://domotina.host56.com/images/ap_model3.png", 
+        "place": 3, 
+        "number": 1, 
+        "date_created": "2015-03-08T03:37:22.536Z"
     }
 },
 {
     "pk": 4, 
-    "model": "map.asset", 
+    "model": "map.floor", 
     "fields": {
-        "date_updated": "2015-03-08T01:29:56.416Z", 
-        "date_created": "2015-03-08T01:29:56.416Z", 
-        "place": 1, 
-        "name": "Living Room Light", 
-        "description": ""
+        "date_updated": "2015-03-08T03:37:22.536Z", 
+        "map": "http://domotina.host56.com/images/of_model1.png", 
+        "place": 4, 
+        "number": 1, 
+        "date_created": "2015-03-08T03:37:22.536Z"
     }
 },
 {
     "pk": 5, 
-    "model": "map.asset", 
+    "model": "map.floor", 
     "fields": {
-        "date_updated": "2015-03-08T01:40:19.043Z", 
-        "date_created": "2015-03-08T01:40:19.043Z", 
-        "place": 1, 
-        "name": "Living Room Window", 
-        "description": ""
+        "date_updated": "2015-03-17T17:25:33.362Z", 
+        "map": "http://domotina.host56.com/images/ap_model6_p1.png", 
+        "place": 5, 
+        "number": 1, 
+        "date_created": "2015-03-17T17:25:33.362Z"
     }
 },
 {
     "pk": 6, 
-    "model": "map.asset", 
+    "model": "map.floor", 
     "fields": {
-        "date_updated": "2015-03-08T01:56:00.400Z", 
-        "date_created": "2015-03-08T01:56:00.400Z", 
-        "place": 2, 
-        "name": "Main Access Door", 
-        "description": ""
-    }
-},
-{
-    "pk": 7, 
-    "model": "map.asset", 
-    "fields": {
-        "date_updated": "2015-03-08T01:56:23.275Z", 
-        "date_created": "2015-03-08T01:56:23.275Z", 
-        "place": 2, 
-        "name": "Living Room Light", 
-        "description": ""
-    }
-},
-{
-    "pk": 8, 
-    "model": "map.asset", 
-    "fields": {
-        "date_updated": "2015-03-08T01:56:32.209Z", 
-        "date_created": "2015-03-08T01:56:32.209Z", 
-        "place": 2, 
-        "name": "Dinning Room Light", 
-        "description": ""
-    }
-},
-{
-    "pk": 9, 
-    "model": "map.asset", 
-    "fields": {
-        "date_updated": "2015-03-08T01:57:11.042Z", 
-        "date_created": "2015-03-08T01:57:11.042Z", 
-        "place": 2, 
-        "name": "Main Room Access Door", 
-        "description": ""
-    }
-},
-{
-    "pk": 10, 
-    "model": "map.asset", 
-    "fields": {
-        "date_updated": "2015-03-08T01:58:24.401Z", 
-        "date_created": "2015-03-08T01:58:24.401Z", 
-        "place": 2, 
-        "name": "Study Room Laptop", 
-        "description": ""
-    }
-},
-{
-    "pk": 11, 
-    "model": "map.asset", 
-    "fields": {
-        "date_updated": "2015-03-08T02:42:32.691Z", 
-        "date_created": "2015-03-08T02:42:32.691Z", 
-        "place": 3, 
-        "name": "Main Access Door", 
-        "description": ""
-    }
-},
-{
-    "pk": 12, 
-    "model": "map.asset", 
-    "fields": {
-        "date_updated": "2015-03-08T02:42:53.786Z", 
-        "date_created": "2015-03-08T02:42:53.786Z", 
-        "place": 3, 
-        "name": "Dinning Room Light", 
-        "description": ""
-    }
-},
-{
-    "pk": 13, 
-    "model": "map.asset", 
-    "fields": {
-        "date_updated": "2015-03-08T02:43:01.553Z", 
-        "date_created": "2015-03-08T02:43:01.553Z", 
-        "place": 3, 
-        "name": "Living Room Light", 
-        "description": ""
-    }
-},
-{
-    "pk": 14, 
-    "model": "map.asset", 
-    "fields": {
-        "date_updated": "2015-03-08T02:43:54.355Z", 
-        "date_created": "2015-03-08T02:43:54.355Z", 
-        "place": 3, 
-        "name": "Main Room Light", 
-        "description": ""
-    }
-},
-{
-    "pk": 15, 
-    "model": "map.asset", 
-    "fields": {
-        "date_updated": "2015-03-08T02:44:43.738Z", 
-        "date_created": "2015-03-08T02:44:43.738Z", 
-        "place": 3, 
-        "name": "Main Room Smart Curved UHD TV", 
-        "description": ""
-    }
-},
-{
-    "pk": 16, 
-    "model": "map.asset", 
-    "fields": {
-        "date_updated": "2015-03-08T02:56:07.419Z", 
-        "date_created": "2015-03-08T02:56:07.419Z", 
-        "place": 3, 
-        "name": "Study Room Window", 
-        "description": ""
-    }
-},
-{
-    "pk": 17, 
-    "model": "map.asset", 
-    "fields": {
-        "date_updated": "2015-03-08T02:56:19.749Z", 
-        "date_created": "2015-03-08T02:56:19.749Z", 
-        "place": 3, 
-        "name": "Study Room Laptop", 
-        "description": ""
-    }
-},
-{
-    "pk": 18, 
-    "model": "map.asset", 
-    "fields": {
-        "date_updated": "2015-03-08T03:02:40.245Z", 
-        "date_created": "2015-03-08T03:02:40.245Z", 
-        "place": 1, 
-        "name": "Main Room Light", 
-        "description": ""
-    }
-},
-{
-    "pk": 19, 
-    "model": "map.asset", 
-    "fields": {
-        "date_updated": "2015-03-08T03:04:44.934Z", 
-        "date_created": "2015-03-08T03:04:44.934Z", 
-        "place": 1, 
-        "name": "Main Room Window", 
-        "description": ""
-    }
-},
-{
-    "pk": 20, 
-    "model": "map.asset", 
-    "fields": {
-        "date_updated": "2015-03-08T03:05:16.668Z", 
-        "date_created": "2015-03-08T03:05:16.668Z", 
-        "place": 1, 
-        "name": "Secondary Room Laptop", 
-        "description": ""
-    }
-},
-{
-    "pk": 21, 
-    "model": "map.asset", 
-    "fields": {
-        "date_updated": "2015-03-08T03:05:32.755Z", 
-        "date_created": "2015-03-08T03:05:32.755Z", 
-        "place": 1, 
-        "name": "Study Room Laptop", 
-        "description": ""
-    }
-},
-{
-    "pk": 22, 
-    "model": "map.asset", 
-    "fields": {
-        "date_updated": "2015-03-08T03:05:49.097Z", 
-        "date_created": "2015-03-08T03:05:49.097Z", 
-        "place": 1, 
-        "name": "Study Room Light", 
-        "description": ""
-    }
-},
-{
-    "pk": 23, 
-    "model": "map.asset", 
-    "fields": {
-        "date_updated": "2015-03-08T03:17:10.105Z", 
-        "date_created": "2015-03-08T03:17:10.105Z", 
-        "place": 1, 
-        "name": "Secondary Room Window", 
-        "description": ""
-    }
-},
-{
-    "pk": 24, 
-    "model": "map.asset", 
-    "fields": {
-        "date_updated": "2015-03-08T03:38:48.628Z", 
-        "date_created": "2015-03-08T03:38:48.628Z", 
-        "place": 4, 
-        "name": "Main Access Door", 
-        "description": ""
-    }
-},
-{
-    "pk": 25, 
-    "model": "map.asset", 
-    "fields": {
-        "date_updated": "2015-03-08T03:40:29.507Z", 
-        "date_created": "2015-03-08T03:40:29.507Z", 
-        "place": 4, 
-        "name": "Waiting Room Light", 
-        "description": ""
-    }
-},
-{
-    "pk": 26, 
-    "model": "map.asset", 
-    "fields": {
-        "date_updated": "2015-03-08T03:40:39.456Z", 
-        "date_created": "2015-03-08T03:40:39.456Z", 
-        "place": 4, 
-        "name": "Waiting Room Laptop", 
-        "description": ""
-    }
-},
-{
-    "pk": 27, 
-    "model": "map.asset", 
-    "fields": {
-        "date_updated": "2015-03-08T03:47:27.820Z", 
-        "date_created": "2015-03-08T03:47:27.820Z", 
-        "place": 4, 
-        "name": "Boss Office Window", 
-        "description": ""
-    }
-},
-{
-    "pk": 28, 
-    "model": "map.asset", 
-    "fields": {
-        "date_updated": "2015-03-08T03:47:43.703Z", 
-        "date_created": "2015-03-08T03:47:43.703Z", 
-        "place": 4, 
-        "name": "Boss Office Laptop", 
-        "description": ""
-    }
-},
-{
-    "pk": 29, 
-    "model": "map.asset", 
-    "fields": {
-        "date_updated": "2015-03-08T03:52:03.741Z", 
-        "date_created": "2015-03-08T03:52:03.741Z", 
-        "place": 4, 
-        "name": "Boss Office Light", 
-        "description": ""
-    }
-},
-{
-    "pk": 30, 
-    "model": "map.asset", 
-    "fields": {
-        "date_updated": "2015-03-08T03:52:30.135Z", 
-        "date_created": "2015-03-08T03:52:30.135Z", 
-        "place": 4, 
-        "name": "Meeting Room Light", 
-        "description": ""
+        "date_updated": "2015-03-17T17:25:52.885Z", 
+        "map": "http://domotina.host56.com/images/ap_model6_p2.png", 
+        "place": 5, 
+        "number": 2, 
+        "date_created": "2015-03-17T17:25:52.885Z"
     }
 },
 {
@@ -859,8 +602,8 @@
     "model": "map.sensortype", 
     "fields": {
         "is_enabled": true, 
-        "name": "Movement",
-        "is_continuous": false
+        "is_continuous": false, 
+        "name": "Movement"
     }
 },
 {
@@ -868,8 +611,8 @@
     "model": "map.sensortype", 
     "fields": {
         "is_enabled": true, 
-        "name": "Locked",
-        "is_continuous": false
+        "is_continuous": false, 
+        "name": "Locked"
     }
 },
 {
@@ -877,8 +620,8 @@
     "model": "map.sensortype", 
     "fields": {
         "is_enabled": true, 
-        "name": "Light",
-        "is_continuous": false
+        "is_continuous": false, 
+        "name": "Light"
     }
 },
 {
@@ -887,11 +630,11 @@
     "fields": {
         "is_enabled": true, 
         "ref_code": 1, 
-        "type": 2, 
+        "min_continuous": 0.0, 
         "name": "Locked", 
-        "icon": "http://domotina.host56.com/images/lock_icon.png",
-        "max_continuous":0.0,
-        "min_continuous":0.0
+        "max_continuous": 0.0, 
+        "type": 2, 
+        "icon": "http://domotina.host56.com/images/lock_icon.png"
     }
 },
 {
@@ -900,11 +643,11 @@
     "fields": {
         "is_enabled": true, 
         "ref_code": 0, 
-        "type": 2, 
+        "min_continuous": 0.0, 
         "name": "Unlocked", 
-        "icon": "http://domotina.host56.com/images/unlock_icon.png",
-        "max_continuous":0.0,
-        "min_continuous":0.0
+        "max_continuous": 0.0, 
+        "type": 2, 
+        "icon": "http://domotina.host56.com/images/unlock_icon.png"
     }
 },
 {
@@ -913,11 +656,11 @@
     "fields": {
         "is_enabled": true, 
         "ref_code": 1, 
-        "type": 3, 
+        "min_continuous": 0.0, 
         "name": "On", 
-        "icon": "http://domotina.host56.com/images/bulb_on.png",
-        "max_continuous":0.0,
-        "min_continuous":0.0
+        "max_continuous": 0.0, 
+        "type": 3, 
+        "icon": "http://domotina.host56.com/images/bulb_on.png"
     }
 },
 {
@@ -926,11 +669,11 @@
     "fields": {
         "is_enabled": true, 
         "ref_code": 0, 
-        "type": 3, 
+        "min_continuous": 0.0, 
         "name": "Off", 
-        "icon": "http://domotina.host56.com/images/bulb_off.png",
-        "max_continuous":0.0,
-        "min_continuous":0.0
+        "max_continuous": 0.0, 
+        "type": 3, 
+        "icon": "http://domotina.host56.com/images/bulb_off.png"
     }
 },
 {
@@ -939,11 +682,11 @@
     "fields": {
         "is_enabled": true, 
         "ref_code": 1, 
-        "type": 1, 
+        "min_continuous": 0.0, 
         "name": "Yes", 
-        "icon": "http://domotina.host56.com/images/move.png",
-        "max_continuous":0.0,
-        "min_continuous":0.0
+        "max_continuous": 0.0, 
+        "type": 1, 
+        "icon": "http://domotina.host56.com/images/move.png"
     }
 },
 {
@@ -952,11 +695,11 @@
     "fields": {
         "is_enabled": true, 
         "ref_code": 0, 
-        "type": 1, 
+        "min_continuous": 0.0, 
         "name": "No", 
-        "icon": "http://domotina.host56.com/images/no_move.png",
-        "max_continuous":0.0,
-        "min_continuous":0.0
+        "max_continuous": 0.0, 
+        "type": 1, 
+        "icon": "http://domotina.host56.com/images/no_move.png"
     }
 },
 {
@@ -965,10 +708,10 @@
     "fields": {
         "current_pos_x": 600, 
         "description": "", 
+        "floor": 1, 
         "date_updated": "2015-03-08T00:37:18.436Z", 
         "current_status_id": 1, 
         "current_date": "2015-03-07T16:48:50Z", 
-        "asset": 1, 
         "date_created": "2015-03-07T21:48:52.275Z", 
         "type": 2, 
         "current_pos_y": 350
@@ -980,10 +723,10 @@
     "fields": {
         "current_pos_x": 468, 
         "description": "", 
+        "floor": 1, 
         "date_updated": "2015-03-10T18:25:11.733Z", 
         "current_status_id": 1, 
         "current_date": "2015-03-07T17:11:47Z", 
-        "asset": 2, 
         "date_created": "2015-03-07T22:11:49.552Z", 
         "type": 3, 
         "current_pos_y": 310
@@ -995,10 +738,10 @@
     "fields": {
         "current_pos_x": 462, 
         "description": "", 
+        "floor": 1, 
         "date_updated": "2015-03-10T18:25:11.750Z", 
         "current_status_id": 1, 
         "current_date": "2015-03-07T20:30:49Z", 
-        "asset": 4, 
         "date_created": "2015-03-08T01:30:52.231Z", 
         "type": 3, 
         "current_pos_y": 123
@@ -1010,10 +753,10 @@
     "fields": {
         "current_pos_x": 125, 
         "description": "", 
+        "floor": 1, 
         "date_updated": "2015-03-10T18:25:11.799Z", 
         "current_status_id": 0, 
         "current_date": "2015-03-07T20:31:33Z", 
-        "asset": 3, 
         "date_created": "2015-03-08T01:31:36.824Z", 
         "type": 1, 
         "current_pos_y": 145
@@ -1025,10 +768,10 @@
     "fields": {
         "current_pos_x": 462, 
         "description": "", 
+        "floor": 1, 
         "date_updated": "2015-03-10T18:25:11.766Z", 
         "current_status_id": 0, 
         "current_date": "2015-03-07T20:45:16Z", 
-        "asset": 5, 
         "date_created": "2015-03-08T01:45:24.740Z", 
         "type": 2, 
         "current_pos_y": 40
@@ -1040,10 +783,10 @@
     "fields": {
         "current_pos_x": 425, 
         "description": "", 
+        "floor": 2, 
         "date_updated": "2015-03-10T18:25:11.883Z", 
         "current_status_id": 1, 
         "current_date": "2015-03-07T21:25:38Z", 
-        "asset": 8, 
         "date_created": "2015-03-08T02:25:43.315Z", 
         "type": 3, 
         "current_pos_y": 95
@@ -1055,10 +798,10 @@
     "fields": {
         "current_pos_x": 570, 
         "description": "", 
+        "floor": 2, 
         "date_updated": "2015-03-10T18:25:11.900Z", 
         "current_status_id": 1, 
         "current_date": "2015-03-07T21:29:04Z", 
-        "asset": 7, 
         "date_created": "2015-03-08T02:29:07.638Z", 
         "type": 3, 
         "current_pos_y": 135
@@ -1070,10 +813,10 @@
     "fields": {
         "current_pos_x": 640, 
         "description": "", 
+        "floor": 2, 
         "date_updated": "2015-03-08T02:34:32.622Z", 
         "current_status_id": 1, 
         "current_date": "2015-03-07T21:30:23Z", 
-        "asset": 6, 
         "date_created": "2015-03-08T02:30:27.347Z", 
         "type": 2, 
         "current_pos_y": 335
@@ -1085,10 +828,10 @@
     "fields": {
         "current_pos_x": 193, 
         "description": "", 
+        "floor": 2, 
         "date_updated": "2015-03-08T02:38:25.564Z", 
         "current_status_id": 1, 
         "current_date": "2015-03-07T21:30:59Z", 
-        "asset": 9, 
         "date_created": "2015-03-08T02:31:02.069Z", 
         "type": 2, 
         "current_pos_y": 205
@@ -1100,10 +843,10 @@
     "fields": {
         "current_pos_x": 408, 
         "description": "", 
+        "floor": 2, 
         "date_updated": "2015-03-10T18:25:11.916Z", 
         "current_status_id": 0, 
         "current_date": "2015-03-07T21:31:32Z", 
-        "asset": 10, 
         "date_created": "2015-03-08T02:31:35.039Z", 
         "type": 1, 
         "current_pos_y": 280
@@ -1115,10 +858,10 @@
     "fields": {
         "current_pos_x": 52, 
         "description": "", 
+        "floor": 3, 
         "date_updated": "2015-03-10T18:25:11.933Z", 
         "current_status_id": 1, 
         "current_date": "2015-03-07T21:46:41Z", 
-        "asset": 12, 
         "date_created": "2015-03-08T02:46:44.004Z", 
         "type": 2, 
         "current_pos_y": 265
@@ -1130,10 +873,10 @@
     "fields": {
         "current_pos_x": 150, 
         "description": "", 
+        "floor": 3, 
         "date_updated": "2015-03-10T18:25:11.949Z", 
         "current_status_id": 1, 
         "current_date": "2015-03-07T21:47:19Z", 
-        "asset": 13, 
         "date_created": "2015-03-08T02:47:20.973Z", 
         "type": 3, 
         "current_pos_y": 295
@@ -1145,10 +888,10 @@
     "fields": {
         "current_pos_x": 32, 
         "description": "", 
+        "floor": 3, 
         "date_updated": "2015-03-08T03:01:08.067Z", 
         "current_status_id": 1, 
         "current_date": "2015-03-07T21:48:01Z", 
-        "asset": 11, 
         "date_created": "2015-03-08T02:48:02.937Z", 
         "type": 2, 
         "current_pos_y": 335
@@ -1160,10 +903,10 @@
     "fields": {
         "current_pos_x": 585, 
         "description": "", 
+        "floor": 3, 
         "date_updated": "2015-03-10T18:25:12.008Z", 
         "current_status_id": 1, 
         "current_date": "2015-03-07T21:48:30Z", 
-        "asset": 14, 
         "date_created": "2015-03-08T02:48:32.039Z", 
         "type": 3, 
         "current_pos_y": 115
@@ -1175,10 +918,10 @@
     "fields": {
         "current_pos_x": 660, 
         "description": "", 
+        "floor": 3, 
         "date_updated": "2015-03-10T18:25:12.091Z", 
         "current_status_id": 0, 
         "current_date": "2015-03-07T21:48:58Z", 
-        "asset": 15, 
         "date_created": "2015-03-08T02:49:00.267Z", 
         "type": 1, 
         "current_pos_y": 105
@@ -1190,10 +933,10 @@
     "fields": {
         "current_pos_x": 362, 
         "description": "", 
+        "floor": 3, 
         "date_updated": "2015-03-10T18:25:12.116Z", 
         "current_status_id": 0, 
         "current_date": "2015-03-07T21:57:20Z", 
-        "asset": 17, 
         "date_created": "2015-03-08T02:57:22.793Z", 
         "type": 1, 
         "current_pos_y": 130
@@ -1205,10 +948,10 @@
     "fields": {
         "current_pos_x": 335, 
         "description": "", 
+        "floor": 3, 
         "date_updated": "2015-03-10T18:25:12.133Z", 
         "current_status_id": 0, 
         "current_date": "2015-03-07T21:57:45Z", 
-        "asset": 16, 
         "date_created": "2015-03-08T02:57:47.926Z", 
         "type": 2, 
         "current_pos_y": 80
@@ -1220,10 +963,10 @@
     "fields": {
         "current_pos_x": 65, 
         "description": "", 
+        "floor": 1, 
         "date_updated": "2015-03-10T18:25:11.783Z", 
         "current_status_id": 0, 
         "current_date": "2015-03-07T22:03:17Z", 
-        "asset": 18, 
         "date_created": "2015-03-08T03:03:19.204Z", 
         "type": 3, 
         "current_pos_y": 150
@@ -1235,10 +978,10 @@
     "fields": {
         "current_pos_x": 65, 
         "description": "", 
+        "floor": 1, 
         "date_updated": "2015-03-08T03:13:05.280Z", 
         "current_status_id": 1, 
         "current_date": "2015-03-07T22:06:25Z", 
-        "asset": 19, 
         "date_created": "2015-03-08T03:06:27.477Z", 
         "type": 2, 
         "current_pos_y": 40
@@ -1250,10 +993,10 @@
     "fields": {
         "current_pos_x": 248, 
         "description": "", 
+        "floor": 1, 
         "date_updated": "2015-03-10T18:25:11.816Z", 
         "current_status_id": 1, 
         "current_date": "2015-03-07T22:07:02Z", 
-        "asset": 20, 
         "date_created": "2015-03-08T03:07:04.306Z", 
         "type": 1, 
         "current_pos_y": 141
@@ -1265,10 +1008,10 @@
     "fields": {
         "current_pos_x": 340, 
         "description": "", 
+        "floor": 1, 
         "date_updated": "2015-03-10T18:25:11.866Z", 
         "current_status_id": 0, 
         "current_date": "2015-03-07T22:08:05Z", 
-        "asset": 22, 
         "date_created": "2015-03-08T03:08:09.763Z", 
         "type": 3, 
         "current_pos_y": 345
@@ -1280,10 +1023,10 @@
     "fields": {
         "current_pos_x": 369, 
         "description": "", 
+        "floor": 1, 
         "date_updated": "2015-03-10T18:25:11.849Z", 
         "current_status_id": 0, 
         "current_date": "2015-03-07T22:08:34Z", 
-        "asset": 21, 
         "date_created": "2015-03-08T03:08:36.495Z", 
         "type": 1, 
         "current_pos_y": 372
@@ -1295,10 +1038,10 @@
     "fields": {
         "current_pos_x": 200, 
         "description": "", 
+        "floor": 1, 
         "date_updated": "2015-03-10T18:25:11.833Z", 
         "current_status_id": 0, 
         "current_date": "2015-03-07T22:17:42Z", 
-        "asset": 23, 
         "date_created": "2015-03-08T03:17:44.597Z", 
         "type": 2, 
         "current_pos_y": 40
@@ -1310,10 +1053,10 @@
     "fields": {
         "current_pos_x": 355, 
         "description": "", 
+        "floor": 4, 
         "date_updated": "2015-03-10T18:25:11.666Z", 
         "current_status_id": 0, 
         "current_date": "2015-03-07T22:41:26Z", 
-        "asset": 24, 
         "date_created": "2015-03-08T03:41:30.150Z", 
         "type": 2, 
         "current_pos_y": 375
@@ -1325,10 +1068,10 @@
     "fields": {
         "current_pos_x": 355, 
         "description": "", 
+        "floor": 4, 
         "date_updated": "2015-03-10T18:25:11.716Z", 
         "current_status_id": 1, 
         "current_date": "2015-03-07T22:41:54Z", 
-        "asset": 25, 
         "date_created": "2015-03-08T03:41:56.596Z", 
         "type": 3, 
         "current_pos_y": 325
@@ -1340,10 +1083,10 @@
     "fields": {
         "current_pos_x": 355, 
         "description": "", 
+        "floor": 4, 
         "date_updated": "2015-03-10T18:25:11.700Z", 
         "current_status_id": 0, 
         "current_date": "2015-03-07T22:42:26Z", 
-        "asset": 26, 
         "date_created": "2015-03-08T03:42:28.174Z", 
         "type": 1, 
         "current_pos_y": 292
@@ -1355,10 +1098,10 @@
     "fields": {
         "current_pos_x": 7, 
         "description": "", 
+        "floor": 4, 
         "date_updated": "2015-03-08T03:50:55.866Z", 
         "current_status_id": 1, 
         "current_date": "2015-03-07T22:48:34Z", 
-        "asset": 27, 
         "date_created": "2015-03-08T03:48:36.483Z", 
         "type": 2, 
         "current_pos_y": 75
@@ -1370,10 +1113,10 @@
     "fields": {
         "current_pos_x": 37, 
         "description": "", 
+        "floor": 4, 
         "date_updated": "2015-03-10T18:25:11.623Z", 
         "current_status_id": 0, 
         "current_date": "2015-03-07T22:48:58Z", 
-        "asset": 28, 
         "date_created": "2015-03-08T03:49:08.223Z", 
         "type": 1, 
         "current_pos_y": 110
@@ -1385,10 +1128,10 @@
     "fields": {
         "current_pos_x": 100, 
         "description": "", 
+        "floor": 4, 
         "date_updated": "2015-03-10T18:25:11.649Z", 
         "current_status_id": 1, 
         "current_date": "2015-03-07T22:53:08Z", 
-        "asset": 29, 
         "date_created": "2015-03-08T03:53:10.052Z", 
         "type": 3, 
         "current_pos_y": 90
@@ -1400,13 +1143,148 @@
     "fields": {
         "current_pos_x": 120, 
         "description": "", 
+        "floor": 4, 
         "date_updated": "2015-03-10T18:25:11.683Z", 
         "current_status_id": 0, 
         "current_date": "2015-03-07T22:53:41Z", 
-        "asset": 30, 
         "date_created": "2015-03-08T03:53:46.127Z", 
         "type": 3, 
         "current_pos_y": 290
+    }
+},
+{
+    "pk": 31, 
+    "model": "map.sensor", 
+    "fields": {
+        "current_pos_x": 120, 
+        "description": "Living Room Light", 
+        "floor": 5, 
+        "date_updated": "2015-03-17T21:55:22.867Z", 
+        "current_status_id": 1, 
+        "current_date": "2015-03-17T16:43:23Z", 
+        "date_created": "2015-03-17T21:43:46.428Z", 
+        "type": 3, 
+        "current_pos_y": 280
+    }
+},
+{
+    "pk": 32, 
+    "model": "map.sensor", 
+    "fields": {
+        "current_pos_x": 340, 
+        "description": "Dinning Room Ligth", 
+        "floor": 5, 
+        "date_updated": "2015-03-17T21:57:17.220Z", 
+        "current_status_id": 1, 
+        "current_date": "2015-03-17T16:44:36Z", 
+        "date_created": "2015-03-17T21:44:37.925Z", 
+        "type": 3, 
+        "current_pos_y": 300
+    }
+},
+{
+    "pk": 33, 
+    "model": "map.sensor", 
+    "fields": {
+        "current_pos_x": 680, 
+        "description": "Main Access Door", 
+        "floor": 5, 
+        "date_updated": "2015-03-17T21:57:54.306Z", 
+        "current_status_id": 1, 
+        "current_date": "2015-03-17T16:45:52Z", 
+        "date_created": "2015-03-17T21:45:55.032Z", 
+        "type": 2, 
+        "current_pos_y": 350
+    }
+},
+{
+    "pk": 34, 
+    "model": "map.sensor", 
+    "fields": {
+        "current_pos_x": 195, 
+        "description": "Study Room Laptop", 
+        "floor": 5, 
+        "date_updated": "2015-03-17T21:56:49.176Z", 
+        "current_status_id": 0, 
+        "current_date": "2015-03-17T16:48:15Z", 
+        "date_created": "2015-03-17T21:48:16.956Z", 
+        "type": 1, 
+        "current_pos_y": 18
+    }
+},
+{
+    "pk": 35, 
+    "model": "map.sensor", 
+    "fields": {
+        "current_pos_x": 1, 
+        "description": "Living Room Window", 
+        "floor": 5, 
+        "date_updated": "2015-03-17T21:56:14.302Z", 
+        "current_status_id": 0, 
+        "current_date": "2015-03-17T16:49:33Z", 
+        "date_created": "2015-03-17T21:49:38.163Z", 
+        "type": 2, 
+        "current_pos_y": 250
+    }
+},
+{
+    "pk": 36, 
+    "model": "map.sensor", 
+    "fields": {
+        "current_pos_x": 135, 
+        "description": "Main Room Light", 
+        "floor": 6, 
+        "date_updated": "2015-03-17T22:02:56.365Z", 
+        "current_status_id": 1, 
+        "current_date": "2015-03-17T16:58:44Z", 
+        "date_created": "2015-03-17T21:58:45.845Z", 
+        "type": 3, 
+        "current_pos_y": 280
+    }
+},
+{
+    "pk": 37, 
+    "model": "map.sensor", 
+    "fields": {
+        "current_pos_x": 120, 
+        "description": "Secondary Room Light", 
+        "floor": 6, 
+        "date_updated": "2015-03-17T22:02:56.348Z", 
+        "current_status_id": 1, 
+        "current_date": "2015-03-17T16:59:35Z", 
+        "date_created": "2015-03-17T21:59:37.492Z", 
+        "type": 3, 
+        "current_pos_y": 90
+    }
+},
+{
+    "pk": 38, 
+    "model": "map.sensor", 
+    "fields": {
+        "current_pos_x": 1, 
+        "description": "Main Room Window", 
+        "floor": 6, 
+        "date_updated": "2015-03-17T22:03:19.611Z", 
+        "current_status_id": 1, 
+        "current_date": "2015-03-17T17:00:19Z", 
+        "date_created": "2015-03-17T22:00:20.984Z", 
+        "type": 2, 
+        "current_pos_y": 265
+    }
+},
+{
+    "pk": 39, 
+    "model": "map.sensor", 
+    "fields": {
+        "current_pos_x": 575, 
+        "description": "Second Floor Living Room Tv Plasma", 
+        "floor": 6, 
+        "date_updated": "2015-03-17T22:06:59.895Z", 
+        "current_status_id": 0, 
+        "current_date": "2015-03-17T17:05:18Z", 
+        "date_created": "2015-03-17T22:05:19.731Z", 
+        "type": 1, 
+        "current_pos_y": 177
     }
 }
 ]

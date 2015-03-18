@@ -58,27 +58,25 @@ Place {{floor.place}}
     </div>
 </div>
 <div class="col-md-8 map-container">
-    <div class="panel panel-primary">
-        <div style='background-image:url("{{ floor.map }}");' class="map">
-            <canvas id="place_canvas" width="700" height="400">
-                Your browser does not support the HTML5 canvas tag.
-            </canvas>
-            <script>
-                    var sensors = [{{sensors | safe}}];
-                    function showIcons() {
-                        var c = document.getElementById("place_canvas");
-                        var ctx = c.getContext("2d");
-                        var currentSensor;
-                        for (var i in sensors) {
-                            currentSensor = new Image();
-                            currentSensor.src = sensors[i].url;
-                            ctx.drawImage(currentSensor, sensors[i].pos_x, sensors[i].pos_y);
-                        }
+    <div style='background-image:url("{{ floor.map }}");' class="map">
+        <canvas id="place_canvas" width="700" height="400">
+            Your browser does not support the HTML5 canvas tag.
+        </canvas>
+        <script>
+                var sensors = [{{sensors | safe}}];
+                function showIcons() {
+                    var c = document.getElementById("place_canvas");
+                    var ctx = c.getContext("2d");
+                    var currentSensor;
+                    for (var i in sensors) {
+                        currentSensor = new Image();
+                        currentSensor.src = sensors[i].url;
+                        ctx.drawImage(currentSensor, sensors[i].pos_x, sensors[i].pos_y);
                     }
-                    $(document).ready(showIcons);
-                    $(window).load(showIcons);
-            </script>
-        </div>
+                }
+                $(document).ready(showIcons);
+                $(window).load(showIcons);
+        </script>
     </div>
     {% if floors.paginator.num_pages > 1 %}
         <nav>

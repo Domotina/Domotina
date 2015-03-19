@@ -54,7 +54,7 @@ def myHandler(sender, instance, **kwargs):
     if instance.type.is_critical:
         alarm = Alarm(event=instance)
         alarm.save()
-    if instance.status is not None:
+    if instance.value is not None:
         instance.sensor.current_value = instance.value
     if instance.pos_x is not None:
         instance.sensor.current_pos_x = instance.pos_x

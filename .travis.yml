@@ -12,3 +12,11 @@ addons:
 before_script:
   - psql -c 'create database domotina;' -U postgres
   - python manage.py syncdb --noinput
+notifications:
+  email:
+    recipients:
+      - fredy.wilches@gmail.com
+      - restrepoescobarjosericardo@gmail.com
+      - juandavidvallejo@gmail.com
+    on_success: always
+    on_failure: never

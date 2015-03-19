@@ -46,7 +46,7 @@ class Floor(models.Model):
         ordering = ["place", "number"]
 
     def __unicode__(self):
-        return "Floor %s" % (self.number)
+        return "%s Floor %s" % (self.place, self.number)
 
 
 '''class Asset(models.Model):
@@ -81,13 +81,13 @@ class SensorType(models.Model):
 
 
 class SensorStatus(models.Model):
-    type = models.ForeignKey(SensorType)
+    type = models.ForeignKey(SensorType, verbose_name='type', related_name='statuses')
     name = models.CharField("status", max_length=50)
     icon = models.CharField("icon", max_length=255)
     is_enabled = models.BooleanField("is enabled", default=True)
     value = models.IntegerField('value', blank=True, null=True)
-    max_value = models.FloatField("max continuous", blank=True, null=True)
-    min_value = models.FloatField("min continuous", blank=True, null=True)
+    min_value = models.IntegerField("min value", blank=True, null=True)
+    max_value = models.IntegerField("max value", blank=True, null=True)
 
     class Meta:
         db_table = 'map_sensor_status'
@@ -117,14 +117,14 @@ class Sensor(models.Model):
         ordering = ["floor"]
 
     def __unicode__(self):
-        return "Sensor on %s" % self.floor
+        return "Sensor on %s" % self.description
 
     def get_status(self):
         try:
             if self.type.is_continuous:
-                status = self.type.status_set.filter(min_value__lte=self.current_value, max_value__gte=self.current_value)[:1].get()
+                status = self.type.statuses.filter(min_value__lte=self.current_value, max_value__gte=self.current_value)[:1].get()
             else:
-                status = self.type.sensorstatus_set.filter(value=self.current_value)[:1].get()
+                status = self.type.statuses.filter(value=self.current_value)[:1].get()
         except SensorStatus.DoesNotExist:
             status = None
         finally:

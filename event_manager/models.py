@@ -1,5 +1,5 @@
 from django.db import models
-from map.models import Sensor
+from map.models import Sensor, SensorStatus, SensorType
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from notificator import send_email
@@ -26,8 +26,7 @@ class Event(models.Model):
     timestamp = models.DateTimeField('date', auto_now_add=True)
     pos_x = models.IntegerField('x position', blank=True, null=True)
     pos_y = models.IntegerField('y position', blank=True, null=True)
-    status = models.IntegerField('status', blank=True, null=True)
-    value = models.FloatField('value (for continuous)', blank=True, null=True)
+    value = models.IntegerField('status', blank=True, null=True)
 
     class Meta:
         verbose_name = 'event'
@@ -35,7 +34,6 @@ class Event(models.Model):
 
     def __unicode__(self):
         return "%s at %s" % (self.type, self.timestamp)
-
 
 class Alarm(models.Model):
     event = models.ForeignKey(Event)
@@ -57,7 +55,7 @@ def myHandler(sender, instance, **kwargs):
         alarm = Alarm(event=instance)
         alarm.save()
     if instance.status is not None:
-        instance.sensor.current_status_id = instance.status
+        instance.sensor.current_value = instance.value
     if instance.pos_x is not None:
         instance.sensor.current_pos_x = instance.pos_x
     if instance.pos_y is not None:

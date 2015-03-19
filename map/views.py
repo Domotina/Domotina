@@ -48,17 +48,13 @@ def place_view(request, pk):
         sensors = Sensor.objects.filter(floor=current_floor, type=type)
 
     for sensor in sensors:
-        # Get the sensor status based on current_status_id saved by event_manager previously
-        try:
-            status = sensor.type.sensorstatus_set.filter(ref_code=sensor.current_status_id)[:1].get()
-            if status:
-                current_sensor = '{url: "%s",'\
-                    'pos_x: %d,' \
-                    'pos_y: %d}' \
-                    % (status.icon, sensor.current_pos_x, sensor.current_pos_y)
-                sensors_array.append(current_sensor)
-        except SensorStatus.DoesNotExist:
-            pass
+        status = sensor.get_status()
+        if status:
+            current_sensor = '{url: "%s",'\
+                'pos_x: %d,' \
+                'pos_y: %d}' \
+                % (status.icon, sensor.current_pos_x, sensor.current_pos_y)
+            sensors_array.append(current_sensor)
 
     sensors_json = ','.join(sensors_array)
     alarm_qs = Alarm.objects.filter(event__sensor__floor=current_floor).order_by('-activation_date')

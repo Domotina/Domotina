@@ -36,8 +36,8 @@ class FloorAdmin(admin.ModelAdmin):
 
 
 class SensorAdmin(admin.ModelAdmin):
-    list_display = ("get_place", "floor", "description", "current_status_id", "current_pos_x", "current_pos_y")
-    list_editable = ("current_status_id", "current_pos_x", "current_pos_y")
+    list_display = ("get_place", "floor", "description", "current_value", "current_pos_x", "current_pos_y")
+    list_editable = ("current_value", "current_pos_x", "current_pos_y")
     list_filter = ("floor", "type", "description")
     search_fields = ("floor", "type", "description")
 

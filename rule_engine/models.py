@@ -1,61 +1,69 @@
 from django.db import models
-from map.models import Sensor, SensorStatus, SensorType
-# Create your models here.
+from map.models import Sensor, SensorStatus
 
-class Rule(models.Model):
+"""
+Model: ScheduleDaily
+Description: This model is designed to manage the daily schedules for assets or sensors located in his/her property, with the purpose of define the rules of using and actions to take in cases which the rule is not fulfilled.
+Version: 1.0.0
+Creation date: 20/03/2015
+Autor: Luis Felipe Mendivelso Osorio
+Last modification: 20/03/2015
+Modify by: No one
+"""
+
+class ScheduleDaily(models.Model):
     sensor = models.ForeignKey(Sensor)
     status = models.ForeignKey(SensorStatus)
-    description = models.CharField("description",max_length=255)
-
-    class Meta:
-        db_table = 'rule_engine_rule'
-        verbose_name = "rule"
-        verbose_name_plural = "rules"
-
-    def __unicode__(self):
-        return "%s: %s" % (self.sensor, self.status.name)
-
-class Schedule(models.Model):
-    sensor = models.ForeignKey(Sensor)
-    begin_time = models.DateTimeField("begin")
-    end_time = models.DateTimeField("end")
+    begin_time = models.TimeField("begin")
+    end_time = models.TimeField("end")
     description = models.CharField("Schedule Description", max_length=255)
 
     class Meta:
-        db_table = 'rule_engine_schedule'
-        verbose_name = "Schedule"
-        verbose_name_plural = "Schedules"
+        db_table = 'rules_schedule_daily'
+        verbose_name = "Daily Schedule"
+        verbose_name_plural = "Daily Schedules"
 
     def __unicode__(self):
-        return "%s %s %s %s" % (self.sensor, self.begin_time, self.end_time, self.description)
+        return "Sensor: %s -> %s - %s. Description: %s" % (self.sensor, self.begin_time, self.end_time, self.description)
 
+"""
+Model: ActionType
+Description: ActionType is a model created to define the kind of actions that Domotina could do it, when a rules of schedule is not fulfilled.
+Version: 1.0.0
+Creation date: 20/03/2015
+Autor: Luis Felipe Mendivelso Osorio
+Last modification: 20/03/2015
+Modify by: No one
+"""
 class ActionType(models.Model):
     name = models.CharField("action", max_length=50)
 
     class Meta:
-        db_table = 'rule_engine_action_type'
+        db_table = 'rules_action_type'
         verbose_name = "Action Type"
         verbose_name_plural = "Action Types"
 
     def __unicode__(self):
         return self.name
 
+"""
+Model: Action
+Description: Action is a model which to define all possible actions that Domotina have to do, when a rules of schedule defined by user is not fulfilled.
+Version: 1.0.0
+Creation date: 20/03/2015
+Autor: Luis Felipe Mendivelso Osorio
+Last modification: 20/03/2015
+Modify by: No one
+"""
 class Action(models.Model):
     action = models.ForeignKey(ActionType)
-    rule = models.ForeignKey(Rule,blank=True,null=True)
-    schedule = models.ForeignKey(Schedule,blank=True,null=True)
+    schedule = models.ForeignKey(ScheduleDaily)
     message = models.CharField("message",max_length=255)
 
     class Meta:
-        db_table = 'rule_engine_action'
+        db_table = 'rules_action'
         verbose_name = "Action"
         verbose_name_plural = "Actions"
 
     def __unicode__(self):
-        str = ""
-        if self.rule is not None:
-            str = "%s %s " % (self.action.name, self.rule)
-        else:
-            str = "%s %s " % (self.action.name, self.schedule)
-
-        return str
+        return  "%s -> %s " % (self.action.name, self.schedule)

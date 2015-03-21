@@ -404,6 +404,28 @@
         "content_type": 15
     }
 },
+   {
+      "pk":1,
+      "model":"auth.group",
+      "fields":{
+         "name":"UsersCentral",
+         "permissions":[
+            2
+         ]
+      }
+   },
+   {
+      "pk":2,
+      "model":"auth.group",
+      "fields":{
+         "name":"UsersOwners",
+         "permissions":[
+            34,
+            35,
+            36
+         ]
+      }
+   },
 {
     "pk": 1,
     "model": "auth.user",
@@ -422,6 +444,50 @@
         "date_joined": "2015-03-07T20:01:23Z"
     }
 },
+   {
+      "pk":2,
+      "model":"auth.user",
+      "fields":{
+         "username":"central",
+         "first_name":"Usuario",
+         "last_name":"Central",
+         "is_active":true,
+         "is_superuser":false,
+         "is_staff":false,
+         "last_login":"2015-03-21T22:13:26.308Z",
+         "groups":[
+            1
+         ],
+         "user_permissions":[
+
+         ],
+         "password":"pbkdf2_sha256$12000$c59nhEY8EnFF$UbXvE/gDmDc2n928B9D+wN5wf9RojB/4r9TYmg/OYB0=",
+         "email":"raul.gomezn@hotmail.com",
+         "date_joined":"2015-03-21T15:59:16Z"
+      }
+   },
+   {
+      "pk":3,
+      "model":"auth.user",
+      "fields":{
+         "username":"user",
+         "first_name":"Usuario",
+         "last_name":"Propietario",
+         "is_active":true,
+         "is_superuser":false,
+         "is_staff":false,
+         "last_login":"2015-03-21T22:12:47.770Z",
+         "groups":[
+            2
+         ],
+         "user_permissions":[
+
+         ],
+         "password":"pbkdf2_sha256$12000$VWJRLICOiKez$CtVqE1CjkxHkePTyXaw4ckodgDViaNIGfkCLPiyvcXc=",
+         "email":"raul.gomezn@hotmail.com",
+         "date_joined":"2015-03-21T17:21:32Z"
+      }
+   },
 {
     "pk": 1,
     "model": "event_manager.eventtype",

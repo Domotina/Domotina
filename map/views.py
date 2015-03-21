@@ -4,8 +4,16 @@ from models import Place, Floor, Sensor, SensorStatus, SensorType
 from event_manager.models import Event, Alarm
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.contrib.auth.decorators import permission_required
+from django.contrib.auth.models import Group, User
+from django.contrib.auth.decorators import user_passes_test
+
+
+def user_can_see(user):
+    return user.is_superuser or user.groups.filter(name='UsersOwners').exists()
 
 @login_required
+@user_passes_test(user_can_see, login_url='/central/')
 def my_places(request):
     places = Place.objects.filter(owner=request.user)
     context = {'user': request.user, 'places': places}

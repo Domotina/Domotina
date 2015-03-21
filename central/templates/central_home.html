@@ -39,3 +39,18 @@
     </nav>
     {% endblock %}
 
+    {% block content %}
+    <div class="well">
+        <ul class="list-unstyled">
+            <li class="btn"><a href='create'>
+                <img src='{% static "img/home-icon.png" %}' class="img-rounded"/>
+                <p>Creating massive property</p>
+            </a></li>
+            <li class="btn"><a href='#'>
+                <img src='{% static "img/home-icon.png" %}' class="img-rounded"/>
+                <p>Administration Homeowners</p>
+            </a></li>
+        </ul>
+    </div>
+{% endblock %}
+

@@ -30,9 +30,11 @@ Autor: Luis Felipe Mendivelso Osorio
 Last modification: 20/03/2015
 Modify by: No one
 """
+
+
 class ScheduleDaily(models.Model):
-    sensor = models.ForeignKey(Sensor)
-    status = models.ForeignKey(SensorStatus)
+    sensor = models.ForeignKey(Sensor, verbose_name='sensor', related_name='schedules')
+    status = models.ForeignKey(SensorStatus, verbose_name='status', related_name='schedules')
     begin_time = models.TimeField("begin")
     end_time = models.TimeField("end")
     actionType = models.ForeignKey(ActionType)

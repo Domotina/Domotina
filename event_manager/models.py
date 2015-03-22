@@ -29,19 +29,27 @@ class Event(models.Model):
         notify = False
         # Search the sensor status of the event
         status = self.get_status()
+        schedules = None
         # Search all daily schedule with status and sensor of the event
-        schedules = ScheduleDaily.objects.filter(status=status, sensor=self.sensor)
-        # If sensor has schedules to check, then check if any has broken a rule defined by the owner or domotina's central.
+        if status:
+            schedules = self.sensor.schedules.filter(status=status)
+        '''
+        If sensor has schedules to check, then check if any has broken
+        a rule defined by the owner or domotina's central
+        '''
         if schedules:
             for schedule in schedules:
-                # If sensor status on the event is between time intervals that is not allowed to using, then generate a alarm.
+                '''
+                If sensor status on the event is between time intervals
+                that is not allowed to using, then generate a alarm
+                '''
                 if (self.timestamp.time() > schedule.begin_time) & (self.timestamp.time() < schedule.end_time):
-                   # Check the type of action to take on schedule
-                   if schedule.actionType.id == 1:
-                       notify = True
-                       print ("A schedule was checked and processed")
+                    # Check the type of action to take on schedule
+                    if schedule.actionType.id == 1:
+                        notify = True
+                        print ("A schedule was checked and processed")
                 else:
-                    print ("The sensor is OK with the rule: "+ str(schedule))
+                    print ("The sensor is OK with the rule: " + str(schedule))
 
         else:
             print ("The sensor self does not have schedules.")
@@ -94,9 +102,9 @@ def alarm_handler(sender, instance, created, **kwargs):
         try:
             d.start()
         except:
-           print ("Error in check_schedule.")
-           print traceback.format_exc()
-           d.join()
+            print ("Error in check_schedule.")
+            print traceback.format_exc()
+            d.join()
         instance.notified = True
         instance.activated = False
         instance.save()

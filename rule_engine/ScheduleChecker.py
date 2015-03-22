@@ -6,6 +6,7 @@ from django.core.mail import EmailMessage
 from domotina.settings import EMAIL_HOST_USER, URL
 from django.utils.html import format_html
 from django.template import defaultfilters
+import threading
 """
 Description: check_schedule is method designed to check if a event has broken a rule defined by the owner of a property.
 Version: 1.0.0
@@ -14,6 +15,17 @@ Autor: Luis Felipe Mendivelso Osorio
 Last modification: 20/03/2015
 Modify by: No one
 """
+
+def create_checker(event):
+    d = threading.Thread(name='daemon', target=check_schedule(event))
+    d.setDaemon(True)
+    try:
+        d.start()
+    except:
+        print ("Error in check_schedule.")
+        print traceback.format_exc()
+        d.join()
+
 
 def check_schedule(event):
     # Search the sensor status of the event

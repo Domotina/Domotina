@@ -2,7 +2,12 @@ from django.db import models
 from map.models import Sensor, SensorStatus, SensorType
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from notificator import send_email
+from map.models import SensorStatus
+from rule_engine.models import ScheduleDaily
+from event_manager.models import Alarm
+from event_manager.notificator import send_email
+import threading
+import traceback
 
 # Create your models here.
 
@@ -34,6 +39,29 @@ class Event(models.Model):
 
     def __unicode__(self):
         return "%s at %s" % (self.type, self.timestamp)
+
+    def is_reportable(self):
+        # Create a flat to check if the event has to notify.
+        notify = False;
+        # Search the sensor status of the event
+        status = SensorStatus.objects.filter(value=self.value,type=self.sensor.type)[0]
+        # Search all daily schedule with status and sensor of the event
+        schedules = ScheduleDaily.objects.filter(status=status, sensor=self.sensor)
+        # If sensor has schedules to check, then check if any has broken a rule defined by the owner or domotina's central.
+        if schedules:
+            for schedule in schedules:
+                # If sensor status on the event is between time intervals that is not allowed to using, then generate a alarm.
+                if (self.timestamp.time() > schedule.begin_time) & (self.timestamp.time() < schedule.end_time):
+                   # Check the type of action to take on schedule
+                   if schedule.actionType.id == 1:
+                       notify = True
+                       print ("A schedule was checked and processed")
+                else:
+                    print ("The sensor is OK with the rule: "+ str(schedule))
+
+        else:
+            print ("The sensor self does not have schedules.")
+        return notify
 
 class Alarm(models.Model):
     event = models.ForeignKey(Event)
@@ -67,7 +95,15 @@ def myHandler(sender, instance, **kwargs):
 @receiver(post_save, sender=Alarm)
 def alarmHandler(sender, instance, created, **kwargs):
     if(created):
-        send_email(instance)
+        # Create a email with alarm
+        d = threading.Thread(name='daemon', target=send_email(instance))
+        d.setDaemon(True)
+        try:
+            d.start()
+        except:
+           print ("Error in check_schedule.")
+           print traceback.format_exc()
+           d.join()
         instance.notified = True
         instance.activated = False
         instance.save()

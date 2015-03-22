@@ -36,7 +36,6 @@ class ScheduleDaily(models.Model):
     begin_time = models.TimeField("begin")
     end_time = models.TimeField("end")
     actionType = models.ForeignKey(ActionType)
-    message = models.TextField("Message:", max_length=255)
 
     class Meta:
         db_table = 'rules_schedule_daily'

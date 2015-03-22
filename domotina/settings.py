@@ -33,7 +33,8 @@ INSTALLED_APPS = (
     'event_manager',
     'rest_framework',
     'map',
-    'central'
+    'central',
+    'rule_engine',
 )
 
 MIDDLEWARE_CLASSES = (

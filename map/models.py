@@ -83,6 +83,7 @@ class SensorType(models.Model):
 class SensorStatus(models.Model):
     type = models.ForeignKey(SensorType, verbose_name='type', related_name='statuses')
     name = models.CharField("status", max_length=50)
+    msg = models.TextField("message")
     icon = models.CharField("icon", max_length=255)
     is_enabled = models.BooleanField("is enabled", default=True)
     value = models.IntegerField('value', blank=True, null=True)

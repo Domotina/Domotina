@@ -122,7 +122,7 @@ Place {{floor.place}}
               <td>{{alarm.activation_date.date}}</td>
               <td>{{alarm.activation_date.time}}</td>
               <td>{{alarm.event.sensor}}</td>
-              <td>{{alarm.event.type}}</td>
+              <td>{{alarm}}</td>
             </tr>
             {% endfor %}
           </tbody>
@@ -178,7 +178,7 @@ Place {{floor.place}}
               <td>{{event.timestamp.date}}</td>
               <td>{{event.timestamp.time}}</td>
               <td>{{event.sensor}}</td>
-              <td>{{event.type}}</td>
+              <td>{{event}}</td>
             </tr>
             {% endfor %}
           </tbody>

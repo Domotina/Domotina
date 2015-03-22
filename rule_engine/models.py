@@ -43,4 +43,4 @@ class ScheduleDaily(models.Model):
         verbose_name_plural = "Daily Schedules"
 
     def __unicode__(self):
-        return "Sensor: %s -> %s - %s. Action: %s. Message: %s" % (self.sensor, self.begin_time, self.end_time,self.actionType)
+        return "Sensor: %s -> %s - %s. Action: %s" % (self.sensor, self.begin_time, self.end_time,self.actionType)

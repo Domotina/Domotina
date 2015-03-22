@@ -41,11 +41,13 @@ def check_schedule(event):
                     # Check the type of action to take on schedule
                     if schedule.actionType.id == 1:
                         # Create a alarm
-                        alarm=Alarm(event=event,activation_date=event.timestamp,activated=True,notified=False)
+                        alarm=Alarm(event=event,activation_date=event.timestamp,activated=True,notified=True)
                         # Create a email with alarm and schedule information
                         email = create_email(alarm,schedule)
                         # Send the notification according of type of action.
                         email.send()
+                        # Save the alarm created.
+                        alarm.save()
                 except:
                     print ("Error in check_schedule.")
                     print traceback.format_exc()

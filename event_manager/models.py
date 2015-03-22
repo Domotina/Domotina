@@ -4,7 +4,6 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from map.models import SensorStatus
 from rule_engine.models import ScheduleDaily
-from event_manager.models import Alarm
 from event_manager.notificator import send_email
 import threading
 import traceback

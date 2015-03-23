@@ -9,5 +9,5 @@ login.onclick = function(evt){
             var modal = document.getElementById('modal');
             modal.style.display = "none";
         }
-	}
-}
+	};
+};

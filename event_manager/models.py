@@ -2,7 +2,6 @@ from django.db import models
 from map.models import Sensor
 from django.db.models.signals import post_save
 from django.dispatch import receiver
-from rule_engine.models import ScheduleDaily
 from event_manager.notificator import send_email
 import threading
 import traceback
@@ -22,7 +21,19 @@ class Event(models.Model):
         verbose_name_plural = 'events'
 
     def __unicode__(self):
-        return "%s" % self.timestamp
+        position = ''
+        status = ''
+        if self.value:
+            status += 'Status changed to %s' % (self.get_status())
+        if self.pos_x and self.pos_y:
+            position += 'Moved to %d, %d' & (self.pos_x, self.pos_y)
+        if status and position:
+            msg = status + ' and ' + position
+        elif status:
+            msg = status
+        else:
+            msg = position
+        return msg
 
     def is_reportable(self):
         # Create a flat to check if the event has to notify.

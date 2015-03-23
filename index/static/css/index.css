@@ -1,4 +1,4 @@
-a#login {
+#login {
     margin: 5px 20px !important;
 }
 
@@ -41,7 +41,7 @@ a#login {
     height: 15px;
 }
 
-.slidesjs-pagination-item a.active{
+.slidesjs-pagination-item .active{
     background-color: #000;
 }
 

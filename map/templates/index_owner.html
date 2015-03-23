@@ -41,7 +41,7 @@ Place {{floor.place}}
 
 {% block content %}
 <div>
-    <h1>{{ floor.place }}</h1>
+    <h1><span id="floor_title">{{ floor.place }}</span></h1>
 </div>
 <div class="col-md-8 map-container">
     <div class="btn-group">
@@ -56,11 +56,18 @@ Place {{floor.place}}
             {% endfor %}
         </ul>
     </div>
+    <div id="popup-panel" class="panel panel-info">
+        <div id="popup-sensor" class="panel-body">
+            Sensor detail
+        </div>
+    </div>
     <div style='background-image:url("{{ floor.map }}");' class="map">
         <canvas id="place_canvas" width="700" height="400">
             Your browser does not support the HTML5 canvas tag.
         </canvas>
         <script>
+                document.getElementById("popup-panel").style.width = '96%';
+                document.getElementById("popup-panel").style.display = 'none';
                 var sensors = [{{sensors | safe}}];
                 function showIcons() {
                     var c = document.getElementById("place_canvas");
@@ -74,6 +81,45 @@ Place {{floor.place}}
                 }
                 $(document).ready(showIcons);
                 $(window).load(showIcons);
+
+                $("#place_canvas").on("click",function(event) {
+
+                    var totalOffsetX = 0;
+                    var totalOffsetY = 0;
+                    var canvasX = 0;
+                    var canvasY = 0;
+                    var currentElement = this;
+
+                    do {
+                        totalOffsetX += currentElement.offsetLeft - currentElement.scrollLeft;
+                        totalOffsetY += currentElement.offsetTop - currentElement.scrollTop;
+                    } while(currentElement = currentElement.offsetParent)
+
+                    canvasX = event.pageX - totalOffsetX;
+                    canvasY = event.pageY - totalOffsetY;
+
+                    var is_any_sensor = false;
+                    for (var i in sensors) {
+                        if((canvasX>=sensors[i].pos_x && canvasX<=sensors[i].pos_x + 24) &&
+                                (canvasY>=sensors[i].pos_y && canvasY<=sensors[i].pos_y + 36)) {
+                            //alert("canvasX:"+canvasX+"  "+"canvasY:"+canvasY);
+                            if (sensors[i].description == "") {
+                                document.getElementById("popup-sensor").innerHTML =
+                                "Sensor on a hidden asset.<br />Status: " + sensors[i].status;
+                                document.getElementById("popup-panel").style.display = 'block';
+                            } else {
+                                document.getElementById("popup-sensor").innerHTML =
+                                "Sensor on " + sensors[i].description + "<br />Status: " + sensors[i].status;
+                                document.getElementById("popup-panel").style.display = 'block';
+                            }
+                            is_any_sensor = true;
+                        } else {
+                            if (!is_any_sensor) {
+                                document.getElementById("popup-panel").style.display = 'none';
+                            }
+                        }
+                    }
+                });
         </script>
     </div>
     {% if floors.paginator.num_pages > 1 %}
@@ -162,7 +208,6 @@ Place {{floor.place}}
         <div class="panel-heading">
             <h3 class="panel-title">EVENTS</h3>
         </div>
-
         <table class="table table-striped table-hover ">
           <thead>
             <tr>

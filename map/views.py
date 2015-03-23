@@ -60,8 +60,11 @@ def place_view(request, pk):
         if status:
             current_sensor = '{url: "%s",'\
                 'pos_x: %d,' \
-                'pos_y: %d}' \
-                % (status.icon, sensor.current_pos_x, sensor.current_pos_y)
+                'pos_y: %d,' \
+                'description: "%s",'\
+                'status: "%s"}' \
+                % (status.icon, sensor.current_pos_x, sensor.current_pos_y,
+                   sensor.description, status.name)
             sensors_array.append(current_sensor)
 
     sensors_json = ','.join(sensors_array)

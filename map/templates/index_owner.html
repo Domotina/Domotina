@@ -56,17 +56,16 @@ Place {{floor.place}}
             {% endfor %}
         </ul>
     </div>
-    <div id="popup-panel" class="panel panel-info">
-        <div id="popup-sensor" class="panel-body">
-            Sensor detail
-        </div>
-    </div>
+
+    {% block popup %}
+    {% include "popup_sensor.html" %}
+    {% endblock %}
+
     <div style='background-image:url("{{ floor.map }}");' class="map">
         <canvas id="place_canvas" width="700" height="400">
             Your browser does not support the HTML5 canvas tag.
         </canvas>
         <script>
-                document.getElementById("popup-panel").style.width = '96%';
                 document.getElementById("popup-panel").style.display = 'none';
                 var sensors = [{{sensors | safe}}];
                 function showIcons() {
@@ -83,6 +82,15 @@ Place {{floor.place}}
                 $(window).load(showIcons);
 
                 $("#place_canvas").on("click",function(event) {
+                    var modal = document.getElementById('popup-panel');
+                    modal.style.display = "block";
+
+                    modal.onclick = function(evt){
+                        if(evt.target.id == "popup-panel"){
+                            var modal = document.getElementById('popup-panel');
+                            modal.style.display = "none";
+                        }
+                    };
 
                     var totalOffsetX = 0;
                     var totalOffsetY = 0;

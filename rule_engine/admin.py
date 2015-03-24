@@ -18,7 +18,3 @@ admin.site.register(models.ActionType)
 Registration of ScheduleDaily model on Django admin module.
 """
 admin.site.register(models.ScheduleDaily)
-"""
-Registration of Action model on Django admin module.
-"""
-admin.site.register(models.Action)

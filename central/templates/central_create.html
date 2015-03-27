@@ -25,9 +25,7 @@ Massive Creation
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="navbar-content">
             <ul class="nav navbar-nav">
-                <li><a href='{% url "map_home" %}'>Places</a></li>
-                <li><a href>Alarms</a></li>
-                <li><a href>Events</a></li>
+                <li><a href='{% url "central_home" %}'>Home</a></li>
             </ul>
             {% block toggle_login %}
             {% include "login.html" %}
@@ -44,29 +42,79 @@ Massive Creation
     <script src='{% static "js/vendor/jquery.easing.min.js" %}'></script>
     <script src='{% static "js/form-central-function.js" %}'></script>
 
+    <script>
+        $(function() {
+        $("#place").change(function() {
+             alert("Han cambiado mi valor");
+            });
+        });
+    </script>
+
     <div class="col-md-12">
         <form id="msform">
         <!-- progressbar -->
             <ul id="progressbar">
             <li class="active">Site</li>
-            <li class="">Data</li>
-            <li class="">Complete!</li>
+            <li>Data</li>
+            <li>Floor Plans</li>
             </ul>
         <!-- fieldsets -->
         <fieldset>
-             <h2 class="fs-title">Step 1</h2>
-             <h3 class="fs-subtitle">This is step 1</h3>
-             <input type="text" name="email" placeholder="Email" />
-             <input type="password" name="pass" placeholder="Password" />
-             <input type="password" name="cpass" placeholder="Confirm Password" />
-             <input type="button" name="next" class="next action-button" value="Next" />
+            <h2 class="fs-title">Step 1</h2>
+            <h3 class="fs-subtitle">Hello user Central! You can create massive apartment complexes and more</h3>
+            <label for="neighborhood" >Select a Neighborhood:</label>
+            <select name="neighborhood" id="neighborhood" class="form-control">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+            </select>
+            <label for="name" >Select a Name:</label>
+            <input type="text" name="name" id="name" placeholder="Name" />
+            <label for="place" >Select a Place:</label>
+            <select name="place" id="place" class="form-control">
+                <option value="1">Residential complex</option>
+                <option value="2">Office complex</option>
+                <option value="3">Apartment complex</option>
+            </select>
+
+            <input type="button" name="next" class="next action-button" value="Next" />
         </fieldset>
         <fieldset>
             <h2 class="fs-title">Step 2</h2>
             <h3 class="fs-subtitle">Your presence on the social network</h3>
-            <input type="text" name="twitter" placeholder="Twitter" />
-            <input type="text" name="facebook" placeholder="Facebook" />
-            <input type="text" name="gplus" placeholder="Google Plus" />
+            <div class="row">
+                <div class="col-lg-6">
+                Twitter
+                </div>
+                <div class="col-lg-6">
+                    <input type="text" id="twitter" placeholder="Twitter" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                <label for="twitter" >Twitter 2</label>
+                </div>
+                <div class="col-lg-6">
+                <input type="text" name="gplus" placeholder="Google Plus" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                <label for="twitter" >Twitter 3</label>
+                </div>
+                <div class="col-lg-6">
+                <input type="text" name="gplus" placeholder="Google Plus" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-6">
+                <label for="twitter" >Twitter 4</label>
+                </div>
+                <div class="col-lg-6">
+                <input type="text" name="gplus" placeholder="Google Plus" />
+                </div>
+            </div>
+
             <input type="button" name="previous" class="previous action-button" value="Previous" />
             <input type="button" name="next" class="next action-button" value="Next" />
         </fieldset>
@@ -82,4 +130,4 @@ Massive Creation
         </fieldset>
         </form>
     </div>
-    {% endblock %}
+{% endblock %}

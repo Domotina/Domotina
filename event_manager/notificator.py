@@ -11,7 +11,10 @@ def create_email(alarm):
     place = str(alarm.event.sensor.floor.place.name)
     timestamp = defaultfilters.date(alarm.event.timestamp, "SHORT_DATETIME_FORMAT")
     status = str(alarm.event.sensor.get_status().name)
-    asset = str(alarm.event.sensor.description)
+    asset = "Hidden asset"
+    if alarm.event.sensor.description.strip() != "":
+        asset = str(alarm.event.sensor.description)
+
     description = str(alarm.event.sensor.get_status().name)
     msg = u"<html><head><meta charset='UTF-8'><style>table, th, td {{border: 1px solid black;border-collapse: collapse;}}th,td {{padding: 10px;}}table tr:nth-child(even) {{background-color: #eee;}}table tr:nth-child(odd) {{background-color:#fff;}}table th	{{background-color: black;color: white;}}</style></head>"
     msg = msg + u"<body><h1><b>{0}</b></h1><p>{1}</p>"

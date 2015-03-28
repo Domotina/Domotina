@@ -118,7 +118,7 @@ class Sensor(models.Model):
         ordering = ["floor"]
 
     def __unicode__(self):
-        return "Sensor on %s" % self.description
+        return "%s" % (self.description or 'Private asset')
 
     def get_status(self):
         try:

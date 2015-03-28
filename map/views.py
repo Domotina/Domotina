@@ -1,16 +1,16 @@
 from django.shortcuts import render, get_object_or_404
-from middleware.http import Http403
-from models import Place, Floor, Sensor, SensorStatus, SensorType
-from event_manager.models import Event, Alarm
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from django.contrib.auth.decorators import permission_required
-from django.contrib.auth.models import Group, User
 from django.contrib.auth.decorators import user_passes_test
+
+from middleware.http import Http403
+from models import Place, Floor, Sensor, SensorType
+from event_manager.models import Event, Alarm
 
 
 def user_can_see(user):
     return user.is_superuser or user.groups.filter(name='UsersOwners').exists()
+
 
 @login_required
 @user_passes_test(user_can_see, login_url='/central/')
@@ -36,7 +36,6 @@ def place_view(request, pk):
         # If page is out of range (e.g. 9999), deliver last page of results.
         floors = floor_paginator.page(floor_paginator.num_pages)
 
-
     current_floor = floors.object_list[0]
 
     if request.user != place.owner:
@@ -45,7 +44,7 @@ def place_view(request, pk):
     sensors_array = []
     type = request.GET.get('type')
     if type is not None:
-        type_param = '&type='+type
+        type_param = '&type=' + type
         type = SensorType.objects.get(pk=type)
     else:
         type_param = ''
@@ -58,17 +57,17 @@ def place_view(request, pk):
     for sensor in sensors:
         status = sensor.get_status()
         if status:
-            current_sensor = '{url: "%s",'\
-                'pos_x: %d,' \
-                'pos_y: %d,' \
-                'description: "%s",'\
-                'status: "%s"}' \
-                % (status.icon, sensor.current_pos_x, sensor.current_pos_y,
-                   sensor.description, status.name)
+            current_sensor = '{url: "%s",' \
+                             'pos_x: %d,' \
+                             'pos_y: %d,' \
+                             'description: "%s",' \
+                             'status: "%s"}' \
+                             % (status.icon, sensor.current_pos_x, sensor.current_pos_y,
+                                sensor.description, status.name)
             sensors_array.append(current_sensor)
 
     sensors_json = ','.join(sensors_array)
-    alarm_qs = Alarm.objects.filter(event__sensor__floor=current_floor).order_by('-activation_date')
+    alarm_qs = Alarm.objects.filter(event__sensor__floor=current_floor).order_by('-event__timestamp')
     event_qs = Event.objects.filter(sensor__floor=current_floor).order_by('-timestamp')
 
     types = SensorType.objects.all()
@@ -97,4 +96,4 @@ def place_view(request, pk):
 
     context = {'floor': current_floor, 'sensors': sensors_json, 'floors': floors,
                'events': events, 'alarms': alarms, 'types': types, 'type_param': type_param, 'type': type}
-    return render(request, 'index_owner.html', context)
+    return render(request, 'place_details.html', context)

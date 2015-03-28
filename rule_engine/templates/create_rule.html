@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block navbar %}
+<li><a href='{% url "map_home" %}'>Places</a></li>
+<li><a href='{% url "map_place_view" place_pk%}'>Place Map</a></li>
+<li><a href='{% url "list_rules" place_pk %}'>List rules</a></li>
+{% endblock navbar %}
+
+{% block content %}
+<div class="well">ToDo</div>
+{% endblock content %}

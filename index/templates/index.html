@@ -1,39 +1,11 @@
 {% extends "base.html"%}
 {% load static %}
 
-{% block bar %}
-<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-    <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                    data-target="#navbar-content">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="#/">
-                <span><img class="logo-sm" src='{% static "img/domotinaLogo.png" %}'/></span> Domotina
-            </a>
-        </div>
-
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="navbar-content">
-            <ul class="nav navbar-nav">
-                <li><a href>Home <span class="sr-only">(current)</span></a></li>
-                <li><a href>About Smart Home</a></li>
-                <li><a href>About Domotina</a></li>
-            </ul>
-            {% block toggle_login %}
-            {% include "login.html" %}
-            {% endblock %}
-        </div>
-        <!-- /.navbar-collapse -->
-    </div>
-    <!-- /.container-fluid -->
-</nav>
-{% endblock %}
+{% block navbar %}
+<li><a href>Home</a></li>
+<li><a href>About Smart Home</a></li>
+<li><a href>About Domotina</a></li>
+{% endblock navbar %}
 
 {% block content %}
 <div class="slider" id="slides">

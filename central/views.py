@@ -8,8 +8,6 @@ def user_can_see(user):
     return user.is_superuser or user.groups.filter(name='UsersCentral').exists()
 
 @login_required
-#@user_passes_test(user_can_see)
-#@permission_required('auth.change_logentry')
 @user_passes_test(user_can_see, login_url='/map/')
 def central_home(request):
     context = {'user': request.user}

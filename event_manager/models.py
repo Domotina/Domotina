@@ -23,9 +23,9 @@ class Event(models.Model):
     def __unicode__(self):
         position = ''
         status = ''
-        if self.value:
+        if self.value is not None:
             status += 'Status changed to %s' % (self.get_status())
-        if self.pos_x and self.pos_y:
+        if self.pos_x is not None and self.pos_y is not None:
             position += 'Moved to %d, %d' & (self.pos_x, self.pos_y)
         if status and position:
             msg = status + ' and ' + position
@@ -54,16 +54,9 @@ class Event(models.Model):
                 If sensor status on the event is between time intervals
                 that is not allowed to using, then generate a alarm
                 '''
-                if (self.timestamp.time() > schedule.begin_time) & (self.timestamp.time() < schedule.end_time):
-                    # Check the type of action to take on schedule
-                    if schedule.actionType.id == 1:
-                        notify = True
-                        print ("A schedule was checked and processed")
-                else:
-                    print ("The sensor is OK with the rule: " + str(schedule))
-
-        else:
-            print ("The sensor self does not have schedules.")
+                if (self.timestamp.time() > schedule.begin_time) and (self.timestamp.time() < schedule.end_time):
+                    notify = True
+                    break
         return notify
 
     def get_status(self):
@@ -77,8 +70,6 @@ class Event(models.Model):
 
 class Alarm(models.Model):
     event = models.ForeignKey(Event)
-    activation_date = models.DateTimeField('activation date', auto_now_add=True)
-    activated = models.BooleanField('Is activated?', default=True)
     notified = models.BooleanField('Is notified?', default=False)
 
     class Meta:
@@ -86,7 +77,7 @@ class Alarm(models.Model):
         verbose_name_plural = 'alarms'
 
     def __unicode__(self):
-        return "Alarm from %s" % self.event
+        return self.event
 
 
 @receiver(post_save, sender=Event)
@@ -117,5 +108,4 @@ def alarm_handler(sender, instance, created, **kwargs):
             print traceback.format_exc()
             d.join()
         instance.notified = True
-        instance.activated = False
         instance.save()

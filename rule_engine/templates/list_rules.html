@@ -1,8 +1,13 @@
 {% extends "base.html" %}
 {% load static %}
 
+{% block title %}
+ - Rules
+{% endblock %}
+
 {% block navbar %}
 <li><a href='{% url "map_home" %}'>Places</a></li>
+<li><a href='{% url "map_place_view" place_pk%}'>Place Map</a></li>
 <li><a href='{% url "create_rule" place_pk %}'>Create rule</a></li>
 {% endblock navbar %}
 
@@ -11,6 +16,7 @@
     <div class="panel-heading">
         <h3 class="panel-title">Rules</h3>
     </div>
+    {% if rules.count > 0 %}
     <table class="table table-striped table-hover ">
         <thead>
         <tr>
@@ -27,8 +33,14 @@
                 <a href='{% url "delete_rule" place_pk rule.pk %}' class="btn btn-danger">Delete</a>
             </td>
         </tr>
+        {% empty %}
         {% endfor %}
         </tbody>
     </table>
+    {% else %}
+    <ul class="list-group">
+        <li class="list-group-item">No rules for this place</li>
+    </ul>
+    {% endif %}
 </div>
 {% endblock content %}

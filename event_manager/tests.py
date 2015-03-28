@@ -1,22 +1,7 @@
-from django.test import TestCase
-from event_manager.models import EventType
 from rest_framework.test import APITestCase
 from rest_framework import status
 
 # Create your tests here.
-
-
-class SimpleEventTest(TestCase):
-    def test_EventType__unicode(self):
-        """
-        Test EventType.__unicode__()
-        """
-        tName = "eventName"
-        tDescription = "eventDescription"
-        tCritical = False
-        eventType = EventType(name=tName, description=tDescription, is_critical=tCritical)
-        
-        self.assertEqual(eventType.__unicode__(), tName)
 
 
 class APITests(APITestCase):
@@ -42,7 +27,7 @@ class APITests(APITestCase):
 
     def test_post_success(self):
         url = '/api/events/'
-        data = {'type': 1, 'sensor': 1}
+        data = {'sensor': 1}
         self.client.login(username='domotina', password='domotina')
         response = self.client.post(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)

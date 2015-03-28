@@ -96,4 +96,4 @@ def place_view(request, pk):
 
     context = {'floor': current_floor, 'sensors': sensors_json, 'floors': floors,
                'events': events, 'alarms': alarms, 'types': types, 'type_param': type_param, 'type': type}
-    return render(request, 'index_owner.html', context)
+    return render(request, 'place_details.html', context)

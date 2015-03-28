@@ -1,54 +1,28 @@
-    {% extends "base.html"%}
-    {% load static %}
+{% extends "base.html"%}
+{% load static %}
 
-    {% block title %}
-    Central Home
-    {% endblock %}
+{% block title %}
+Central Home
+{% endblock %}
 
-    {% block bar %}
-    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-        <div class="container-fluid">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                        data-target="#navbar-content">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#/">
-                    <span><img class="logo-sm" src='{% static "img/domotinaLogo.png" %}'/></span> Domotina
-                </a>
-            </div>
+{% block navbar %}
+<li><a href='{% url "central_home" %}'>Home</a></li>
+{% endblock navbar %}
 
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="navbar-content">
-                <ul class="nav navbar-nav">
-                    <li><a href='{% url "central_home" %}'>Home</a></li>
-                </ul>
-                {% block toggle_login %}
-                {% include "login.html" %}
-                {% endblock %}
-            </div>
-            <!-- /.navbar-collapse -->
-        </div>
-        <!-- /.container-fluid -->
-    </nav>
-    {% endblock %}
+{% block content %}
+<div class="well">
+    <ul class="list-unstyled">
+        <li class="btn"><a href='create'>
+            <img src='{% static "img/home-icon.png" %}' class="img-rounded"/>
 
-    {% block content %}
-    <div class="well">
-        <ul class="list-unstyled">
-            <li class="btn"><a href='create'>
-                <img src='{% static "img/home-icon.png" %}' class="img-rounded"/>
-                <p>Creating massive property</p>
-            </a></li>
-            <li class="btn"><a href='#'>
-                <img src='{% static "img/blue-user-icon.png" %}' class="img-rounded"/>
-                <p>Administration Homeowners</p>
-            </a></li>
-        </ul>
-    </div>
+            <p>Creating massive property</p>
+        </a></li>
+        <li class="btn"><a href='#'>
+            <img src='{% static "img/blue-user-icon.png" %}' class="img-rounded"/>
+
+            <p>Administration Homeowners</p>
+        </a></li>
+    </ul>
+</div>
 {% endblock %}
 

@@ -15,8 +15,6 @@ before_script:
 notifications:
   email:
     recipients:
-      - fredy.wilches@gmail.com
-      - restrepoescobarjosericardo@gmail.com
-      - juandavidvallejo@gmail.com
+      - le.florez602@uniandes.edu.co
     on_success: always
     on_failure: never

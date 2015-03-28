@@ -173,8 +173,8 @@ Place {{floor.place}}
           <tbody>
             {% for alarm in alarms %}
             <tr>
-              <td>{{alarm.activation_date.date}}</td>
-              <td>{{alarm.activation_date.time}}</td>
+              <td>{{alarm.event.timestamp.date}}</td>
+              <td>{{alarm.event.timestamp.time}}</td>
               <td>{{alarm.event.sensor}}</td>
               <td>{{alarm}}</td>
             </tr>

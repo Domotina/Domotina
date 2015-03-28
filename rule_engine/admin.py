@@ -12,9 +12,9 @@ Modify by: No one
 
 """
 Registration of ActionType model on Django admin module.
-"""
+
 admin.site.register(models.ActionType)
-"""
+
 Registration of ScheduleDaily model on Django admin module.
 """
 admin.site.register(models.ScheduleDaily)

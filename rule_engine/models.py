@@ -9,7 +9,7 @@ Creation date: 20/03/2015
 Autor: Luis Felipe Mendivelso Osorio
 Last modification: 20/03/2015
 Modify by: No one
-"""
+
 class ActionType(models.Model):
     name = models.CharField("action", max_length=50)
 
@@ -21,7 +21,7 @@ class ActionType(models.Model):
     def __unicode__(self):
         return self.name
 
-"""
+
 Model: ScheduleDaily
 Description: This model is designed to manage the daily schedules for assets or sensors located in his/her property, with the purpose of define the rules of using and actions to take in cases which the rule is not fulfilled.
 Version: 1.0.0
@@ -37,7 +37,7 @@ class ScheduleDaily(models.Model):
     status = models.ForeignKey(SensorStatus, verbose_name='status', related_name='schedules')
     begin_time = models.TimeField("begin")
     end_time = models.TimeField("end")
-    actionType = models.ForeignKey(ActionType)
+    #actionType = models.ForeignKey(ActionType)
 
     class Meta:
         db_table = 'rules_schedule_daily'
@@ -45,4 +45,4 @@ class ScheduleDaily(models.Model):
         verbose_name_plural = "Daily Schedules"
 
     def __unicode__(self):
-        return "Sensor: %s -> %s - %s. Action: %s" % (self.sensor, self.begin_time, self.end_time,self.actionType)
+        return "Sensor: %s -> %s - %s" % (self.sensor, self.begin_time, self.end_time)

@@ -67,7 +67,7 @@ def place_view(request, pk):
             sensors_array.append(current_sensor)
 
     sensors_json = ','.join(sensors_array)
-    alarm_qs = Alarm.objects.filter(event__sensor__floor=current_floor).order_by('-activation_date')
+    alarm_qs = Alarm.objects.filter(event__sensor__floor=current_floor).order_by('-event__timestamp')
     event_qs = Event.objects.filter(sensor__floor=current_floor).order_by('-timestamp')
 
     types = SensorType.objects.all()

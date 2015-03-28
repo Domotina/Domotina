@@ -134,6 +134,7 @@
         <div class="panel-heading">
             <h3 class="panel-title">ALARMS</h3>
         </div>
+        {% if alarms %}
         <table class="table table-striped table-hover ">
           <thead>
             <tr>
@@ -154,13 +155,11 @@
             {% endfor %}
           </tbody>
         </table>
-
+        {% else %}
         <ul class="list-group">
-            {% for alarm in alarms %}
-            {% empty %}
             <li class="list-group-item">There are no alarms in this floor</li>
-            {% endfor %}
         </ul>
+        {% endif %}
     </div>
     <nav>
         <ul class="pager">
@@ -189,6 +188,7 @@
         <div class="panel-heading">
             <h3 class="panel-title">EVENTS</h3>
         </div>
+        {% if events %}
         <table class="table table-striped table-hover ">
           <thead>
             <tr>
@@ -209,13 +209,11 @@
             {% endfor %}
           </tbody>
         </table>
-
+        {% else %}
         <ul class="list-group">
-            {% for event in events %}
-            {% empty %}
             <li class="list-group-item">There are no events in this floor</li>
-            {% endfor %}
         </ul>
+        {% endif %}
     </div>
     <nav>
         <ul class="pager">

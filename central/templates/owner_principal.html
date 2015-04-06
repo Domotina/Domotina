@@ -15,15 +15,17 @@ Owners
 <h3>Owners</h3>
 <div class="pane">
     <div class="contenedor" id="individual">
-        <img class="icon" src='{% static "image/propietario.png" %}'>
-
-        <p class="text">Individual Load</p>
+        <a href='{% url "central_individual_load" %}'>
+            <img class="icon" src='{% static "image/propietario.png" %}'>
+            <p class="text">Individual Load</p>
+        </a>
     </div>
 
     <div class="contenedor" id="full">
-        <img class="icon" src='{% static "image/huge-load.png" %}'>
-
-        <p class="text">Huge Load</p>
+        <a href='{% url "central_huge_load" %}'>
+            <img class="icon" src='{% static "image/huge-load.png" %}'>
+            <p class="text">Huge Load</p>
+        </a>
     </div>
 </div>
 {% endblock %}

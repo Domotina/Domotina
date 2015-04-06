@@ -8,15 +8,22 @@ Owners
 {% block navbar %}
 <li><a href='{% url "central_home" %}'>Home</a></li>
 <li><a href='{% url "central_create" %}'>Properties</a></li>
-<li><a href='{% url "central_owners" %}'>Owners</a></li>
+<li><a href='{% url "central_owner_principal" %}'>Owners</a></li>
 {% endblock navbar %}
 
 {% block content %}
-<div>
-    <a href="#" class="btn btn-primary btn-lg">
-        <img src='{% static "img/huge-load.png" %}' class="img-rounded"/>
-        Huge Load
-    </a>
-    <a href="#" class="btn btn-primary btn-lg">Individual Load</a>
+<h3>Owners</h3>
+<div class="pane">
+    <div class="contenedor" id="individual">
+        <img class="icon" src='{% static "image/propietario.png" %}'>
+
+        <p class="text">Individual Load</p>
+    </div>
+
+    <div class="contenedor" id="full">
+        <img class="icon" src='{% static "image/huge-load.png" %}'>
+
+        <p class="text">Huge Load</p>
+    </div>
 </div>
 {% endblock %}

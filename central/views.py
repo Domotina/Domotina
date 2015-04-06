@@ -13,6 +13,22 @@ def central_home(request):
     context = {'user': request.user}
     return render(request, 'central_home.html', context)
 
+
 def central_create(request):
     context = {'user': request.user}
     return render(request, 'central_create.html', context)
+
+
+def central_owner_principal(request):
+    context = {'user': request.user}
+    return render(request, 'owner_principal.html', context)
+
+
+def central_individual_load(request):
+    context = {'user': request.user}
+    return render(request, 'owner_individual_load.html', context)
+
+
+def central_huge_load(request):
+    context = {'user': request.user}
+    return render(request, 'owner_huge_load.html', context)

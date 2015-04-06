@@ -1,0 +1,22 @@
+{% extends "base.html"%}
+{% load static %}
+
+{% block title %}
+Owners
+{% endblock %}
+
+{% block navbar %}
+<li><a href='{% url "central_home" %}'>Home</a></li>
+<li><a href='{% url "central_create" %}'>Properties</a></li>
+<li><a href='{% url "central_owners" %}'>Owners</a></li>
+{% endblock navbar %}
+
+{% block content %}
+<div>
+    <a href="#" class="btn btn-primary btn-lg">
+        <img src='{% static "img/huge-load.png" %}' class="img-rounded"/>
+        Huge Load
+    </a>
+    <a href="#" class="btn btn-primary btn-lg">Individual Load</a>
+</div>
+{% endblock %}

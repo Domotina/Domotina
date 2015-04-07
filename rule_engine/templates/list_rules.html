@@ -7,11 +7,14 @@
 
 {% block navbar %}
 <li><a href='{% url "map_home" %}'>My places</a></li>
-<li><a href='{% url "map_place_view" place_pk%}'>Place Map</a></li>
-<li><a href='{% url "create_rule" place_pk %}'>Create rule</a></li>
+<li><a href='{% url "map_place_view" place.pk %}'>Map of {{place.name}}</a></li>
+<li><a href='{% url "create_rule" place.pk %}'>Create rule</a></li>
 {% endblock navbar %}
 
 {% block content %}
+<div>
+    <h2>{{ place.name }}</h2>
+</div>
 <div class="panel panel-warning">
     <div class="panel-heading">
         <h3 class="panel-title">Rules</h3>
@@ -35,8 +38,8 @@
             <td>{{rule.begin_time}}</td>
             <td>{{rule.end_time}}</td>
             <td>
-                <a href='{% url "edit_rule" place_pk rule.pk %}' class="btn btn-sm btn-default">Edit</a>
-                <a href='{% url "delete_rule" place_pk rule.pk %}' class="btn btn-sm btn-danger">Delete</a>
+                <a href='{% url "edit_rule" place.pk rule.pk %}' class="btn btn-sm btn-default">Edit</a>
+                <a href='{% url "delete_rule" place.pk rule.pk %}' class="btn btn-sm btn-danger">Delete</a>
             </td>
         </tr>
         {% endfor %}

@@ -2,7 +2,10 @@
 {% load static %}
 
 {% block navbar %}
-<li><a href>Home</a></li>
+<li><a href='{% url "init"%}'>Home</a></li>
+{% if user.is_authenticated %}
+    <li><a href='{% url "map_home"%}'>My places</a></li>
+{% endif %}
 <li><a href>About Smart Home</a></li>
 <li><a href>About Domotina</a></li>
 {% endblock navbar %}

@@ -37,6 +37,7 @@ def central_individual_load(request):
         userC.is_superuser = False
         userC.is_active = True
         userC.is_staff = False
+        userC.groups.add(2)
         userC.save()
         context = {'create': True, 'userC': userC}
         return render(request, 'owner_individual_load.html', context)

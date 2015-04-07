@@ -485,6 +485,22 @@
     }
 },
 {
+  "pk": 4,
+  "model": "auth.user",
+  "fields":
+  {"username": "buildersmart",
+    "first_name": "Constructora",
+    "last_name": "Smart",
+    "is_active": true,
+    "is_superuser": false,
+    "is_staff": false,
+    "last_login": "2015-04-07T20:31:31Z",
+    "groups": [2],
+    "user_permissions": [],
+    "password": "pbkdf2_sha256$12000$FkGl9x3UtHYP$48YYbAYdLDAXisurv687PPAy0fDbyqwGK+CyVKCUMBY=",
+    "email": "ra.gomez11@uniandes.edu.co",
+    "date_joined": "2015-04-07T20:31:31Z"}},
+{
     "pk": 1, 
     "model": "map.neighborhood", 
     "fields": {

@@ -4,7 +4,9 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.decorators import user_passes_test
 from django.contrib.auth.decorators import permission_required
 from models import User
+from django.contrib.auth.models import User, Permission
 from map.models import Neighborhood
+from django.db.models import Q
 
 def user_can_see(user):
     return user.is_superuser or user.groups.filter(name='UsersCentral').exists()
@@ -17,8 +19,9 @@ def central_home(request):
 
 
 def central_create(request):
+    userbuilder = User.objects.all()
     neighborhood = Neighborhood.objects.all().order_by('name')
-    context = {'user': request.user, 'neighborhood': neighborhood}
+    context = {'user': request.user, 'neighborhood': neighborhood, 'userbuilder': userbuilder}
     return render(request, 'central_create.html', context)
 
 @login_required

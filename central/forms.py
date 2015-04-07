@@ -1,8 +1,10 @@
-from django.forms import ModelForm
+from django.forms import forms
 
 from models import User
 
-class ContactForm(ModelForm):
-    class Meta:
-        model = User
-        exclude = ('id', 'last_login', 'is_superuser', 'is_staff', 'is_active', 'date_joined')
+
+# class UploadForm(forms.Form):
+#     filename = forms.CharField(label='File Name', max_length=100)
+#     docfile = forms.FileField(
+#         label='Selecciona un archivo'
+#     )

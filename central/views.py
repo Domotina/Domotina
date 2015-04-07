@@ -1,12 +1,9 @@
-from django.shortcuts import render, get_object_or_404
-from django.shortcuts import render_to_response
+from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.decorators import user_passes_test
-from django.contrib.auth.decorators import permission_required
-from models import User
 from django.contrib.auth.models import User, Permission
 from map.models import Neighborhood
-from django.db.models import Q
+from models import File
 
 def user_can_see(user):
     return user.is_superuser or user.groups.filter(name='UsersCentral').exists()
@@ -32,7 +29,6 @@ def central_owner_principal(request):
 @login_required
 def central_individual_load(request):
     if 'username' in request.GET and request.GET['username'] and 'name' in request.GET and request.GET['name'] and 'lastname' in request.GET and request.GET['lastname'] and 'email' in request.GET and request.GET['email'] and 'pass' in request.GET and request.GET['pass']:
-        print 'Entro if5'
         userC = User.objects.create_user(username=request.GET['username'], first_name=request.GET['name'], last_name=request.GET['lastname'], email=request.GET['email'], password=request.GET['pass'])
         userC.is_superuser = False
         userC.is_active = True
@@ -50,5 +46,13 @@ def central_individual_load(request):
 
 @login_required
 def central_huge_load(request):
+    # if request.method == 'POST':
+    #     form = UploadForm(request.POST, request.FILES)
+    #     if form.is_valid():
+    #     	newdoc = File(filename = request.POST['filename'],docfile = request.FILES['docfile'])
+    #     	newdoc.save(form)
+    #     	return redirect("uploads")
+    # else:
+    #     form = UploadForm()
     context = {'user': request.user}
     return render(request, 'owner_huge_load.html', context)

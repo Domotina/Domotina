@@ -10,7 +10,7 @@ Massive Creation
 <li><a href='{% url "central_create" %}'>Properties</a></li>
 <li><a href='{% url "central_owner_principal" %}'>Owners</a></li>
 {% endblock navbar %}
-<!--alert("Han cambiado mi valor "+$("#place").val());-->
+
 {% block content %}
 <script>
         $(function() {
@@ -143,12 +143,13 @@ Massive Creation
         </div>
 
         <div class="form-group">
-            <div class="col-lg-10 col-lg-offset-2">
-                <!--<button type="reset" class="btn btn-default">Reset</button>-->
-                <button type="submit" class="btn btn-primary">Generate</button>
+            <div  style="margin-left: 210px" >
+                <a href='{% url "central_home" %}' class="btn btn-default">Return</a>
+                <p style="display: inline"><input type="submit" class="btn btn-primary" value="Generate"/></p>
             </div>
         </div>
     </fieldset>
+    {% csrf_token %}
 </form>
 {% endblock %}
 <!-- another version

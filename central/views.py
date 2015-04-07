@@ -28,6 +28,19 @@ def central_owner_principal(request):
 
 @login_required
 def central_individual_load(request):
+    if 'username' in request.GET and request.GET['username'] and 'name' in request.GET and request.GET['name'] and 'lastname' in request.GET and request.GET['lastname'] and 'email' in request.GET and request.GET['email'] and 'pass' in request.GET and request.GET['pass']:
+        print 'Entro if5'
+        userC = User.objects.create_user(username=request.GET['username'], first_name=request.GET['name'], last_name=request.GET['lastname'], email=request.GET['email'], password=request.GET['pass'])
+        userC.is_superuser = False
+        userC.is_active = True
+        userC.is_staff = False
+        userC.save()
+        context = {'create': True, 'userC': userC}
+        return render(request, 'owner_individual_load.html', context)
+    else:
+        context = {'create': False}
+        return render(request, 'owner_individual_load.html', context)
+
     context = {'user': request.user}
     return render(request, 'owner_individual_load.html', context)
 
@@ -35,14 +48,3 @@ def central_individual_load(request):
 def central_huge_load(request):
     context = {'user': request.user}
     return render(request, 'owner_huge_load.html', context)
-
-@login_required()
-def create_owner(request):
-    user = User.objects.create_user(username=request.POST['username'], first_name=request.POST['name'],
-                                    last_name= request.POST['lastname'], email=request.POST['email'],
-                                    password=request.POST['pass'])
-    user.is_superuser = False
-    user.is_active = True
-    user.is_staff = False
-    user.save()
-    

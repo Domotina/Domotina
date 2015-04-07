@@ -3,6 +3,7 @@ from django.shortcuts import render_to_response
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.decorators import user_passes_test
 from django.contrib.auth.decorators import permission_required
+from map.models import Neighborhood
 
 def user_can_see(user):
     return user.is_superuser or user.groups.filter(name='UsersCentral').exists()
@@ -15,7 +16,9 @@ def central_home(request):
 
 
 def central_create(request):
-    context = {'user': request.user}
+    neighborhood = Neighborhood.objects.all().order_by('name')
+    print 'hola2'
+    context = {'user': request.user, 'neighborhood': neighborhood}
     return render(request, 'central_create.html', context)
 
 

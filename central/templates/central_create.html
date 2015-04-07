@@ -12,6 +12,92 @@ Massive Creation
 {% endblock navbar %}
 
 {% block content %}
+<form class="form-horizontal">
+    <fieldset>
+        <legend>Massive Creation</legend>
+        <p>Hello User Central! You can create massive apartment complexes and more</p>
+        <div class="form-group">
+            <label class="col-lg-2 control-label">Select a Neighborhood</label>
+
+            <div class="col-lg-10">
+                <select name="neighborhood" id="neighborhood" class="form-control">
+                <option value="0">Select</option>
+                {% for nei in neighborhood %}
+                <option value="{{nei.name}}">
+                   {{nei.name|capfirst}}
+                </option>
+                {% endfor %}
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-lg-2 control-label">Select a Name</label>
+
+            <div class="col-lg-10">
+                <input class="form-control" id="placeName" placeholder="Place Name" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-lg-2 control-label">Select a Place</label>
+
+            <div class="col-lg-10">
+                <select name="place" id="place" class="form-control">
+                <option value="1">Residential complex</option>
+                <option value="2">Office complex</option>
+                <option value="3">Apartment complex</option>
+            </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputEmail" class="col-lg-2 control-label">Email</label>
+
+            <div class="col-lg-10">
+                <input class="form-control" id="inputEmail" placeholder="Email" type="text">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="textArea" class="col-lg-2 control-label">Observations</label>
+
+            <div class="col-lg-10">
+                <textarea class="form-control" rows="3" id="textArea"></textarea>
+                <span class="help-block">A longer block for to write observations about owner.</span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-lg-2 control-label">Type User</label>
+
+            <div class="col-lg-10">
+                <div class="radio">
+                    <label>
+                        <input name="optionsRadios" id="optionsRadios1" value="option1" checked="" type="radio">
+                        Super User
+                    </label>
+                </div>
+                <div class="radio">
+                    <label>
+                        <input name="optionsRadios" id="optionsRadios2" value="option2" type="radio">
+                        Central User
+                    </label>
+                </div>
+                <div class="radio">
+                    <label>
+                        <input name="optionsRadios" id="optionsRadios3" value="option3" type="radio">
+                        Owner
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-lg-10 col-lg-offset-2">
+                <button type="reset" class="btn btn-default">Reset</button>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </div>
+    </fieldset>
+</form>
+{% endblock %}
+<!-- another version
+
     <link rel="stylesheet" href='{% static "css/central-forms.css" %}'>
     <script src='{% static "js/vendor/jquery.easing.min.js" %}'></script>
     <script src='{% static "js/form-central-function.js" %}'></script>
@@ -26,13 +112,13 @@ Massive Creation
 
     <div class="col-md-12">
         <form id="msform">
-        <!-- progressbar -->
+        &lt;!&ndash; progressbar &ndash;&gt;
             <ul id="progressbar">
             <li class="active">Site</li>
             <li>Data</li>
             <li>Floor Plans</li>
             </ul>
-        <!-- fieldsets -->
+        &lt;!&ndash; fieldsets &ndash;&gt;
         <fieldset>
             <h2 class="fs-title">Step 1</h2>
             <h3 class="fs-subtitle">Hello user Central! You can create massive apartment complexes and more</h3>
@@ -104,4 +190,4 @@ Massive Creation
         </fieldset>
         </form>
     </div>
-{% endblock %}
+-->

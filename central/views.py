@@ -36,22 +36,11 @@ def central_huge_load(request):
 
 @login_required()
 def create_owner(request):
-    user = User()
-    if 'username' in request.POST and request.POST['username']:
-        user.username = request.POST['username']
-
-    if 'name' in request.POST and request.POST['name']:
-        user.first_name = request.POST['name']
-
-    if 'lastname' in request.POST and request.POST['lastname']:
-        user.last_name = request.POST['lastname']
-
-    if 'email' in request.POST and request.POST['email']:
-        user.email = request.POST['email']
-
-    if 'pass' in request.POST and request.POST['pass']:
-        user.password = request.POST['pass']
-    user.is_superuser = 'f'
-    user.is_active = 't'
-    user.is_staff = 'f'
+    user = User.objects.create_user(username=request.POST['username'], first_name=request.POST['name'],
+                                    last_name= request.POST['lastname'], email=request.POST['email'],
+                                    password=request.POST['pass'])
+    user.is_superuser = False
+    user.is_active = True
+    user.is_staff = False
     user.save()
+    

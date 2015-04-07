@@ -3,10 +3,13 @@
 
 {% block navbar %}
 <li><a href='{% url "map_home" %}'>My places</a></li>
-<li><a href='{% url "map_place_view" place_pk%}'>Place Map</a></li>
-<li><a href='{% url "list_rules" place_pk %}'>List rules</a></li>
+<li><a href='{% url "map_place_view" place.pk%}'>Map of {{place.name}}</a></li>
+<li><a href='{% url "list_rules" place.pk %}'>List rules</a></li>
 {% endblock navbar %}
 
 {% block content %}
-<div class="well">ToDo</div>
+<div>
+    <h2>{{ place.name }}</h2>
+</div>
+<div class="well">ToDo: Here comes the form to add or edit a rule.</div>
 {% endblock content %}

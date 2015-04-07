@@ -56,7 +56,9 @@ Massive Creation
                 <select name="builder" id="builder" class="form-control">
                 <option value="Select">Select</option>
                 {% for user in userbuilder %}
-                <option value="{{user.pk}}"> {{user.username|capfirst}} </option>
+                    {% if 'buildersmart' in user.username %}
+                        <option value="{{user.pk}}"> {{user.username|capfirst}} </option>
+                    {% endif %}
                 {% endfor %}
                 </select>
             </div>

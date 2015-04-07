@@ -18,7 +18,6 @@ def central_home(request):
 
 def central_create(request):
     neighborhood = Neighborhood.objects.all().order_by('name')
-    print 'hola2'
     context = {'user': request.user, 'neighborhood': neighborhood}
     return render(request, 'central_create.html', context)
 

@@ -4,6 +4,10 @@ from django.contrib.auth.decorators import user_passes_test
 from django.contrib.auth.models import User, Permission
 from map.models import Neighborhood
 from models import File
+import sys
+import os
+import csv
+from django.conf import settings
 
 def user_can_see(user):
     return user.is_superuser or user.groups.filter(name='UsersCentral').exists()
@@ -77,17 +81,18 @@ def central_huge_load(request):
     print request.POST
     if request.method == 'POST':
         file = File(filename = request.POST['filename'], docfile = request.FILES['file'])
-        print request.FILES['file']
         file.save()
-        return redirect('owner_principal.html')
-
-    # if request.method == 'POST':
-    #     form = UploadForm(request.POST, request.FILES)
-    #     if form.is_valid():
-    #     	newdoc = File(filename = request.POST['filename'],docfile = request.FILES['docfile'])
-    #     	newdoc.save(form)
-    #     	return redirect("uploads")
-    # else:
-    #     form = UploadForm()
+        csv_filepathname = "C:/files/files/file.csv"
+        sys.path.append(settings.BASE_DIR)
+        os.environ['DJANGO_SETTINGS_MODULE'] = 'settings'
+        dataReader = csv.reader(open(csv_filepathname), delimiter=',')
+        for row in dataReader:
+            csvFile = User.objects.create_user(username=row[0], first_name=row[1], last_name=row[2], email=row[3], password=row[4])
+            csvFile.is_superuser = False
+            csvFile.is_active = True
+            csvFile.is_staff = False
+            csvFile.groups.add(2)
+            csvFile.save()
+        return redirect('central_owner_principal')
     context = {'user': request.user}
     return render(request, 'owner_huge_load.html', context)

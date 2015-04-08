@@ -21,8 +21,20 @@ Creation Owner
         You can load a file that content many owners and you can do full load.
     </div>
 </div>
-<form action="/videos/" method="post" enctype="multipart/form-data">
-    <input type="file" name="file" id="id_file" />
-    <input type="submit" value="Guardar">
-</form>
+<div>
+    <form class="form-horizontal" action='{% url "central_huge_load" %}' method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <label class="col-lg-2 control-label">File Name</label>
+            <div class="col-lg-10">
+                <input class="form-control" id="filename" type="text" placeholder="File name" name="filename">
+            </div>
+        </div>
+        <div>
+            <input type="file" name="file" id="file" class="btn btn-primary"/>
+            <input type="submit" value="Upload" class="btn btn-default">
+            <a href='{% url "central_owner_principal" %}' class="btn btn-default">Return</a>
+        </div>
+        {% csrf_token %}
+    </form>
+</div>
 {% endblock %}

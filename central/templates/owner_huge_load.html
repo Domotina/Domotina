@@ -12,28 +12,17 @@ Creation Owner
 {% endblock navbar %}
 
 {% block content %}
-<h3>Huge Load Owners</h3>
-<div class="panel panel-primary">
-    <div class="panel-heading">
-        <h3 class="panel-title">Instruccions</h3>
-    </div>
-    <div class="panel-body">
-        You can load a file that content many owners and you can do full load.
-    </div>
-</div>
-<div>
-    <form class="form-horizontal" action='{% url "central_huge_load" %}' method="post" enctype="multipart/form-data">
+<h3>Owners batch creation</h3>
+<div class="well">
+    <p>Upload a CSV file with the following format:
+        <pre>username,firstname,lastname,email,password</pre>
+    </p>
+    <form action='{% url "central_huge_load" %}' method="post" enctype="multipart/form-data">
         <div class="form-group">
-            <label class="col-lg-2 control-label">File Name</label>
-            <div class="col-lg-10">
-                <input class="form-control" id="filename" type="text" placeholder="File name" name="filename">
-            </div>
+            <input type="file" name="file" id="file" class="btn btn-default"/>
         </div>
-        <div>
-            <input type="file" name="file" id="file" class="btn btn-primary"/>
-            <input type="submit" value="Upload" class="btn btn-default">
-            <a href='{% url "central_owner_principal" %}' class="btn btn-default">Return</a>
-        </div>
+        <input type="submit" value="Upload" class="btn btn-primary">
+        <a href='{% url "central_owner_principal" %}' class="btn btn-default">Return</a>
         {% csrf_token %}
     </form>
 </div>

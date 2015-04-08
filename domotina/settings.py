@@ -95,3 +95,7 @@ EMAIL_PORT = os.environ.get('EMAIL_PORT')
 EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 URL = os.environ.get('URL')
+
+#Especificar ruta para guardar los archivos que se suben
+MEDIA_ROOT = 'C:/files'
+MEDIA_URL = '/files/'

@@ -74,6 +74,13 @@ def central_individual_load(request):
 
 @login_required
 def central_huge_load(request):
+    print request.POST
+    if request.method == 'POST':
+        file = File(filename = request.POST['filename'], docfile = request.FILES['file'])
+        print request.FILES['file']
+        file.save()
+        return redirect('owner_principal.html')
+
     # if request.method == 'POST':
     #     form = UploadForm(request.POST, request.FILES)
     #     if form.is_valid():

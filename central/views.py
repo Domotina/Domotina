@@ -14,7 +14,7 @@ def central_home(request):
     context = {'user': request.user}
     return render(request, 'central_home.html', context)
 
-
+@login_required
 def central_create(request):
     userbuilder = User.objects.all()
     neighborhood = Neighborhood.objects.all().order_by('name')

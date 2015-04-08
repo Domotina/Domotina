@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.decorators import user_passes_test
 from django.contrib.auth.models import User
-
+from .notificator import send_email
 from map.models import Neighborhood
 
 
@@ -63,15 +63,16 @@ def central_owner_principal(request):
 def central_individual_load(request):
     if 'username' in request.GET and request.GET['username'] and 'name' in request.GET and request.GET[
         'name'] and 'lastname' in request.GET and request.GET['lastname'] and 'email' in request.GET and request.GET[
-        'email'] and 'pass' in request.GET and request.GET['pass']:
+        'email']:
         userC = User.objects.create_user(username=request.GET['username'], first_name=request.GET['name'],
                                          last_name=request.GET['lastname'], email=request.GET['email'],
-                                         password=request.GET['pass'])
+                                         password='DOMOTINA123')
         userC.is_superuser = False
         userC.is_active = True
         userC.is_staff = False
         userC.groups.add(2)
         userC.save()
+        send_email(userC)
         context = {'create': True, 'userC': userC}
         return render(request, 'owner_individual_load.html', context)
     else:
@@ -89,12 +90,13 @@ def central_huge_load(request):
         for row in file:
             data = row.split(',')
             user = User.objects.create_user(username=data[0], first_name=data[1], last_name=data[2], email=data[3],
-                                            password=data[4])
+                                            password='DOMOTINA123')
             user.is_superuser = False
             user.is_active = True
             user.is_staff = False
             user.groups.add(2)
             user.save()
+            send_email(user)
         return redirect('central_owner_principal')
     context = {'user': request.user}
     return render(request, 'owner_huge_load.html', context)

@@ -1,4 +1,4 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth.decorators import user_passes_test
@@ -97,3 +97,50 @@ def place_view(request, pk):
     context = {'floor': current_floor, 'sensors': sensors_json, 'floors': floors,
                'events': events, 'alarms': alarms, 'types': types, 'type_param': type_param, 'type': type}
     return render(request, 'place_details.html', context)
+
+
+@login_required
+def list_sensors(request, place_pk):
+    place = get_object_or_404(Place, pk=place_pk)
+    sensors = Sensor.objects.filter(floor__place=place)
+    return render(request, 'sensor_list.html', {'place': place, 'sensors': sensors})
+
+
+@login_required
+def create_sensor(request, place_pk):
+    place = get_object_or_404(Place, pk=place_pk)
+    types = SensorType.objects.all()
+    floors = Floor.objects.filter(place=place)
+    if request.method == 'POST':
+        if request.POST['sensor_type'] and request.POST['floor'] and request.POST['description']:
+            floor = get_object_or_404(Floor, pk=request.POST['floor'])
+            sensor_type = get_object_or_404(SensorType, pk=request.POST['sensor_type'])
+            sensor = Sensor(type=sensor_type, floor=floor, description=request.POST['description'])
+            sensor.save()
+            return redirect('list_sensors', place_pk=place_pk)
+    return render(request, 'sensor_form.html', {'place': place, 'types': types, 'floors': floors})
+
+
+@login_required
+def edit_sensor(request, place_pk, sensor_pk):
+    place = get_object_or_404(Place, pk=place_pk)
+    sensor = get_object_or_404(Sensor, pk=sensor_pk)
+    if request.method == 'POST':
+        if request.POST['sensor_type'] and request.POST['floor'] and request.POST['description']:
+            floor = get_object_or_404(Floor, pk=request.POST['floor'])
+            sensor_type = get_object_or_404(SensorType, pk=request.POST['sensor_type'])
+            sensor.type = sensor_type
+            sensor.floor = floor
+            sensor.description = request.POST['description']
+            sensor.save()
+            return redirect('list_sensors', place_pk=place_pk)
+    types = SensorType.objects.all()
+    floors = Floor.objects.filter(place=place)
+    return render(request, 'sensor_form.html', {'place': place, 'types': types, 'floors': floors, 'sensor': sensor})
+
+
+@login_required
+def delete_sensor(request, place_pk, sensor_pk):
+    sensor = get_object_or_404(Sensor, pk=sensor_pk)
+    sensor.delete()
+    return redirect('list_sensors', place_pk=place_pk)

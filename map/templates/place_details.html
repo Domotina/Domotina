@@ -7,6 +7,7 @@
 
 {% block navbar %}
 <li><a href='{% url "map_home" %}'>My places</a></li>
+<li><a href='{% url "list_sensors" floor.place.pk %}'>Sensors</a></li>
 <li><a href='{% url "list_rules" floor.place.pk %}'>Rules</a></li>
 {% endblock navbar %}
 

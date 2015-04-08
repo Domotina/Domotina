@@ -57,8 +57,8 @@ Massive Creation
             <label class="col-lg-2 control-label">Select a Neighborhood</label>
 
             <div class="col-lg-10">
-                <select name="neighborhood" id="neighborhood" class="form-control">
-                <option value="Select">Select</option>
+                <select name="neighborhood" id="neighborhood" class="form-control" required>
+                <option value="0">Select</option>
                 {% for nei in neighborhood %}
                 <option value="{{nei.name}}"> {{nei.name|capfirst}} </option>
                 {% endfor %}
@@ -69,8 +69,8 @@ Massive Creation
             <label class="col-lg-2 control-label">Select a Builder</label>
 
             <div class="col-lg-10">
-                <select name="builder" id="builder" class="form-control">
-                <option value="Select">Select</option>
+                <select name="builder" id="builder" class="form-control" required>
+                <option value="0">Select</option>
                 {% for user in userbuilder %}
                     {% if 'buildersmart' in user.username %}
                         <option value="{{user.pk}}"> {{user.username|capfirst}} </option>
@@ -83,15 +83,15 @@ Massive Creation
             <label class="col-lg-2 control-label">Select a Name</label>
 
             <div class="col-lg-10">
-                <input class="form-control" id="placeName" placeholder="Place Name" maxlength="20" type="text">
+                <input class="form-control" id="placeName" placeholder="Place Name" maxlength="20" type="text" required>
             </div>
         </div>
         <div class="form-group">
             <label class="col-lg-2 control-label">Select a Place</label>
 
             <div class="col-lg-10">
-                <select name="place" id="place" class="form-control">
-                <option value="Select">Select</option>
+                <select name="place" id="place" class="form-control" required>
+                <option value="0">Select</option>
                 <option value="1">Apartment complex</option>
                 <option value="2">Office complex</option>
                 <option value="3">Residential complex</option>
@@ -113,7 +113,7 @@ Massive Creation
                 <label for="numFloors" class="col-lg-2 control-label">Number of floors</label>
 
                 <div class="col-lg-10">
-                    <input class="form-control" id="numFloors" placeholder="Number of floors" type="number" min="1" max="2">
+                    <input class="form-control" id="numFloors" placeholder="Number of floors" type="number" min="1" max="8">
                 </div>
             </div>
             <div class="form-group" >

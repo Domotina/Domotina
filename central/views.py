@@ -32,6 +32,14 @@ def central_create(request):
         savedUrlHouses1= request.POST.get("urlHouses1", "")
         savedUrlHouses2= request.POST.get("urlHouses2", "")
         print savedNeighborhood
+        print 'place'
+        print savedPlace
+        if savedPlace == '1':
+            print 'if 1'
+        elif savedPlace == '2':
+            print 'if 2'
+        elif savedPlace == '3':
+            print 'if 3'
         context = {'user': request.user}
         return render(request, 'central_create.html', context)
     else:

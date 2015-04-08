@@ -8,7 +8,7 @@
 {% block navbar %}
 <li><a href='{% url "map_home" %}'>My places</a></li>
 <li><a href='{% url "map_place_view" place.pk %}'>Map of {{place.name}}</a></li>
-<li><a href >Create sensor</a></li>
+<li><a href='{% url "create_sensor" place.pk %}' >Create sensor</a></li>
 {% endblock navbar %}
 
 {% block content %}
@@ -36,8 +36,8 @@
             <td>{{sensor.type}}</td>
             <td>{{sensor.floor.number}}</td>
             <td>
-                <a href class="btn btn-sm btn-default">Edit</a>
-                <a href class="btn btn-sm btn-danger">Delete</a>
+                <a href='{% url "edit_sensor" place.pk sensor.pk %}' class="btn btn-sm btn-default">Edit</a>
+                <a href='{% url "delete_sensor" place.pk sensor.pk %}' class="btn btn-sm btn-danger">Delete</a>
             </td>
         </tr>
         {% endfor %}

@@ -110,7 +110,7 @@ class Sensor(models.Model):
     current_value = models.PositiveIntegerField("current value", default=0)
     current_pos_x = models.PositiveIntegerField("current X position in map", default=0)
     current_pos_y = models.PositiveIntegerField("current Y position in map", default=0)
-    current_date = models.DateTimeField("current date")
+    current_date = models.DateTimeField("current date", auto_now_add=True)
 
     class Meta:
         verbose_name = "sensor"

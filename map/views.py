@@ -97,3 +97,9 @@ def place_view(request, pk):
     context = {'floor': current_floor, 'sensors': sensors_json, 'floors': floors,
                'events': events, 'alarms': alarms, 'types': types, 'type_param': type_param, 'type': type}
     return render(request, 'place_details.html', context)
+
+
+def list_sensors(request, place_pk):
+    place = get_object_or_404(Place, pk=place_pk)
+    sensors = Sensor.objects.filter(floor__place=place)
+    return render(request, 'sensor_list.html', {'place': place, 'sensors': sensors})

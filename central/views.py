@@ -78,21 +78,16 @@ def central_individual_load(request):
 
 @login_required
 def central_huge_load(request):
-    print request.POST
     if request.method == 'POST':
-        file = File(filename = request.POST['filename'], docfile = request.FILES['file'])
-        file.save()
-        csv_filepathname = "C:/files/files/file.csv"
-        sys.path.append(settings.BASE_DIR)
-        os.environ['DJANGO_SETTINGS_MODULE'] = 'settings'
-        dataReader = csv.reader(open(csv_filepathname), delimiter=',')
-        for row in dataReader:
-            csvFile = User.objects.create_user(username=row[0], first_name=row[1], last_name=row[2], email=row[3], password=row[4])
-            csvFile.is_superuser = False
-            csvFile.is_active = True
-            csvFile.is_staff = False
-            csvFile.groups.add(2)
-            csvFile.save()
+        file = request.FILES['file']
+        for row in file:
+            data = row.split(',')
+            user = User.objects.create_user(username=data[0], first_name=data[1], last_name=data[2], email=data[3], password=data[4])
+            user.is_superuser = False
+            user.is_active = True
+            user.is_staff = False
+            user.groups.add(2)
+            user.save()
         return redirect('central_owner_principal')
     context = {'user': request.user}
     return render(request, 'owner_huge_load.html', context)

@@ -1,0 +1,28 @@
+{% extends "base.html"%}
+{% load static %}
+
+{% block title %}
+Creation Owner
+{% endblock %}
+
+{% block navbar %}
+<li><a href='{% url "central_home" %}'>Home</a></li>
+<li><a href='{% url "central_create" %}'>Properties</a></li>
+<li><a href='{% url "central_owner_principal" %}'>Owners</a></li>
+{% endblock navbar %}
+
+{% block content %}
+<h3>Huge Load Owners</h3>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">Instruccions</h3>
+    </div>
+    <div class="panel-body">
+        You can load a file that content many owners and you can do full load.
+    </div>
+</div>
+<form action="/videos/" method="post" enctype="multipart/form-data">
+    <input type="file" name="file" id="id_file" />
+    <input type="submit" value="Guardar">
+</form>
+{% endblock %}

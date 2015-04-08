@@ -7,9 +7,185 @@ Massive Creation
 
 {% block navbar %}
 <li><a href='{% url "central_home" %}'>Home</a></li>
+<li><a href='{% url "central_create" %}'>Properties</a></li>
+<li><a href='{% url "central_owner_principal" %}'>Owners</a></li>
 {% endblock navbar %}
 
 {% block content %}
+<script>
+        $(function() {
+        $("#numFloorsHouse").change(function() {
+        var map = $("#numFloorsHouse").val();
+        if(map==1){
+             document.getElementById('map-1').style.display = 'block';
+             document.getElementById('map-2').style.display = 'none';
+             }
+             else if(map==2){
+             document.getElementById('map-1').style.display = 'block';
+             document.getElementById('map-2').style.display = 'block';
+             }else{
+             document.getElementById('map-1').style.display = 'block';
+             document.getElementById('map-2').style.display = 'none';
+             }
+        });
+        $("#place").change(function() {
+        var option = $("#place").val();
+             if(option==1){
+             document.getElementById('apto-1').style.display = 'block';
+             document.getElementById('apto-3').style.display = 'none';
+             }else if(option==2){
+             document.getElementById('apto-1').style.display = 'block';
+             document.getElementById('apto-3').style.display = 'none';
+             }
+             else if(option==3){
+             document.getElementById('apto-1').style.display = 'none';
+             document.getElementById('apto-3').style.display = 'block';
+             }else{
+             document.getElementById('apto-1').style.display = 'none';
+             document.getElementById('apto-3').style.display = 'none';
+             }
+            });
+        });
+    </script>
+
+<form class="form-horizontal" action='{% url "central_create" %}' method="post">
+    {% csrf_token %}
+    <fieldset>
+        <legend>Massive Creation</legend>
+        <p>Hello User Central! You can create massive apartment complexes and more.</p>
+        <div class="form-group">
+            <label class="col-lg-2 control-label">Select a Neighborhood</label>
+
+            <div class="col-lg-10">
+                <select name="neighborhood" id="neighborhood" class="form-control" required>
+                <option value="0">Select</option>
+                {% for nei in neighborhood %}
+                <option value="{{nei.name}}"> {{nei.name|capfirst}} </option>
+                {% endfor %}
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-lg-2 control-label">Select a Builder</label>
+
+            <div class="col-lg-10">
+                <select name="builder" id="builder" class="form-control" required>
+                <option value="0">Select</option>
+                {% for user in userbuilder %}
+                    {% if 'buildersmart' in user.username %}
+                        <option value="{{user.pk}}"> {{user.username|capfirst}} </option>
+                    {% endif %}
+                {% endfor %}
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-lg-2 control-label">Select a Name</label>
+
+            <div class="col-lg-10">
+                <input class="form-control" id="placeName" placeholder="Place Name" maxlength="20" type="text" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col-lg-2 control-label">Select a Place</label>
+
+            <div class="col-lg-10">
+                <select name="place" id="place" class="form-control" required>
+                <option value="0">Select</option>
+                <option value="1">Apartment complex</option>
+                <option value="2">Office complex</option>
+                <option value="3">Residential complex</option>
+            </select>
+            </div>
+        </div>
+        <div style="display:none" id="apto-1">
+            <div class="form-group" >
+            <label class="col-lg-2 control-label">Apartments or offices</label>
+            </div>
+            <div class="form-group" >
+                <label for="numTowers" class="col-lg-2 control-label">Number of towers</label>
+
+                <div class="col-lg-10">
+                    <input class="form-control" id="numTowers" placeholder="Number of towers" min="1" max="2" type="number">
+                </div>
+            </div>
+            <div class="form-group" >
+                <label for="numFloors" class="col-lg-2 control-label">Number of floors</label>
+
+                <div class="col-lg-10">
+                    <input class="form-control" id="numFloors" placeholder="Number of floors" type="number" min="1" max="8">
+                </div>
+            </div>
+            <div class="form-group" >
+                <label for="numApartments" class="col-lg-2 control-label">Number of apartments/offices per floor</label>
+
+                <div class="col-lg-10">
+                    <input class="form-control" id="numApartments" placeholder="Number of apartments/offices" type="number" min="1" max="6">
+                </div>
+            </div>
+            <div class="form-group" >
+                <label for="urlApto" class="col-lg-2 control-label">Map</label>
+
+                <div class="col-lg-10">
+                    <input class="form-control" id="urlApto" placeholder="http://img.example.com/map1.jpg" type="url">
+                </div>
+            </div>
+        </div>
+        <div style="display:none" id="apto-3">
+            <div class="form-group" >
+            <label class="col-lg-2 control-label">Residential complex</label>
+            </div>
+            <div class="form-group" >
+                <label for="numBlocks" class="col-lg-2 control-label">Number of blocks</label>
+
+                <div class="col-lg-10">
+                    <input class="form-control" id="numBlocks" placeholder="Number of blocks" type="number" min="1" max="2">
+                </div>
+            </div>
+            <div class="form-group" >
+                <label for="numFloorsHouse" class="col-lg-2 control-label">Number of floors</label>
+
+                <div class="col-lg-10">
+                    <select name="numFloorsHouse" id="numFloorsHouse" class="form-control">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group" >
+                <label for="numHouses" class="col-lg-2 control-label">Number of houses per block</label>
+
+                <div class="col-lg-10">
+                    <input class="form-control" id="numHouses" placeholder="Number of houses" type="number" min="1" max="6">
+                </div>
+            </div>
+            <div class="form-group" id="map-1">
+                <label for="urlHouses1" class="col-lg-2 control-label">Map 1</label>
+
+                <div class="col-lg-10">
+                    <input class="form-control" id="urlHouses1" placeholder="http://img.example.com/map1.jpg" type="url">
+                </div>
+            </div>
+            <div class="form-group" style="display:none" id="map-2">
+                <label for="urlHouses2" class="col-lg-2 control-label">Map 2</label>
+
+                <div class="col-lg-10">
+                    <input class="form-control" id="urlHouses2" placeholder="http://img.example.com/map1.jpg" type="url">
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div  style="margin-left: 210px" >
+                <a href='{% url "central_home" %}' class="btn btn-default">Return</a>
+                <p style="display: inline"><input type="submit" class="btn btn-primary" value="Generate"/></p>
+            </div>
+        </div>
+    </fieldset>
+</form>
+{% endblock %}
+<!-- another version
+
     <link rel="stylesheet" href='{% static "css/central-forms.css" %}'>
     <script src='{% static "js/vendor/jquery.easing.min.js" %}'></script>
     <script src='{% static "js/form-central-function.js" %}'></script>
@@ -24,13 +200,13 @@ Massive Creation
 
     <div class="col-md-12">
         <form id="msform">
-        <!-- progressbar -->
+        &lt;!&ndash; progressbar &ndash;&gt;
             <ul id="progressbar">
             <li class="active">Site</li>
             <li>Data</li>
             <li>Floor Plans</li>
             </ul>
-        <!-- fieldsets -->
+        &lt;!&ndash; fieldsets &ndash;&gt;
         <fieldset>
             <h2 class="fs-title">Step 1</h2>
             <h3 class="fs-subtitle">Hello user Central! You can create massive apartment complexes and more</h3>
@@ -102,4 +278,4 @@ Massive Creation
         </fieldset>
         </form>
     </div>
-{% endblock %}
+-->

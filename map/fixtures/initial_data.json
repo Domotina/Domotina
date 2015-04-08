@@ -485,6 +485,22 @@
     }
 },
 {
+  "pk": 4,
+  "model": "auth.user",
+  "fields":
+  {"username": "buildersmart",
+    "first_name": "Constructora",
+    "last_name": "Smart",
+    "is_active": true,
+    "is_superuser": false,
+    "is_staff": false,
+    "last_login": "2015-04-07T20:31:31Z",
+    "groups": [2],
+    "user_permissions": [],
+    "password": "pbkdf2_sha256$12000$FkGl9x3UtHYP$48YYbAYdLDAXisurv687PPAy0fDbyqwGK+CyVKCUMBY=",
+    "email": "ra.gomez11@uniandes.edu.co",
+    "date_joined": "2015-04-07T20:31:31Z"}},
+{
     "pk": 1, 
     "model": "map.neighborhood", 
     "fields": {
@@ -580,7 +596,7 @@
     "model": "map.floor", 
     "fields": {
         "date_updated": "2015-03-08T03:37:22.536Z", 
-        "map": "http://domotina.host56.com/images/ap_model1.png", 
+        "map": "http://calculadora.site90.net/images/ap_model1.png", 
         "place": 1, 
         "number": 1, 
         "date_created": "2015-03-08T03:37:22.536Z"
@@ -591,7 +607,7 @@
     "model": "map.floor", 
     "fields": {
         "date_updated": "2015-03-08T03:37:22.536Z", 
-        "map": "http://domotina.host56.com/images/ap_model2.png", 
+        "map": "http://calculadora.site90.net/images/ap_model2.png", 
         "place": 2, 
         "number": 1, 
         "date_created": "2015-03-08T03:37:22.536Z"
@@ -602,7 +618,7 @@
     "model": "map.floor", 
     "fields": {
         "date_updated": "2015-03-08T03:37:22.536Z", 
-        "map": "http://domotina.host56.com/images/ap_model3.png", 
+        "map": "http://calculadora.site90.net/images/ap_model3.png", 
         "place": 3, 
         "number": 1, 
         "date_created": "2015-03-08T03:37:22.536Z"
@@ -613,7 +629,7 @@
     "model": "map.floor", 
     "fields": {
         "date_updated": "2015-03-08T03:37:22.536Z", 
-        "map": "http://domotina.host56.com/images/of_model1.png", 
+        "map": "http://calculadora.site90.net/images/of_model1.png", 
         "place": 4, 
         "number": 1, 
         "date_created": "2015-03-08T03:37:22.536Z"
@@ -624,7 +640,7 @@
     "model": "map.floor", 
     "fields": {
         "date_updated": "2015-03-17T17:25:33.362Z", 
-        "map": "http://domotina.host56.com/images/ap_model6_p1.png", 
+        "map": "http://calculadora.site90.net/images/ap_model6_p1.png", 
         "place": 5, 
         "number": 1, 
         "date_created": "2015-03-17T17:25:33.362Z"
@@ -635,7 +651,7 @@
     "model": "map.floor", 
     "fields": {
         "date_updated": "2015-03-17T17:25:52.885Z", 
-        "map": "http://domotina.host56.com/images/ap_model6_p2.png", 
+        "map": "http://calculadora.site90.net/images/ap_model6_p2.png", 
         "place": 5, 
         "number": 2, 
         "date_created": "2015-03-17T17:25:52.885Z"
@@ -679,7 +695,7 @@
         "value": 1, 
         "msg": "", 
         "type": 2, 
-        "icon": "http://domotina.host56.com/images/lock_icon.png"
+        "icon": "http://calculadora.site90.net/images/lock_icon.png"
     }
 },
 {
@@ -693,7 +709,7 @@
         "value": 0, 
         "msg": "", 
         "type": 2, 
-        "icon": "http://domotina.host56.com/images/unlock_icon.png"
+        "icon": "http://calculadora.site90.net/images/unlock_icon.png"
     }
 },
 {
@@ -707,7 +723,7 @@
         "value": 1, 
         "msg": "", 
         "type": 3, 
-        "icon": "http://domotina.host56.com/images/bulb_on.png"
+        "icon": "http://calculadora.site90.net/images/bulb_on.png"
     }
 },
 {
@@ -721,7 +737,7 @@
         "value": 0, 
         "msg": "", 
         "type": 3, 
-        "icon": "http://domotina.host56.com/images/bulb_off.png"
+        "icon": "http://calculadora.site90.net/images/bulb_off.png"
     }
 },
 {
@@ -735,7 +751,7 @@
         "value": 1, 
         "msg": "", 
         "type": 1, 
-        "icon": "http://domotina.host56.com/images/move.png"
+        "icon": "http://calculadora.site90.net/images/move.png"
     }
 },
 {
@@ -749,7 +765,7 @@
         "value": 0, 
         "msg": "", 
         "type": 1, 
-        "icon": "http://domotina.host56.com/images/no_move.png"
+        "icon": "http://calculadora.site90.net/images/no_move.png"
     }
 },
 {

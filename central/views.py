@@ -16,10 +16,30 @@ def central_home(request):
 
 @login_required
 def central_create(request):
-    userbuilder = User.objects.all()
-    neighborhood = Neighborhood.objects.all().order_by('name')
-    context = {'user': request.user, 'neighborhood': neighborhood, 'userbuilder': userbuilder}
-    return render(request, 'central_create.html', context)
+    if request.method == "POST":
+        print 'aqui'
+        savedNeighborhood = request.POST.get("neighborhood", "")
+        savedBuilder = request.POST.get("builder", "")
+        savedPlaceName = request.POST.get("placeName", "")
+        savedPlace = request.POST.get("place", "")
+        savedNumTowers= request.POST.get("numTowers", "")
+        savedNumFloors= request.POST.get("numFloors", "")
+        savedNumApartments = request.POST.get("numApartments", "")
+        savedUrlApto= request.POST.get("urlApto", "")
+        savedNumBlocks = request.POST.get("numBlocks", "")
+        savedNumFloorsHouse= request.POST.get("numFloorsHouse", "")
+        savedNumHouses = request.POST.get("numHouses", "")
+        savedUrlHouses1= request.POST.get("urlHouses1", "")
+        savedUrlHouses2= request.POST.get("urlHouses2", "")
+        print savedNeighborhood
+        context = {'user': request.user}
+        return render(request, 'central_create.html', context)
+    else:
+        print 'aqui2'
+        userbuilder = User.objects.all()
+        neighborhood = Neighborhood.objects.all().order_by('name')
+        context = {'user': request.user, 'neighborhood': neighborhood, 'userbuilder': userbuilder}
+        return render(request, 'central_create.html', context)
 
 @login_required
 def central_owner_principal(request):

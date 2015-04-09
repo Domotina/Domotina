@@ -18,5 +18,6 @@ notifications:
       - fredy.wilches@gmail.com
       - restrepoescobarjosericardo@gmail.com
       - juandavidvallejo@gmail.com
+      - tachu.salamanca@gmail.com
     on_success: always
     on_failure: never

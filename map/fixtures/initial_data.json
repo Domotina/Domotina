@@ -129,7 +129,7 @@
     "pk": 15, 
     "model": "contenttypes.contenttype", 
     "fields": {
-        "model": "scheduledaily", 
+        "model": "ScheduleDaily",
         "name": "Daily Schedule", 
         "app_label": "rule_engine"
     }
@@ -1513,7 +1513,7 @@
     }
 },
 {
-    "pk": 2, 
+    "pk": 1,
     "model": "rule_engine.scheduledaily", 
     "fields": {
         "status": 5, 

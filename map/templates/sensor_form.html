@@ -20,6 +20,10 @@
             {% csrf_token %}
             <fieldset>
                 <legend>New Sensor</legend>
+                <div class="form-group col-md-12">
+                    <label for="description">Asset</label>
+                    <input type="text" class="form-control" id="description" name="description" {% if sensor %} value="{{sensor.description}}"{%endif %} />
+                </div>
                 <div class="form-group col-md-6">
                     <label for="sensor_type">Sensor Type</label>
                     <select class="form-control" id="sensor_type" name="sensor_type" required>
@@ -51,10 +55,6 @@
                         {% endif %}
                         {% endfor %}
                     </select>
-                </div>
-                <div class="form-group col-md-12">
-                    <label for="description">Description</label>
-                    <input type="text" class="form-control" id="description" name="description" {% if sensor %} value="{{sensor.description}}"{%endif %} />
                 </div>
                 <div class="form-group col-md-4 col-md-offset-4">
                     <input type="submit" class="btn btn-primary"/>

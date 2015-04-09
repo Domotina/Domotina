@@ -12,270 +12,54 @@ Massive Creation
 {% endblock navbar %}
 
 {% block content %}
-<script>
-        $(function() {
-        $("#numFloorsHouse").change(function() {
-        var map = $("#numFloorsHouse").val();
-        if(map==1){
-             document.getElementById('map-1').style.display = 'block';
-             document.getElementById('map-2').style.display = 'none';
-             }
-             else if(map==2){
-             document.getElementById('map-1').style.display = 'block';
-             document.getElementById('map-2').style.display = 'block';
-             }else{
-             document.getElementById('map-1').style.display = 'block';
-             document.getElementById('map-2').style.display = 'none';
-             }
-        });
-        $("#place").change(function() {
-        var option = $("#place").val();
-             if(option==1){
-             document.getElementById('apto-1').style.display = 'block';
-             document.getElementById('apto-3').style.display = 'none';
-             }else if(option==2){
-             document.getElementById('apto-1').style.display = 'block';
-             document.getElementById('apto-3').style.display = 'none';
-             }
-             else if(option==3){
-             document.getElementById('apto-1').style.display = 'none';
-             document.getElementById('apto-3').style.display = 'block';
-             }else{
-             document.getElementById('apto-1').style.display = 'none';
-             document.getElementById('apto-3').style.display = 'none';
-             }
-            });
-        });
-    </script>
-
 <form class="form-horizontal" action='{% url "central_create" %}' method="post">
     {% csrf_token %}
     <fieldset>
         <legend>Massive Creation</legend>
         <p>Hello User Central! You can create massive apartment complexes and more.</p>
+
         <div class="form-group">
             <label class="col-lg-2 control-label">Select a Neighborhood</label>
 
             <div class="col-lg-10">
                 <select name="neighborhood" id="neighborhood" class="form-control" required>
-                <option value="0">Select</option>
-                {% for nei in neighborhood %}
-                <option value="{{nei.name}}"> {{nei.name|capfirst}} </option>
-                {% endfor %}
+                    <option value="0">Select</option>
+                    {% for nei in neighborhoods %}
+                    <option value="{{nei.pk}}"> {{nei.name|capfirst}}</option>
+                    {% endfor %}
                 </select>
             </div>
         </div>
         <div class="form-group">
-            <label class="col-lg-2 control-label">Select a Builder</label>
-
+            <label for="name" class="col-lg-2 control-label">Generic Name</label>
             <div class="col-lg-10">
-                <select name="builder" id="builder" class="form-control" required>
-                <option value="0">Select</option>
-                {% for user in userbuilder %}
-                    {% if 'buildersmart' in user.username %}
-                        <option value="{{user.pk}}"> {{user.username|capfirst}} </option>
-                    {% endif %}
-                {% endfor %}
-                </select>
+                <input class="form-control" name="name" id="name" placeholder="Place Name" maxlength="20" type="text" required>
             </div>
         </div>
         <div class="form-group">
-            <label class="col-lg-2 control-label">Select a Name</label>
-
+            <label for="places" class="col-lg-2 control-label">Amount of places</label>
             <div class="col-lg-10">
-                <input class="form-control" id="placeName" placeholder="Place Name" maxlength="20" type="text" required>
+                <input class="form-control" name="places" id="places" placeholder="Places per floor" type="number" min="1">
             </div>
         </div>
         <div class="form-group">
-            <label class="col-lg-2 control-label">Select a Place</label>
-
+            <label for="numFloorsHouse" class="col-lg-2 control-label">Floors per place</label>
             <div class="col-lg-10">
-                <select name="place" id="place" class="form-control" required>
-                <option value="0">Select</option>
-                <option value="1">Apartment complex</option>
-                <option value="2">Office complex</option>
-                <option value="3">Residential complex</option>
-            </select>
+                <input class="form-control" name="floors" id="numFloorsHouse" placeholder="Number of floors" type="number" min="1" required>
             </div>
         </div>
-        <div style="display:none" id="apto-1">
-            <div class="form-group" >
-            <label class="col-lg-2 control-label">Apartments or offices</label>
-            </div>
-            <div class="form-group" >
-                <label for="numTowers" class="col-lg-2 control-label">Number of towers</label>
-
-                <div class="col-lg-10">
-                    <input class="form-control" id="numTowers" placeholder="Number of towers" min="1" max="2" type="number">
-                </div>
-            </div>
-            <div class="form-group" >
-                <label for="numFloors" class="col-lg-2 control-label">Number of floors</label>
-
-                <div class="col-lg-10">
-                    <input class="form-control" id="numFloors" placeholder="Number of floors" type="number" min="1" max="8">
-                </div>
-            </div>
-            <div class="form-group" >
-                <label for="numApartments" class="col-lg-2 control-label">Number of apartments/offices per floor</label>
-
-                <div class="col-lg-10">
-                    <input class="form-control" id="numApartments" placeholder="Number of apartments/offices" type="number" min="1" max="6">
-                </div>
-            </div>
-            <div class="form-group" >
-                <label for="urlApto" class="col-lg-2 control-label">Map</label>
-
-                <div class="col-lg-10">
-                    <input class="form-control" id="urlApto" placeholder="http://img.example.com/map1.jpg" type="url">
-                </div>
+        <div class="form-group" id="map-1">
+            <label for="urlHouses1" class="col-lg-2 control-label">Map 1</label>
+            <div class="col-lg-10">
+                <input class="form-control" name="map" id="urlHouses1" placeholder="URL for the blueprints" type="url" required>
             </div>
         </div>
-        <div style="display:none" id="apto-3">
-            <div class="form-group" >
-            <label class="col-lg-2 control-label">Residential complex</label>
-            </div>
-            <div class="form-group" >
-                <label for="numBlocks" class="col-lg-2 control-label">Number of blocks</label>
-
-                <div class="col-lg-10">
-                    <input class="form-control" id="numBlocks" placeholder="Number of blocks" type="number" min="1" max="2">
-                </div>
-            </div>
-            <div class="form-group" >
-                <label for="numFloorsHouse" class="col-lg-2 control-label">Number of floors</label>
-
-                <div class="col-lg-10">
-                    <select name="numFloorsHouse" id="numFloorsHouse" class="form-control">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    </select>
-                </div>
-            </div>
-            <div class="form-group" >
-                <label for="numHouses" class="col-lg-2 control-label">Number of houses per block</label>
-
-                <div class="col-lg-10">
-                    <input class="form-control" id="numHouses" placeholder="Number of houses" type="number" min="1" max="6">
-                </div>
-            </div>
-            <div class="form-group" id="map-1">
-                <label for="urlHouses1" class="col-lg-2 control-label">Map 1</label>
-
-                <div class="col-lg-10">
-                    <input class="form-control" id="urlHouses1" placeholder="http://img.example.com/map1.jpg" type="url">
-                </div>
-            </div>
-            <div class="form-group" style="display:none" id="map-2">
-                <label for="urlHouses2" class="col-lg-2 control-label">Map 2</label>
-
-                <div class="col-lg-10">
-                    <input class="form-control" id="urlHouses2" placeholder="http://img.example.com/map1.jpg" type="url">
-                </div>
-            </div>
-        </div>
-
         <div class="form-group">
-            <div  style="margin-left: 210px" >
+            <div style="margin-left: 210px">
+                <input type="submit" class="btn btn-primary" value="Generate"/>
                 <a href='{% url "central_home" %}' class="btn btn-default">Return</a>
-                <p style="display: inline"><input type="submit" class="btn btn-primary" value="Generate"/></p>
             </div>
         </div>
     </fieldset>
 </form>
 {% endblock %}
-<!-- another version
-
-    <link rel="stylesheet" href='{% static "css/central-forms.css" %}'>
-    <script src='{% static "js/vendor/jquery.easing.min.js" %}'></script>
-    <script src='{% static "js/form-central-function.js" %}'></script>
-
-    <script>
-        $(function() {
-        $("#place").change(function() {
-             alert("Han cambiado mi valor");
-            });
-        });
-    </script>
-
-    <div class="col-md-12">
-        <form id="msform">
-        &lt;!&ndash; progressbar &ndash;&gt;
-            <ul id="progressbar">
-            <li class="active">Site</li>
-            <li>Data</li>
-            <li>Floor Plans</li>
-            </ul>
-        &lt;!&ndash; fieldsets &ndash;&gt;
-        <fieldset>
-            <h2 class="fs-title">Step 1</h2>
-            <h3 class="fs-subtitle">Hello user Central! You can create massive apartment complexes and more</h3>
-            <label for="neighborhood" >Select a Neighborhood:</label>
-            <select name="neighborhood" id="neighborhood" class="form-control">
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-            </select>
-            <label for="name" >Select a Name:</label>
-            <input type="text" name="name" id="name" placeholder="Name" />
-            <label for="place" >Select a Place:</label>
-            <select name="place" id="place" class="form-control">
-                <option value="1">Residential complex</option>
-                <option value="2">Office complex</option>
-                <option value="3">Apartment complex</option>
-            </select>
-
-            <input type="button" name="next" class="next action-button" value="Next" />
-        </fieldset>
-        <fieldset>
-            <h2 class="fs-title">Step 2</h2>
-            <h3 class="fs-subtitle">Your presence on the social network</h3>
-            <div class="row">
-                <div class="col-lg-6">
-                Twitter
-                </div>
-                <div class="col-lg-6">
-                    <input type="text" id="twitter" placeholder="Twitter" />
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-6">
-                <label for="twitter" >Twitter 2</label>
-                </div>
-                <div class="col-lg-6">
-                <input type="text" name="gplus" placeholder="Google Plus" />
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-6">
-                <label for="twitter" >Twitter 3</label>
-                </div>
-                <div class="col-lg-6">
-                <input type="text" name="gplus" placeholder="Google Plus" />
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-6">
-                <label for="twitter" >Twitter 4</label>
-                </div>
-                <div class="col-lg-6">
-                <input type="text" name="gplus" placeholder="Google Plus" />
-                </div>
-            </div>
-
-            <input type="button" name="previous" class="previous action-button" value="Previous" />
-            <input type="button" name="next" class="next action-button" value="Next" />
-        </fieldset>
-        <fieldset>
-            <h2 class="fs-title">Step 3</h2>
-            <h3 class="fs-subtitle">We will never sell it</h3>
-            <input type="text" name="fname" placeholder="First Name" />
-            <input type="text" name="lname" placeholder="Last Name" />
-            <input type="text" name="phone" placeholder="Phone" />
-            <textarea name="address" placeholder="Address"></textarea>
-            <input type="button" name="previous" class="previous action-button" value="Previous" />
-            <input type="submit" name="submit" class="submit action-button" value="Submit" />
-        </fieldset>
-        </form>
-    </div>
--->

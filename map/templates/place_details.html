@@ -1,5 +1,6 @@
 {% extends "base.html"%}
 {% load static %}
+{% load event_status %}
 
 {% block title %}
  - Place {{floor.place}}
@@ -139,7 +140,7 @@
             <tr>
                 <th>Date</th>
                 <th>Time</th>
-                <th>Sensor</th>
+                <th>Asset</th>
                 <th>Description</th>
             </tr>
           </thead>
@@ -149,7 +150,7 @@
               <td>{{alarm.event.timestamp.date}}</td>
               <td>{{alarm.event.timestamp.time}}</td>
               <td>{{alarm.event.sensor}}</td>
-              <td>{{alarm}}</td>
+              <td>{% status_icon alarm.event %}{{alarm}}</td>
             </tr>
             {% endfor %}
           </tbody>
@@ -193,7 +194,7 @@
             <tr>
                 <th>Date</th>
                 <th>Time</th>
-                <th>Sensor</th>
+                <th>Asset</th>
                 <th>Description</th>
             </tr>
           </thead>
@@ -203,7 +204,7 @@
               <td>{{event.timestamp.date}}</td>
               <td>{{event.timestamp.time}}</td>
               <td>{{event.sensor}}</td>
-              <td>{{event}}</td>
+              <td>{% status_icon event %}{{event}}</td>
             </tr>
             {% endfor %}
           </tbody>

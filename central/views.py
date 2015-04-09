@@ -1,9 +1,9 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.decorators import user_passes_test
 from django.contrib.auth.models import User
 from .notificator import send_email
-from map.models import Neighborhood
+from map.models import Neighborhood, Place, Floor
 
 
 def user_can_see(user):
@@ -20,36 +20,23 @@ def central_home(request):
 @login_required
 def central_create(request):
     if request.method == "POST":
-        print 'aqui'
-        savedNeighborhood = request.POST.get("neighborhood", "")
-        savedBuilder = request.POST.get("builder", "")
-        savedPlaceName = request.POST.get("placeName", "")
-        savedPlace = request.POST.get("place", "")
-        savedNumTowers = request.POST.get("numTowers", "")
-        savedNumFloors = request.POST.get("numFloors", "")
-        savedNumApartments = request.POST.get("numApartments", "")
-        savedUrlApto = request.POST.get("urlApto", "")
-        savedNumBlocks = request.POST.get("numBlocks", "")
-        savedNumFloorsHouse = request.POST.get("numFloorsHouse", "")
-        savedNumHouses = request.POST.get("numHouses", "")
-        savedUrlHouses1 = request.POST.get("urlHouses1", "")
-        savedUrlHouses2 = request.POST.get("urlHouses2", "")
-        print savedNeighborhood
-        print 'place'
-        print savedPlace
-        if savedPlace == '1':
-            print 'if 1'
-        elif savedPlace == '2':
-            print 'if 2'
-        elif savedPlace == '3':
-            print 'if 3'
-        context = {'user': request.user}
-        return render(request, 'central_create.html', context)
+        neigh_unicode = request.POST.get("neighborhood", "")
+        neighborhood = get_object_or_404(Neighborhood, pk=neigh_unicode)
+        name = str(request.POST.get("name", ""))
+        floors = int(request.POST.get("floors", "0"))
+        places = int(request.POST.get("places", "0"))
+        map_url = str(request.POST.get("map", ""))
+
+        for _ in range(places):
+            place = Place(owner=request.user, neighborhood=neighborhood, name=name)
+            place.save()
+            for j in range(floors):
+                floor = Floor(place=place, number=(j+1), map=map_url)
+                floor.save()
+        return redirect('central_home')
     else:
-        print 'aqui2'
-        userbuilder = User.objects.all()
-        neighborhood = Neighborhood.objects.all().order_by('name')
-        context = {'user': request.user, 'neighborhood': neighborhood, 'userbuilder': userbuilder}
+        neighborhoods = Neighborhood.objects.all().order_by('name')
+        context = {'neighborhoods': neighborhoods}
         return render(request, 'central_create.html', context)
 
 
@@ -61,9 +48,10 @@ def central_owner_principal(request):
 
 @login_required
 def central_individual_load(request):
-    if 'username' in request.GET and request.GET['username'] and 'name' in request.GET and request.GET[
-        'name'] and 'lastname' in request.GET and request.GET['lastname'] and 'email' in request.GET and request.GET[
-        'email']:
+    if request.GET.get('username') \
+            and request.GET.get('name') \
+            and request.GET.get('lastname') \
+            and request.GET.get('email'):
         userC = User.objects.create_user(username=request.GET['username'], first_name=request.GET['name'],
                                          last_name=request.GET['lastname'], email=request.GET['email'],
                                          password='DOMOTINA123')

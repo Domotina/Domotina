@@ -48,9 +48,10 @@ def central_owner_principal(request):
 
 @login_required
 def central_individual_load(request):
-    if 'username' in request.GET and request.GET['username'] and 'name' in request.GET and request.GET[
-        'name'] and 'lastname' in request.GET and request.GET['lastname'] and 'email' in request.GET and request.GET[
-        'email']:
+    if request.GET.get('username') \
+            and request.GET.get('name') \
+            and request.GET.get('lastname') \
+            and request.GET.get('email'):
         userC = User.objects.create_user(username=request.GET['username'], first_name=request.GET['name'],
                                          last_name=request.GET['lastname'], email=request.GET['email'],
                                          password='DOMOTINA123')

@@ -5,9 +5,9 @@ login.onclick = function(evt){
 	modal.style.display = "block";
 
 	modal.onclick = function(evt){
-        if(evt.target.id == "modal"){
+        if(evt.target.id === "modal"){
             var modal = document.getElementById('modal');
             modal.style.display = "none";
         }
-	}
-}
+	};
+};

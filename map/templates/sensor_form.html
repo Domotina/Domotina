@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block navbar %}
+<li><a href='{% url "map_home" %}'>My places</a></li>
+<li><a href='{% url "map_place_view" place.pk%}'>Map of {{place.name}}</a></li>
+<li><a href='{% url "list_sensors" place.pk %}'>Sensors</a></li>
+{% endblock navbar %}
+
+{% block content %}
+<div>
+    <h2>{{ place.name }}</h2>
+</div>
+<div class="well">
+    {% if sensor %}
+        <form method="post" action='{% url "edit_sensor" place.pk sensor.pk %}'>
+    {% else %}
+        <form method="post" action='{% url "create_sensor" place.pk %}'>
+    {% endif %}
+            {% csrf_token %}
+            <fieldset>
+                <legend>New Sensor</legend>
+                <div class="form-group col-md-12">
+                    <label for="description">Asset</label>
+                    <input type="text" class="form-control" id="description" name="description" {% if sensor %} value="{{sensor.description}}"{%endif %} />
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="sensor_type">Sensor Type</label>
+                    <select class="form-control" id="sensor_type" name="sensor_type" required>
+                        {% for type in types %}
+                        {% if sensor %}
+                        {% if type = sensor.type%}
+                        <option value="{{type.pk}}" selected>{{type}}</option>
+                        {% else %}
+                        <option value="{{type.pk}}">{{type}}</option>
+                        {% endif %}
+                        {% else %}
+                        <option value="{{type.pk}}">{{type}}</option>
+                        {% endif %}
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="floor">Floor</label>
+                    <select class="form-control" id="floor" name="floor" required>
+                        {% for floor in floors %}
+                        {% if sensor %}
+                        {% if floor = sensor.floor%}
+                        <option value="{{floor.pk}}" selected>{{floor}}</option>
+                        {% else %}
+                        <option value="{{floor.pk}}">{{floor}}</option>
+                        {% endif %}
+                        {% else %}
+                        <option value="{{floor.pk}}">{{floor}}</option>
+                        {% endif %}
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group col-md-4 col-md-offset-4">
+                    <input type="submit" class="btn btn-primary"/>
+                    <input type="reset" class="btn btn-default"/>
+                </div>
+            </fieldset>
+        </form>
+</div>
+{% endblock content %}

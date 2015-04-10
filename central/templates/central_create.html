@@ -1,0 +1,65 @@
+{% extends "base.html"%}
+{% load static %}
+
+{% block title %}
+Massive Creation
+{% endblock %}
+
+{% block navbar %}
+<li><a href='{% url "central_home" %}'>Home</a></li>
+<li><a href='{% url "central_create" %}'>Properties</a></li>
+<li><a href='{% url "central_owner_principal" %}'>Owners</a></li>
+{% endblock navbar %}
+
+{% block content %}
+<form class="form-horizontal" action='{% url "central_create" %}' method="post">
+    {% csrf_token %}
+    <fieldset>
+        <legend>Massive Creation</legend>
+        <p>Hello User Central! You can create massive apartment complexes and more.</p>
+
+        <div class="form-group">
+            <label class="col-lg-2 control-label">Select a Neighborhood</label>
+
+            <div class="col-lg-10">
+                <select name="neighborhood" id="neighborhood" class="form-control" required>
+                    <option value="0">Select</option>
+                    {% for nei in neighborhoods %}
+                    <option value="{{nei.pk}}"> {{nei.name|capfirst}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="name" class="col-lg-2 control-label">Generic Name</label>
+            <div class="col-lg-10">
+                <input class="form-control" name="name" id="name" placeholder="Place Name" maxlength="20" type="text" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="places" class="col-lg-2 control-label">Amount of places</label>
+            <div class="col-lg-10">
+                <input class="form-control" name="places" id="places" placeholder="Places per floor" type="number" min="1">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="numFloorsHouse" class="col-lg-2 control-label">Floors per place</label>
+            <div class="col-lg-10">
+                <input class="form-control" name="floors" id="numFloorsHouse" placeholder="Number of floors" type="number" min="1" required>
+            </div>
+        </div>
+        <div class="form-group" id="map-1">
+            <label for="urlHouses1" class="col-lg-2 control-label">Map 1</label>
+            <div class="col-lg-10">
+                <input class="form-control" name="map" id="urlHouses1" placeholder="URL for the blueprints" type="url" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <div style="margin-left: 210px">
+                <input type="submit" class="btn btn-primary" value="Generate"/>
+                <a href='{% url "central_home" %}' class="btn btn-default">Return</a>
+            </div>
+        </div>
+    </fieldset>
+</form>
+{% endblock %}

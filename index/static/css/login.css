@@ -40,7 +40,7 @@
 	margin: 10px 5% 0 5%;
 }
 
-.input-wrapper label.user{
+.input-wrapper .user{
 	width: 40px;
 	height: 100%;
 	background: #00829C;
@@ -50,7 +50,7 @@
 	display: inline-block;
 }
 
-.input-wrapper label.password{
+.input-wrapper .password{
 	width: 40px;
 	height: 100%;
 	background: #00829C;

@@ -1,443 +1,662 @@
 [
 {
     "pk": 1, 
-    "model": "auth.permission", 
+    "model": "contenttypes.contenttype", 
     "fields": {
-        "codename": "add_logentry", 
-        "name": "Can add log entry", 
-        "content_type": 1
+        "model": "logentry", 
+        "name": "log entry", 
+        "app_label": "admin"
     }
 },
 {
     "pk": 2, 
-    "model": "auth.permission", 
+    "model": "contenttypes.contenttype", 
     "fields": {
-        "codename": "change_logentry", 
-        "name": "Can change log entry", 
-        "content_type": 1
+        "model": "permission", 
+        "name": "permission", 
+        "app_label": "auth"
     }
 },
 {
     "pk": 3, 
-    "model": "auth.permission", 
+    "model": "contenttypes.contenttype", 
     "fields": {
-        "codename": "delete_logentry", 
-        "name": "Can delete log entry", 
-        "content_type": 1
+        "model": "group", 
+        "name": "group", 
+        "app_label": "auth"
     }
 },
 {
     "pk": 4, 
-    "model": "auth.permission", 
+    "model": "contenttypes.contenttype", 
     "fields": {
-        "codename": "add_permission", 
-        "name": "Can add permission", 
-        "content_type": 2
+        "model": "user", 
+        "name": "user", 
+        "app_label": "auth"
     }
 },
 {
     "pk": 5, 
-    "model": "auth.permission", 
+    "model": "contenttypes.contenttype", 
     "fields": {
-        "codename": "change_permission", 
-        "name": "Can change permission", 
-        "content_type": 2
+        "model": "contenttype", 
+        "name": "content type", 
+        "app_label": "contenttypes"
     }
 },
 {
     "pk": 6, 
-    "model": "auth.permission", 
+    "model": "contenttypes.contenttype", 
     "fields": {
-        "codename": "delete_permission", 
-        "name": "Can delete permission", 
-        "content_type": 2
+        "model": "session", 
+        "name": "session", 
+        "app_label": "sessions"
     }
 },
 {
     "pk": 7, 
-    "model": "auth.permission", 
+    "model": "contenttypes.contenttype", 
     "fields": {
-        "codename": "add_group", 
-        "name": "Can add group", 
-        "content_type": 3
+        "model": "event", 
+        "name": "event", 
+        "app_label": "event_manager"
     }
 },
 {
     "pk": 8, 
-    "model": "auth.permission", 
+    "model": "contenttypes.contenttype", 
     "fields": {
-        "codename": "change_group", 
-        "name": "Can change group", 
-        "content_type": 3
+        "model": "alarm", 
+        "name": "alarm", 
+        "app_label": "event_manager"
     }
 },
 {
     "pk": 9, 
-    "model": "auth.permission", 
+    "model": "contenttypes.contenttype", 
     "fields": {
-        "codename": "delete_group", 
-        "name": "Can delete group", 
-        "content_type": 3
+        "model": "neighborhood", 
+        "name": "neighborhood", 
+        "app_label": "map"
     }
 },
 {
     "pk": 10, 
-    "model": "auth.permission", 
+    "model": "contenttypes.contenttype", 
     "fields": {
-        "codename": "add_user", 
-        "name": "Can add user", 
-        "content_type": 4
+        "model": "place", 
+        "name": "place", 
+        "app_label": "map"
     }
 },
 {
     "pk": 11, 
-    "model": "auth.permission", 
+    "model": "contenttypes.contenttype", 
     "fields": {
-        "codename": "change_user", 
-        "name": "Can change user", 
-        "content_type": 4
+        "model": "floor", 
+        "name": "floor", 
+        "app_label": "map"
     }
 },
 {
     "pk": 12, 
-    "model": "auth.permission", 
+    "model": "contenttypes.contenttype", 
     "fields": {
-        "codename": "delete_user", 
-        "name": "Can delete user", 
-        "content_type": 4
+        "model": "sensortype", 
+        "name": "sensor type", 
+        "app_label": "map"
     }
 },
 {
     "pk": 13, 
-    "model": "auth.permission", 
+    "model": "contenttypes.contenttype", 
     "fields": {
-        "codename": "add_contenttype", 
-        "name": "Can add content type", 
-        "content_type": 5
+        "model": "sensorstatus", 
+        "name": "sensor status", 
+        "app_label": "map"
     }
 },
 {
     "pk": 14, 
-    "model": "auth.permission", 
+    "model": "contenttypes.contenttype", 
     "fields": {
-        "codename": "change_contenttype", 
-        "name": "Can change content type", 
-        "content_type": 5
+        "model": "sensor", 
+        "name": "sensor", 
+        "app_label": "map"
     }
 },
 {
     "pk": 15, 
-    "model": "auth.permission", 
+    "model": "contenttypes.contenttype", 
     "fields": {
-        "codename": "delete_contenttype", 
-        "name": "Can delete content type", 
+        "model": "scheduledaily", 
+        "name": "Daily Schedule", 
+        "app_label": "rule_engine"
+    }
+},
+{
+    "pk": 1,
+    "model": "auth.permission",
+    "fields": {
+        "codename": "add_logentry",
+        "name": "Can add log entry",
+        "content_type": 1
+    }
+},
+{
+    "pk": 2,
+    "model": "auth.permission",
+    "fields": {
+        "codename": "change_logentry",
+        "name": "Can change log entry",
+        "content_type": 1
+    }
+},
+{
+    "pk": 3,
+    "model": "auth.permission",
+    "fields": {
+        "codename": "delete_logentry",
+        "name": "Can delete log entry",
+        "content_type": 1
+    }
+},
+{
+    "pk": 4,
+    "model": "auth.permission",
+    "fields": {
+        "codename": "add_permission",
+        "name": "Can add permission",
+        "content_type": 2
+    }
+},
+{
+    "pk": 5,
+    "model": "auth.permission",
+    "fields": {
+        "codename": "change_permission",
+        "name": "Can change permission",
+        "content_type": 2
+    }
+},
+{
+    "pk": 6,
+    "model": "auth.permission",
+    "fields": {
+        "codename": "delete_permission",
+        "name": "Can delete permission",
+        "content_type": 2
+    }
+},
+{
+    "pk": 7,
+    "model": "auth.permission",
+    "fields": {
+        "codename": "add_group",
+        "name": "Can add group",
+        "content_type": 3
+    }
+},
+{
+    "pk": 8,
+    "model": "auth.permission",
+    "fields": {
+        "codename": "change_group",
+        "name": "Can change group",
+        "content_type": 3
+    }
+},
+{
+    "pk": 9,
+    "model": "auth.permission",
+    "fields": {
+        "codename": "delete_group",
+        "name": "Can delete group",
+        "content_type": 3
+    }
+},
+{
+    "pk": 10,
+    "model": "auth.permission",
+    "fields": {
+        "codename": "add_user",
+        "name": "Can add user",
+        "content_type": 4
+    }
+},
+{
+    "pk": 11,
+    "model": "auth.permission",
+    "fields": {
+        "codename": "change_user",
+        "name": "Can change user",
+        "content_type": 4
+    }
+},
+{
+    "pk": 12,
+    "model": "auth.permission",
+    "fields": {
+        "codename": "delete_user",
+        "name": "Can delete user",
+        "content_type": 4
+    }
+},
+{
+    "pk": 13,
+    "model": "auth.permission",
+    "fields": {
+        "codename": "add_contenttype",
+        "name": "Can add content type",
         "content_type": 5
     }
 },
 {
-    "pk": 16, 
-    "model": "auth.permission", 
+    "pk": 14,
+    "model": "auth.permission",
     "fields": {
-        "codename": "add_session", 
-        "name": "Can add session", 
+        "codename": "change_contenttype",
+        "name": "Can change content type",
+        "content_type": 5
+    }
+},
+{
+    "pk": 15,
+    "model": "auth.permission",
+    "fields": {
+        "codename": "delete_contenttype",
+        "name": "Can delete content type",
+        "content_type": 5
+    }
+},
+{
+    "pk": 16,
+    "model": "auth.permission",
+    "fields": {
+        "codename": "add_session",
+        "name": "Can add session",
         "content_type": 6
     }
 },
 {
-    "pk": 17, 
-    "model": "auth.permission", 
+    "pk": 17,
+    "model": "auth.permission",
     "fields": {
-        "codename": "change_session", 
-        "name": "Can change session", 
+        "codename": "change_session",
+        "name": "Can change session",
         "content_type": 6
     }
 },
 {
-    "pk": 18, 
-    "model": "auth.permission", 
+    "pk": 18,
+    "model": "auth.permission",
     "fields": {
-        "codename": "delete_session", 
-        "name": "Can delete session", 
+        "codename": "delete_session",
+        "name": "Can delete session",
         "content_type": 6
     }
 },
 {
-    "pk": 19, 
-    "model": "auth.permission", 
+    "pk": 19,
+    "model": "auth.permission",
     "fields": {
-        "codename": "add_eventtype", 
-        "name": "Can add event type", 
+        "codename": "add_event",
+        "name": "Can add event",
         "content_type": 7
     }
 },
 {
-    "pk": 20, 
-    "model": "auth.permission", 
+    "pk": 20,
+    "model": "auth.permission",
     "fields": {
-        "codename": "change_eventtype", 
-        "name": "Can change event type", 
+        "codename": "change_event",
+        "name": "Can change event",
         "content_type": 7
     }
 },
 {
-    "pk": 21, 
-    "model": "auth.permission", 
+    "pk": 21,
+    "model": "auth.permission",
     "fields": {
-        "codename": "delete_eventtype", 
-        "name": "Can delete event type", 
+        "codename": "delete_event",
+        "name": "Can delete event",
         "content_type": 7
     }
 },
 {
-    "pk": 22, 
-    "model": "auth.permission", 
+    "pk": 22,
+    "model": "auth.permission",
     "fields": {
-        "codename": "add_event", 
-        "name": "Can add event", 
+        "codename": "add_alarm",
+        "name": "Can add alarm",
         "content_type": 8
     }
 },
 {
-    "pk": 23, 
-    "model": "auth.permission", 
+    "pk": 23,
+    "model": "auth.permission",
     "fields": {
-        "codename": "change_event", 
-        "name": "Can change event", 
+        "codename": "change_alarm",
+        "name": "Can change alarm",
         "content_type": 8
     }
 },
 {
-    "pk": 24, 
-    "model": "auth.permission", 
+    "pk": 24,
+    "model": "auth.permission",
     "fields": {
-        "codename": "delete_event", 
-        "name": "Can delete event", 
+        "codename": "delete_alarm",
+        "name": "Can delete alarm",
         "content_type": 8
     }
 },
 {
-    "pk": 25, 
-    "model": "auth.permission", 
+    "pk": 25,
+    "model": "auth.permission",
     "fields": {
-        "codename": "add_alarm", 
-        "name": "Can add alarm", 
+        "codename": "add_neighborhood",
+        "name": "Can add neighborhood",
         "content_type": 9
     }
 },
 {
-    "pk": 26, 
-    "model": "auth.permission", 
+    "pk": 26,
+    "model": "auth.permission",
     "fields": {
-        "codename": "change_alarm", 
-        "name": "Can change alarm", 
+        "codename": "change_neighborhood",
+        "name": "Can change neighborhood",
         "content_type": 9
     }
 },
 {
-    "pk": 27, 
-    "model": "auth.permission", 
+    "pk": 27,
+    "model": "auth.permission",
     "fields": {
-        "codename": "delete_alarm", 
-        "name": "Can delete alarm", 
+        "codename": "delete_neighborhood",
+        "name": "Can delete neighborhood",
         "content_type": 9
     }
 },
 {
-    "pk": 28, 
-    "model": "auth.permission", 
+    "pk": 28,
+    "model": "auth.permission",
     "fields": {
-        "codename": "add_neighborhood", 
-        "name": "Can add neighborhood", 
+        "codename": "add_place",
+        "name": "Can add place",
         "content_type": 10
     }
 },
 {
-    "pk": 29, 
-    "model": "auth.permission", 
+    "pk": 29,
+    "model": "auth.permission",
     "fields": {
-        "codename": "change_neighborhood", 
-        "name": "Can change neighborhood", 
+        "codename": "change_place",
+        "name": "Can change place",
         "content_type": 10
     }
 },
 {
-    "pk": 30, 
-    "model": "auth.permission", 
+    "pk": 30,
+    "model": "auth.permission",
     "fields": {
-        "codename": "delete_neighborhood", 
-        "name": "Can delete neighborhood", 
+        "codename": "delete_place",
+        "name": "Can delete place",
         "content_type": 10
     }
 },
 {
-    "pk": 31, 
-    "model": "auth.permission", 
+    "pk": 31,
+    "model": "auth.permission",
     "fields": {
-        "codename": "add_place", 
-        "name": "Can add place", 
+        "codename": "add_floor",
+        "name": "Can add floor",
         "content_type": 11
     }
 },
 {
-    "pk": 32, 
-    "model": "auth.permission", 
+    "pk": 32,
+    "model": "auth.permission",
     "fields": {
-        "codename": "change_place", 
-        "name": "Can change place", 
+        "codename": "change_floor",
+        "name": "Can change floor",
         "content_type": 11
     }
 },
 {
-    "pk": 33, 
-    "model": "auth.permission", 
+    "pk": 33,
+    "model": "auth.permission",
     "fields": {
-        "codename": "delete_place", 
-        "name": "Can delete place", 
+        "codename": "delete_floor",
+        "name": "Can delete floor",
         "content_type": 11
     }
 },
 {
-    "pk": 34, 
-    "model": "auth.permission", 
+    "pk": 34,
+    "model": "auth.permission",
     "fields": {
-        "codename": "add_asset", 
-        "name": "Can add asset", 
+        "codename": "add_sensortype",
+        "name": "Can add sensor type",
         "content_type": 12
     }
 },
 {
-    "pk": 35, 
-    "model": "auth.permission", 
+    "pk": 35,
+    "model": "auth.permission",
     "fields": {
-        "codename": "change_asset", 
-        "name": "Can change asset", 
+        "codename": "change_sensortype",
+        "name": "Can change sensor type",
         "content_type": 12
     }
 },
 {
-    "pk": 36, 
-    "model": "auth.permission", 
+    "pk": 36,
+    "model": "auth.permission",
     "fields": {
-        "codename": "delete_asset", 
-        "name": "Can delete asset", 
+        "codename": "delete_sensortype",
+        "name": "Can delete sensor type",
         "content_type": 12
     }
 },
 {
-    "pk": 37, 
-    "model": "auth.permission", 
+    "pk": 37,
+    "model": "auth.permission",
     "fields": {
-        "codename": "add_sensortype", 
-        "name": "Can add sensor type", 
+        "codename": "add_sensorstatus",
+        "name": "Can add sensor status",
         "content_type": 13
     }
 },
 {
-    "pk": 38, 
-    "model": "auth.permission", 
+    "pk": 38,
+    "model": "auth.permission",
     "fields": {
-        "codename": "change_sensortype", 
-        "name": "Can change sensor type", 
+        "codename": "change_sensorstatus",
+        "name": "Can change sensor status",
         "content_type": 13
     }
 },
 {
-    "pk": 39, 
-    "model": "auth.permission", 
+    "pk": 39,
+    "model": "auth.permission",
     "fields": {
-        "codename": "delete_sensortype", 
-        "name": "Can delete sensor type", 
+        "codename": "delete_sensorstatus",
+        "name": "Can delete sensor status",
         "content_type": 13
     }
 },
 {
-    "pk": 40, 
-    "model": "auth.permission", 
+    "pk": 40,
+    "model": "auth.permission",
     "fields": {
-        "codename": "add_sensorstatus", 
-        "name": "Can add sensor status", 
+        "codename": "add_sensor",
+        "name": "Can add sensor",
         "content_type": 14
     }
 },
 {
-    "pk": 41, 
-    "model": "auth.permission", 
+    "pk": 41,
+    "model": "auth.permission",
     "fields": {
-        "codename": "change_sensorstatus", 
-        "name": "Can change sensor status", 
+        "codename": "change_sensor",
+        "name": "Can change sensor",
         "content_type": 14
     }
 },
 {
-    "pk": 42, 
-    "model": "auth.permission", 
+    "pk": 42,
+    "model": "auth.permission",
     "fields": {
-        "codename": "delete_sensorstatus", 
-        "name": "Can delete sensor status", 
+        "codename": "delete_sensor",
+        "name": "Can delete sensor",
         "content_type": 14
     }
 },
 {
-    "pk": 43, 
-    "model": "auth.permission", 
+    "pk": 43,
+    "model": "auth.permission",
     "fields": {
-        "codename": "add_sensor", 
-        "name": "Can add sensor", 
+        "codename": "add_scheduledaily",
+        "name": "Can add Daily Schedule",
         "content_type": 15
     }
 },
 {
-    "pk": 44, 
-    "model": "auth.permission", 
+    "pk": 44,
+    "model": "auth.permission",
     "fields": {
-        "codename": "change_sensor", 
-        "name": "Can change sensor", 
+        "codename": "change_scheduledaily",
+        "name": "Can change Daily Schedule",
         "content_type": 15
     }
 },
 {
-    "pk": 45, 
-    "model": "auth.permission", 
+    "pk": 45,
+    "model": "auth.permission",
     "fields": {
-        "codename": "delete_sensor", 
-        "name": "Can delete sensor", 
+        "codename": "delete_scheduledaily",
+        "name": "Can delete Daily Schedule",
         "content_type": 15
     }
 },
 {
-    "pk": 1, 
-    "model": "auth.user", 
+    "pk": 1,
+    "model": "auth.group",
     "fields": {
-        "username": "domotina", 
-        "first_name": "", 
-        "last_name": "", 
-        "is_active": true, 
-        "is_superuser": true, 
-        "is_staff": true, 
-        "last_login": "2015-03-10T18:13:45Z", 
-        "groups": [], 
-        "user_permissions": [], 
-        "password": "pbkdf2_sha256$12000$jTeDaK4UwLqY$ytI9/vmZ15Z6Kvj8xKPmQCXGJlKBOcRPeDKxcXPRfBo=", 
-        "email": "djimenez@ingenieros.com", 
+        "name": "UsersCentral",
+        "permissions": [
+            2
+        ]
+    }
+},
+{
+    "pk": 2,
+    "model": "auth.group",
+    "fields": {
+        "name": "UsersOwners",
+        "permissions": [
+            34,
+            35,
+            36
+        ]
+    }
+},
+{
+    "pk": 1,
+    "model": "auth.user",
+    "fields": {
+        "username": "domotina",
+        "first_name": "",
+        "last_name": "",
+        "is_active": true,
+        "is_superuser": true,
+        "is_staff": true,
+        "last_login": "2015-04-09T20:04:32.034Z",
+        "groups": [],
+        "user_permissions": [],
+        "password": "pbkdf2_sha256$12000$jTeDaK4UwLqY$ytI9/vmZ15Z6Kvj8xKPmQCXGJlKBOcRPeDKxcXPRfBo=",
+        "email": "djimenez@ingenieros.com",
         "date_joined": "2015-03-07T20:01:23Z"
     }
 },
 {
-    "pk": 1, 
-    "model": "event_manager.eventtype", 
+    "pk": 2,
+    "model": "auth.user",
     "fields": {
-        "is_critical": true, 
-        "name": "Movement", 
-        "description": "There was movement"
+        "username": "central",
+        "first_name": "Usuario",
+        "last_name": "Central",
+        "is_active": true,
+        "is_superuser": false,
+        "is_staff": false,
+        "last_login": "2015-03-21T22:13:26.308Z",
+        "groups": [
+            1
+        ],
+        "user_permissions": [],
+        "password": "pbkdf2_sha256$12000$c59nhEY8EnFF$UbXvE/gDmDc2n928B9D+wN5wf9RojB/4r9TYmg/OYB0=",
+        "email": "raul.gomezn@hotmail.com",
+        "date_joined": "2015-03-21T15:59:16Z"
     }
 },
 {
-    "pk": 2, 
-    "model": "event_manager.eventtype", 
+    "pk": 3,
+    "model": "auth.user",
     "fields": {
-        "is_critical": false, 
-        "name": "Toggle Power", 
-        "description": "power was turned on or off"
+        "username": "user",
+        "first_name": "Usuario",
+        "last_name": "Propietario",
+        "is_active": true,
+        "is_superuser": false,
+        "is_staff": false,
+        "last_login": "2015-03-21T22:12:47.770Z",
+        "groups": [
+            2
+        ],
+        "user_permissions": [],
+        "password": "pbkdf2_sha256$12000$VWJRLICOiKez$CtVqE1CjkxHkePTyXaw4ckodgDViaNIGfkCLPiyvcXc=",
+        "email": "raul.gomezn@hotmail.com",
+        "date_joined": "2015-03-21T17:21:32Z"
+    }
+},
+{
+    "pk": 4,
+    "model": "auth.user",
+    "fields": {
+        "username": "buildersmart",
+        "first_name": "Constructora",
+        "last_name": "Smart",
+        "is_active": true,
+        "is_superuser": false,
+        "is_staff": false,
+        "last_login": "2015-04-07T20:31:31Z",
+        "groups": [
+            2
+        ],
+        "user_permissions": [],
+        "password": "pbkdf2_sha256$12000$FkGl9x3UtHYP$48YYbAYdLDAXisurv687PPAy0fDbyqwGK+CyVKCUMBY=",
+        "email": "ra.gomez11@uniandes.edu.co",
+        "date_joined": "2015-04-07T20:31:31Z"
+    }
+},
+{
+    "pk": 5,
+    "model": "auth.user",
+    "fields": {
+        "username": "kaos",
+        "first_name": "a",
+        "last_name": "e",
+        "is_active": true,
+        "is_superuser": false,
+        "is_staff": false,
+        "last_login": "2015-04-09T20:14:16.761Z",
+        "groups": [
+            2
+        ],
+        "user_permissions": [],
+        "password": "pbkdf2_sha256$12000$xPjRrVS8DoGk$6KEiFopXiDRXDIL0w7Kfds6tBAnxmehzyW73Hs2ZbQ4=",
+        "email": "kaosterra@gmail.com",
+        "date_joined": "2015-04-09T20:14:16.761Z"
     }
 },
 {
@@ -477,381 +696,124 @@
     }
 },
 {
+    "pk": 1,
+    "model": "map.place",
+    "fields": {
+        "owner": 1,
+        "date_created": "2015-03-07T20:59:03.888Z",
+        "neighborhood": 1,
+        "name": "T10 AP602",
+        "date_updated": "2015-03-07T20:59:03.888Z"
+    }
+},
+{
+    "pk": 2,
+    "model": "map.place",
+    "fields": {
+        "owner": 1,
+        "date_created": "2015-03-07T20:59:27.651Z",
+        "neighborhood": 1,
+        "name": "T10 AP603",
+        "date_updated": "2015-03-07T20:59:27.651Z"
+    }
+},
+{
+    "pk": 3,
+    "model": "map.place",
+    "fields": {
+        "owner": 1,
+        "date_created": "2015-03-08T02:24:08.983Z",
+        "neighborhood": 3,
+        "name": "Kr 69D St 25-04",
+        "date_updated": "2015-03-08T02:24:08.983Z"
+    }
+},
+{
+    "pk": 4,
+    "model": "map.place",
+    "fields": {
+        "owner": 1,
+        "date_created": "2015-03-08T03:37:22.536Z",
+        "neighborhood": 4,
+        "name": "Office 201",
+        "date_updated": "2015-03-08T03:37:22.536Z"
+    }
+},
+{
+    "pk": 5,
+    "model": "map.place",
+    "fields": {
+        "owner": 1,
+        "date_created": "2015-03-17T17:24:15.155Z",
+        "neighborhood": 3,
+        "name": "Kr 69A St 24-12",
+        "date_updated": "2015-03-17T17:24:15.155Z"
+    }
+},
+{
     "pk": 1, 
-    "model": "map.place", 
+    "model": "map.floor", 
     "fields": {
-        "map": "http://domotina.host56.com/images/ap_model1.png", 
-        "neighborhood": 1, 
-        "name": "T10 AP602", 
-        "date_updated": "2015-03-07T20:59:03.888Z", 
-        "owner": 1, 
-        "date_created": "2015-03-07T20:59:03.888Z"
-    }
-},
-{
-    "pk": 2, 
-    "model": "map.place", 
-    "fields": {
-        "map": "http://domotina.host56.com/images/ap_model2.png", 
-        "neighborhood": 1, 
-        "name": "T10 AP603", 
-        "date_updated": "2015-03-07T20:59:27.651Z", 
-        "owner": 1, 
-        "date_created": "2015-03-07T20:59:27.651Z"
-    }
-},
-{
-    "pk": 3, 
-    "model": "map.place", 
-    "fields": {
-        "map": "http://domotina.host56.com/images/ap_model3.png", 
-        "neighborhood": 3, 
-        "name": "Kr 69D St 25-04", 
-        "date_updated": "2015-03-08T02:24:08.983Z", 
-        "owner": 1, 
-        "date_created": "2015-03-08T02:24:08.983Z"
-    }
-},
-{
-    "pk": 4, 
-    "model": "map.place", 
-    "fields": {
-        "map": "http://domotina.host56.com/images/of_model1.png", 
-        "neighborhood": 4, 
-        "name": "Office 201", 
         "date_updated": "2015-03-08T03:37:22.536Z", 
-        "owner": 1, 
+        "map": "https://raw.githubusercontent.com/Domotina/FileBucket/master/maps/ap_model1.png", 
+        "place": 1, 
+        "number": 1, 
         "date_created": "2015-03-08T03:37:22.536Z"
     }
 },
 {
-    "pk": 1, 
-    "model": "map.asset", 
-    "fields": {
-        "date_updated": "2015-03-07T21:46:27.963Z", 
-        "date_created": "2015-03-07T21:46:27.963Z", 
-        "place": 1, 
-        "name": "Main Access Door", 
-        "description": ""
-    }
-},
-{
     "pk": 2, 
-    "model": "map.asset", 
+    "model": "map.floor", 
     "fields": {
-        "date_updated": "2015-03-07T21:47:07.591Z", 
-        "date_created": "2015-03-07T21:47:07.591Z", 
-        "place": 1, 
-        "name": "Dinning Room Light", 
-        "description": ""
+        "date_updated": "2015-03-08T03:37:22.536Z", 
+        "map": "https://raw.githubusercontent.com/Domotina/FileBucket/master/maps/ap_model2.png", 
+        "place": 2, 
+        "number": 1, 
+        "date_created": "2015-03-08T03:37:22.536Z"
     }
 },
 {
     "pk": 3, 
-    "model": "map.asset", 
+    "model": "map.floor", 
     "fields": {
-        "date_updated": "2015-03-08T01:29:36.532Z", 
-        "date_created": "2015-03-08T01:29:36.532Z", 
-        "place": 1, 
-        "name": "Main Room Tv Plasma", 
-        "description": ""
+        "date_updated": "2015-03-08T03:37:22.536Z", 
+        "map": "https://raw.githubusercontent.com/Domotina/FileBucket/master/maps/ap_model3.png", 
+        "place": 3, 
+        "number": 1, 
+        "date_created": "2015-03-08T03:37:22.536Z"
     }
 },
 {
     "pk": 4, 
-    "model": "map.asset", 
+    "model": "map.floor", 
     "fields": {
-        "date_updated": "2015-03-08T01:29:56.416Z", 
-        "date_created": "2015-03-08T01:29:56.416Z", 
-        "place": 1, 
-        "name": "Living Room Light", 
-        "description": ""
+        "date_updated": "2015-03-08T03:37:22.536Z", 
+        "map": "https://raw.githubusercontent.com/Domotina/FileBucket/master/maps/of_model1.png", 
+        "place": 4, 
+        "number": 1, 
+        "date_created": "2015-03-08T03:37:22.536Z"
     }
 },
 {
     "pk": 5, 
-    "model": "map.asset", 
+    "model": "map.floor", 
     "fields": {
-        "date_updated": "2015-03-08T01:40:19.043Z", 
-        "date_created": "2015-03-08T01:40:19.043Z", 
-        "place": 1, 
-        "name": "Living Room Window", 
-        "description": ""
+        "date_updated": "2015-03-17T17:25:33.362Z", 
+        "map": "https://raw.githubusercontent.com/Domotina/FileBucket/master/maps/ap_model6_p1.png", 
+        "place": 5, 
+        "number": 1, 
+        "date_created": "2015-03-17T17:25:33.362Z"
     }
 },
 {
     "pk": 6, 
-    "model": "map.asset", 
+    "model": "map.floor", 
     "fields": {
-        "date_updated": "2015-03-08T01:56:00.400Z", 
-        "date_created": "2015-03-08T01:56:00.400Z", 
-        "place": 2, 
-        "name": "Main Access Door", 
-        "description": ""
-    }
-},
-{
-    "pk": 7, 
-    "model": "map.asset", 
-    "fields": {
-        "date_updated": "2015-03-08T01:56:23.275Z", 
-        "date_created": "2015-03-08T01:56:23.275Z", 
-        "place": 2, 
-        "name": "Living Room Light", 
-        "description": ""
-    }
-},
-{
-    "pk": 8, 
-    "model": "map.asset", 
-    "fields": {
-        "date_updated": "2015-03-08T01:56:32.209Z", 
-        "date_created": "2015-03-08T01:56:32.209Z", 
-        "place": 2, 
-        "name": "Dinning Room Light", 
-        "description": ""
-    }
-},
-{
-    "pk": 9, 
-    "model": "map.asset", 
-    "fields": {
-        "date_updated": "2015-03-08T01:57:11.042Z", 
-        "date_created": "2015-03-08T01:57:11.042Z", 
-        "place": 2, 
-        "name": "Main Room Access Door", 
-        "description": ""
-    }
-},
-{
-    "pk": 10, 
-    "model": "map.asset", 
-    "fields": {
-        "date_updated": "2015-03-08T01:58:24.401Z", 
-        "date_created": "2015-03-08T01:58:24.401Z", 
-        "place": 2, 
-        "name": "Study Room Laptop", 
-        "description": ""
-    }
-},
-{
-    "pk": 11, 
-    "model": "map.asset", 
-    "fields": {
-        "date_updated": "2015-03-08T02:42:32.691Z", 
-        "date_created": "2015-03-08T02:42:32.691Z", 
-        "place": 3, 
-        "name": "Main Access Door", 
-        "description": ""
-    }
-},
-{
-    "pk": 12, 
-    "model": "map.asset", 
-    "fields": {
-        "date_updated": "2015-03-08T02:42:53.786Z", 
-        "date_created": "2015-03-08T02:42:53.786Z", 
-        "place": 3, 
-        "name": "Dinning Room Light", 
-        "description": ""
-    }
-},
-{
-    "pk": 13, 
-    "model": "map.asset", 
-    "fields": {
-        "date_updated": "2015-03-08T02:43:01.553Z", 
-        "date_created": "2015-03-08T02:43:01.553Z", 
-        "place": 3, 
-        "name": "Living Room Light", 
-        "description": ""
-    }
-},
-{
-    "pk": 14, 
-    "model": "map.asset", 
-    "fields": {
-        "date_updated": "2015-03-08T02:43:54.355Z", 
-        "date_created": "2015-03-08T02:43:54.355Z", 
-        "place": 3, 
-        "name": "Main Room Light", 
-        "description": ""
-    }
-},
-{
-    "pk": 15, 
-    "model": "map.asset", 
-    "fields": {
-        "date_updated": "2015-03-08T02:44:43.738Z", 
-        "date_created": "2015-03-08T02:44:43.738Z", 
-        "place": 3, 
-        "name": "Main Room Smart Curved UHD TV", 
-        "description": ""
-    }
-},
-{
-    "pk": 16, 
-    "model": "map.asset", 
-    "fields": {
-        "date_updated": "2015-03-08T02:56:07.419Z", 
-        "date_created": "2015-03-08T02:56:07.419Z", 
-        "place": 3, 
-        "name": "Study Room Window", 
-        "description": ""
-    }
-},
-{
-    "pk": 17, 
-    "model": "map.asset", 
-    "fields": {
-        "date_updated": "2015-03-08T02:56:19.749Z", 
-        "date_created": "2015-03-08T02:56:19.749Z", 
-        "place": 3, 
-        "name": "Study Room Laptop", 
-        "description": ""
-    }
-},
-{
-    "pk": 18, 
-    "model": "map.asset", 
-    "fields": {
-        "date_updated": "2015-03-08T03:02:40.245Z", 
-        "date_created": "2015-03-08T03:02:40.245Z", 
-        "place": 1, 
-        "name": "Main Room Light", 
-        "description": ""
-    }
-},
-{
-    "pk": 19, 
-    "model": "map.asset", 
-    "fields": {
-        "date_updated": "2015-03-08T03:04:44.934Z", 
-        "date_created": "2015-03-08T03:04:44.934Z", 
-        "place": 1, 
-        "name": "Main Room Window", 
-        "description": ""
-    }
-},
-{
-    "pk": 20, 
-    "model": "map.asset", 
-    "fields": {
-        "date_updated": "2015-03-08T03:05:16.668Z", 
-        "date_created": "2015-03-08T03:05:16.668Z", 
-        "place": 1, 
-        "name": "Secondary Room Laptop", 
-        "description": ""
-    }
-},
-{
-    "pk": 21, 
-    "model": "map.asset", 
-    "fields": {
-        "date_updated": "2015-03-08T03:05:32.755Z", 
-        "date_created": "2015-03-08T03:05:32.755Z", 
-        "place": 1, 
-        "name": "Study Room Laptop", 
-        "description": ""
-    }
-},
-{
-    "pk": 22, 
-    "model": "map.asset", 
-    "fields": {
-        "date_updated": "2015-03-08T03:05:49.097Z", 
-        "date_created": "2015-03-08T03:05:49.097Z", 
-        "place": 1, 
-        "name": "Study Room Light", 
-        "description": ""
-    }
-},
-{
-    "pk": 23, 
-    "model": "map.asset", 
-    "fields": {
-        "date_updated": "2015-03-08T03:17:10.105Z", 
-        "date_created": "2015-03-08T03:17:10.105Z", 
-        "place": 1, 
-        "name": "Secondary Room Window", 
-        "description": ""
-    }
-},
-{
-    "pk": 24, 
-    "model": "map.asset", 
-    "fields": {
-        "date_updated": "2015-03-08T03:38:48.628Z", 
-        "date_created": "2015-03-08T03:38:48.628Z", 
-        "place": 4, 
-        "name": "Main Access Door", 
-        "description": ""
-    }
-},
-{
-    "pk": 25, 
-    "model": "map.asset", 
-    "fields": {
-        "date_updated": "2015-03-08T03:40:29.507Z", 
-        "date_created": "2015-03-08T03:40:29.507Z", 
-        "place": 4, 
-        "name": "Waiting Room Light", 
-        "description": ""
-    }
-},
-{
-    "pk": 26, 
-    "model": "map.asset", 
-    "fields": {
-        "date_updated": "2015-03-08T03:40:39.456Z", 
-        "date_created": "2015-03-08T03:40:39.456Z", 
-        "place": 4, 
-        "name": "Waiting Room Laptop", 
-        "description": ""
-    }
-},
-{
-    "pk": 27, 
-    "model": "map.asset", 
-    "fields": {
-        "date_updated": "2015-03-08T03:47:27.820Z", 
-        "date_created": "2015-03-08T03:47:27.820Z", 
-        "place": 4, 
-        "name": "Boss Office Window", 
-        "description": ""
-    }
-},
-{
-    "pk": 28, 
-    "model": "map.asset", 
-    "fields": {
-        "date_updated": "2015-03-08T03:47:43.703Z", 
-        "date_created": "2015-03-08T03:47:43.703Z", 
-        "place": 4, 
-        "name": "Boss Office Laptop", 
-        "description": ""
-    }
-},
-{
-    "pk": 29, 
-    "model": "map.asset", 
-    "fields": {
-        "date_updated": "2015-03-08T03:52:03.741Z", 
-        "date_created": "2015-03-08T03:52:03.741Z", 
-        "place": 4, 
-        "name": "Boss Office Light", 
-        "description": ""
-    }
-},
-{
-    "pk": 30, 
-    "model": "map.asset", 
-    "fields": {
-        "date_updated": "2015-03-08T03:52:30.135Z", 
-        "date_created": "2015-03-08T03:52:30.135Z", 
-        "place": 4, 
-        "name": "Meeting Room Light", 
-        "description": ""
+        "date_updated": "2015-03-17T17:25:52.885Z", 
+        "map": "https://raw.githubusercontent.com/Domotina/FileBucket/master/maps/ap_model6_p2.png", 
+        "place": 5, 
+        "number": 2, 
+        "date_created": "2015-03-17T17:25:52.885Z"
     }
 },
 {
@@ -859,6 +821,7 @@
     "model": "map.sensortype", 
     "fields": {
         "is_enabled": true, 
+        "is_continuous": false, 
         "name": "Movement"
     }
 },
@@ -867,6 +830,7 @@
     "model": "map.sensortype", 
     "fields": {
         "is_enabled": true, 
+        "is_continuous": false, 
         "name": "Locked"
     }
 },
@@ -875,6 +839,7 @@
     "model": "map.sensortype", 
     "fields": {
         "is_enabled": true, 
+        "is_continuous": false, 
         "name": "Light"
     }
 },
@@ -883,10 +848,13 @@
     "model": "map.sensorstatus", 
     "fields": {
         "is_enabled": true, 
-        "ref_code": 1, 
-        "type": 2, 
         "name": "Locked", 
-        "icon": "http://domotina.host56.com/images/lock_icon.png"
+        "max_value": 0, 
+        "min_value": 0, 
+        "value": 1, 
+        "msg": " ", 
+        "type": 2, 
+        "icon": "https://raw.githubusercontent.com/Domotina/FileBucket/master/sensors/lock_icon.png"
     }
 },
 {
@@ -894,10 +862,13 @@
     "model": "map.sensorstatus", 
     "fields": {
         "is_enabled": true, 
-        "ref_code": 0, 
-        "type": 2, 
         "name": "Unlocked", 
-        "icon": "http://domotina.host56.com/images/unlock_icon.png"
+        "max_value": 0, 
+        "min_value": 0, 
+        "value": 0, 
+        "msg": " ", 
+        "type": 2, 
+        "icon": "https://raw.githubusercontent.com/Domotina/FileBucket/master/sensors/unlock_icon.png"
     }
 },
 {
@@ -905,10 +876,13 @@
     "model": "map.sensorstatus", 
     "fields": {
         "is_enabled": true, 
-        "ref_code": 1, 
-        "type": 3, 
         "name": "On", 
-        "icon": "http://domotina.host56.com/images/bulb_on.png"
+        "max_value": 0, 
+        "min_value": 0, 
+        "value": 1, 
+        "msg": " ", 
+        "type": 3, 
+        "icon": "https://raw.githubusercontent.com/Domotina/FileBucket/master/sensors/bulb_on.png"
     }
 },
 {
@@ -916,10 +890,13 @@
     "model": "map.sensorstatus", 
     "fields": {
         "is_enabled": true, 
-        "ref_code": 0, 
-        "type": 3, 
         "name": "Off", 
-        "icon": "http://domotina.host56.com/images/bulb_off.png"
+        "max_value": 0, 
+        "min_value": 0, 
+        "value": 0, 
+        "msg": " ", 
+        "type": 3, 
+        "icon": "https://raw.githubusercontent.com/Domotina/FileBucket/master/sensors/bulb_off.png"
     }
 },
 {
@@ -927,10 +904,13 @@
     "model": "map.sensorstatus", 
     "fields": {
         "is_enabled": true, 
-        "ref_code": 1, 
-        "type": 1, 
         "name": "Yes", 
-        "icon": "http://domotina.host56.com/images/move.png"
+        "max_value": 0, 
+        "min_value": 0, 
+        "value": 1, 
+        "msg": "There was movement", 
+        "type": 1, 
+        "icon": "https://raw.githubusercontent.com/Domotina/FileBucket/master/sensors/move.png"
     }
 },
 {
@@ -938,10 +918,13 @@
     "model": "map.sensorstatus", 
     "fields": {
         "is_enabled": true, 
-        "ref_code": 0, 
-        "type": 1, 
         "name": "No", 
-        "icon": "http://domotina.host56.com/images/no_move.png"
+        "max_value": 0, 
+        "min_value": 0, 
+        "value": 0, 
+        "msg": " ", 
+        "type": 1, 
+        "icon": "https://raw.githubusercontent.com/Domotina/FileBucket/master/sensors/no_move.png"
     }
 },
 {
@@ -950,10 +933,10 @@
     "fields": {
         "current_pos_x": 600, 
         "description": "", 
+        "floor": 1, 
         "date_updated": "2015-03-08T00:37:18.436Z", 
-        "current_status_id": 1, 
         "current_date": "2015-03-07T16:48:50Z", 
-        "asset": 1, 
+        "current_value": 1, 
         "date_created": "2015-03-07T21:48:52.275Z", 
         "type": 2, 
         "current_pos_y": 350
@@ -965,10 +948,10 @@
     "fields": {
         "current_pos_x": 468, 
         "description": "", 
+        "floor": 1, 
         "date_updated": "2015-03-10T18:25:11.733Z", 
-        "current_status_id": 1, 
         "current_date": "2015-03-07T17:11:47Z", 
-        "asset": 2, 
+        "current_value": 1, 
         "date_created": "2015-03-07T22:11:49.552Z", 
         "type": 3, 
         "current_pos_y": 310
@@ -980,10 +963,10 @@
     "fields": {
         "current_pos_x": 462, 
         "description": "", 
+        "floor": 1, 
         "date_updated": "2015-03-10T18:25:11.750Z", 
-        "current_status_id": 1, 
         "current_date": "2015-03-07T20:30:49Z", 
-        "asset": 4, 
+        "current_value": 1, 
         "date_created": "2015-03-08T01:30:52.231Z", 
         "type": 3, 
         "current_pos_y": 123
@@ -995,10 +978,10 @@
     "fields": {
         "current_pos_x": 125, 
         "description": "", 
+        "floor": 1, 
         "date_updated": "2015-03-10T18:25:11.799Z", 
-        "current_status_id": 0, 
         "current_date": "2015-03-07T20:31:33Z", 
-        "asset": 3, 
+        "current_value": 0, 
         "date_created": "2015-03-08T01:31:36.824Z", 
         "type": 1, 
         "current_pos_y": 145
@@ -1010,10 +993,10 @@
     "fields": {
         "current_pos_x": 462, 
         "description": "", 
+        "floor": 1, 
         "date_updated": "2015-03-10T18:25:11.766Z", 
-        "current_status_id": 0, 
         "current_date": "2015-03-07T20:45:16Z", 
-        "asset": 5, 
+        "current_value": 0, 
         "date_created": "2015-03-08T01:45:24.740Z", 
         "type": 2, 
         "current_pos_y": 40
@@ -1025,10 +1008,10 @@
     "fields": {
         "current_pos_x": 425, 
         "description": "", 
+        "floor": 2, 
         "date_updated": "2015-03-10T18:25:11.883Z", 
-        "current_status_id": 1, 
         "current_date": "2015-03-07T21:25:38Z", 
-        "asset": 8, 
+        "current_value": 1, 
         "date_created": "2015-03-08T02:25:43.315Z", 
         "type": 3, 
         "current_pos_y": 95
@@ -1040,10 +1023,10 @@
     "fields": {
         "current_pos_x": 570, 
         "description": "", 
+        "floor": 2, 
         "date_updated": "2015-03-10T18:25:11.900Z", 
-        "current_status_id": 1, 
         "current_date": "2015-03-07T21:29:04Z", 
-        "asset": 7, 
+        "current_value": 1, 
         "date_created": "2015-03-08T02:29:07.638Z", 
         "type": 3, 
         "current_pos_y": 135
@@ -1055,10 +1038,10 @@
     "fields": {
         "current_pos_x": 640, 
         "description": "", 
+        "floor": 2, 
         "date_updated": "2015-03-08T02:34:32.622Z", 
-        "current_status_id": 1, 
         "current_date": "2015-03-07T21:30:23Z", 
-        "asset": 6, 
+        "current_value": 1, 
         "date_created": "2015-03-08T02:30:27.347Z", 
         "type": 2, 
         "current_pos_y": 335
@@ -1070,10 +1053,10 @@
     "fields": {
         "current_pos_x": 193, 
         "description": "", 
+        "floor": 2, 
         "date_updated": "2015-03-08T02:38:25.564Z", 
-        "current_status_id": 1, 
         "current_date": "2015-03-07T21:30:59Z", 
-        "asset": 9, 
+        "current_value": 1, 
         "date_created": "2015-03-08T02:31:02.069Z", 
         "type": 2, 
         "current_pos_y": 205
@@ -1085,10 +1068,10 @@
     "fields": {
         "current_pos_x": 408, 
         "description": "", 
+        "floor": 2, 
         "date_updated": "2015-03-10T18:25:11.916Z", 
-        "current_status_id": 0, 
         "current_date": "2015-03-07T21:31:32Z", 
-        "asset": 10, 
+        "current_value": 0, 
         "date_created": "2015-03-08T02:31:35.039Z", 
         "type": 1, 
         "current_pos_y": 280
@@ -1100,10 +1083,10 @@
     "fields": {
         "current_pos_x": 52, 
         "description": "", 
+        "floor": 3, 
         "date_updated": "2015-03-10T18:25:11.933Z", 
-        "current_status_id": 1, 
         "current_date": "2015-03-07T21:46:41Z", 
-        "asset": 12, 
+        "current_value": 1, 
         "date_created": "2015-03-08T02:46:44.004Z", 
         "type": 2, 
         "current_pos_y": 265
@@ -1115,10 +1098,10 @@
     "fields": {
         "current_pos_x": 150, 
         "description": "", 
+        "floor": 3, 
         "date_updated": "2015-03-10T18:25:11.949Z", 
-        "current_status_id": 1, 
         "current_date": "2015-03-07T21:47:19Z", 
-        "asset": 13, 
+        "current_value": 1, 
         "date_created": "2015-03-08T02:47:20.973Z", 
         "type": 3, 
         "current_pos_y": 295
@@ -1130,10 +1113,10 @@
     "fields": {
         "current_pos_x": 32, 
         "description": "", 
+        "floor": 3, 
         "date_updated": "2015-03-08T03:01:08.067Z", 
-        "current_status_id": 1, 
         "current_date": "2015-03-07T21:48:01Z", 
-        "asset": 11, 
+        "current_value": 1, 
         "date_created": "2015-03-08T02:48:02.937Z", 
         "type": 2, 
         "current_pos_y": 335
@@ -1145,10 +1128,10 @@
     "fields": {
         "current_pos_x": 585, 
         "description": "", 
+        "floor": 3, 
         "date_updated": "2015-03-10T18:25:12.008Z", 
-        "current_status_id": 1, 
         "current_date": "2015-03-07T21:48:30Z", 
-        "asset": 14, 
+        "current_value": 1, 
         "date_created": "2015-03-08T02:48:32.039Z", 
         "type": 3, 
         "current_pos_y": 115
@@ -1160,10 +1143,10 @@
     "fields": {
         "current_pos_x": 660, 
         "description": "", 
+        "floor": 3, 
         "date_updated": "2015-03-10T18:25:12.091Z", 
-        "current_status_id": 0, 
         "current_date": "2015-03-07T21:48:58Z", 
-        "asset": 15, 
+        "current_value": 0, 
         "date_created": "2015-03-08T02:49:00.267Z", 
         "type": 1, 
         "current_pos_y": 105
@@ -1175,10 +1158,10 @@
     "fields": {
         "current_pos_x": 362, 
         "description": "", 
+        "floor": 3, 
         "date_updated": "2015-03-10T18:25:12.116Z", 
-        "current_status_id": 0, 
         "current_date": "2015-03-07T21:57:20Z", 
-        "asset": 17, 
+        "current_value": 0, 
         "date_created": "2015-03-08T02:57:22.793Z", 
         "type": 1, 
         "current_pos_y": 130
@@ -1190,10 +1173,10 @@
     "fields": {
         "current_pos_x": 335, 
         "description": "", 
+        "floor": 3, 
         "date_updated": "2015-03-10T18:25:12.133Z", 
-        "current_status_id": 0, 
         "current_date": "2015-03-07T21:57:45Z", 
-        "asset": 16, 
+        "current_value": 0, 
         "date_created": "2015-03-08T02:57:47.926Z", 
         "type": 2, 
         "current_pos_y": 80
@@ -1205,10 +1188,10 @@
     "fields": {
         "current_pos_x": 65, 
         "description": "", 
+        "floor": 1, 
         "date_updated": "2015-03-10T18:25:11.783Z", 
-        "current_status_id": 0, 
         "current_date": "2015-03-07T22:03:17Z", 
-        "asset": 18, 
+        "current_value": 0, 
         "date_created": "2015-03-08T03:03:19.204Z", 
         "type": 3, 
         "current_pos_y": 150
@@ -1220,10 +1203,10 @@
     "fields": {
         "current_pos_x": 65, 
         "description": "", 
+        "floor": 1, 
         "date_updated": "2015-03-08T03:13:05.280Z", 
-        "current_status_id": 1, 
         "current_date": "2015-03-07T22:06:25Z", 
-        "asset": 19, 
+        "current_value": 1, 
         "date_created": "2015-03-08T03:06:27.477Z", 
         "type": 2, 
         "current_pos_y": 40
@@ -1235,10 +1218,10 @@
     "fields": {
         "current_pos_x": 248, 
         "description": "", 
+        "floor": 1, 
         "date_updated": "2015-03-10T18:25:11.816Z", 
-        "current_status_id": 1, 
         "current_date": "2015-03-07T22:07:02Z", 
-        "asset": 20, 
+        "current_value": 1, 
         "date_created": "2015-03-08T03:07:04.306Z", 
         "type": 1, 
         "current_pos_y": 141
@@ -1250,10 +1233,10 @@
     "fields": {
         "current_pos_x": 340, 
         "description": "", 
+        "floor": 1, 
         "date_updated": "2015-03-10T18:25:11.866Z", 
-        "current_status_id": 0, 
         "current_date": "2015-03-07T22:08:05Z", 
-        "asset": 22, 
+        "current_value": 0, 
         "date_created": "2015-03-08T03:08:09.763Z", 
         "type": 3, 
         "current_pos_y": 345
@@ -1265,10 +1248,10 @@
     "fields": {
         "current_pos_x": 369, 
         "description": "", 
+        "floor": 1, 
         "date_updated": "2015-03-10T18:25:11.849Z", 
-        "current_status_id": 0, 
         "current_date": "2015-03-07T22:08:34Z", 
-        "asset": 21, 
+        "current_value": 0, 
         "date_created": "2015-03-08T03:08:36.495Z", 
         "type": 1, 
         "current_pos_y": 372
@@ -1280,10 +1263,10 @@
     "fields": {
         "current_pos_x": 200, 
         "description": "", 
+        "floor": 1, 
         "date_updated": "2015-03-10T18:25:11.833Z", 
-        "current_status_id": 0, 
         "current_date": "2015-03-07T22:17:42Z", 
-        "asset": 23, 
+        "current_value": 0, 
         "date_created": "2015-03-08T03:17:44.597Z", 
         "type": 2, 
         "current_pos_y": 40
@@ -1295,10 +1278,10 @@
     "fields": {
         "current_pos_x": 355, 
         "description": "", 
+        "floor": 4, 
         "date_updated": "2015-03-10T18:25:11.666Z", 
-        "current_status_id": 0, 
         "current_date": "2015-03-07T22:41:26Z", 
-        "asset": 24, 
+        "current_value": 0, 
         "date_created": "2015-03-08T03:41:30.150Z", 
         "type": 2, 
         "current_pos_y": 375
@@ -1310,10 +1293,10 @@
     "fields": {
         "current_pos_x": 355, 
         "description": "", 
+        "floor": 4, 
         "date_updated": "2015-03-10T18:25:11.716Z", 
-        "current_status_id": 1, 
         "current_date": "2015-03-07T22:41:54Z", 
-        "asset": 25, 
+        "current_value": 1, 
         "date_created": "2015-03-08T03:41:56.596Z", 
         "type": 3, 
         "current_pos_y": 325
@@ -1325,10 +1308,10 @@
     "fields": {
         "current_pos_x": 355, 
         "description": "", 
+        "floor": 4, 
         "date_updated": "2015-03-10T18:25:11.700Z", 
-        "current_status_id": 0, 
         "current_date": "2015-03-07T22:42:26Z", 
-        "asset": 26, 
+        "current_value": 0, 
         "date_created": "2015-03-08T03:42:28.174Z", 
         "type": 1, 
         "current_pos_y": 292
@@ -1340,10 +1323,10 @@
     "fields": {
         "current_pos_x": 7, 
         "description": "", 
+        "floor": 4, 
         "date_updated": "2015-03-08T03:50:55.866Z", 
-        "current_status_id": 1, 
         "current_date": "2015-03-07T22:48:34Z", 
-        "asset": 27, 
+        "current_value": 1, 
         "date_created": "2015-03-08T03:48:36.483Z", 
         "type": 2, 
         "current_pos_y": 75
@@ -1355,10 +1338,10 @@
     "fields": {
         "current_pos_x": 37, 
         "description": "", 
+        "floor": 4, 
         "date_updated": "2015-03-10T18:25:11.623Z", 
-        "current_status_id": 0, 
         "current_date": "2015-03-07T22:48:58Z", 
-        "asset": 28, 
+        "current_value": 0, 
         "date_created": "2015-03-08T03:49:08.223Z", 
         "type": 1, 
         "current_pos_y": 110
@@ -1370,10 +1353,10 @@
     "fields": {
         "current_pos_x": 100, 
         "description": "", 
+        "floor": 4, 
         "date_updated": "2015-03-10T18:25:11.649Z", 
-        "current_status_id": 1, 
         "current_date": "2015-03-07T22:53:08Z", 
-        "asset": 29, 
+        "current_value": 1, 
         "date_created": "2015-03-08T03:53:10.052Z", 
         "type": 3, 
         "current_pos_y": 90
@@ -1385,13 +1368,188 @@
     "fields": {
         "current_pos_x": 120, 
         "description": "", 
+        "floor": 4, 
         "date_updated": "2015-03-10T18:25:11.683Z", 
-        "current_status_id": 0, 
         "current_date": "2015-03-07T22:53:41Z", 
-        "asset": 30, 
+        "current_value": 0, 
         "date_created": "2015-03-08T03:53:46.127Z", 
         "type": 3, 
         "current_pos_y": 290
+    }
+},
+{
+    "pk": 31, 
+    "model": "map.sensor", 
+    "fields": {
+        "current_pos_x": 120, 
+        "description": "Living Room Light", 
+        "floor": 5, 
+        "date_updated": "2015-03-17T21:55:22.867Z", 
+        "current_date": "2015-03-17T16:43:23Z", 
+        "current_value": 1, 
+        "date_created": "2015-03-17T21:43:46.428Z", 
+        "type": 3, 
+        "current_pos_y": 280
+    }
+},
+{
+    "pk": 32, 
+    "model": "map.sensor", 
+    "fields": {
+        "current_pos_x": 340, 
+        "description": "Dinning Room Ligth", 
+        "floor": 5, 
+        "date_updated": "2015-03-17T21:57:17.220Z", 
+        "current_date": "2015-03-17T16:44:36Z", 
+        "current_value": 1, 
+        "date_created": "2015-03-17T21:44:37.925Z", 
+        "type": 3, 
+        "current_pos_y": 300
+    }
+},
+{
+    "pk": 33, 
+    "model": "map.sensor", 
+    "fields": {
+        "current_pos_x": 680, 
+        "description": "Main Access Door", 
+        "floor": 5, 
+        "date_updated": "2015-03-17T21:57:54.306Z", 
+        "current_date": "2015-03-17T16:45:52Z", 
+        "current_value": 1, 
+        "date_created": "2015-03-17T21:45:55.032Z", 
+        "type": 2, 
+        "current_pos_y": 350
+    }
+},
+{
+    "pk": 34, 
+    "model": "map.sensor", 
+    "fields": {
+        "current_pos_x": 195, 
+        "description": "Study Room Laptop", 
+        "floor": 5, 
+        "date_updated": "2015-04-09T20:04:14.204Z", 
+        "current_date": "2015-03-28T00:57:03.695Z", 
+        "current_value": 0, 
+        "date_created": "2015-03-17T21:48:16.956Z", 
+        "type": 1, 
+        "current_pos_y": 18
+    }
+},
+{
+    "pk": 35, 
+    "model": "map.sensor", 
+    "fields": {
+        "current_pos_x": 1, 
+        "description": "Living Room Window", 
+        "floor": 5, 
+        "date_updated": "2015-03-28T00:26:17.696Z", 
+        "current_date": "2015-03-28T00:26:17.661Z", 
+        "current_value": 1, 
+        "date_created": "2015-03-17T21:49:38.163Z", 
+        "type": 2, 
+        "current_pos_y": 250
+    }
+},
+{
+    "pk": 36, 
+    "model": "map.sensor", 
+    "fields": {
+        "current_pos_x": 135, 
+        "description": "Main Room Light", 
+        "floor": 6, 
+        "date_updated": "2015-03-17T22:02:56.365Z", 
+        "current_date": "2015-03-17T16:58:44Z", 
+        "current_value": 1, 
+        "date_created": "2015-03-17T21:58:45.845Z", 
+        "type": 3, 
+        "current_pos_y": 280
+    }
+},
+{
+    "pk": 37, 
+    "model": "map.sensor", 
+    "fields": {
+        "current_pos_x": 120, 
+        "description": "Secondary Room Light", 
+        "floor": 6, 
+        "date_updated": "2015-03-17T22:02:56.348Z", 
+        "current_date": "2015-03-17T16:59:35Z", 
+        "current_value": 1, 
+        "date_created": "2015-03-17T21:59:37.492Z", 
+        "type": 3, 
+        "current_pos_y": 90
+    }
+},
+{
+    "pk": 38, 
+    "model": "map.sensor", 
+    "fields": {
+        "current_pos_x": 1, 
+        "description": "Main Room Window", 
+        "floor": 6, 
+        "date_updated": "2015-03-17T22:03:19.611Z", 
+        "current_date": "2015-03-17T17:00:19Z", 
+        "current_value": 1, 
+        "date_created": "2015-03-17T22:00:20.984Z", 
+        "type": 2, 
+        "current_pos_y": 265
+    }
+},
+{
+    "pk": 39, 
+    "model": "map.sensor", 
+    "fields": {
+        "current_pos_x": 575, 
+        "description": "Second Floor Living Room Tv Plasma", 
+        "floor": 6, 
+        "date_updated": "2015-03-17T22:06:59.895Z", 
+        "current_date": "2015-03-17T17:05:18Z", 
+        "current_value": 0, 
+        "date_created": "2015-03-17T22:05:19.731Z", 
+        "type": 1, 
+        "current_pos_y": 177
+    }
+},
+{
+    "pk": 2, 
+    "model": "rule_engine.scheduledaily", 
+    "fields": {
+        "status": 5, 
+        "sensor": 34, 
+        "end_time": "23:59:59", 
+        "begin_time": "00:00:00"
+    }
+},
+{
+    "pk": 1,
+    "model": "event_manager.event",
+    "fields": {
+        "timestamp": "2015-03-28T00:28:50.505Z",
+        "pos_x": null,
+        "pos_y": null,
+        "sensor": 34,
+        "value": 1
+    }
+},
+{
+    "pk": 2,
+    "model": "event_manager.event",
+    "fields": {
+        "timestamp": "2015-03-28T00:57:03.695Z",
+        "pos_x": null,
+        "pos_y": null,
+        "sensor": 34,
+        "value": 0
+    }
+},
+{
+    "pk": 1,
+    "model": "event_manager.alarm",
+    "fields": {
+        "notified": true,
+        "event": 1
     }
 }
 ]

@@ -26,19 +26,28 @@ canvas {
     background-size:700px 400px;
     background-repeat: no-repeat;
     border:1px solid #d3d3d3;
+    width: 700px;
+}
+
+.map-container {
     margin-bottom: 40px;
 }
 
-.map img {
-    /*background: red;
-    width: 10px;
-    height: 10px;*/
+.filter{
+    margin: 6px 3px !important;
 }
 
-.footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  /* Set the fixed height of the footer here */
-  height: 60px;
+#lb {
+    font-size: 18px;
+    margin: 14px;
+}
+
+.popup-panel-modal {
+    position:absolute;
+    width:300px;
+    height:100px;
+    z-index:15;
+    top:50%;
+    left:50%;
+    margin:-100px 0 0 -150px;
 }

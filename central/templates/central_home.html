@@ -1,0 +1,28 @@
+{% extends "base.html"%}
+{% load static %}
+
+{% block title %}
+ - Central Home
+{% endblock %}
+
+{% block navbar %}
+<li><a href='{% url "central_home" %}'>Home</a></li>
+{% endblock navbar %}
+
+{% block content %}
+<div class="well">
+    <ul class="list-unstyled">
+        <li class="btn"><a href='create'>
+            <img src='{% static "img/home-icon.png" %}' class="img-rounded"/>
+
+            <p>Creating massive property</p>
+        </a></li>
+        <li class="btn"><a href='{% url "central_owner_principal" %}'>
+            <img src='{% static "img/blue-user-icon.png" %}' class="img-rounded"/>
+
+            <p>Administration Homeowners</p>
+        </a></li>
+    </ul>
+</div>
+{% endblock %}
+

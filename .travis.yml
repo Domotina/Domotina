@@ -17,5 +17,8 @@ notifications:
     recipients:
       - ca.forero10@uniandes.edu.co
       - jj.alarcon10@uniandes.edu.co
+      - af.esguerra10@uniandes.edu.co
+      - cv.hernandez10@uniandes.edu.co
+      - lf.mendivelso10@uniandes.edu.co
     on_success: always
     on_failure: never

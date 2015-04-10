@@ -1,61 +1,146 @@
-from django.shortcuts import render, get_object_or_404
-from middleware.http import Http403
-from models import Place, Asset, Sensor, SensorStatus
-from django.conf import settings
-from event_manager.models import Event, Alarm
+from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.contrib.auth.decorators import user_passes_test
+
+from middleware.http import Http403
+from models import Place, Floor, Sensor, SensorType
+from event_manager.models import Event, Alarm
+
+
+def user_can_see(user):
+    return user.is_superuser or user.groups.filter(name='UsersOwners').exists()
+
 
 @login_required
+@user_passes_test(user_can_see, login_url='/central/')
 def my_places(request):
     places = Place.objects.filter(owner=request.user)
     context = {'user': request.user, 'places': places}
     return render(request, 'myplaces.html', context)
 
+
 @login_required
 def place_view(request, pk):
-    server_path = "%s://%s%s" % (request.META['wsgi.url_scheme'], request.META['HTTP_HOST'], settings.STATIC_URL)
-
-    show_icons_script = \
-        'function showIcons(jQuery) { \
-        var c = document.getElementById("place_canvas"); \
-        var ctx = c.getContext("2d");'
     place = get_object_or_404(Place, pk=pk)
+
+    floor_qs = Floor.objects.filter(place=place).order_by("number")
+    floor_paginator = Paginator(floor_qs, 1)
+    page = request.GET.get("floor_page")
+    try:
+        floors = floor_paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        floors = floor_paginator.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page of results.
+        floors = floor_paginator.page(floor_paginator.num_pages)
+
+    current_floor = floors.object_list[0]
 
     if request.user != place.owner:
         raise Http403
 
-    # Get all assets in the current place
-    assets = Asset.objects.filter(place=place)
-    for asset in assets:
-        sensors = Sensor.objects.filter(asset=asset)
-        for sensor in sensors:
-            # Get the sensor status based on current_status_id saved by event_manager previously
-            try:
-                status = sensor.type.sensorstatus_set.filter(ref_code=sensor.current_status_id)[:1].get()
-                if status:
-                    show_icons_script = \
-                        '%s var sensor_icon%s  = new Image();' \
-                        'sensor_icon%s.src = "%s"; \
-                        ctx.drawImage(sensor_icon%s, %s, %s);' \
-                        % (show_icons_script, sensor.id,
-                           sensor.id, status.icon,
-                           sensor.id, sensor.current_pos_x, sensor.current_pos_y)
-            except SensorStatus.DoesNotExist:
-                pass
+    sensors_array = []
+    type = request.GET.get('type')
+    if type is not None:
+        type_param = '&type=' + type
+        type = SensorType.objects.get(pk=type)
+    else:
+        type_param = ''
 
-    show_icons_script = "%s }" \
-                        "$(document).ready(showIcons);" \
-                        "$(window).load(showIcons);" % (show_icons_script);
+    if type is None:
+        sensors = Sensor.objects.filter(floor=current_floor)
+    else:
+        sensors = Sensor.objects.filter(floor=current_floor, type=type)
 
-    '''# Split map place url into its filename and extension
-    filename, file_ext = splitext(basename(str(place.map)))
-    map_url = '%s://%s/%s%s%s' % (request.META['wsgi.url_scheme'], request.META['HTTP_HOST'],
-                                  settings.MAP_FILE_PATH[4:len(settings.MAP_FILE_PATH)],
-                                          filename, file_ext)'''
+    for sensor in sensors:
+        status = sensor.get_status()
+        if status:
+            current_sensor = '{url: "%s",' \
+                             'pos_x: %d,' \
+                             'pos_y: %d,' \
+                             'description: "%s",' \
+                             'status: "%s"}' \
+                             % (status.icon, sensor.current_pos_x, sensor.current_pos_y,
+                                sensor.description, status.name)
+            sensors_array.append(current_sensor)
 
-    alarms = Alarm.objects.filter(event__sensor__asset__place=place).order_by('-activation_date')
-    events = Event.objects.filter(sensor__asset__place=place).order_by('-timestamp')
+    sensors_json = ','.join(sensors_array)
+    alarm_qs = Alarm.objects.filter(event__sensor__floor=current_floor).order_by('-event__timestamp')
+    event_qs = Event.objects.filter(sensor__floor=current_floor).order_by('-timestamp')
 
-    context = {'place': place, 'show_icons_script': show_icons_script,
-               'map_url': place.map, 'events': events, 'alarms': alarms}
-    return render(request, 'index_owner.html', context)
+    types = SensorType.objects.all()
+
+    events_paginator = Paginator(event_qs, 5)
+    page = request.GET.get('event_page')
+    try:
+        events = events_paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        events = events_paginator.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page of results.
+        events = events_paginator.page(events_paginator.num_pages)
+
+    alarms_paginator = Paginator(alarm_qs, 5)
+    page = request.GET.get('alarm_page')
+    try:
+        alarms = alarms_paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        alarms = alarms_paginator.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page of results.
+        alarms = alarms_paginator.page(alarms_paginator.num_pages)
+
+    context = {'floor': current_floor, 'sensors': sensors_json, 'floors': floors,
+               'events': events, 'alarms': alarms, 'types': types, 'type_param': type_param, 'type': type}
+    return render(request, 'place_details.html', context)
+
+
+@login_required
+def list_sensors(request, place_pk):
+    place = get_object_or_404(Place, pk=place_pk)
+    sensors = Sensor.objects.filter(floor__place=place)
+    return render(request, 'sensor_list.html', {'place': place, 'sensors': sensors})
+
+
+@login_required
+def create_sensor(request, place_pk):
+    place = get_object_or_404(Place, pk=place_pk)
+    types = SensorType.objects.all()
+    floors = Floor.objects.filter(place=place)
+    if request.method == 'POST':
+        if request.POST['sensor_type'] and request.POST['floor'] and request.POST['description']:
+            floor = get_object_or_404(Floor, pk=request.POST['floor'])
+            sensor_type = get_object_or_404(SensorType, pk=request.POST['sensor_type'])
+            sensor = Sensor(type=sensor_type, floor=floor, description=request.POST['description'])
+            sensor.save()
+            return redirect('list_sensors', place_pk=place_pk)
+    return render(request, 'sensor_form.html', {'place': place, 'types': types, 'floors': floors})
+
+
+@login_required
+def edit_sensor(request, place_pk, sensor_pk):
+    place = get_object_or_404(Place, pk=place_pk)
+    sensor = get_object_or_404(Sensor, pk=sensor_pk)
+    if request.method == 'POST':
+        if request.POST['sensor_type'] and request.POST['floor'] and request.POST['description']:
+            floor = get_object_or_404(Floor, pk=request.POST['floor'])
+            sensor_type = get_object_or_404(SensorType, pk=request.POST['sensor_type'])
+            sensor.type = sensor_type
+            sensor.floor = floor
+            sensor.description = request.POST['description']
+            sensor.save()
+            return redirect('list_sensors', place_pk=place_pk)
+    types = SensorType.objects.all()
+    floors = Floor.objects.filter(place=place)
+    return render(request, 'sensor_form.html', {'place': place, 'types': types, 'floors': floors, 'sensor': sensor})
+
+
+@login_required
+def delete_sensor(request, place_pk, sensor_pk):
+    sensor = get_object_or_404(Sensor, pk=sensor_pk)
+    sensor.delete()
+    return redirect('list_sensors', place_pk=place_pk)

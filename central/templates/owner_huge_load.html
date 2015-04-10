@@ -1,0 +1,29 @@
+{% extends "base.html"%}
+{% load static %}
+
+{% block title %}
+Creation Owner
+{% endblock %}
+
+{% block navbar %}
+<li><a href='{% url "central_home" %}'>Home</a></li>
+<li><a href='{% url "central_create" %}'>Properties</a></li>
+<li><a href='{% url "central_owner_principal" %}'>Owners</a></li>
+{% endblock navbar %}
+
+{% block content %}
+<h3>Owners batch creation</h3>
+<div class="well">
+    <p>Upload a CSV file with the following format:
+        <pre>username,firstname,lastname,email,password</pre>
+    </p>
+    <form action='{% url "central_huge_load" %}' method="post" enctype="multipart/form-data">
+        <div class="form-group">
+            <input type="file" name="file" id="file" class="btn btn-default"/>
+        </div>
+        <input type="submit" value="Upload" class="btn btn-primary">
+        <a href='{% url "central_owner_principal" %}' class="btn btn-default">Return</a>
+        {% csrf_token %}
+    </form>
+</div>
+{% endblock %}

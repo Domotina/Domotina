@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+ - Sensors
+{% endblock %}
+
+{% block navbar %}
+<li><a href='{% url "map_home" %}'>My places</a></li>
+<li><a href='{% url "map_place_view" place.pk %}'>Map of {{place.name}}</a></li>
+<li><a href='{% url "create_sensor" place.pk %}' >Create sensor</a></li>
+{% endblock navbar %}
+
+{% block content %}
+<div>
+    <h2>{{ place.name }}</h2>
+</div>
+<div class="panel panel-warning">
+    <div class="panel-heading">
+        <h3 class="panel-title">Sensors</h3>
+    </div>
+    {% if sensors %}
+    <table class="table table-striped table-hover ">
+        <thead>
+        <tr>
+            <th>Asset</th>
+            <th>Type</th>
+            <th>Floor</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for sensor in sensors %}
+        <tr>
+            <td>{{sensor}}</td>
+            <td>{{sensor.type}}</td>
+            <td>{{sensor.floor.number}}</td>
+            <td>
+                <a href='{% url "edit_sensor" place.pk sensor.pk %}' class="btn btn-sm btn-default">Edit</a>
+                <a href='{% url "delete_sensor" place.pk sensor.pk %}' class="btn btn-sm btn-danger">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <ul class="list-group">
+        <li class="list-group-item">No sensors for this place</li>
+    </ul>
+    {% endif %}
+</div>
+{% endblock content %}

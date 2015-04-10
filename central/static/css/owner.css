@@ -1,0 +1,47 @@
+div.pane{
+    display: inline-block;
+    margin: 20px auto;
+
+}
+
+div.contenedor{
+	width: 200px;
+	height: 230px;
+	float:left;
+	margin: 10px;
+}
+
+div#individual{
+	background-color: rgb(208,101,3);
+}
+
+div#full{
+	background-color: rgb(22,107,162);
+}
+
+img.icon{
+	display: block;
+	margin:10px auto;
+	width:145px;
+}
+
+p.text{
+	font-size: 1.6em;
+	color:white;
+	text-align: center;
+	padding-top:10px;
+	opacity: .6;
+}
+
+div.contenedor:hover{
+	height:250px;
+}
+
+div.contenedor:hover p.text{
+	padding-top: 30px;
+	opacity: 1;
+}
+
+div.contenedor:hover img.icon{
+	-webkit-box-shadow:0px 0px 0px 0px rgba(255,255,255,.6);
+}

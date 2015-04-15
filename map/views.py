@@ -161,4 +161,4 @@ def create_neighborhood(request):
     #TO-DO, implementacion temporal valida solo para las pruebas iniciales
     #print(request)
     print(request.POST['name'])
-    return render(request, 'neighborhood.html', {'name': request.POST['name']})
+    return render(request, 'neighborhood.html', {'created': True})

@@ -1,16 +1,13 @@
 import datetime
 
 from django.utils import timezone
-from rest_framework.test import APITestCase
-from rest_framework import status
-from map.models import Neighborhood
+from django.test import TestCase
+from .models import Neighborhood
 
-#Pruebas unitarias Administracion de urbanizaciones y/o edificios
-class EdificiosTests(APITestCase):
-
+# Pruebas unitarias Administracion de urbanizaciones y/o edificios
+class EdificiosTests(TestCase):
     #Pruebas para crear edificios
     def test_create_edificio(self):
-
         date_created = timezone.now() + datetime.timedelta(days=-1)
         date_updated = timezone.now() + datetime.timedelta(days=0)
 
@@ -20,9 +17,9 @@ class EdificiosTests(APITestCase):
 
         n1 = Neighborhood.objects.get(name="neighborhood1")
 
-        self.assertTrue(neighborhood1.name == n1.name, "El nombre no corresponde")
-        self.assertTrue(neighborhood1.date_created == n1.date_created, "la fecha creada no corresponde")
-        self.assertTrue(neighborhood1.date_updated == n1.date_updated, "La fecha de actualizacion no corresponde")
+        self.assertEqual(neighborhood1.name, n1.name, "El nombre no corresponde")
+        self.assertEqual(neighborhood1.date_created, n1.date_created, "la fecha creada no corresponde")
+        self.assertEqual(neighborhood1.date_updated, n1.date_updated, "La fecha de actualizacion no corresponde")
 
         #url = '/api/events/'
         #self.client.login(username='domotina', password='domotina')
@@ -38,9 +35,19 @@ class EdificiosTests(APITestCase):
     def test_edit_edificio(self):
         #TO-DO
         self.assertTrue(True)
+
     #Pruebas para dar edificios
     def test_get_edificios(self):
         #TO-DO
         self.assertTrue(True)
 
 
+class HistoryTest(TestCase):
+    def test_load_history(self):
+        self.assertTrue(True)
+        return
+
+        self.client.login(username='domotina', password='domotina')
+        response = self.client.get(url)
+        #Debe cambiarse a codigo 200 cuando se implemente
+        self.assertEqual(response.status_code, 404)

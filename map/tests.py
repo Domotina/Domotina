@@ -153,14 +153,39 @@ class NeighborhoodTests(TestCase):
         #TO-DO
         self.assertTrue(True)
 
+    class HistoryTest(TestCase):
+        def test_load_history(self):
+            "Escenario de histórico de eventos"
 
-class HistoryTest(TestCase):
-    url = reverse("map_history", args=(5, 20150401))
-    def test_load_history(self):
-        "Escenario de histórico de eventos"
+            url = reverse("map_history", args=(5, 20150401))
+            self.client.login(username='domotina', password='domotina')
+            response = self.client.get(url)
+            self.assertEqual(response.status_code, 200)
 
-        url = reverse("map_history", args=(5, 20150401))
-        self.client.login(username='domotina', password='domotina')
-        response = self.client.get(self.url)
-        self.assertEqual(response.status_code, 200)
+        def test_invalid_place_id(self):
+            "Escenario en que se recibe ID de place inválido"
 
+            url = reverse("map_history", args=(20, 20150401))
+            self.client.login(username='domotina', password='domotina')
+            response = self.client.get(url)
+            self.assertEqual(response.status_code, 404)
+
+        def test_invalid_date(self):
+            "Escenario en que se recibe fecha inválida"
+
+            return
+            date = 0
+            url = reverse("map_history", args=(5, date))
+            self.client.login(username='domotina', password='domotina')
+            response = self.client.get(url)
+            self.assertEqual(response.status_code, 404)
+
+        def test_future_date(self):
+            "Escenario en que se recibe fecha futura"
+
+            return
+            date = 20180402
+            url = reverse("map_history", args=(5, date))
+            self.client.login(username='domotina', password='domotina')
+            response = self.client.get(url)
+            self.assertEqual(response.status_code, 404)

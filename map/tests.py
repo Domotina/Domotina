@@ -6,6 +6,7 @@ from django.test import TestCase
 from .models import Neighborhood
 
 from django.core.urlresolvers import reverse
+from django.core.exceptions import ObjectDoesNotExist
 
 # Pruebas unitarias Administracion de urbanizaciones y/o edificios
 # Se asume que Neighborhood corresponde a urbanizaciones y/o edificios
@@ -68,9 +69,31 @@ class NeighborhoodTests(TestCase):
 
 
     #Pruebas para borrar edificios
+    """
+    Se borra un neighborhood dado el id
+    """
     def test_delete_neighborhood(self):
-        #TO-DO
-        self.assertTrue(True)
+        #Agregar un dato
+        date_created = timezone.now() + datetime.timedelta(days=-1)
+        date_updated = timezone.now() + datetime.timedelta(days=0)
+        neighborhood1 = Neighborhood.objects.create(name="neighborhood1",
+                                                    date_created=date_created,
+                                                    date_updated=date_updated)
+        n1 = Neighborhood.objects.get(name="neighborhood1")
+        self.assertIsNotNone(n1, "No se agrego el dato")
+
+        response = self.client.delete(reverse('delete_neighborhood', kwargs={'neighborhood_pk': n1.id}))
+        deleted = response.context['deleted']
+        self.assertEqual(deleted, True)
+
+        #Simular borrado
+        Neighborhood.delete(n1)
+        try:
+            n1 = Neighborhood.objects.get(name="neighborhood1")
+            self.fail('Object should not exist')
+        except ObjectDoesNotExist:
+            #OK
+            self.assertTrue(True)
 
     #Pruebas para editar edificios
     def test_edit_neighborhood(self):

@@ -161,4 +161,13 @@ def create_neighborhood(request):
     #TO-DO, implementacion temporal valida solo para las pruebas iniciales
     #print(request)
     print(request.POST['name'])
+    #Render temporal, solo importa el context
     return render(request, 'neighborhood.html', {'created': True})
+
+#@login_required
+def delete_neighborhood(request, neighborhood_pk):
+    #TO-DO, implementacion temporal valida solo para las pruebas iniciales
+    #print(request)
+    print(neighborhood_pk)
+    #Render temporal, solo importa el context
+    return render(request, 'neighborhood.html', {'deleted': True})

@@ -35,6 +35,7 @@ INSTALLED_APPS = (
     'map',
     'central',
     'rule_engine',
+    'report_manager',
 )
 
 MIDDLEWARE_CLASSES = (

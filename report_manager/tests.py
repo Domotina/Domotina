@@ -23,14 +23,14 @@ class ReportValidation(unittest.TestCase):
 
         self.assertIsNotNone(self.month)
         self.assertIsNotNone(self.year)
-        month_range = calendar.monthrange(self.year,self.month)
-        initial_day = 1
-        end_day = month_range[1]
-        start_date = datetime.datetime(self.year, self.month,initial_day)
-        end_date = datetime.datetime(self.year, self.month,end_day)
-        end_date = end_date.replace(hour=23,minute=59)
-        self.events = Event.objects.filter(timestamp__range=(start_date, end_date))
-        self.assertFalse(self.events)
+        # month_range = calendar.monthrange(self.year,self.month)
+        # initial_day = 1
+        # end_day = month_range[1]
+        # start_date = datetime.datetime(self.year, self.month,initial_day)
+        # end_date = datetime.datetime(self.year, self.month,end_day)
+        # end_date = end_date.replace(hour=23,minute=59)
+        # self.events = Event.objects.filter(timestamp__range=(start_date, end_date))
+        # self.assertFalse(self.events)
 
 
     def test_escenario2(self):

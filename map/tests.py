@@ -1,3 +1,4 @@
+# coding=UTF-8
 import datetime
 
 from django.test.utils import setup_test_environment
@@ -85,10 +86,11 @@ class NeighborhoodTests(TestCase):
 
 class HistoryTest(TestCase):
     def test_load_history(self):
-        self.assertTrue(True)
-        return
+        "Escenario de histórico de eventos"
 
+        url = "/map/4/history/201402/"
         self.client.login(username='domotina', password='domotina')
+
         response = self.client.get(url)
         #Debe cambiarse a codigo 200 cuando se implemente
         self.assertEqual(response.status_code, 404)

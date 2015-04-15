@@ -73,6 +73,7 @@ class NeighborhoodTests(TestCase):
     Se borra un neighborhood dado el id
     """
     def test_delete_neighborhood(self):
+        setup_test_environment()
         #Agregar un dato
         date_created = timezone.now() + datetime.timedelta(days=-1)
         date_updated = timezone.now() + datetime.timedelta(days=0)
@@ -97,11 +98,57 @@ class NeighborhoodTests(TestCase):
 
     #Pruebas para editar edificios
     def test_edit_neighborhood(self):
+        setup_test_environment()
         #TO-DO
+        #Que se puede modificar de un neighborhood?
+        #Agregar un dato
+        date_created = timezone.now() + datetime.timedelta(days=-1)
+        date_updated = timezone.now() + datetime.timedelta(days=0)
+        neighborhood1 = Neighborhood.objects.create(name="neighborhood1",
+                                                    date_created=date_created,
+                                                    date_updated=date_updated)
+        n1 = Neighborhood.objects.get(name="neighborhood1")
+        response = self.client.put(reverse('edit_neighborhood', kwargs={'neighborhood_pk': n1.id}))
         self.assertTrue(True)
 
     #Pruebas para dar edificios
-    def test_get_neighborhood(self):
+    """
+    Prueba donde se buscan todos los neighborhoods
+    """
+    def test_get_neighborhoods(self):
+        setup_test_environment()
+        #Sin datos
+        response = self.client.get(reverse('list_neighborhoods'))
+        neighborhoods = response.context["neighborhoods"]
+        #Modificar
+        neighborhoods = []
+
+        self.assertTrue(len(neighborhoods) == 0)
+
+        #Con dos datos
+
+        #Agregar un dato
+        date_created1 = timezone.now() + datetime.timedelta(days=-1)
+        date_updated1 = timezone.now() + datetime.timedelta(days=0)
+        neighborhood1 = Neighborhood.objects.create(name="neighborhood1")
+        #Agregar otro dato
+        date_created2 = timezone.now() + datetime.timedelta(days=-1)
+        date_updated2 = timezone.now() + datetime.timedelta(days=0)
+        neighborhood2 = Neighborhood.objects.create(name="neighborhood2")
+        idealNeighborhoods = []
+
+        #Crear lista ideal
+        n1 = Neighborhood(name="name1")
+        n2 = Neighborhood(name="name1")
+        idealNeighborhoods.append(n1)
+        idealNeighborhoods.append(n2)
+
+        response = self.client.get(reverse('list_neighborhoods'))
+        neighborhoods = response.context["neighborhoods"]
+
+        self.assertTrue(len(neighborhoods) == 2)
+        self.assertListEqual(neighborhoods, idealNeighborhoods, "Los neighborhoods no son los esperados")
+
         #TO-DO
         self.assertTrue(True)
 

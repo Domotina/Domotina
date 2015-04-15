@@ -2,9 +2,10 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth.decorators import user_passes_test
+from django.http import HttpResponse
 
 from middleware.http import Http403
-from models import Place, Floor, Sensor, SensorType
+from models import Place, Floor, Sensor, SensorType, Neighborhood
 from event_manager.models import Event, Alarm
 
 
@@ -151,3 +152,40 @@ def delete_sensor(request, place_pk, sensor_pk):
     sensor = get_object_or_404(Sensor, pk=sensor_pk)
     sensor.delete()
     return redirect('list_sensors', place_pk=place_pk)
+
+
+
+#Metodos para Administracion de urbanizaciones y/o edificios
+
+#@login_required
+def list_neighborhoods(request):
+    #TO-DO
+    #Modificar, solo valido para las pruebas iniciales
+
+    #Deberia retrnar un query set
+    neighborhoods = []
+    n1 = Neighborhood(name="name1")
+    n2 = Neighborhood(name="name1")
+    neighborhoods.append(n1)
+    neighborhoods.append(n2)
+    return render(request, 'neighborhood.html', {'neighborhoods': neighborhoods})
+
+#@login_required
+def create_neighborhood(request):
+    #TO-DO, implementacion temporal valida solo para las pruebas iniciales
+    #print(request)
+    print(request.POST['name'])
+    #Render temporal, solo importa el context
+    return render(request, 'neighborhood.html', {'created': True})
+
+#@login_required
+def delete_neighborhood(request, neighborhood_pk):
+    #TO-DO, implementacion temporal valida solo para las pruebas iniciales
+    #print(request)
+    print(neighborhood_pk)
+    #Render temporal, solo importa el context
+    return render(request, 'neighborhood.html', {'deleted': True})
+
+#@login_required
+def edit_neighborhood(request, neighborhood_pk):
+    return render(request, 'neighborhood.html', {'edited': True})

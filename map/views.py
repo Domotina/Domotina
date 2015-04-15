@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth.decorators import user_passes_test
+from django.http import HttpResponse
 
 from middleware.http import Http403
 from models import Place, Floor, Sensor, SensorType
@@ -151,3 +152,13 @@ def delete_sensor(request, place_pk, sensor_pk):
     sensor = get_object_or_404(Sensor, pk=sensor_pk)
     sensor.delete()
     return redirect('list_sensors', place_pk=place_pk)
+
+
+
+#Metodos para Administracion de urbanizaciones y/o edificios
+#@login_required
+def create_neighborhood(request):
+    #TO-DO, implementacion temporal valida solo para las pruebas iniciales
+    #print(request)
+    print(request.POST['name'])
+    return render(request, 'neighborhood.html', {'name': request.POST['name']})

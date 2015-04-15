@@ -155,12 +155,12 @@ class NeighborhoodTests(TestCase):
 
 
 class HistoryTest(TestCase):
+    url = reverse("map_history", args=(5, 20150401))
     def test_load_history(self):
         "Escenario de histórico de eventos"
 
-        url = "/map/4/history/201402/"
+        url = reverse("map_history", args=(5, 20150401))
         self.client.login(username='domotina', password='domotina')
+        response = self.client.get(self.url)
+        self.assertEqual(response.status_code, 200)
 
-        response = self.client.get(url)
-        #Debe cambiarse a codigo 200 cuando se implemente
-        self.assertEqual(response.status_code, 404)

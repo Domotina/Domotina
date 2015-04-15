@@ -189,3 +189,9 @@ def delete_neighborhood(request, neighborhood_pk):
 #@login_required
 def edit_neighborhood(request, neighborhood_pk):
     return render(request, 'neighborhood.html', {'edited': True})
+
+@login_required
+def map_history(request, place_pk, int_date):
+    place = get_object_or_404(Place, pk=place_pk)
+    events = event_qs = Event.objects.filter(sensor__floor__place=place).order_by('-timestamp')
+    return render(request, "index.html", {'place': place, 'events': events})

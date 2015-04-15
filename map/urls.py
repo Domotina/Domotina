@@ -9,6 +9,7 @@ urlpatterns = patterns('map.views',
     url(r'^(?P<place_pk>\d+)/sensors/(?P<sensor_pk>\d+)$', 'edit_sensor', name='edit_sensor'),
     url(r'^(?P<place_pk>\d+)/sensors/(?P<sensor_pk>\d+)/delete$', 'delete_sensor', name='delete_sensor'),
     url(r'^(?P<place>\d+)/rules/', include('rule_engine.urls')),
+    url(r'^(?P<place_pk>\d+)/history/(?P<int_date>\d+)/$', 'map_history', name='map_history'),
 
     # Administracion de urbanizaciones y/o edificios
     url(r'^neighborhood$', 'list_neighborhoods', name='list_neighborhoods'),

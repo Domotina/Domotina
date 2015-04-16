@@ -23,11 +23,11 @@
                 </a>
                 <ul class="dropdown-menu" role="menu">
                     <li>
-                        <a href="?floor_page={{ floors.number }}&alarm_page={{ alarms.number }}&event_page={{ events.number }}">All
+                        <a href="{% query_params alarms.number events.number None floors.number %}">All
                             sensors</a></li>
                     {% for type in types %}
                         <li>
-                            <a href="?floor_page={{ floors.number }}&alarm_page={{ alarms.number }}&event_page={{ events.number }}&type={{ type.pk }}">{{ type.name }}
+                            <a href="{% query_params alarms.number events.number type floors.number %}">{{ type.name }}
                                 sensors</a></li>
                     {% endfor %}
                 </ul>
@@ -54,8 +54,7 @@
                 <ul class="pager">
                     {% if floors.has_previous %}
                         <li class="previous">
-                            <a href="?floor_page={{ floors.previous_page_number }}&alarm_page={{ alarms.number }}&event_page=
-                                    {{ events.number }}{{ type_param }}">previous</a>
+                            <a href="{% query_params alarms.number events.number type floors.previous_page_number %}">previous</a>
                         </li>
                     {% else %}
                         <li class="previous disabled"><a>previous</a></li>
@@ -67,8 +66,7 @@
 
                     {% if floors.has_next %}
                         <li class="next">
-                            <a href="?floor_page={{ floors.next_page_number }}&alarm_page={{ alarms.number }}&event_page=
-                                    {{ events.number }}{{ type_param }}">next</a>
+                            <a href="{% query_params alarms.number events.number type floors.next_page_number %}">next</a>
                         </li>
                     {% else %}
                         <li class="next disabled"><a>next</a></li>
@@ -120,8 +118,7 @@
                 <ul class="pager">
                     {% if alarms.has_previous %}
                         <li class="previous"><a
-                                href="?floor_page={{ floors.number }}&alarm_page={{ alarms.previous_page_number }}&event_page=
-                                    {{ events.number }}{{ type_param }}">previous</a>
+                                href="{% query_params alarms.previous_page_number events.number type floors.number %}">previous</a>
                         </li>
                     {% else %}
                         <li class="previous disabled"><a>previous</a></li>
@@ -133,8 +130,7 @@
 
                     {% if alarms.has_next %}
                         <li class="next"><a
-                                href="?floor_page={{ floors.number }}&alarm_page={{ alarms.next_page_number }}&event_page=
-                                    {{ events.number }}{{ type_param }}">next</a>
+                                href="{% query_params alarms.next_page_number events.number type floors.number %}">next</a>
                         </li>
                     {% else %}
                         <li class="next disabled"><a>next</a></li>
@@ -178,8 +174,7 @@
                 <ul class="pager">
                     {% if events.has_previous %}
                         <li class="previous"><a
-                                href="?floor_page={{ floors.number }}&event_page={{ events.previous_page_number }}&alarm_page=
-                                    {{ alarms.number }}{{ type_param }}">previous</a>
+                                href="{% query_params alarms.number events.previous_page_number type floors.number %}">previous</a>
                         </li>
                     {% else %}
                         <li class="previous disabled"><a>previous</a></li>
@@ -191,8 +186,7 @@
 
                     {% if events.has_next %}
                         <li class="next"><a
-                                href="?floor_page={{ floors.number }}&event_page={{ events.next_page_number }}&alarm_page=
-                                    {{ alarms.number }}{{ type_param }}">next</a>
+                                href="{% query_params alarms.number events.next_page_number type floors.number %}">next</a>
                         </li>
                     {% else %}
                         <li class="next disabled"><a>next</a></li>

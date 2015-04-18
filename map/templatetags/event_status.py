@@ -22,3 +22,11 @@ def query_params(alarms, events, sensor_type, floor):
         return '?'+('&'.join(params))
     else:
         return ''
+
+@register.inclusion_tag('alarms_tpl.html')
+def alarms_table(alarms):
+    return {'alarms': alarms}
+
+@register.inclusion_tag('events_tpl.html')
+def events_table(events):
+    return {'events': events}

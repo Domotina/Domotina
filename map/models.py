@@ -55,7 +55,7 @@ class Floor(models.Model):
         return "%s Floor %s" % (self.place, self.number)
 
     def to_json(self):
-        return '{number: "%s", url: "%s"}' % (self.number, self.map)
+        return '{number: %d, url: "%s"}' % (self.number, self.map)
 
     def get_sensors_json(self, sensor_type=None):
         sensors_array = []
@@ -141,7 +141,7 @@ class Sensor(models.Model):
         status = self.get_status()
         if status is None:
             return ''
-        current_sensor = '{status: "%s", url: "%s", pos_x: %d, pos_y: %d, description: "%s", floor: "%s"}' \
+        current_sensor = '{status: "%s", url: "%s", pos_x: %d, pos_y: %d, description: "%s", floor: %d}' \
                          % (status.name,
                             status.icon,
                             self.current_pos_x,

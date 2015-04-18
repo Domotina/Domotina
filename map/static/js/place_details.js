@@ -7,13 +7,16 @@ function showIcons() {
     var c = document.getElementById("place_canvas");
     var ctx = c.getContext("2d");
     var currentSensor;
+    ctx.clearRect ( 0 , 0 , ctx.canvas.width, ctx.canvas.height);
     for (var i in sensors) {
-        currentSensor = new Image();
-        currentSensor.src = sensors[i].url;
-        ctx.drawImage(currentSensor, sensors[i].pos_x, sensors[i].pos_y);
+        if(!window.floor || sensors[i].floor === floor.number){
+            currentSensor = new Image();
+            currentSensor.src = sensors[i].url;
+            ctx.drawImage(currentSensor, sensors[i].pos_x, sensors[i].pos_y);
+        }
     }
 }
-$(document).ready(showIcons);
+$(showIcons);
 $(window).load(showIcons);
 
 showAlarms = function () {

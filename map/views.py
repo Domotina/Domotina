@@ -42,7 +42,7 @@ def place_view(request, pk):
     if request.user != place.owner:
         raise Http403
 
-    floors = paginator(Floor.objects.filter(place=place).order_by("number"), request.GET.get("floor_page"), 1)
+    floors = paginator(place.floors.order_by("number"), request.GET.get("floor_page"), 1)
     current_floor = floors.object_list[0]
 
     events = paginator(Event.objects.filter(sensor__floor=current_floor).order_by('-timestamp'),
@@ -154,17 +154,16 @@ def edit_neighborhood(request, neighborhood_pk):
 def map_history(request, place_pk, int_date):
     place = get_object_or_404(Place, pk=place_pk)
     floors = []
-    floors_json = None
-    first_map = None
+    first_floor = None
     sensors = ','.join(place.get_sensors_json())
-    for floor in place.floors.get_queryset():
+    for floor in place.floors.order_by("number"):
         floors.append(floor.to_json())
     if floors:
-        first_map = place.floors.get_queryset()[:1].get().map
-        floors_json = ','.join(floors)
+        first_floor = place.floors.get_queryset()[:1].get()
+    floors_json = ','.join(floors)
     events = Event.objects.filter(sensor__floor__place=place).order_by('-timestamp')
     return render(request, "historic_map.html", {'place': place,
                                                  'events': events,
                                                  'floors': floors_json,
-                                                 'map': first_map,
+                                                 'current_floor': first_floor,
                                                  'sensors': sensors})

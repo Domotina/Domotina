@@ -52,7 +52,7 @@ class NeighborhoodTests(TestCase):
     Prueba en donde se intenta agregar un neighborhood con un nombre vacio,
     no se debe crear el neighboorhood en la base de datos
     """
-    def test_create_neighborhood(self):
+    def test_create_neighborhood_empty_name(self):
         setup_test_environment()
 
         n1 = Neighborhood.objects.all()
@@ -67,7 +67,6 @@ class NeighborhoodTests(TestCase):
         #Se busca en la base de datos
         n2 = Neighborhood.objects.all()
         self.assertEqual(n1.count(), n2.count(), "Se agrego un neighboorhood con nombre vacio")
-
 
     #Pruebas para borrar edificios
     """

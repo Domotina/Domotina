@@ -1,17 +1,30 @@
+import datetime
+
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth.decorators import user_passes_test
-import datetime
 
 from middleware.http import Http403
 from models import Place, Floor, Sensor, SensorType, Neighborhood
 from event_manager.models import Event, Alarm
-from domotina import settings
 
 
 def user_can_see(user):
     return user.is_superuser or user.groups.filter(name='UsersOwners').exists()
+
+
+def paginator(qs, page, items_per_page):
+    paginator_instance = Paginator(qs, items_per_page)
+    try:
+        result = paginator_instance.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        result = paginator_instance.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page of results.
+        result = paginator_instance.page(paginator_instance.num_pages)
+    return result
 
 
 @login_required
@@ -26,53 +39,22 @@ def my_places(request):
 def place_view(request, pk):
     place = get_object_or_404(Place, pk=pk)
 
-    floor_qs = Floor.objects.filter(place=place).order_by("number")
-    floor_paginator = Paginator(floor_qs, 1)
-    page = request.GET.get("floor_page")
-    try:
-        floors = floor_paginator.page(page)
-    except PageNotAnInteger:
-        # If page is not an integer, deliver first page.
-        floors = floor_paginator.page(1)
-    except EmptyPage:
-        # If page is out of range (e.g. 9999), deliver last page of results.
-        floors = floor_paginator.page(floor_paginator.num_pages)
-
-    current_floor = floors.object_list[0]
-
     if request.user != place.owner:
         raise Http403
+
+    floors = paginator(Floor.objects.filter(place=place).order_by("number"), request.GET.get("floor_page"), 1)
+    current_floor = floors.object_list[0]
+
+    events = paginator(Event.objects.filter(sensor__floor=current_floor).order_by('-timestamp'),
+                       request.GET.get('event_page'), 5)
+    alarms = paginator(Alarm.objects.filter(event__sensor__floor=current_floor).order_by('-event__timestamp'),
+                       request.GET.get('alarm_page'), 5)
 
     sensor_type = request.GET.get('type') and SensorType.objects.get(pk=request.GET.get('type'))
 
     sensors_json = ','.join(current_floor.get_sensors_json(sensor_type))
 
-    alarm_qs = Alarm.objects.filter(event__sensor__floor=current_floor).order_by('-event__timestamp')
-    event_qs = Event.objects.filter(sensor__floor=current_floor).order_by('-timestamp')
-
     types = SensorType.objects.all()
-
-    events_paginator = Paginator(event_qs, 5)
-    page = request.GET.get('event_page')
-    try:
-        events = events_paginator.page(page)
-    except PageNotAnInteger:
-        # If page is not an integer, deliver first page.
-        events = events_paginator.page(1)
-    except EmptyPage:
-        # If page is out of range (e.g. 9999), deliver last page of results.
-        events = events_paginator.page(events_paginator.num_pages)
-
-    alarms_paginator = Paginator(alarm_qs, 5)
-    page = request.GET.get('alarm_page')
-    try:
-        alarms = alarms_paginator.page(page)
-    except PageNotAnInteger:
-        # If page is not an integer, deliver first page.
-        alarms = alarms_paginator.page(1)
-    except EmptyPage:
-        # If page is out of range (e.g. 9999), deliver last page of results.
-        alarms = alarms_paginator.page(alarms_paginator.num_pages)
 
     current_date = datetime.datetime.now().strftime("%Y%m%d")
 
@@ -129,15 +111,14 @@ def delete_sensor(request, place_pk, sensor_pk):
     return redirect('list_sensors', place_pk=place_pk)
 
 
+# Metodos para Administracion de urbanizaciones y/o edificios
 
-#Metodos para Administracion de urbanizaciones y/o edificios
-
-#@login_required
+# @login_required
 def list_neighborhoods(request):
-    #TO-DO
-    #Modificar, solo valido para las pruebas iniciales
+    # TO-DO
+    # Modificar, solo valido para las pruebas iniciales
 
-    #Deberia retrnar un query set
+    # Deberia retrnar un query set
     neighborhoods = []
     n1 = Neighborhood(name="name1")
     n2 = Neighborhood(name="name1")
@@ -145,25 +126,29 @@ def list_neighborhoods(request):
     neighborhoods.append(n2)
     return render(request, 'neighborhood.html', {'neighborhoods': neighborhoods})
 
-#@login_required
+
+# @login_required
 def create_neighborhood(request):
-    #TO-DO, implementacion temporal valida solo para las pruebas iniciales
-    #print(request)
+    # TO-DO, implementacion temporal valida solo para las pruebas iniciales
+    # print(request)
     print(request.POST['name'])
-    #Render temporal, solo importa el context
+    # Render temporal, solo importa el context
     return render(request, 'neighborhood.html', {'created': True})
 
-#@login_required
+
+# @login_required
 def delete_neighborhood(request, neighborhood_pk):
-    #TO-DO, implementacion temporal valida solo para las pruebas iniciales
-    #print(request)
+    # TO-DO, implementacion temporal valida solo para las pruebas iniciales
+    # print(request)
     print(neighborhood_pk)
-    #Render temporal, solo importa el context
+    # Render temporal, solo importa el context
     return render(request, 'neighborhood.html', {'deleted': True})
 
-#@login_required
+
+# @login_required
 def edit_neighborhood(request, neighborhood_pk):
     return render(request, 'neighborhood.html', {'edited': True})
+
 
 @login_required
 def map_history(request, place_pk, int_date):
@@ -177,7 +162,7 @@ def map_history(request, place_pk, int_date):
     if floors:
         first_map = place.floors.get_queryset()[:1].get().map
         floors_json = ','.join(floors)
-    events = event_qs = Event.objects.filter(sensor__floor__place=place).order_by('-timestamp')
+    events = Event.objects.filter(sensor__floor__place=place).order_by('-timestamp')
     return render(request, "historic_map.html", {'place': place,
                                                  'events': events,
                                                  'floors': floors_json,

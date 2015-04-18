@@ -2,11 +2,12 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth.decorators import user_passes_test
-from django.http import HttpResponse
+import datetime
 
 from middleware.http import Http403
 from models import Place, Floor, Sensor, SensorType, Neighborhood
 from event_manager.models import Event, Alarm
+from domotina import settings
 
 
 def user_can_see(user):
@@ -42,38 +43,9 @@ def place_view(request, pk):
     if request.user != place.owner:
         raise Http403
 
-    sensors_array = []
-    type = request.GET.get('type')
-    if type is not None:
-        type_param = '&type=' + type
-        type = SensorType.objects.get(pk=type)
-    else:
-        type_param = ''
+    sensor_type = request.GET.get('type') and SensorType.objects.get(pk=request.GET.get('type'))
 
-    if type is None:
-        sensors = Sensor.objects.filter(floor=current_floor)
-    else:
-        sensors = Sensor.objects.filter(floor=current_floor, type=type)
-
-    for sensor in sensors:
-        status = sensor.get_status()
-        if status:
-            current_sensor = '{url: "%s",' \
-                             'pos_x: %d,' \
-                             'pos_y: %d,' \
-                             'description: "%s",' \
-                             'status: "%s"}' \
-                             % (status.icon, sensor.current_pos_x, sensor.current_pos_y,
-                                sensor.description, status.name)
-            sensors_array.append(current_sensor)
-
-    sensors_json = ','.join(sensors_array)
-
-    # If there are sensors registered for this floor
-    if sensors_array:
-        sensors_json = ','.join(sensors_array)
-    else:
-        sensors_json = None
+    sensors_json = ','.join(current_floor.get_sensors_json(sensor_type))
 
     alarm_qs = Alarm.objects.filter(event__sensor__floor=current_floor).order_by('-event__timestamp')
     event_qs = Event.objects.filter(sensor__floor=current_floor).order_by('-timestamp')
@@ -102,8 +74,11 @@ def place_view(request, pk):
         # If page is out of range (e.g. 9999), deliver last page of results.
         alarms = alarms_paginator.page(alarms_paginator.num_pages)
 
+    current_date = datetime.datetime.now().strftime("%Y%m%d")
+
     context = {'floor': current_floor, 'sensors': sensors_json, 'floors': floors,
-               'events': events, 'alarms': alarms, 'types': types, 'type_param': type_param, 'type': type}
+               'events': events, 'alarms': alarms, 'types': types,
+               'type': sensor_type, 'now': current_date}
     return render(request, 'place_details.html', context)
 
 
@@ -193,5 +168,18 @@ def edit_neighborhood(request, neighborhood_pk):
 @login_required
 def map_history(request, place_pk, int_date):
     place = get_object_or_404(Place, pk=place_pk)
+    floors = []
+    floors_json = None
+    first_map = None
+    sensors = ','.join(place.get_sensors_json())
+    for floor in place.floors.get_queryset():
+        floors.append(floor.to_json())
+    if floors:
+        first_map = place.floors.get_queryset()[:1].get().map
+        floors_json = ','.join(floors)
     events = event_qs = Event.objects.filter(sensor__floor__place=place).order_by('-timestamp')
-    return render(request, "index.html", {'place': place, 'events': events})
+    return render(request, "historic_map.html", {'place': place,
+                                                 'events': events,
+                                                 'floors': floors_json,
+                                                 'map': first_map,
+                                                 'sensors': sensors})

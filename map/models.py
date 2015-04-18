@@ -1,6 +1,6 @@
-from django.conf import settings
 from django.db import models
 from django.contrib.auth.models import User
+
 
 class Neighborhood(models.Model):
     name = models.CharField("neighborhood", max_length=100)
@@ -31,11 +31,17 @@ class Place(models.Model):
     def __unicode__(self):
         return self.name
 
+    def get_sensors_json(self, sensor_type=None):
+        sensors_array = []
+        floors = self.floors.get_queryset()
+        for floor in floors:
+            sensors_array.extend(floor.get_sensors_json(sensor_type))
+        return sensors_array
+
 
 class Floor(models.Model):
     place = models.ForeignKey(Place, verbose_name="place", related_name="floors")
     number = models.PositiveIntegerField("number", default=1)
-    #map = models.ImageField("map image", upload_to=settings.MAP_FILE_PATH)
     map = models.CharField("map image", max_length=255)
     date_created = models.DateTimeField("date created", auto_now_add=True)
     date_updated = models.DateTimeField("date updated", auto_now_add=True)
@@ -48,21 +54,21 @@ class Floor(models.Model):
     def __unicode__(self):
         return "%s Floor %s" % (self.place, self.number)
 
+    def to_json(self):
+        return '{number: "%s", url: "%s"}' % (self.number, self.map)
 
-'''class Asset(models.Model):
-    floor = models.ForeignKey(Floor, verbose_name="floor", related_name="assets")
-    name = models.CharField("asset", max_length=50)
-    description = models.TextField("description", blank=True, null=True)
-    date_created = models.DateTimeField("date created", auto_now_add=True)
-    date_updated = models.DateTimeField("date updated", auto_now_add=True)
+    def get_sensors_json(self, sensor_type=None):
+        sensors_array = []
+        if sensor_type is None:
+            sensors = self.sensors.get_queryset()
+        else:
+            sensors = self.sensors.filter(type=sensor_type)
 
-    class Meta:
-        verbose_name = "asset"
-        verbose_name_plural = "assets"
-        ordering = ["floor", "name"]
-
-    def __unicode__(self):
-        return self.name'''
+        for sensor in sensors:
+            sensor_json = sensor.to_json()
+            if sensor_json:
+                sensors_array.append(sensor_json)
+        return sensors_array
 
 
 class SensorType(models.Model):
@@ -130,3 +136,16 @@ class Sensor(models.Model):
             status = None
         finally:
             return status
+
+    def to_json(self):
+        status = self.get_status()
+        if status is None:
+            return ''
+        current_sensor = '{status: "%s", url: "%s", pos_x: %d, pos_y: %d, description: "%s", floor: "%s"}' \
+                         % (status.name,
+                            status.icon,
+                            self.current_pos_x,
+                            self.current_pos_y,
+                            self,
+                            self.floor.number)
+        return current_sensor

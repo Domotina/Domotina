@@ -34,7 +34,7 @@
             </li>
             <li><a href='{% url "list_sensors" floor.place.pk %}'>Sensors</a></li>
             <li><a href='{% url "list_rules" floor.place.pk %}'>Rules</a></li>
-            <li><a href>History</a></li>
+            <li><a href="{% url "map_history" floor.place.pk now %}">History</a></li>
             <li><a href>Reports</a></li>
             <li><a href>Delegates</a></li>
         </ul>

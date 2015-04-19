@@ -49,7 +49,7 @@ MIDDLEWARE_CLASSES = (
 )
 
 REST_FRAMEWORK = {
-    'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.IsAdminUser',),
+    'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.DjangoModelPermissions',),
     'PAGINATE_BY': 10
 }
 LOGIN_URL='/api-auth/login/'

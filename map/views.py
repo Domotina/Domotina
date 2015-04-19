@@ -6,8 +6,10 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth.decorators import user_passes_test
 
 from middleware.http import Http403
-from models import Place, Floor, Sensor, SensorType, Neighborhood
+from .models import Place, Floor, Sensor, SensorType, Neighborhood
+from .serializers import SensorSerializer
 from event_manager.models import Event, Alarm
+from rest_framework import viewsets
 
 
 def user_can_see(user):
@@ -168,3 +170,11 @@ def map_history(request, place_pk, int_date):
                                                  'floors': floors_json,
                                                  'current_floor': first_floor,
                                                  'sensors': sensors})
+
+
+class SensorViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows sensors to be viewed or edited.
+    """
+    queryset = Sensor.objects.all()
+    serializer_class = SensorSerializer

@@ -98,14 +98,6 @@ def event_handler(sender, instance, **kwargs):
     if instance.is_reportable():
         alarm = Alarm(event=instance)
         alarm.save()
-    if instance.get_status() is not None:
-        instance.sensor.current_value = instance.value
-    if instance.pos_x is not None:
-        instance.sensor.current_pos_x = instance.pos_x
-    if instance.pos_y is not None:
-        instance.sensor.current_pos_y = instance.pos_y
-    instance.sensor.current_date = instance.timestamp
-    instance.sensor.save()
 
 
 @receiver(post_save, sender=Alarm)
@@ -126,7 +118,6 @@ def alarm_handler(sender, instance, created, **kwargs):
 
 @receiver(post_save, sender=Sensor)
 def sensor_handler(sender, instance, created, **kwargs):
-    if created:
-        first_event = Event(sensor=instance, value=instance.current_value, pos_x=instance.current_pos_x,
-                            pos_y=instance.current_pos_y)
-        first_event.save()
+    event = Event(sensor=instance, value=instance.current_value, pos_x=instance.current_pos_x,
+                  pos_y=instance.current_pos_y)
+    event.save()

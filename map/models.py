@@ -1,6 +1,18 @@
+from datetime import timedelta, time, datetime
+
 from django.db import models
 from django.contrib.auth.models import User
-from datetime import timedelta, time, datetime
+
+
+def datetime_to_js(dt):
+    return "new Date(%(year)s, %(month)s, %(day)s, %(h)s, %(m)s, %(s)s)" \
+           % {'year': dt.strftime("%Y"),
+              'month': dt.strftime("%m"),
+              'day': dt.strftime("%d"),
+              'h': dt.strftime("%H"),
+              'm': dt.strftime("%M"),
+              's': dt.strftime("%S")}
+
 
 class Neighborhood(models.Model):
     name = models.CharField("neighborhood", max_length=100)
@@ -168,17 +180,15 @@ class Sensor(models.Model):
         status = self.get_status()
         if status is None:
             return ''
-        creation_time = (self.date_created - datetime.combine(self.date_created.date(), time(0))).total_seconds()
         sensor = '{status: "%s", url: "%s", pos_x: %d, pos_y: %d, ' \
-                 'description: "%s", floor: %d, creation_time: %d, creation_date: "%s"' \
-                     % (status.name,
-                        status.icon,
-                        self.current_pos_x,
-                        self.current_pos_y,
-                        self,
-                        self.floor.number,
-                        creation_time,
-                        self.date_created.date())
+                 'description: "%s", floor: %d, creation_date: %s' \
+                 % (status.name,
+                    status.icon,
+                    self.current_pos_x,
+                    self.current_pos_y,
+                    self,
+                    self.floor.number,
+                    datetime_to_js(self.date_created))
         if include_events:
             sensor += ', events: [%s]}' % (','.join(self.events_to_json(date=date)))
         else:

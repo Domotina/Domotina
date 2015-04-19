@@ -15,7 +15,6 @@ function secondsFormatter(value) {
 };
 
 $(function () {
-    var time = 0;
     for (idx in floors) {
         $("#floors").append("<option value=" + idx + ">Floor " + floors[idx].number + "</option>");
     }
@@ -30,6 +29,9 @@ $(function () {
 
     var slider = $('#slider').slider({formater: secondsFormatter})
     slider.on('slide', function (value) {
-        time = value.value;
+        var seconds = value.value;
+        time.setHours(seconds / 60 / 60);
+        time.setMinutes(seconds / 60 % 60);
+        time.setSeconds(seconds % 60);
     });
 });

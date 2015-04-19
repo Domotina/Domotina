@@ -1,13 +1,23 @@
 import threading
 import traceback
-
 from datetime import time, datetime
+
 from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
 from map.models import Sensor
 from event_manager.notificator import send_email
+
+
+def datetime_to_js(dt):
+    return "new Date(%(year)s, %(month)s, %(day)s, %(h)s, %(m)s, %(s)s)" \
+           % {'year': dt.strftime("%Y"),
+              'month': dt.strftime("%m"),
+              'day': dt.strftime("%d"),
+              'h': dt.strftime("%H"),
+              'm': dt.strftime("%M"),
+              's': dt.strftime("%S")}
 
 
 class Event(models.Model):
@@ -60,23 +70,20 @@ class Event(models.Model):
         status = self.get_status()
         if status is None:
             return ''
-        seconds_of_day = (self.timestamp - datetime.combine(self.timestamp.date(), time(0))).total_seconds()
         current_sensor = '{status: "%s", ' \
                          'url: "%s", ' \
                          'pos_x: %d, ' \
                          'pos_y: %d, ' \
                          'description: "%s", ' \
                          'sensor: %d, ' \
-                         'date: "%s", ' \
-                         'seconds: %d}' \
+                         'timestamp: %s}' \
                          % (status.name,
                             status.icon,
                             self.pos_x,
                             self.pos_y,
                             self,
                             self.sensor.pk,
-                            self.timestamp.date(),
-                            seconds_of_day)
+                            datetime_to_js(self.timestamp))
         return current_sensor
 
 

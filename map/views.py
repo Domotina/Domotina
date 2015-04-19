@@ -4,12 +4,12 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth.decorators import user_passes_test
+from rest_framework import viewsets
 
 from middleware.http import Http403
 from .models import Place, Floor, Sensor, SensorType, Neighborhood
 from .serializers import SensorSerializer
 from event_manager.models import Event, Alarm
-from rest_framework import viewsets
 
 
 def user_can_see(user):
@@ -155,6 +155,10 @@ def edit_neighborhood(request, neighborhood_pk):
 @login_required
 def map_history(request, place_pk, int_date):
     date = datetime.datetime.strptime(int_date, "%Y%m%d")
+    init_date = "new Date(%(year)s, %(month)s, %(day)s)" \
+                % {'year': date.strftime("%Y"),
+                   'month': date.strftime("%m"),
+                   'day': date.strftime("%d")}
     place = get_object_or_404(Place, pk=place_pk)
     floors = ','.join(place.floors_to_json())
     sensors = ','.join(place.snapshot(date=date, json=True, include_events=True))
@@ -163,7 +167,8 @@ def map_history(request, place_pk, int_date):
     return render(request, "historic_map.html", {'place': place,
                                                  'events': events,
                                                  'floors': floors,
-                                                 'sensors': sensors})
+                                                 'sensors': sensors,
+                                                 'datetime': init_date})
 
 
 class SensorViewSet(viewsets.ModelViewSet):

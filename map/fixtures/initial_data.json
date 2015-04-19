@@ -135,33 +135,548 @@
     }
 },
 {
-    "pk": 1, 
-    "model": "event_manager.event", 
+    "pk": 1,
+    "model": "auth.permission",
     "fields": {
-        "timestamp": "2015-03-28T00:28:50.505Z", 
-        "pos_x": null, 
-        "pos_y": null, 
-        "sensor": 34, 
-        "value": 1
+        "codename": "add_logentry",
+        "name": "Can add log entry",
+        "content_type": 1
     }
 },
 {
-    "pk": 2, 
-    "model": "event_manager.event", 
+    "pk": 2,
+    "model": "auth.permission",
     "fields": {
-        "timestamp": "2015-03-28T00:57:03.695Z", 
-        "pos_x": null, 
-        "pos_y": null, 
-        "sensor": 34, 
-        "value": 0
+        "codename": "change_logentry",
+        "name": "Can change log entry",
+        "content_type": 1
     }
 },
 {
-    "pk": 1, 
-    "model": "event_manager.alarm", 
+    "pk": 3,
+    "model": "auth.permission",
     "fields": {
-        "notified": true, 
-        "event": 1
+        "codename": "delete_logentry",
+        "name": "Can delete log entry",
+        "content_type": 1
+    }
+},
+{
+    "pk": 4,
+    "model": "auth.permission",
+    "fields": {
+        "codename": "add_permission",
+        "name": "Can add permission",
+        "content_type": 2
+    }
+},
+{
+    "pk": 5,
+    "model": "auth.permission",
+    "fields": {
+        "codename": "change_permission",
+        "name": "Can change permission",
+        "content_type": 2
+    }
+},
+{
+    "pk": 6,
+    "model": "auth.permission",
+    "fields": {
+        "codename": "delete_permission",
+        "name": "Can delete permission",
+        "content_type": 2
+    }
+},
+{
+    "pk": 7,
+    "model": "auth.permission",
+    "fields": {
+        "codename": "add_group",
+        "name": "Can add group",
+        "content_type": 3
+    }
+},
+{
+    "pk": 8,
+    "model": "auth.permission",
+    "fields": {
+        "codename": "change_group",
+        "name": "Can change group",
+        "content_type": 3
+    }
+},
+{
+    "pk": 9,
+    "model": "auth.permission",
+    "fields": {
+        "codename": "delete_group",
+        "name": "Can delete group",
+        "content_type": 3
+    }
+},
+{
+    "pk": 10,
+    "model": "auth.permission",
+    "fields": {
+        "codename": "add_user",
+        "name": "Can add user",
+        "content_type": 4
+    }
+},
+{
+    "pk": 11,
+    "model": "auth.permission",
+    "fields": {
+        "codename": "change_user",
+        "name": "Can change user",
+        "content_type": 4
+    }
+},
+{
+    "pk": 12,
+    "model": "auth.permission",
+    "fields": {
+        "codename": "delete_user",
+        "name": "Can delete user",
+        "content_type": 4
+    }
+},
+{
+    "pk": 13,
+    "model": "auth.permission",
+    "fields": {
+        "codename": "add_contenttype",
+        "name": "Can add content type",
+        "content_type": 5
+    }
+},
+{
+    "pk": 14,
+    "model": "auth.permission",
+    "fields": {
+        "codename": "change_contenttype",
+        "name": "Can change content type",
+        "content_type": 5
+    }
+},
+{
+    "pk": 15,
+    "model": "auth.permission",
+    "fields": {
+        "codename": "delete_contenttype",
+        "name": "Can delete content type",
+        "content_type": 5
+    }
+},
+{
+    "pk": 16,
+    "model": "auth.permission",
+    "fields": {
+        "codename": "add_session",
+        "name": "Can add session",
+        "content_type": 6
+    }
+},
+{
+    "pk": 17,
+    "model": "auth.permission",
+    "fields": {
+        "codename": "change_session",
+        "name": "Can change session",
+        "content_type": 6
+    }
+},
+{
+    "pk": 18,
+    "model": "auth.permission",
+    "fields": {
+        "codename": "delete_session",
+        "name": "Can delete session",
+        "content_type": 6
+    }
+},
+{
+    "pk": 19,
+    "model": "auth.permission",
+    "fields": {
+        "codename": "add_event",
+        "name": "Can add event",
+        "content_type": 7
+    }
+},
+{
+    "pk": 20,
+    "model": "auth.permission",
+    "fields": {
+        "codename": "change_event",
+        "name": "Can change event",
+        "content_type": 7
+    }
+},
+{
+    "pk": 21,
+    "model": "auth.permission",
+    "fields": {
+        "codename": "delete_event",
+        "name": "Can delete event",
+        "content_type": 7
+    }
+},
+{
+    "pk": 22,
+    "model": "auth.permission",
+    "fields": {
+        "codename": "add_alarm",
+        "name": "Can add alarm",
+        "content_type": 8
+    }
+},
+{
+    "pk": 23,
+    "model": "auth.permission",
+    "fields": {
+        "codename": "change_alarm",
+        "name": "Can change alarm",
+        "content_type": 8
+    }
+},
+{
+    "pk": 24,
+    "model": "auth.permission",
+    "fields": {
+        "codename": "delete_alarm",
+        "name": "Can delete alarm",
+        "content_type": 8
+    }
+},
+{
+    "pk": 25,
+    "model": "auth.permission",
+    "fields": {
+        "codename": "add_neighborhood",
+        "name": "Can add neighborhood",
+        "content_type": 9
+    }
+},
+{
+    "pk": 26,
+    "model": "auth.permission",
+    "fields": {
+        "codename": "change_neighborhood",
+        "name": "Can change neighborhood",
+        "content_type": 9
+    }
+},
+{
+    "pk": 27,
+    "model": "auth.permission",
+    "fields": {
+        "codename": "delete_neighborhood",
+        "name": "Can delete neighborhood",
+        "content_type": 9
+    }
+},
+{
+    "pk": 28,
+    "model": "auth.permission",
+    "fields": {
+        "codename": "add_place",
+        "name": "Can add place",
+        "content_type": 10
+    }
+},
+{
+    "pk": 29,
+    "model": "auth.permission",
+    "fields": {
+        "codename": "change_place",
+        "name": "Can change place",
+        "content_type": 10
+    }
+},
+{
+    "pk": 30,
+    "model": "auth.permission",
+    "fields": {
+        "codename": "delete_place",
+        "name": "Can delete place",
+        "content_type": 10
+    }
+},
+{
+    "pk": 31,
+    "model": "auth.permission",
+    "fields": {
+        "codename": "add_floor",
+        "name": "Can add floor",
+        "content_type": 11
+    }
+},
+{
+    "pk": 32,
+    "model": "auth.permission",
+    "fields": {
+        "codename": "change_floor",
+        "name": "Can change floor",
+        "content_type": 11
+    }
+},
+{
+    "pk": 33,
+    "model": "auth.permission",
+    "fields": {
+        "codename": "delete_floor",
+        "name": "Can delete floor",
+        "content_type": 11
+    }
+},
+{
+    "pk": 34,
+    "model": "auth.permission",
+    "fields": {
+        "codename": "add_sensortype",
+        "name": "Can add sensor type",
+        "content_type": 12
+    }
+},
+{
+    "pk": 35,
+    "model": "auth.permission",
+    "fields": {
+        "codename": "change_sensortype",
+        "name": "Can change sensor type",
+        "content_type": 12
+    }
+},
+{
+    "pk": 36,
+    "model": "auth.permission",
+    "fields": {
+        "codename": "delete_sensortype",
+        "name": "Can delete sensor type",
+        "content_type": 12
+    }
+},
+{
+    "pk": 37,
+    "model": "auth.permission",
+    "fields": {
+        "codename": "add_sensorstatus",
+        "name": "Can add sensor status",
+        "content_type": 13
+    }
+},
+{
+    "pk": 38,
+    "model": "auth.permission",
+    "fields": {
+        "codename": "change_sensorstatus",
+        "name": "Can change sensor status",
+        "content_type": 13
+    }
+},
+{
+    "pk": 39,
+    "model": "auth.permission",
+    "fields": {
+        "codename": "delete_sensorstatus",
+        "name": "Can delete sensor status",
+        "content_type": 13
+    }
+},
+{
+    "pk": 40,
+    "model": "auth.permission",
+    "fields": {
+        "codename": "add_sensor",
+        "name": "Can add sensor",
+        "content_type": 14
+    }
+},
+{
+    "pk": 41,
+    "model": "auth.permission",
+    "fields": {
+        "codename": "change_sensor",
+        "name": "Can change sensor",
+        "content_type": 14
+    }
+},
+{
+    "pk": 42,
+    "model": "auth.permission",
+    "fields": {
+        "codename": "delete_sensor",
+        "name": "Can delete sensor",
+        "content_type": 14
+    }
+},
+{
+    "pk": 43,
+    "model": "auth.permission",
+    "fields": {
+        "codename": "add_scheduledaily",
+        "name": "Can add Daily Schedule",
+        "content_type": 15
+    }
+},
+{
+    "pk": 44,
+    "model": "auth.permission",
+    "fields": {
+        "codename": "change_scheduledaily",
+        "name": "Can change Daily Schedule",
+        "content_type": 15
+    }
+},
+{
+    "pk": 45,
+    "model": "auth.permission",
+    "fields": {
+        "codename": "delete_scheduledaily",
+        "name": "Can delete Daily Schedule",
+        "content_type": 15
+    }
+},
+{
+    "pk": 1,
+    "model": "auth.group",
+    "fields": {
+        "name": "UsersCentral",
+        "permissions": [
+            2
+        ]
+    }
+},
+{
+    "pk": 2,
+    "model": "auth.group",
+    "fields": {
+        "name": "UsersOwners",
+        "permissions": [
+            34,
+            35,
+            36
+        ]
+    }
+},
+{
+    "pk": 1,
+    "model": "auth.user",
+    "fields": {
+        "username": "domotina",
+        "first_name": "",
+        "last_name": "",
+        "is_active": true,
+        "is_superuser": true,
+        "is_staff": true,
+        "last_login": "2015-04-12T05:53:17.775Z",
+        "groups": [],
+        "user_permissions": [],
+        "password": "pbkdf2_sha256$12000$jTeDaK4UwLqY$ytI9/vmZ15Z6Kvj8xKPmQCXGJlKBOcRPeDKxcXPRfBo=",
+        "email": "djimenez@ingenieros.com",
+        "date_joined": "2015-03-07T20:01:23Z"
+    }
+},
+{
+    "pk": 2,
+    "model": "auth.user",
+    "fields": {
+        "username": "central",
+        "first_name": "Usuario",
+        "last_name": "Central",
+        "is_active": true,
+        "is_superuser": false,
+        "is_staff": false,
+        "last_login": "2015-03-21T22:13:26.308Z",
+        "groups": [
+            1
+        ],
+        "user_permissions": [],
+        "password": "pbkdf2_sha256$12000$c59nhEY8EnFF$UbXvE/gDmDc2n928B9D+wN5wf9RojB/4r9TYmg/OYB0=",
+        "email": "raul.gomezn@hotmail.com",
+        "date_joined": "2015-03-21T15:59:16Z"
+    }
+},
+{
+    "pk": 3,
+    "model": "auth.user",
+    "fields": {
+        "username": "user",
+        "first_name": "Usuario",
+        "last_name": "Propietario",
+        "is_active": true,
+        "is_superuser": false,
+        "is_staff": false,
+        "last_login": "2015-03-21T22:12:47.770Z",
+        "groups": [
+            2
+        ],
+        "user_permissions": [],
+        "password": "pbkdf2_sha256$12000$VWJRLICOiKez$CtVqE1CjkxHkePTyXaw4ckodgDViaNIGfkCLPiyvcXc=",
+        "email": "raul.gomezn@hotmail.com",
+        "date_joined": "2015-03-21T17:21:32Z"
+    }
+},
+{
+    "pk": 4,
+    "model": "auth.user",
+    "fields": {
+        "username": "buildersmart",
+        "first_name": "Constructora",
+        "last_name": "Smart",
+        "is_active": true,
+        "is_superuser": false,
+        "is_staff": false,
+        "last_login": "2015-04-07T20:31:31Z",
+        "groups": [
+            2
+        ],
+        "user_permissions": [],
+        "password": "pbkdf2_sha256$12000$FkGl9x3UtHYP$48YYbAYdLDAXisurv687PPAy0fDbyqwGK+CyVKCUMBY=",
+        "email": "ra.gomez11@uniandes.edu.co",
+        "date_joined": "2015-04-07T20:31:31Z"
+    }
+},
+{
+    "pk": 5,
+    "model": "auth.user",
+    "fields": {
+        "username": "kaos",
+        "first_name": "a",
+        "last_name": "e",
+        "is_active": true,
+        "is_superuser": false,
+        "is_staff": false,
+        "last_login": "2015-04-09T20:14:16.761Z",
+        "groups": [
+            2
+        ],
+        "user_permissions": [],
+        "password": "pbkdf2_sha256$12000$xPjRrVS8DoGk$6KEiFopXiDRXDIL0w7Kfds6tBAnxmehzyW73Hs2ZbQ4=",
+        "email": "kaosterra@gmail.com",
+        "date_joined": "2015-04-09T20:14:16.761Z"
+    }
+},
+{
+    "pk": 6,
+    "model": "auth.user",
+    "fields": {
+        "username": "djimenez",
+        "first_name": "David",
+        "last_name": "Jimenez",
+        "is_active": true,
+        "is_superuser": true,
+        "is_staff": true,
+        "last_login": "2015-04-11T15:14:34.457Z",
+        "groups": [
+            2
+        ],
+        "user_permissions": [],
+        "password": "pbkdf2_sha256$12000$jTeDaK4UwLqY$ytI9/vmZ15Z6Kvj8xKPmQCXGJlKBOcRPeDKxcXPRfBo=",
+        "email": "djimenez@ingenieros.com",
+        "date_joined": "2015-03-07T20:01:23Z"
     }
 },
 {
@@ -198,6 +713,61 @@
         "date_updated": "2015-03-08T03:36:52.714Z", 
         "date_created": "2015-03-08T03:36:52.714Z", 
         "name": "BD Bacata Building"
+    }
+},
+{
+    "pk": 1,
+    "model": "map.place",
+    "fields": {
+        "owner": 1,
+        "date_created": "2015-03-07T20:59:03.888Z",
+        "neighborhood": 1,
+        "name": "T10 AP602",
+        "date_updated": "2015-03-07T20:59:03.888Z"
+    }
+},
+{
+    "pk": 2,
+    "model": "map.place",
+    "fields": {
+        "owner": 1,
+        "date_created": "2015-03-07T20:59:27.651Z",
+        "neighborhood": 1,
+        "name": "T10 AP603",
+        "date_updated": "2015-03-07T20:59:27.651Z"
+    }
+},
+{
+    "pk": 3,
+    "model": "map.place",
+    "fields": {
+        "owner": 1,
+        "date_created": "2015-03-08T02:24:08.983Z",
+        "neighborhood": 3,
+        "name": "Kr 69D St 25-04",
+        "date_updated": "2015-03-08T02:24:08.983Z"
+    }
+},
+{
+    "pk": 4,
+    "model": "map.place",
+    "fields": {
+        "owner": 1,
+        "date_created": "2015-03-08T03:37:22.536Z",
+        "neighborhood": 4,
+        "name": "Office 201",
+        "date_updated": "2015-03-08T03:37:22.536Z"
+    }
+},
+{
+    "pk": 5,
+    "model": "map.place",
+    "fields": {
+        "owner": 1,
+        "date_created": "2015-03-17T17:24:15.155Z",
+        "neighborhood": 3,
+        "name": "Kr 69A St 24-12",
+        "date_updated": "2015-03-17T17:24:15.155Z"
     }
 },
 {
@@ -1204,603 +1774,33 @@
     }
 },
 {
-    "pk": 1, 
-    "model": "auth.permission", 
+    "pk": 1,
+    "model": "event_manager.event",
     "fields": {
-        "codename": "add_logentry", 
-        "name": "Can add log entry", 
-        "content_type": 1
+        "timestamp": "2015-03-28T00:28:50.505Z",
+        "pos_x": null,
+        "pos_y": null,
+        "sensor": 34,
+        "value": 1
     }
 },
 {
-    "pk": 2, 
-    "model": "auth.permission", 
+    "pk": 2,
+    "model": "event_manager.event",
     "fields": {
-        "codename": "change_logentry", 
-        "name": "Can change log entry", 
-        "content_type": 1
+        "timestamp": "2015-03-28T00:57:03.695Z",
+        "pos_x": null,
+        "pos_y": null,
+        "sensor": 34,
+        "value": 0
     }
 },
 {
-    "pk": 3, 
-    "model": "auth.permission", 
+    "pk": 1,
+    "model": "event_manager.alarm",
     "fields": {
-        "codename": "delete_logentry", 
-        "name": "Can delete log entry", 
-        "content_type": 1
-    }
-},
-{
-    "pk": 4, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "add_permission", 
-        "name": "Can add permission", 
-        "content_type": 2
-    }
-},
-{
-    "pk": 5, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "change_permission", 
-        "name": "Can change permission", 
-        "content_type": 2
-    }
-},
-{
-    "pk": 6, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "delete_permission", 
-        "name": "Can delete permission", 
-        "content_type": 2
-    }
-},
-{
-    "pk": 7, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "add_group", 
-        "name": "Can add group", 
-        "content_type": 3
-    }
-},
-{
-    "pk": 8, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "change_group", 
-        "name": "Can change group", 
-        "content_type": 3
-    }
-},
-{
-    "pk": 9, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "delete_group", 
-        "name": "Can delete group", 
-        "content_type": 3
-    }
-},
-{
-    "pk": 10, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "add_user", 
-        "name": "Can add user", 
-        "content_type": 4
-    }
-},
-{
-    "pk": 11, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "change_user", 
-        "name": "Can change user", 
-        "content_type": 4
-    }
-},
-{
-    "pk": 12, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "delete_user", 
-        "name": "Can delete user", 
-        "content_type": 4
-    }
-},
-{
-    "pk": 13, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "add_contenttype", 
-        "name": "Can add content type", 
-        "content_type": 5
-    }
-},
-{
-    "pk": 14, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "change_contenttype", 
-        "name": "Can change content type", 
-        "content_type": 5
-    }
-},
-{
-    "pk": 15, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "delete_contenttype", 
-        "name": "Can delete content type", 
-        "content_type": 5
-    }
-},
-{
-    "pk": 16, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "add_session", 
-        "name": "Can add session", 
-        "content_type": 6
-    }
-},
-{
-    "pk": 17, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "change_session", 
-        "name": "Can change session", 
-        "content_type": 6
-    }
-},
-{
-    "pk": 18, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "delete_session", 
-        "name": "Can delete session", 
-        "content_type": 6
-    }
-},
-{
-    "pk": 19, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "add_event", 
-        "name": "Can add event", 
-        "content_type": 7
-    }
-},
-{
-    "pk": 20, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "change_event", 
-        "name": "Can change event", 
-        "content_type": 7
-    }
-},
-{
-    "pk": 21, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "delete_event", 
-        "name": "Can delete event", 
-        "content_type": 7
-    }
-},
-{
-    "pk": 22, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "add_alarm", 
-        "name": "Can add alarm", 
-        "content_type": 8
-    }
-},
-{
-    "pk": 23, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "change_alarm", 
-        "name": "Can change alarm", 
-        "content_type": 8
-    }
-},
-{
-    "pk": 24, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "delete_alarm", 
-        "name": "Can delete alarm", 
-        "content_type": 8
-    }
-},
-{
-    "pk": 25, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "add_neighborhood", 
-        "name": "Can add neighborhood", 
-        "content_type": 9
-    }
-},
-{
-    "pk": 26, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "change_neighborhood", 
-        "name": "Can change neighborhood", 
-        "content_type": 9
-    }
-},
-{
-    "pk": 27, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "delete_neighborhood", 
-        "name": "Can delete neighborhood", 
-        "content_type": 9
-    }
-},
-{
-    "pk": 28, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "add_place", 
-        "name": "Can add place", 
-        "content_type": 10
-    }
-},
-{
-    "pk": 29, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "change_place", 
-        "name": "Can change place", 
-        "content_type": 10
-    }
-},
-{
-    "pk": 30, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "delete_place", 
-        "name": "Can delete place", 
-        "content_type": 10
-    }
-},
-{
-    "pk": 31, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "add_floor", 
-        "name": "Can add floor", 
-        "content_type": 11
-    }
-},
-{
-    "pk": 32, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "change_floor", 
-        "name": "Can change floor", 
-        "content_type": 11
-    }
-},
-{
-    "pk": 33, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "delete_floor", 
-        "name": "Can delete floor", 
-        "content_type": 11
-    }
-},
-{
-    "pk": 34, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "add_sensortype", 
-        "name": "Can add sensor type", 
-        "content_type": 12
-    }
-},
-{
-    "pk": 35, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "change_sensortype", 
-        "name": "Can change sensor type", 
-        "content_type": 12
-    }
-},
-{
-    "pk": 36, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "delete_sensortype", 
-        "name": "Can delete sensor type", 
-        "content_type": 12
-    }
-},
-{
-    "pk": 37, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "add_sensorstatus", 
-        "name": "Can add sensor status", 
-        "content_type": 13
-    }
-},
-{
-    "pk": 38, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "change_sensorstatus", 
-        "name": "Can change sensor status", 
-        "content_type": 13
-    }
-},
-{
-    "pk": 39, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "delete_sensorstatus", 
-        "name": "Can delete sensor status", 
-        "content_type": 13
-    }
-},
-{
-    "pk": 40, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "add_sensor", 
-        "name": "Can add sensor", 
-        "content_type": 14
-    }
-},
-{
-    "pk": 41, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "change_sensor", 
-        "name": "Can change sensor", 
-        "content_type": 14
-    }
-},
-{
-    "pk": 42, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "delete_sensor", 
-        "name": "Can delete sensor", 
-        "content_type": 14
-    }
-},
-{
-    "pk": 43, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "add_scheduledaily", 
-        "name": "Can add Daily Schedule", 
-        "content_type": 15
-    }
-},
-{
-    "pk": 44, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "change_scheduledaily", 
-        "name": "Can change Daily Schedule", 
-        "content_type": 15
-    }
-},
-{
-    "pk": 45, 
-    "model": "auth.permission", 
-    "fields": {
-        "codename": "delete_scheduledaily", 
-        "name": "Can delete Daily Schedule", 
-        "content_type": 15
-    }
-},
-{
-    "pk": 1, 
-    "model": "auth.group", 
-    "fields": {
-        "name": "UsersCentral", 
-        "permissions": [
-            2
-        ]
-    }
-},
-{
-    "pk": 2, 
-    "model": "auth.group", 
-    "fields": {
-        "name": "UsersOwners", 
-        "permissions": [
-            34, 
-            35, 
-            36
-        ]
-    }
-},
-{
-    "pk": 1, 
-    "model": "auth.user", 
-    "fields": {
-        "username": "domotina", 
-        "first_name": "", 
-        "last_name": "", 
-        "is_active": true, 
-        "is_superuser": true, 
-        "is_staff": true, 
-        "last_login": "2015-04-12T05:53:17.775Z", 
-        "groups": [], 
-        "user_permissions": [], 
-        "password": "pbkdf2_sha256$12000$jTeDaK4UwLqY$ytI9/vmZ15Z6Kvj8xKPmQCXGJlKBOcRPeDKxcXPRfBo=", 
-        "email": "djimenez@ingenieros.com", 
-        "date_joined": "2015-03-07T20:01:23Z"
-    }
-},
-{
-    "pk": 2, 
-    "model": "auth.user", 
-    "fields": {
-        "username": "central", 
-        "first_name": "Usuario", 
-        "last_name": "Central", 
-        "is_active": true, 
-        "is_superuser": false, 
-        "is_staff": false, 
-        "last_login": "2015-03-21T22:13:26.308Z", 
-        "groups": [
-            1
-        ], 
-        "user_permissions": [], 
-        "password": "pbkdf2_sha256$12000$c59nhEY8EnFF$UbXvE/gDmDc2n928B9D+wN5wf9RojB/4r9TYmg/OYB0=", 
-        "email": "raul.gomezn@hotmail.com", 
-        "date_joined": "2015-03-21T15:59:16Z"
-    }
-},
-{
-    "pk": 3, 
-    "model": "auth.user", 
-    "fields": {
-        "username": "user", 
-        "first_name": "Usuario", 
-        "last_name": "Propietario", 
-        "is_active": true, 
-        "is_superuser": false, 
-        "is_staff": false, 
-        "last_login": "2015-03-21T22:12:47.770Z", 
-        "groups": [
-            2
-        ], 
-        "user_permissions": [], 
-        "password": "pbkdf2_sha256$12000$VWJRLICOiKez$CtVqE1CjkxHkePTyXaw4ckodgDViaNIGfkCLPiyvcXc=", 
-        "email": "raul.gomezn@hotmail.com", 
-        "date_joined": "2015-03-21T17:21:32Z"
-    }
-},
-{
-    "pk": 4, 
-    "model": "auth.user", 
-    "fields": {
-        "username": "buildersmart", 
-        "first_name": "Constructora", 
-        "last_name": "Smart", 
-        "is_active": true, 
-        "is_superuser": false, 
-        "is_staff": false, 
-        "last_login": "2015-04-07T20:31:31Z", 
-        "groups": [
-            2
-        ], 
-        "user_permissions": [], 
-        "password": "pbkdf2_sha256$12000$FkGl9x3UtHYP$48YYbAYdLDAXisurv687PPAy0fDbyqwGK+CyVKCUMBY=", 
-        "email": "ra.gomez11@uniandes.edu.co", 
-        "date_joined": "2015-04-07T20:31:31Z"
-    }
-},
-{
-    "pk": 5, 
-    "model": "auth.user", 
-    "fields": {
-        "username": "kaos", 
-        "first_name": "a", 
-        "last_name": "e", 
-        "is_active": true, 
-        "is_superuser": false, 
-        "is_staff": false, 
-        "last_login": "2015-04-09T20:14:16.761Z", 
-        "groups": [
-            2
-        ], 
-        "user_permissions": [], 
-        "password": "pbkdf2_sha256$12000$xPjRrVS8DoGk$6KEiFopXiDRXDIL0w7Kfds6tBAnxmehzyW73Hs2ZbQ4=", 
-        "email": "kaosterra@gmail.com", 
-        "date_joined": "2015-04-09T20:14:16.761Z"
-    }
-},
-{
-    "pk": 6, 
-    "model": "auth.user", 
-    "fields": {
-        "username": "djimenez", 
-        "first_name": "David", 
-        "last_name": "Jimenez", 
-        "is_active": true, 
-        "is_superuser": true, 
-        "is_staff": true, 
-        "last_login": "2015-04-11T15:14:34.457Z", 
-        "groups": [
-            2
-        ], 
-        "user_permissions": [], 
-        "password": "pbkdf2_sha256$12000$jTeDaK4UwLqY$ytI9/vmZ15Z6Kvj8xKPmQCXGJlKBOcRPeDKxcXPRfBo=", 
-        "email": "djimenez@ingenieros.com", 
-        "date_joined": "2015-03-07T20:01:23Z"
-    }
-},
-{
-    "pk": 1, 
-    "model": "map.place", 
-    "fields": {
-        "owner": 1, 
-        "date_created": "2015-03-07T20:59:03.888Z", 
-        "neighborhood": 1, 
-        "name": "T10 AP602", 
-        "date_updated": "2015-03-07T20:59:03.888Z"
-    }
-},
-{
-    "pk": 2, 
-    "model": "map.place", 
-    "fields": {
-        "owner": 1, 
-        "date_created": "2015-03-07T20:59:27.651Z", 
-        "neighborhood": 1, 
-        "name": "T10 AP603", 
-        "date_updated": "2015-03-07T20:59:27.651Z"
-    }
-},
-{
-    "pk": 3, 
-    "model": "map.place", 
-    "fields": {
-        "owner": 1, 
-        "date_created": "2015-03-08T02:24:08.983Z", 
-        "neighborhood": 3, 
-        "name": "Kr 69D St 25-04", 
-        "date_updated": "2015-03-08T02:24:08.983Z"
-    }
-},
-{
-    "pk": 4, 
-    "model": "map.place", 
-    "fields": {
-        "owner": 1, 
-        "date_created": "2015-03-08T03:37:22.536Z", 
-        "neighborhood": 4, 
-        "name": "Office 201", 
-        "date_updated": "2015-03-08T03:37:22.536Z"
-    }
-},
-{
-    "pk": 5, 
-    "model": "map.place", 
-    "fields": {
-        "owner": 1, 
-        "date_created": "2015-03-17T17:24:15.155Z", 
-        "neighborhood": 3, 
-        "name": "Kr 69A St 24-12", 
-        "date_updated": "2015-03-17T17:24:15.155Z"
+        "notified": true,
+        "event": 1
     }
 }
 ]

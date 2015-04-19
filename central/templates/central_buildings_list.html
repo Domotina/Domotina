@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+- Buildings/Urbanizations
+{% endblock %}
+
+{% block navbar %}
+<li><a href='{% url "central_home" %}'>Home</a></li>
+<li><a href='{% url "central_building_create" %}'>Create Building/Urbanization</a></li>
+{% endblock navbar %}
+
+{% block content %}
+<div>
+    <h2>Buildings/Urbanizations</h2>
+</div>
+<!-- En este panel se filtran solo los buildings -->
+<div class="panel panel-warning">
+    <div class="panel-heading">
+        <h3 class="panel-title">Buildings</h3>
+    </div>
+    <!-- if (validar si hay datos) -->
+    <table class="table table-striped table-hover ">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Address</th>
+            <!-- se deja para verificar si el filtro se esta haciendo bien -->
+            <th>Type</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- se hace recorrido para llenar la tabla -->
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>
+                <a href=' ' class="btn btn-sm btn-default">Edit</a>
+                <a href=' ' class="btn btn-sm btn-danger">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <!-- else si no hay dato -->
+    <ul class="list-group">
+        <li class="list-group-item">No buildings registered.</li>
+    </ul>
+</div>
+<!-- En este panel se filtran las urbanizations -->
+<div class="panel panel-warning">
+    <div class="panel-heading">
+        <h3 class="panel-title">Urbanizations</h3>
+    </div>
+    <!-- if (validar si hay datos) -->
+    <table class="table table-striped table-hover ">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Address</th>
+            <!-- se deja para verificar si el filtro se esta haciendo bien -->
+            <th>Type</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- se hace recorrido para llenar la tabla -->
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>
+                <a href=' ' class="btn btn-sm btn-default">Edit</a>
+                <a href=' ' class="btn btn-sm btn-danger">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <!-- else si no hay dato -->
+    <ul class="list-group">
+        <li class="list-group-item">No urbanizations registered.</li>
+    </ul>
+</div>
+<div class="form-group">
+    <div style="text-align: center">
+        <a href='{% url "central_home" %}' class="btn btn-default">Return</a>
+    </div>
+</div>
+{% endblock content %}

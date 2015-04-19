@@ -133,7 +133,13 @@ def central_huge_delegate_load(request):
 @login_required
 def central_building_neigh(request):
     context = {'user': request.user}
-    return render(request, 'central_buildings.html', context)
+    return render(request, 'central_buildings_list.html', context)
+
+
+@login_required
+def central_building_create(request):
+    context = {'user': request.user}
+    return render(request, 'central_buildings_create.html', context)
 
 
 @login_required

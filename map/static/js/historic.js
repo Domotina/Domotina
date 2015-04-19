@@ -33,5 +33,6 @@ $(function () {
         time.setHours(seconds / 60 / 60);
         time.setMinutes(seconds / 60 % 60);
         time.setSeconds(seconds % 60);
+        showIcons()
     });
 });

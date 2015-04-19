@@ -180,8 +180,8 @@ class Sensor(models.Model):
         status = self.get_status()
         if status is None:
             return ''
-        sensor = '{status: "%s", url: "%s", pos_x: %d, pos_y: %d, ' \
-                 'description: "%s", floor: %d, creation_date: %s' \
+        sensor = '{status: "%s", url: "%s", posX: %d, posY: %d, ' \
+                 'description: "%s", floor: %d, creationDate: %s' \
                  % (status.name,
                     status.icon,
                     self.current_pos_x,
@@ -221,10 +221,10 @@ class Sensor(models.Model):
     def events_to_json(self, date=None):
         events_array = []
         if date is None:
-            events = self.event_set.get_queryset()
+            events = self.event_set.order_by("-timestamp")
         else:
             limit = date + timedelta(days=1)
-            events = self.event_set.filter(timestamp__gte=date, timestamp__lt=limit)
+            events = self.event_set.filter(timestamp__gte=date, timestamp__lt=limit).order_by("-timestamp")
         for event in events:
             event_json = event.to_json()
             if event_json:

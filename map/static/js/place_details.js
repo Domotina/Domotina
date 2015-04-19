@@ -6,13 +6,20 @@ document.getElementById("popup-panel").style.display = 'none';
 function showIcons() {
     var c = document.getElementById("place_canvas");
     var ctx = c.getContext("2d");
-    var currentSensor;
-    ctx.clearRect ( 0 , 0 , ctx.canvas.width, ctx.canvas.height);
+
+    function drawSensor(sensor){
+        var currentSensor = new Image();
+        currentSensor.src = sensor.url;
+        ctx.drawImage(currentSensor, sensor.posX, sensor.posY);
+    }
+
+    var sensors = window.sensors, time = window.time, floor = window.floor;
+    ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
     for (var i in sensors) {
-        if(!window.floor || sensors[i].floor === floor.number){
-            currentSensor = new Image();
-            currentSensor.src = sensors[i].url;
-            ctx.drawImage(currentSensor, sensors[i].pos_x, sensors[i].pos_y);
+        if (!floor || sensors[i].floor === floor.number) {
+            if (!time || sensors[i].creationDate < time) {
+                drawSensor(sensors[i]);
+            }
         }
     }
 }
@@ -61,10 +68,10 @@ $("#place_canvas").on("click", function (event) {
         canvasX = event.pageX - totalOffsetX;
         canvasY = event.pageY - totalOffsetY;
 
-        var is_any_sensor = false;
+        var hasSensors = false;
         for (var i in sensors) {
-            if ((canvasX >= sensors[i].pos_x + 1 && canvasX <= sensors[i].pos_x + 30) &&
-                (canvasY >= sensors[i].pos_y - 2 && canvasY <= sensors[i].pos_y + 28)) {
+            if ((canvasX >= sensors[i].posX + 1 && canvasX <= sensors[i].posX + 30) &&
+                (canvasY >= sensors[i].posY - 2 && canvasY <= sensors[i].posY + 28)) {
                 //alert("canvasX:"+canvasX+"  "+"canvasY:"+canvasY);
                 if (sensors[i].description == "") {
                     document.getElementById("popup-sensor").innerHTML =
@@ -75,9 +82,9 @@ $("#place_canvas").on("click", function (event) {
                         "Sensor on " + sensors[i].description + "<br />Status: " + sensors[i].status;
                     document.getElementById("popup-panel").style.display = 'block';
                 }
-                is_any_sensor = true;
+                hasSensors = true;
             } else {
-                if (!is_any_sensor) {
+                if (!hasSensors) {
                     document.getElementById("popup-panel").style.display = 'none';
                 }
             }

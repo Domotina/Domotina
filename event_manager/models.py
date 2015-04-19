@@ -72,8 +72,8 @@ class Event(models.Model):
             return ''
         current_sensor = '{status: "%s", ' \
                          'url: "%s", ' \
-                         'pos_x: %d, ' \
-                         'pos_y: %d, ' \
+                         'posX: %d, ' \
+                         'posY: %d, ' \
                          'description: "%s", ' \
                          'sensor: %d, ' \
                          'timestamp: %s}' \

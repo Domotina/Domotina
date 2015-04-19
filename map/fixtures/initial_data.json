@@ -854,7 +854,7 @@
         "value": 1, 
         "msg": " ", 
         "type": 2, 
-        "icon": "https://raw.githubusercontent.com/Domotina/FileBucket/master/sensors/lock_icon.png"
+        "icon": "https://raw.githubusercontent.com/Domotina/FileBucket/master/sensors_v2/locked_yes.png"
     }
 },
 {
@@ -868,7 +868,7 @@
         "value": 0, 
         "msg": " ", 
         "type": 2, 
-        "icon": "https://raw.githubusercontent.com/Domotina/FileBucket/master/sensors/unlock_icon.png"
+        "icon": "https://raw.githubusercontent.com/Domotina/FileBucket/master/sensors_v2/locked_no.png"
     }
 },
 {
@@ -882,7 +882,7 @@
         "value": 1, 
         "msg": " ", 
         "type": 3, 
-        "icon": "https://raw.githubusercontent.com/Domotina/FileBucket/master/sensors/bulb_on.png"
+        "icon": "https://raw.githubusercontent.com/Domotina/FileBucket/master/sensors_v2/light_on.png"
     }
 },
 {
@@ -896,7 +896,7 @@
         "value": 0, 
         "msg": " ", 
         "type": 3, 
-        "icon": "https://raw.githubusercontent.com/Domotina/FileBucket/master/sensors/bulb_off.png"
+        "icon": "https://raw.githubusercontent.com/Domotina/FileBucket/master/sensors_v2/light_off.png"
     }
 },
 {
@@ -910,7 +910,7 @@
         "value": 1, 
         "msg": "There was movement", 
         "type": 1, 
-        "icon": "https://raw.githubusercontent.com/Domotina/FileBucket/master/sensors/move.png"
+        "icon": "https://raw.githubusercontent.com/Domotina/FileBucket/master/sensors_v2/move_yes.png"
     }
 },
 {
@@ -924,7 +924,7 @@
         "value": 0, 
         "msg": " ", 
         "type": 1, 
-        "icon": "https://raw.githubusercontent.com/Domotina/FileBucket/master/sensors/no_move.png"
+        "icon": "https://raw.githubusercontent.com/Domotina/FileBucket/master/sensors_v2/move_no.png"
     }
 },
 {

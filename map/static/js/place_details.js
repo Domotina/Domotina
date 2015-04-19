@@ -8,17 +8,31 @@ function showIcons() {
     var ctx = c.getContext("2d");
 
     function drawSensor(sensor){
-        var currentSensor = new Image();
-        currentSensor.src = sensor.url;
-        ctx.drawImage(currentSensor, sensor.posX, sensor.posY);
+        var image = new Image();
+        image.src = sensor.url;
+        ctx.drawImage(image, sensor.posX, sensor.posY);
     }
 
-    var sensors = window.sensors, time = window.time, floor = window.floor;
+    var sensors = window.sensors, time = window.time, floor = window.floor, sensor;
     ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
     for (var i in sensors) {
-        if (!floor || sensors[i].floor === floor.number) {
-            if (!time || sensors[i].creationDate < time) {
-                drawSensor(sensors[i]);
+        sensor = $.extend({}, sensors[i]);
+        if (!floor || sensor.floor === floor.number) {
+            if (!time || sensor.creationDate < time) {
+                if(time && sensor.events){
+                    var event;
+                    for (var n in sensor.events){
+                        event = sensor.events[n];
+                        if (event.timestamp < time){
+                            sensor.url = event.url;
+                            sensor.status = event.status;
+                            sensor.posX = event.posX;
+                            sensor.posY = event.posY;
+                            break;
+                        }
+                    }
+                }
+                drawSensor(sensor);
             }
         }
     }

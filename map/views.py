@@ -54,7 +54,7 @@ def place_view(request, pk):
 
     sensor_type = request.GET.get('type') and SensorType.objects.get(pk=request.GET.get('type'))
 
-    sensors_json = ','.join(current_floor.get_sensors_json(sensor_type))
+    sensors_json = ','.join(current_floor.get_sensors_json(sensor_type=sensor_type))
 
     types = SensorType.objects.all()
 

@@ -1003,11 +1003,11 @@
     "model": "map.sensor", 
     "fields": {
         "current_pos_x": 600, 
-        "description": "Main Access Door", 
+        "description": "Main Access Door",
         "floor": 1, 
         "date_updated": "2015-04-12T00:17:08.912Z", 
         "current_date": "2015-03-07T16:48:50Z", 
-        "current_value": 1, 
+        "current_value": 1,
         "date_created": "2015-03-07T21:48:52.275Z", 
         "type": 2, 
         "current_pos_y": 350
@@ -1015,7 +1015,7 @@
 },
 {
     "pk": 2, 
-    "model": "map.sensor", 
+    "model": "map.sensor",
     "fields": {
         "current_pos_x": 468, 
         "description": "Dinning Room Light", 

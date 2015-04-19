@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-
+from datetime import timedelta, time, datetime
 
 class Neighborhood(models.Model):
     name = models.CharField("neighborhood", max_length=100)
@@ -33,17 +33,23 @@ class Place(models.Model):
 
     def get_sensors_json(self, sensor_type=None):
         sensors_array = []
-        floors = self.floors.get_queryset()
+        floors = self.floors.order_by("number")
         for floor in floors:
             sensors_array.extend(floor.get_sensors_json(sensor_type))
         return sensors_array
 
-    def snapshot(self, date=None, json=False):
+    def snapshot(self, date=None, json=False, include_events=False):
         sensors_array = []
-        floors = self.floors.get_queryset()
+        floors = self.floors.order_by("number")
         for floor in floors:
-            sensors_array.extend(floor.snapshot(date, json))
+            sensors_array.extend(floor.snapshot(date=date, json=json, include_events=include_events))
         return sensors_array
+
+    def floors_to_json(self):
+        floors = []
+        for floor in self.floors.order_by("number"):
+            floors.append(floor.to_json())
+        return floors
 
 
 class Floor(models.Model):
@@ -64,7 +70,7 @@ class Floor(models.Model):
     def to_json(self):
         return '{number: %d, url: "%s"}' % (self.number, self.map)
 
-    def get_sensors_json(self, sensor_type=None):
+    def get_sensors_json(self, sensor_type=None, include_events=False):
         sensors_array = []
         if sensor_type is None:
             sensors = self.sensors.get_queryset()
@@ -72,16 +78,20 @@ class Floor(models.Model):
             sensors = self.sensors.filter(type=sensor_type)
 
         for sensor in sensors:
-            sensor_json = sensor.to_json()
+            sensor_json = sensor.to_json(include_events)
             if sensor_json:
                 sensors_array.append(sensor_json)
         return sensors_array
 
-    def snapshot(self, date=None, json=False):
+    def snapshot(self, date=None, json=False, include_events=False):
         sensors_array = []
-        sensors = self.sensors.get_queryset()
+        creation_date = date + timedelta(days=1)
+        if date is not None:
+            sensors = self.sensors.filter(date_created__lte=creation_date)
+        else:
+            sensors = self.sensors.get_queryset()
         for sensor in sensors:
-            sensor = sensor.snapshot(date, json)
+            sensor = sensor.snapshot(date=date, json=json, include_events=include_events)
             if sensor:
                 sensors_array.append(sensor)
         return sensors_array
@@ -128,7 +138,6 @@ class Sensor(models.Model):
     description = models.TextField("description", blank=True, null=True)
     date_created = models.DateTimeField("date created", auto_now_add=True)
     date_updated = models.DateTimeField("date updated", auto_now=True)
-    # This columns are saved by event_manager
     current_value = models.PositiveIntegerField("current value", default=0)
     current_pos_x = models.PositiveIntegerField("current X position in map", default=0)
     current_pos_y = models.PositiveIntegerField("current Y position in map", default=0)
@@ -143,6 +152,7 @@ class Sensor(models.Model):
         return "%s" % (self.description or 'Private asset')
 
     def get_status(self):
+        status = None
         try:
             if self.type.is_continuous:
                 status = self.type.statuses.filter(min_value__lte=self.current_value,
@@ -154,20 +164,28 @@ class Sensor(models.Model):
         finally:
             return status
 
-    def to_json(self):
+    def to_json(self, date=None, include_events=False):
         status = self.get_status()
         if status is None:
             return ''
-        current_sensor = '{status: "%s", url: "%s", pos_x: %d, pos_y: %d, description: "%s", floor: %d}' \
-                         % (status.name,
-                            status.icon,
-                            self.current_pos_x,
-                            self.current_pos_y,
-                            self,
-                            self.floor.number)
-        return current_sensor
+        creation_time = (self.date_created - datetime.combine(self.date_created.date(), time(0))).total_seconds()
+        sensor = '{status: "%s", url: "%s", pos_x: %d, pos_y: %d, ' \
+                 'description: "%s", floor: %d, creation_time: %d, creation_date: "%s"' \
+                     % (status.name,
+                        status.icon,
+                        self.current_pos_x,
+                        self.current_pos_y,
+                        self,
+                        self.floor.number,
+                        creation_time,
+                        self.date_created.date())
+        if include_events:
+            sensor += ', events: [%s]}' % (','.join(self.events_to_json(date=date)))
+        else:
+            sensor += '}'
+        return sensor
 
-    def snapshot(self, date=None, json=False):
+    def snapshot(self, date=None, json=False, include_events=False):
         if date is not None:
             tmp_value = False
             tmp_x = False
@@ -186,8 +204,20 @@ class Sensor(models.Model):
                 if tmp_value and tmp_x and tmp_y:
                     break
         if json:
-            return self.to_json()
+            return self.to_json(date=date, include_events=include_events)
         else:
             return self
 
+    def events_to_json(self, date=None):
+        events_array = []
+        if date is None:
+            events = self.event_set.get_queryset()
+        else:
+            limit = date + timedelta(days=1)
+            events = self.event_set.filter(timestamp__gte=date, timestamp__lt=limit)
+        for event in events:
+            event_json = event.to_json()
+            if event_json:
+                events_array.append(event_json)
+        return events_array
 

@@ -1,6 +1,7 @@
 import threading
 import traceback
 
+from datetime import time, datetime
 from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
@@ -59,13 +60,23 @@ class Event(models.Model):
         status = self.get_status()
         if status is None:
             return ''
-        current_sensor = '{status: "%s", url: "%s", pos_x: %d, pos_y: %d, description: "%s", sensor: %d}' \
+        seconds_of_day = (self.timestamp - datetime.combine(self.timestamp.date(), time(0))).total_seconds()
+        current_sensor = '{status: "%s", ' \
+                         'url: "%s", ' \
+                         'pos_x: %d, ' \
+                         'pos_y: %d, ' \
+                         'description: "%s", ' \
+                         'sensor: %d, ' \
+                         'date: "%s", ' \
+                         'seconds: %d}' \
                          % (status.name,
                             status.icon,
                             self.pos_x,
                             self.pos_y,
                             self,
-                            self.sensor.pk)
+                            self.sensor.pk,
+                            self.timestamp.date(),
+                            seconds_of_day)
         return current_sensor
 
 

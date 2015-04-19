@@ -96,11 +96,33 @@ def central_delegate(request):
     context = {'user': request.user}
     return render(request, 'delegates_owner_principal.html', context)
 
-
+#completar
 @login_required
 def central_individual_delegate_load(request):
-    context = {'user': request.user}
-    return render(request, 'delegates_individual.html', context)
+    if request.method == "POST":
+        username = str(request.POST.get("username", ""))
+        name = str(request.POST.get("name", ""))
+        lastName = str(request.POST.get("lastName", ""))
+        emailUser = str(request.POST.get("inputEmail", ""))
+        owner = str(request.POST.get("owner", ""))
+        property = str(request.POST.get("property", ""))
+
+
+        userCreate = User.objects.create_user(username=username, first_name=name, last_name=lastName, email=emailUser,
+                                            password='DOMOTINA123')
+        userCreate.is_superuser = False
+        userCreate.is_active = True
+        userCreate.is_staff = False
+        userCreate.groups.add(2)#Falta
+        userCreate.save()
+        send_email(userCreate)
+        return redirect('central_home')
+    else:
+        user = User.objects.all()
+        place = Place.objects.all().order_by('name')
+        context = {'user': request.user, 'place': place, 'user': user}
+        return render(request, 'delegates_individual.html', context)
+
 
 
 @login_required

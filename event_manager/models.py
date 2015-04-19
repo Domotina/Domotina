@@ -21,19 +21,7 @@ class Event(models.Model):
         verbose_name_plural = 'events'
 
     def __unicode__(self):
-        position = ''
-        status = ''
-        if self.value is not None:
-            status += 'Status changed to %s' % (self.get_status())
-        if self.pos_x is not None and self.pos_y is not None:
-            position += 'Moved to %d, %d' % (self.pos_x, self.pos_y)
-        if status and position:
-            msg = status + ' and ' + position
-        elif status:
-            msg = status
-        else:
-            msg = position
-        return msg
+        return "%s" % self.get_status()
 
     def is_reportable(self):
         # Create a flat to check if the event has to notify.

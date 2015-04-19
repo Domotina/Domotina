@@ -10,7 +10,8 @@
                 <th>Date</th>
                 <th>Time</th>
                 <th>Asset</th>
-                <th>Description</th>
+                <th>New Status</th>
+                <th>New Coordinates</th>
             </tr>
             </thead>
             <tbody>
@@ -20,6 +21,7 @@
                     <td>{{ event.timestamp.time }}</td>
                     <td>{{ event.sensor }}</td>
                     <td>{% status_icon event %}{{ event }}</td>
+                    <td>{{ event.pos_x }}, {{ event.pos_y }}</td>
                 </tr>
             {% endfor %}
             </tbody>

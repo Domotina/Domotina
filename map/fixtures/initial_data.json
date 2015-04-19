@@ -571,7 +571,7 @@
         "is_active": true,
         "is_superuser": true,
         "is_staff": true,
-        "last_login": "2015-04-09T20:04:32.034Z",
+        "last_login": "2015-04-12T05:53:17.775Z",
         "groups": [],
         "user_permissions": [],
         "password": "pbkdf2_sha256$12000$jTeDaK4UwLqY$ytI9/vmZ15Z6Kvj8xKPmQCXGJlKBOcRPeDKxcXPRfBo=",
@@ -657,6 +657,26 @@
         "password": "pbkdf2_sha256$12000$xPjRrVS8DoGk$6KEiFopXiDRXDIL0w7Kfds6tBAnxmehzyW73Hs2ZbQ4=",
         "email": "kaosterra@gmail.com",
         "date_joined": "2015-04-09T20:14:16.761Z"
+    }
+},
+{
+    "pk": 6,
+    "model": "auth.user",
+    "fields": {
+        "username": "djimenez",
+        "first_name": "David",
+        "last_name": "Jimenez",
+        "is_active": true,
+        "is_superuser": true,
+        "is_staff": true,
+        "last_login": "2015-04-11T15:14:34.457Z",
+        "groups": [
+            2
+        ],
+        "user_permissions": [],
+        "password": "pbkdf2_sha256$12000$jTeDaK4UwLqY$ytI9/vmZ15Z6Kvj8xKPmQCXGJlKBOcRPeDKxcXPRfBo=",
+        "email": "djimenez@ingenieros.com",
+        "date_joined": "2015-03-07T20:01:23Z"
     }
 },
 {
@@ -844,6 +864,15 @@
     }
 },
 {
+    "pk": 4, 
+    "model": "map.sensortype", 
+    "fields": {
+        "is_enabled": true, 
+        "is_continuous": true, 
+        "name": "Thermostat"
+    }
+},
+{
     "pk": 1, 
     "model": "map.sensorstatus", 
     "fields": {
@@ -854,7 +883,7 @@
         "value": 1, 
         "msg": " ", 
         "type": 2, 
-        "icon": "https://raw.githubusercontent.com/Domotina/FileBucket/master/sensors/lock_icon.png"
+        "icon": "https://raw.githubusercontent.com/Domotina/FileBucket/master/sensors_v2/locked_yes.png"
     }
 },
 {
@@ -868,7 +897,7 @@
         "value": 0, 
         "msg": " ", 
         "type": 2, 
-        "icon": "https://raw.githubusercontent.com/Domotina/FileBucket/master/sensors/unlock_icon.png"
+        "icon": "https://raw.githubusercontent.com/Domotina/FileBucket/master/sensors_v2/locked_no.png"
     }
 },
 {
@@ -882,7 +911,7 @@
         "value": 1, 
         "msg": " ", 
         "type": 3, 
-        "icon": "https://raw.githubusercontent.com/Domotina/FileBucket/master/sensors/bulb_on.png"
+        "icon": "https://raw.githubusercontent.com/Domotina/FileBucket/master/sensors_v2/light_on.png"
     }
 },
 {
@@ -896,7 +925,7 @@
         "value": 0, 
         "msg": " ", 
         "type": 3, 
-        "icon": "https://raw.githubusercontent.com/Domotina/FileBucket/master/sensors/bulb_off.png"
+        "icon": "https://raw.githubusercontent.com/Domotina/FileBucket/master/sensors_v2/light_off.png"
     }
 },
 {
@@ -910,7 +939,7 @@
         "value": 1, 
         "msg": "There was movement", 
         "type": 1, 
-        "icon": "https://raw.githubusercontent.com/Domotina/FileBucket/master/sensors/move.png"
+        "icon": "https://raw.githubusercontent.com/Domotina/FileBucket/master/sensors_v2/move_yes.png"
     }
 },
 {
@@ -924,7 +953,49 @@
         "value": 0, 
         "msg": " ", 
         "type": 1, 
-        "icon": "https://raw.githubusercontent.com/Domotina/FileBucket/master/sensors/no_move.png"
+        "icon": "https://raw.githubusercontent.com/Domotina/FileBucket/master/sensors_v2/move_no.png"
+    }
+},
+{
+    "pk": 7, 
+    "model": "map.sensorstatus", 
+    "fields": {
+        "is_enabled": true, 
+        "name": "Cold", 
+        "max_value": 20, 
+        "min_value": 0, 
+        "value": 0, 
+        "msg": ".", 
+        "type": 4, 
+        "icon": "https://raw.githubusercontent.com/Domotina/FileBucket/master/sensors_v2/temp_cold.png"
+    }
+},
+{
+    "pk": 8, 
+    "model": "map.sensorstatus", 
+    "fields": {
+        "is_enabled": true, 
+        "name": "Warm", 
+        "max_value": 30, 
+        "min_value": 21, 
+        "value": 0, 
+        "msg": ".", 
+        "type": 4, 
+        "icon": "https://raw.githubusercontent.com/Domotina/FileBucket/master/sensors_v2/temp_warm.png"
+    }
+},
+{
+    "pk": 9, 
+    "model": "map.sensorstatus", 
+    "fields": {
+        "is_enabled": true, 
+        "name": "Hot", 
+        "max_value": 100, 
+        "min_value": 31, 
+        "value": 0, 
+        "msg": ".", 
+        "type": 4, 
+        "icon": "https://raw.githubusercontent.com/Domotina/FileBucket/master/sensors_v2/temp_hot.png"
     }
 },
 {
@@ -932,11 +1003,11 @@
     "model": "map.sensor", 
     "fields": {
         "current_pos_x": 600, 
-        "description": "", 
+        "description": "Main Access Door",
         "floor": 1, 
-        "date_updated": "2015-03-08T00:37:18.436Z", 
+        "date_updated": "2015-04-12T00:17:08.912Z", 
         "current_date": "2015-03-07T16:48:50Z", 
-        "current_value": 1, 
+        "current_value": 1,
         "date_created": "2015-03-07T21:48:52.275Z", 
         "type": 2, 
         "current_pos_y": 350
@@ -944,12 +1015,12 @@
 },
 {
     "pk": 2, 
-    "model": "map.sensor", 
+    "model": "map.sensor",
     "fields": {
         "current_pos_x": 468, 
-        "description": "", 
+        "description": "Dinning Room Light", 
         "floor": 1, 
-        "date_updated": "2015-03-10T18:25:11.733Z", 
+        "date_updated": "2015-04-12T00:16:44.605Z", 
         "current_date": "2015-03-07T17:11:47Z", 
         "current_value": 1, 
         "date_created": "2015-03-07T22:11:49.552Z", 
@@ -962,9 +1033,9 @@
     "model": "map.sensor", 
     "fields": {
         "current_pos_x": 462, 
-        "description": "", 
+        "description": "Living Room Light", 
         "floor": 1, 
-        "date_updated": "2015-03-10T18:25:11.750Z", 
+        "date_updated": "2015-04-12T00:18:01.717Z", 
         "current_date": "2015-03-07T20:30:49Z", 
         "current_value": 1, 
         "date_created": "2015-03-08T01:30:52.231Z", 
@@ -992,9 +1063,9 @@
     "model": "map.sensor", 
     "fields": {
         "current_pos_x": 462, 
-        "description": "", 
+        "description": "Living Room Window", 
         "floor": 1, 
-        "date_updated": "2015-03-10T18:25:11.766Z", 
+        "date_updated": "2015-04-12T00:15:37.028Z", 
         "current_date": "2015-03-07T20:45:16Z", 
         "current_value": 0, 
         "date_created": "2015-03-08T01:45:24.740Z", 
@@ -1082,13 +1153,13 @@
     "model": "map.sensor", 
     "fields": {
         "current_pos_x": 52, 
-        "description": "", 
+        "description": "Dinning Room Light", 
         "floor": 3, 
-        "date_updated": "2015-03-10T18:25:11.933Z", 
+        "date_updated": "2015-04-12T00:04:42.436Z", 
         "current_date": "2015-03-07T21:46:41Z", 
         "current_value": 1, 
         "date_created": "2015-03-08T02:46:44.004Z", 
-        "type": 2, 
+        "type": 3, 
         "current_pos_y": 265
     }
 },
@@ -1097,9 +1168,9 @@
     "model": "map.sensor", 
     "fields": {
         "current_pos_x": 150, 
-        "description": "", 
+        "description": "Living Room Light", 
         "floor": 3, 
-        "date_updated": "2015-03-10T18:25:11.949Z", 
+        "date_updated": "2015-04-12T00:05:03.042Z", 
         "current_date": "2015-03-07T21:47:19Z", 
         "current_value": 1, 
         "date_created": "2015-03-08T02:47:20.973Z", 
@@ -1112,9 +1183,9 @@
     "model": "map.sensor", 
     "fields": {
         "current_pos_x": 32, 
-        "description": "", 
+        "description": "Main Access Door", 
         "floor": 3, 
-        "date_updated": "2015-03-08T03:01:08.067Z", 
+        "date_updated": "2015-04-12T00:04:07.293Z", 
         "current_date": "2015-03-07T21:48:01Z", 
         "current_value": 1, 
         "date_created": "2015-03-08T02:48:02.937Z", 
@@ -1127,9 +1198,9 @@
     "model": "map.sensor", 
     "fields": {
         "current_pos_x": 585, 
-        "description": "", 
+        "description": "Main Room Light", 
         "floor": 3, 
-        "date_updated": "2015-03-10T18:25:12.008Z", 
+        "date_updated": "2015-04-12T00:12:35.170Z", 
         "current_date": "2015-03-07T21:48:30Z", 
         "current_value": 1, 
         "date_created": "2015-03-08T02:48:32.039Z", 
@@ -1144,7 +1215,7 @@
         "current_pos_x": 660, 
         "description": "", 
         "floor": 3, 
-        "date_updated": "2015-03-10T18:25:12.091Z", 
+        "date_updated": "2015-04-12T00:07:14.842Z", 
         "current_date": "2015-03-07T21:48:58Z", 
         "current_value": 0, 
         "date_created": "2015-03-08T02:49:00.267Z", 
@@ -1157,9 +1228,9 @@
     "model": "map.sensor", 
     "fields": {
         "current_pos_x": 362, 
-        "description": "", 
+        "description": "Study Room Laptop", 
         "floor": 3, 
-        "date_updated": "2015-03-10T18:25:12.116Z", 
+        "date_updated": "2015-04-12T00:05:42.054Z", 
         "current_date": "2015-03-07T21:57:20Z", 
         "current_value": 0, 
         "date_created": "2015-03-08T02:57:22.793Z", 
@@ -1172,9 +1243,9 @@
     "model": "map.sensor", 
     "fields": {
         "current_pos_x": 335, 
-        "description": "", 
+        "description": "Study Room Window", 
         "floor": 3, 
-        "date_updated": "2015-03-10T18:25:12.133Z", 
+        "date_updated": "2015-04-12T00:08:26.206Z", 
         "current_date": "2015-03-07T21:57:45Z", 
         "current_value": 0, 
         "date_created": "2015-03-08T02:57:47.926Z", 
@@ -1187,9 +1258,9 @@
     "model": "map.sensor", 
     "fields": {
         "current_pos_x": 65, 
-        "description": "", 
+        "description": "Main Room Light", 
         "floor": 1, 
-        "date_updated": "2015-03-10T18:25:11.783Z", 
+        "date_updated": "2015-04-12T00:14:04.509Z", 
         "current_date": "2015-03-07T22:03:17Z", 
         "current_value": 0, 
         "date_created": "2015-03-08T03:03:19.204Z", 
@@ -1202,9 +1273,9 @@
     "model": "map.sensor", 
     "fields": {
         "current_pos_x": 65, 
-        "description": "", 
+        "description": "Main Room Window", 
         "floor": 1, 
-        "date_updated": "2015-03-08T03:13:05.280Z", 
+        "date_updated": "2015-04-12T00:13:46.686Z", 
         "current_date": "2015-03-07T22:06:25Z", 
         "current_value": 1, 
         "date_created": "2015-03-08T03:06:27.477Z", 
@@ -1232,9 +1303,9 @@
     "model": "map.sensor", 
     "fields": {
         "current_pos_x": 340, 
-        "description": "", 
+        "description": "Study Room Light", 
         "floor": 1, 
-        "date_updated": "2015-03-10T18:25:11.866Z", 
+        "date_updated": "2015-04-12T00:15:11.857Z", 
         "current_date": "2015-03-07T22:08:05Z", 
         "current_value": 0, 
         "date_created": "2015-03-08T03:08:09.763Z", 
@@ -1262,9 +1333,9 @@
     "model": "map.sensor", 
     "fields": {
         "current_pos_x": 200, 
-        "description": "", 
+        "description": "Secondary Room Window", 
         "floor": 1, 
-        "date_updated": "2015-03-10T18:25:11.833Z", 
+        "date_updated": "2015-04-12T00:14:39.081Z", 
         "current_date": "2015-03-07T22:17:42Z", 
         "current_value": 0, 
         "date_created": "2015-03-08T03:17:44.597Z", 
@@ -1427,9 +1498,9 @@
     "model": "map.sensor", 
     "fields": {
         "current_pos_x": 195, 
-        "description": "Study Room Laptop", 
+        "description": "", 
         "floor": 5, 
-        "date_updated": "2015-04-09T20:04:14.204Z", 
+        "date_updated": "2015-04-12T00:46:31.640Z", 
         "current_date": "2015-03-28T00:57:03.695Z", 
         "current_value": 0, 
         "date_created": "2015-03-17T21:48:16.956Z", 
@@ -1510,6 +1581,186 @@
         "date_created": "2015-03-17T22:05:19.731Z", 
         "type": 1, 
         "current_pos_y": 177
+    }
+},
+{
+    "pk": 40, 
+    "model": "map.sensor", 
+    "fields": {
+        "current_pos_x": 10, 
+        "description": "Main Room Thermostat", 
+        "floor": 1, 
+        "date_updated": "2015-04-11T23:45:41.760Z", 
+        "current_date": "2015-04-11T16:46:50.111Z", 
+        "current_value": 15, 
+        "date_created": "2015-04-11T16:46:50.111Z", 
+        "type": 4, 
+        "current_pos_y": 235
+    }
+},
+{
+    "pk": 41, 
+    "model": "map.sensor", 
+    "fields": {
+        "current_pos_x": 170, 
+        "description": "Boss Office Thermostat", 
+        "floor": 4, 
+        "date_updated": "2015-04-11T23:44:28.634Z", 
+        "current_date": "2015-04-11T23:33:36.689Z", 
+        "current_value": 15, 
+        "date_created": "2015-04-11T23:33:36.689Z", 
+        "type": 4, 
+        "current_pos_y": 15
+    }
+},
+{
+    "pk": 42, 
+    "model": "map.sensor", 
+    "fields": {
+        "current_pos_x": 20, 
+        "description": "Meeting Room Thermostat", 
+        "floor": 4, 
+        "date_updated": "2015-04-11T23:44:18.035Z", 
+        "current_date": "2015-04-11T23:34:13.992Z", 
+        "current_value": 21, 
+        "date_created": "2015-04-11T23:34:13.992Z", 
+        "type": 4, 
+        "current_pos_y": 360
+    }
+},
+{
+    "pk": 43, 
+    "model": "map.sensor", 
+    "fields": {
+        "current_pos_x": 595, 
+        "description": "Kitchen Thermostat", 
+        "floor": 1, 
+        "date_updated": "2015-04-11T23:45:32.053Z", 
+        "current_date": "2015-04-11T23:38:15.114Z", 
+        "current_value": 22, 
+        "date_created": "2015-04-11T23:38:15.114Z", 
+        "type": 4, 
+        "current_pos_y": 260
+    }
+},
+{
+    "pk": 44, 
+    "model": "map.sensor", 
+    "fields": {
+        "current_pos_x": 100, 
+        "description": "Main Room Thermostat", 
+        "floor": 2, 
+        "date_updated": "2015-04-11T23:47:23.779Z", 
+        "current_date": "2015-04-11T23:47:23.779Z", 
+        "current_value": 31, 
+        "date_created": "2015-04-11T23:47:23.779Z", 
+        "type": 4, 
+        "current_pos_y": 10
+    }
+},
+{
+    "pk": 45, 
+    "model": "map.sensor", 
+    "fields": {
+        "current_pos_x": 210, 
+        "description": "Living Room Thermostat", 
+        "floor": 5, 
+        "date_updated": "2015-04-11T23:51:30.231Z", 
+        "current_date": "2015-04-11T23:49:59.056Z", 
+        "current_value": 21, 
+        "date_created": "2015-04-11T23:49:59.056Z", 
+        "type": 4, 
+        "current_pos_y": 360
+    }
+},
+{
+    "pk": 46, 
+    "model": "map.sensor", 
+    "fields": {
+        "current_pos_x": 100, 
+        "description": "Study Room Thermostat", 
+        "floor": 5, 
+        "date_updated": "2015-04-11T23:51:30.109Z", 
+        "current_date": "2015-04-11T23:50:53.084Z", 
+        "current_value": 18, 
+        "date_created": "2015-04-11T23:50:53.084Z", 
+        "type": 4, 
+        "current_pos_y": 50
+    }
+},
+{
+    "pk": 47, 
+    "model": "map.sensor", 
+    "fields": {
+        "current_pos_x": 215, 
+        "description": "Main Room Thermostat", 
+        "floor": 6, 
+        "date_updated": "2015-04-11T23:55:07.827Z", 
+        "current_date": "2015-04-11T23:53:33.427Z", 
+        "current_value": 15, 
+        "date_created": "2015-04-11T23:53:33.427Z", 
+        "type": 4, 
+        "current_pos_y": 350
+    }
+},
+{
+    "pk": 48, 
+    "model": "map.sensor", 
+    "fields": {
+        "current_pos_x": 170, 
+        "description": "Secondary Room Thermostat", 
+        "floor": 6, 
+        "date_updated": "2015-04-11T23:55:07.740Z", 
+        "current_date": "2015-04-11T23:54:22.704Z", 
+        "current_value": 19, 
+        "date_created": "2015-04-11T23:54:22.704Z", 
+        "type": 4, 
+        "current_pos_y": 20
+    }
+},
+{
+    "pk": 49, 
+    "model": "map.sensor", 
+    "fields": {
+        "current_pos_x": 640, 
+        "description": "Living Room Thermostat", 
+        "floor": 6, 
+        "date_updated": "2015-04-11T23:57:25.352Z", 
+        "current_date": "2015-04-11T23:56:42.757Z", 
+        "current_value": 21, 
+        "date_created": "2015-04-11T23:56:42.757Z", 
+        "type": 4, 
+        "current_pos_y": 30
+    }
+},
+{
+    "pk": 50, 
+    "model": "map.sensor", 
+    "fields": {
+        "current_pos_x": 540, 
+        "description": "Main Room Thermostat", 
+        "floor": 3, 
+        "date_updated": "2015-04-12T00:01:48.802Z", 
+        "current_date": "2015-04-12T00:00:34.470Z", 
+        "current_value": 18, 
+        "date_created": "2015-04-12T00:00:34.470Z", 
+        "type": 4, 
+        "current_pos_y": 200
+    }
+},
+{
+    "pk": 51, 
+    "model": "map.sensor", 
+    "fields": {
+        "current_pos_x": 10, 
+        "description": "Kitchen Thermostat", 
+        "floor": 3, 
+        "date_updated": "2015-04-12T00:01:13.018Z", 
+        "current_date": "2015-04-12T00:01:13.018Z", 
+        "current_value": 32, 
+        "date_created": "2015-04-12T00:01:13.018Z", 
+        "type": 4, 
+        "current_pos_y": 100
     }
 },
 {

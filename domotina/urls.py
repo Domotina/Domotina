@@ -17,4 +17,4 @@ urlpatterns = patterns('',
     url(r'^map/', include('map.urls')),
     url(r'^', include('index.urls')),
     url(r'^central/', include('central.urls')),
-) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+)

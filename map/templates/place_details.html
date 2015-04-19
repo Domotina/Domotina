@@ -1,240 +1,142 @@
-{% extends "base.html"%}
+{% extends "base.html" %}
 {% load static %}
 {% load event_status %}
 
 {% block title %}
- - Place {{floor.place}}
+    - Place {{ floor.place }}
 {% endblock %}
 
 {% block navbar %}
-<li><a href='{% url "map_home" %}'>My places</a></li>
-<li><a href='{% url "list_sensors" floor.place.pk %}'>Sensors</a></li>
-<li><a href='{% url "list_rules" floor.place.pk %}'>Rules</a></li>
+    <li><a href='{% url "map_home" %}'>My places</a></li>
 {% endblock navbar %}
 
 {% block content %}
-<div>
-    <h1><span id="floor_title">{{ floor.place }}</span></h1>
-</div>
-<div class="col-md-8 map-container">
-    <div class="btn-group">
-        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-            {{ type|default:"All"}} sensors
-            <span class="caret"></span>
-        </button>
-        <ul class="dropdown-menu" role="menu">
-            <li><a href="?floor_page={{ floors.number }}&alarm_page={{ alarms.number }}&event_page={{ events.number }}">All sensors</a></li>
-            {% for type in types %}
-            <li><a href="?floor_page={{ floors.number }}&alarm_page={{ alarms.number }}&event_page={{ events.number }}&type={{ type.pk }}">{{type.name}} sensors</a></li>
-            {% endfor %}
+    <div>
+        <h1><span id="floor_title">{{ floor.place }}</span></h1>
+    </div>
+    <div class="col-md-2">
+        <ul class="nav nav-pills nav-stacked">
+            <li role="presentation" class="dropdown">
+                <a href class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false" role="button">
+                    {{ type|default:"All"}} sensors
+                    <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu" role="menu">
+                    <li>
+                        <a href="{% query_params alarms.number events.number None floors.number %}">All
+                            sensors</a></li>
+                    {% for type in types %}
+                        <li>
+                            <a href="{% query_params alarms.number events.number type floors.number %}">{{ type.name }}
+                                sensors</a></li>
+                    {% endfor %}
+                </ul>
+            </li>
+            <li><a href='{% url "list_sensors" floor.place.pk %}'>Sensors</a></li>
+            <li><a href='{% url "list_rules" floor.place.pk %}'>Rules</a></li>
+            <li><a href="{% url "map_history" floor.place.pk now %}">History</a></li>
+            <li><a href>Reports</a></li>
+            <li><a href>Delegates</a></li>
         </ul>
     </div>
+    <div class="col-md-10 map-container well center-block">
+        {% block popup %}
+            {% include "popup_sensor.html" %}
+        {% endblock %}
 
-    {% block popup %}
-    {% include "popup_sensor.html" %}
-    {% endblock %}
+        <div style='background-image:url("{{ floor.map }}");' class="map center-block">
+            <canvas id="place_canvas" width="700" height="400">
+                Your browser does not support the HTML5 canvas tag.
+            </canvas>
+        </div>
+        {% if floors.paginator.num_pages > 1 %}
+            <nav>
+                <ul class="pager">
+                    {% if floors.has_previous %}
+                        <li class="previous">
+                            <a href="{% query_params alarms.number events.number type floors.previous_page_number %}">previous</a>
+                        </li>
+                    {% else %}
+                        <li class="previous disabled"><a>previous</a></li>
+                    {% endif %}
 
-    <div style='background-image:url("{{ floor.map }}");' class="map">
-        <canvas id="place_canvas" width="700" height="400">
-            Your browser does not support the HTML5 canvas tag.
-        </canvas>
-        <script>
-                document.getElementById("popup-panel").style.display = 'none';
-                var sensors = [{{sensors | safe}}];
-                function showIcons() {
-                    var c = document.getElementById("place_canvas");
-                    var ctx = c.getContext("2d");
-                    var currentSensor;
-                    for (var i in sensors) {
-                        currentSensor = new Image();
-                        currentSensor.src = sensors[i].url;
-                        ctx.drawImage(currentSensor, sensors[i].pos_x, sensors[i].pos_y);
-                    }
-                }
-                $(document).ready(showIcons);
-                $(window).load(showIcons);
+                    <li>
+                        Floor {{ floors.number }} of {{ floors.paginator.num_pages }}
+                    </li>
 
-                $("#place_canvas").on("click",function(event) {
-                    var modal = document.getElementById('popup-panel');
-                    modal.style.display = "block";
-
-                    modal.onclick = function(evt){
-                        if(evt.target.id == "popup-panel"){
-                            var modal = document.getElementById('popup-panel');
-                            modal.style.display = "none";
-                        }
-                    };
-
-                    var totalOffsetX = 0;
-                    var totalOffsetY = 0;
-                    var canvasX = 0;
-                    var canvasY = 0;
-                    var currentElement = this;
-
-                    do {
-                        totalOffsetX += currentElement.offsetLeft - currentElement.scrollLeft;
-                        totalOffsetY += currentElement.offsetTop - currentElement.scrollTop;
-                    } while(currentElement = currentElement.offsetParent)
-
-                    canvasX = event.pageX - totalOffsetX;
-                    canvasY = event.pageY - totalOffsetY;
-
-                    var is_any_sensor = false;
-                    for (var i in sensors) {
-                        if((canvasX>=sensors[i].pos_x && canvasX<=sensors[i].pos_x + 24) &&
-                                (canvasY>=sensors[i].pos_y && canvasY<=sensors[i].pos_y + 36)) {
-                            //alert("canvasX:"+canvasX+"  "+"canvasY:"+canvasY);
-                            if (sensors[i].description == "") {
-                                document.getElementById("popup-sensor").innerHTML =
-                                "Sensor on a hidden asset.<br />Status: " + sensors[i].status;
-                                document.getElementById("popup-panel").style.display = 'block';
-                            } else {
-                                document.getElementById("popup-sensor").innerHTML =
-                                "Sensor on " + sensors[i].description + "<br />Status: " + sensors[i].status;
-                                document.getElementById("popup-panel").style.display = 'block';
-                            }
-                            is_any_sensor = true;
-                        } else {
-                            if (!is_any_sensor) {
-                                document.getElementById("popup-panel").style.display = 'none';
-                            }
-                        }
-                    }
-                });
-        </script>
+                    {% if floors.has_next %}
+                        <li class="next">
+                            <a href="{% query_params alarms.number events.number type floors.next_page_number %}">next</a>
+                        </li>
+                    {% else %}
+                        <li class="next disabled"><a>next</a></li>
+                    {% endif %}
+                </ul>
+            </nav>
+        {% endif %}
     </div>
-    {% if floors.paginator.num_pages > 1 %}
-        <nav>
-            <ul class="pager">
-                {% if floors.has_previous %}
-                    <li class="previous">
-                        <a href="?floor_page={{ floors.previous_page_number }}&alarm_page={{ alarms.number }}&event_page={{ events.number }}{{ type_param }}">previous</a>
-                    </li>
-                {% else %}
-                    <li class="previous disabled"><a>previous</a></li>
-                {% endif %}
-
-                <li>
-                    Floor {{ floors.number }} of {{ floors.paginator.num_pages }}
-                </li>
-
-                {% if floors.has_next %}
-                    <li class="next">
-                        <a href="?floor_page={{ floors.next_page_number }}&alarm_page={{ alarms.number }}&event_page={{ events.number }}{{ type_param }}">next</a>
-                    </li>
-                {% else %}
-                    <li class="next disabled"><a>next</a></li>
-                {% endif %}
+    <div class="col-md-12 well">
+        <div class="col-md-12">
+            <ul class="nav nav-tabs">
+                <li id="alarms_tab" role="presentation" class="active"><a onclick="showAlarms()">Alarms</a></li>
+                <li id="events_tab" role="presentation"><a onclick="showEvents()">Events</a></li>
             </ul>
-        </nav>
-    {% endif %}
-</div>
-<div class="col-md-4">
-    <div class="panel panel-warning">
-        <div class="panel-heading">
-            <h3 class="panel-title">ALARMS</h3>
         </div>
-        {% if alarms %}
-        <table class="table table-striped table-hover ">
-          <thead>
-            <tr>
-                <th>Date</th>
-                <th>Time</th>
-                <th>Asset</th>
-                <th>Description</th>
-            </tr>
-          </thead>
-          <tbody>
-            {% for alarm in alarms %}
-            <tr>
-              <td>{{alarm.event.timestamp.date}}</td>
-              <td>{{alarm.event.timestamp.time}}</td>
-              <td>{{alarm.event.sensor}}</td>
-              <td>{% status_icon alarm.event %}{{alarm}}</td>
-            </tr>
-            {% endfor %}
-          </tbody>
-        </table>
-        {% else %}
-        <ul class="list-group">
-            <li class="list-group-item">There are no alarms in this floor</li>
-        </ul>
-        {% endif %}
-    </div>
-    <nav>
-        <ul class="pager">
-            {% if alarms.has_previous %}
-            <li class="previous"><a href="?floor_page={{ floors.number }}&alarm_page={{ alarms.previous_page_number }}&event_page={{ events.number }}{{ type_param }}">previous</a>
-            </li>
-            {% else %}
-            <li class="previous disabled"><a>previous</a></li>
-            {% endif %}
+        <div class="col-md-12" id="alarms">
+            {% alarms_table alarms %}
+            <nav>
+                <ul class="pager">
+                    {% if alarms.has_previous %}
+                        <li class="previous"><a
+                                href="{% query_params alarms.previous_page_number events.number type floors.number %}">previous</a>
+                        </li>
+                    {% else %}
+                        <li class="previous disabled"><a>previous</a></li>
+                    {% endif %}
 
-            <li>
-                Page {{ alarms.number }} of {{ alarms.paginator.num_pages }}
-            </li>
+                    <li>
+                        Page {{ alarms.number }} of {{ alarms.paginator.num_pages }}
+                    </li>
 
-            {% if alarms.has_next %}
-            <li class="next"><a href="?floor_page={{ floors.number }}&alarm_page={{ alarms.next_page_number }}&event_page={{ events.number }}{{ type_param }}">next</a>
-            </li>
-            {% else %}
-            <li class="next disabled"><a>next</a></li>
-            {% endif %}
-        </ul>
-    </nav>
-</div>
-<div class="col-md-12">
-    <div class="panel panel-primary">
-        <div class="panel-heading">
-            <h3 class="panel-title">EVENTS</h3>
+                    {% if alarms.has_next %}
+                        <li class="next"><a
+                                href="{% query_params alarms.next_page_number events.number type floors.number %}">next</a>
+                        </li>
+                    {% else %}
+                        <li class="next disabled"><a>next</a></li>
+                    {% endif %}
+                </ul>
+            </nav>
         </div>
-        {% if events %}
-        <table class="table table-striped table-hover ">
-          <thead>
-            <tr>
-                <th>Date</th>
-                <th>Time</th>
-                <th>Asset</th>
-                <th>Description</th>
-            </tr>
-          </thead>
-          <tbody>
-            {% for event in events %}
-            <tr>
-              <td>{{event.timestamp.date}}</td>
-              <td>{{event.timestamp.time}}</td>
-              <td>{{event.sensor}}</td>
-              <td>{% status_icon event %}{{event}}</td>
-            </tr>
-            {% endfor %}
-          </tbody>
-        </table>
-        {% else %}
-        <ul class="list-group">
-            <li class="list-group-item">There are no events in this floor</li>
-        </ul>
-        {% endif %}
+        <div class="col-md-12" id="events" style="display: none;">
+            {% events_table events %}
+            <nav>
+                <ul class="pager">
+                    {% if events.has_previous %}
+                        <li class="previous"><a
+                                href="{% query_params alarms.number events.previous_page_number type floors.number %}">previous</a>
+                        </li>
+                    {% else %}
+                        <li class="previous disabled"><a>previous</a></li>
+                    {% endif %}
+
+                    <li>
+                        Page {{ events.number }} of {{ events.paginator.num_pages }}
+                    </li>
+
+                    {% if events.has_next %}
+                        <li class="next"><a
+                                href="{% query_params alarms.number events.next_page_number type floors.number %}">next</a>
+                        </li>
+                    {% else %}
+                        <li class="next disabled"><a>next</a></li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </div>
     </div>
-    <nav>
-        <ul class="pager">
-            {% if events.has_previous %}
-            <li class="previous"><a href="?floor_page={{ floors.number }}&event_page={{ events.previous_page_number }}&alarm_page={{ alarms.number }}{{ type_param }}">previous</a>
-            </li>
-            {% else %}
-            <li class="previous disabled"><a>previous</a></li>
-            {% endif %}
-
-            <li>
-                Page {{ events.number }} of {{ events.paginator.num_pages }}
-            </li>
-
-            {% if events.has_next %}
-            <li class="next"><a href="?floor_page={{ floors.number }}&event_page={{ events.next_page_number }}&alarm_page={{ alarms.number }}{{ type_param }}">next</a>
-            </li>
-            {% else %}
-            <li class="next disabled"><a>next</a></li>
-            {% endif %}
-        </ul>
-    </nav>
-</div>
+    <script>
+        var sensors = [{{sensors | safe }}];
+    </script>
+    <script src='{% static "js/place_details.js" %}'></script>
 {% endblock %}

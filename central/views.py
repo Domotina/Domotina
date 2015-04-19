@@ -88,3 +88,33 @@ def central_huge_load(request):
         return redirect('central_owner_principal')
     context = {'user': request.user}
     return render(request, 'owner_huge_load.html', context)
+
+
+
+@login_required
+def central_delegate(request):
+    context = {'user': request.user}
+    return render(request, 'delegates_owner_principal.html', context)
+
+
+@login_required
+def central_individual_delegate_load(request):
+    context = {'user': request.user}
+    return render(request, 'delegates_individual.html', context)
+
+
+@login_required
+def central_huge_delegate_load(request):
+    context = {'user': request.user}
+    return render(request, 'delegates_huge_load.html', context)
+
+@login_required
+def central_building_neigh(request):
+    context = {'user': request.user}
+    return render(request, 'central_buildings.html', context)
+
+
+@login_required
+def central_month_report(request):
+    context = {'user': request.user}
+    return render(request, 'central_month_report.html', context)

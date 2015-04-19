@@ -22,6 +22,21 @@
 
             <p>Administration Homeowners</p>
         </a></li>
+        <li class="btn"><a href='{% url "central_delegates_owner" %}'>
+            <img src='{% static "img/blue-user-icon.png" %}' class="img-rounded"/>
+
+            <p>Administration Delegates Owners</p>
+        </a></li>
+        <li class="btn"><a href='{% url "central_buildings" %}'>
+            <img src='{% static "image/Business-Organization-blue.png" %}' class="img-rounded"/>
+
+            <p>Administration Buildings/Neighborhoods</p>
+        </a></li>
+        <li class="btn"><a href='{% url "central_month_report" %}'>
+            <img src='{% static "img/file-blue.png" %}' class="img-rounded"/>
+
+            <p>Month Report</p>
+        </a></li>
     </ul>
 </div>
 {% endblock %}

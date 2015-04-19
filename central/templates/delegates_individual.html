@@ -52,9 +52,10 @@ Creation Delegate
             <div class="col-lg-10">
                 <select class="form-control" id="owner" name="owner" required>
                     <!-- cargar propietarios -->
-                    <option selected>1</option>
-                    <option>2</option>
-                    <option>3</option>
+                    <option value="0">Select</option>
+                    {% for use in user %}
+                    <option value="{{use.pk}}"> {{use.username|capfirst}}</option>
+                    {% endfor %}
                 </select>
             </div>
         </div>
@@ -64,9 +65,10 @@ Creation Delegate
             <div class="col-lg-10">
                 <select class="form-control" id="property" name="property" required>
                     <!-- cargar propiedades del propietario seleccionado -->
-                    <option selected>1</option>
-                    <option>2</option>
-                    <option>3</option>
+                    <option value="0">Select</option>
+                    {% for pla in place %}
+                    <option value="{{pla.pk}}"> {{pla.name|capfirst}}</option>
+                    {% endfor %}
                 </select>
             </div>
         </div>

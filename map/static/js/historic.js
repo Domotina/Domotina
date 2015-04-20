@@ -15,6 +15,7 @@ function secondsFormatter(value) {
 };
 
 $(function () {
+    var floors_element = $("#floors");
     /*
     Se carga el mapa del primer piso por defecto
      */
@@ -23,17 +24,19 @@ $(function () {
     /*
     Se registran todas las opciones de pisos una vez carga el documento
      */
-    for (idx in floors) {
-        $("#floors").append("<option value=" + idx + ">Floor " + floors[idx].number + "</option>");
+    for (idx in window.floors) {
+        if (window.floors.hasOwnProperty(idx)) {
+            floors_element.append("<option value=" + idx + ">Floor " + window.floors[idx].number + "</option>");
+        }
     }
 
     /*
     Cuando se selecciona un piso, se pinta de nuevo el mapa del piso
     y los respectivos sensores
      */
-    $("#floors").change(function(){
+    floors_element.change(function(){
         var idx = $("#floors").find(":selected").val();
-        window.floor = floors[idx];
+        window.floor = window.floors[idx];
         $('#map').css("background-image", "url(" + floor.url + ")");
         showIcons();
     });
@@ -59,6 +62,6 @@ $(function () {
             var url = window.location.pathname.replace(/\d+\/$/, value.replace(/-/g,"")+"/");
             window.location.pathname = url;
         }
-        event.preventDefault()
-    })
+        event.preventDefault();
+    });
 });

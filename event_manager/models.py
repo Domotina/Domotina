@@ -1,5 +1,6 @@
 import threading
 import traceback
+from datetime import time, datetime
 
 from django.db import models
 from django.db.models.signals import post_save
@@ -7,6 +8,16 @@ from django.dispatch import receiver
 
 from map.models import Sensor
 from event_manager.notificator import send_email
+
+
+def datetime_to_js(dt):
+    return "new Date(%(year)s, %(month)s, %(day)s, %(h)s, %(m)s, %(s)s)" \
+           % {'year': dt.strftime("%Y"),
+              'month': dt.strftime("%m"),
+              'day': dt.strftime("%d"),
+              'h': dt.strftime("%H"),
+              'm': dt.strftime("%M"),
+              's': dt.strftime("%S")}
 
 
 class Event(models.Model):
@@ -21,19 +32,7 @@ class Event(models.Model):
         verbose_name_plural = 'events'
 
     def __unicode__(self):
-        position = ''
-        status = ''
-        if self.value is not None:
-            status += 'Status changed to %s' % (self.get_status())
-        if self.pos_x is not None and self.pos_y is not None:
-            position += 'Moved to %d, %d' % (self.pos_x, self.pos_y)
-        if status and position:
-            msg = status + ' and ' + position
-        elif status:
-            msg = status
-        else:
-            msg = position
-        return msg
+        return "%s" % self.get_status()
 
     def is_reportable(self):
         # Create a flat to check if the event has to notify.
@@ -71,13 +70,20 @@ class Event(models.Model):
         status = self.get_status()
         if status is None:
             return ''
-        current_sensor = '{status: "%s", url: "%s", pos_x: %d, pos_y: %d, description: "%s", sensor: %d}' \
+        current_sensor = '{status: "%s", ' \
+                         'url: "%s", ' \
+                         'posX: %d, ' \
+                         'posY: %d, ' \
+                         'description: "%s", ' \
+                         'sensor: %d, ' \
+                         'timestamp: %s}' \
                          % (status.name,
                             status.icon,
                             self.pos_x,
                             self.pos_y,
                             self,
-                            self.sensor.pk)
+                            self.sensor.pk,
+                            datetime_to_js(self.timestamp))
         return current_sensor
 
 
@@ -98,14 +104,6 @@ def event_handler(sender, instance, **kwargs):
     if instance.is_reportable():
         alarm = Alarm(event=instance)
         alarm.save()
-    if instance.get_status() is not None:
-        instance.sensor.current_value = instance.value
-    if instance.pos_x is not None:
-        instance.sensor.current_pos_x = instance.pos_x
-    if instance.pos_y is not None:
-        instance.sensor.current_pos_y = instance.pos_y
-    instance.sensor.current_date = instance.timestamp
-    instance.sensor.save()
 
 
 @receiver(post_save, sender=Alarm)
@@ -126,7 +124,6 @@ def alarm_handler(sender, instance, created, **kwargs):
 
 @receiver(post_save, sender=Sensor)
 def sensor_handler(sender, instance, created, **kwargs):
-    if created:
-        first_event = Event(sensor=instance, value=instance.current_value, pos_x=instance.current_pos_x,
-                            pos_y=instance.current_pos_y)
-        first_event.save()
+    event = Event(sensor=instance, value=instance.current_value, pos_x=instance.current_pos_x,
+                  pos_y=instance.current_pos_y)
+    event.save()

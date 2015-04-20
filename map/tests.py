@@ -4,23 +4,24 @@ import datetime
 from django.test.utils import setup_test_environment
 from django.utils import timezone
 from django.test import TestCase
-from .models import Neighborhood
-
 from django.core.urlresolvers import reverse
 from django.core.exceptions import ObjectDoesNotExist
+
+from .models import Neighborhood
 
 # Pruebas unitarias Administracion de urbanizaciones y/o edificios
 # Se asume que Neighborhood corresponde a urbanizaciones y/o edificios
 class NeighborhoodTests(TestCase):
-    #Pruebas para crear neighborrhood
+    # Pruebas para crear neighborrhood
     """
     Prueba en donde se agrega un nuevo neighborhood con un nombre no vacio,
     se debe crear el neighboorhood en la base de datos
     """
+
     def test_create_neighborhood(self):
         setup_test_environment()
 
-        #Debe crear el edificio
+        # Debe crear el edificio
         response = self.client.post(reverse('create_neighborhood'), {'name': 'neighborhood1'})
         created = response.context['created']
         self.assertEqual(created, True)
@@ -48,16 +49,18 @@ class NeighborhoodTests(TestCase):
         #self.client.login(username='domotina', password='domotina')
         #response = self.client.get(url, format='json')
         #self.assertEqual(response.status_code, status.HTTP_200_OK)
+
     """
     Prueba en donde se intenta agregar un neighborhood con un nombre vacio,
     no se debe crear el neighboorhood en la base de datos
     """
+
     def test_create_neighborhood_empty_name(self):
         setup_test_environment()
 
         n1 = Neighborhood.objects.all()
 
-        #Debe crear el edificio
+        # Debe crear el edificio
         response = self.client.post(reverse('create_neighborhood'), {'name': ''})
         created = response.context['created']
         #Temporal
@@ -68,10 +71,11 @@ class NeighborhoodTests(TestCase):
         n2 = Neighborhood.objects.all()
         self.assertEqual(n1.count(), n2.count(), "Se agrego un neighboorhood con nombre vacio")
 
-    #Pruebas para borrar edificios
+    # Pruebas para borrar edificios
     """
     Se borra un neighborhood dado el id
     """
+
     def test_delete_neighborhood(self):
         setup_test_environment()
         #Agregar un dato
@@ -115,6 +119,7 @@ class NeighborhoodTests(TestCase):
     """
     Prueba donde se buscan todos los neighborhoods
     """
+
     def test_get_neighborhoods(self):
         setup_test_environment()
         #Sin datos
@@ -152,39 +157,38 @@ class NeighborhoodTests(TestCase):
         #TO-DO
         self.assertTrue(True)
 
-    class HistoryTest(TestCase):
-        def test_load_history(self):
-            "Escenario de histórico de eventos"
 
-            url = reverse("map_history", args=(5, 20150401))
-            self.client.login(username='domotina', password='domotina')
-            response = self.client.get(url)
-            self.assertEqual(response.status_code, 200)
+class HistoryTest(TestCase):
+    def test_load_history(self):
+        "Escenario de histórico de eventos"
 
-        def test_invalid_place_id(self):
-            "Escenario en que se recibe ID de place inválido"
+        url = reverse("map_history", args=(5, 20150401))
+        self.client.login(username='domotina', password='domotina')
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)
 
-            url = reverse("map_history", args=(20, 20150401))
-            self.client.login(username='domotina', password='domotina')
-            response = self.client.get(url)
-            self.assertEqual(response.status_code, 404)
+    def test_invalid_place_id(self):
+        "Escenario en que se recibe ID de place inválido"
 
-        def test_invalid_date(self):
-            "Escenario en que se recibe fecha inválida"
+        url = reverse("map_history", args=(20, 20150401))
+        self.client.login(username='domotina', password='domotina')
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 404)
 
-            return
-            date = 0
-            url = reverse("map_history", args=(5, date))
-            self.client.login(username='domotina', password='domotina')
-            response = self.client.get(url)
-            self.assertEqual(response.status_code, 404)
+    def test_invalid_date(self):
+        "Escenario en que se recibe fecha inválida"
 
-        def test_future_date(self):
-            "Escenario en que se recibe fecha futura"
+        date = 0
+        url = reverse("map_history", args=(5, date))
+        self.client.login(username='domotina', password='domotina')
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)
 
-            return
-            date = 20180402
-            url = reverse("map_history", args=(5, date))
-            self.client.login(username='domotina', password='domotina')
-            response = self.client.get(url)
-            self.assertEqual(response.status_code, 404)
+    def test_future_date(self):
+        "Escenario en que se recibe fecha futura"
+
+        date = 20180402
+        url = reverse("map_history", args=(5, date))
+        self.client.login(username='domotina', password='domotina')
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)

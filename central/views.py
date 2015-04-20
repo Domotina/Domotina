@@ -4,6 +4,8 @@ from django.contrib.auth.decorators import user_passes_test
 from django.contrib.auth.models import User
 from .notificator import send_email
 from map.models import Neighborhood, Place, Floor
+from django.template import RequestContext
+from django.shortcuts import render_to_response
 
 
 def user_can_see(user):
@@ -106,22 +108,36 @@ def central_individual_delegate_load(request):
         emailUser = str(request.POST.get("inputEmail", ""))
         owner = str(request.POST.get("owner", ""))
         property = str(request.POST.get("property", ""))
+        print owner
+        print property
 
-
-        userCreate = User.objects.create_user(username=username, first_name=name, last_name=lastName, email=emailUser,
-                                            password='DOMOTINA123')
-        userCreate.is_superuser = False
-        userCreate.is_active = True
-        userCreate.is_staff = False
-        userCreate.groups.add(2)#Falta
-        userCreate.save()
-        send_email(userCreate)
+        # userCreate = User.objects.create_user(username=username, first_name=name, last_name=lastName, email=emailUser,
+        #                                     password='DOMOTINA123')
+        # userCreate.is_superuser = False
+        # userCreate.is_active = True
+        # userCreate.is_staff = False
+        # userCreate.groups.add(2)#Falta
+        # userCreate.save()
+        # send_email(userCreate)
         return redirect('central_home')
     else:
-        user = User.objects.all()
-        place = Place.objects.all().order_by('name')
-        context = {'user': request.user, 'place': place, 'user': user}
+        users = User.objects.all()
+        #place = Place.objects.all().order_by('name')
+        context = {'user': request.user, 'users': users}
         return render(request, 'delegates_individual.html', context)
+
+def getHouses(request):
+    context = RequestContext(request)
+    print 'houses'
+    #if request.method == 'GET':
+    print 'get'
+    owner_id = request.GET['owner_id']
+    print owner_id
+    place = get_object_or_404(Place, pk=owner_id)
+    #place = Place.objects.filer(pk=int(owner_id))
+    print place
+    print 'fin'
+    return render_to_response('central/delegates_individual.html', {'user': request.user, 'place': place}, context)
 
 
 

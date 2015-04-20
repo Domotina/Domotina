@@ -12,5 +12,6 @@ urlpatterns = patterns('central.views',
     url(r'^delegate_huge/', 'central_huge_delegate_load', name="central_huge_delegate_load"),
     url(r'^building-neigh/', 'central_building_neigh', name="central_building_neigh"),
     url(r'^create_building-neigh/', 'central_building_create', name="central_building_create"),
-    url(r'^report/', 'central_month_report', name="central_month_report")
+    url(r'^report/', 'central_month_report', name="central_month_report"),
+    url(r'^getHouses/$', 'getHouses', name="getHouses"),
 )

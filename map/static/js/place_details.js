@@ -18,6 +18,22 @@ showEvents = function () {
     $('#alarms_tab').removeClass('active');
 };
 
+sensorStatus = function (sensor) {
+    if (window.time && sensor.events) {
+        var event;
+        for (var n in sensor.events) {
+            event = sensor.events[n];
+            if (event.timestamp < time) {
+                sensor.url = event.url;
+                sensor.status = event.status;
+                sensor.posX = event.posX;
+                sensor.posY = event.posY;
+                break;
+            }
+        }
+    }
+};
+
 function showIcons() {
     var c = document.getElementById("place_canvas");
     var ctx = c.getContext("2d");
@@ -34,19 +50,7 @@ function showIcons() {
         sensor = $.extend({}, sensors[i]);
         if (!floor || sensor.floor === floor.number) {
             if (!time || sensor.creationDate < time) {
-                if (time && sensor.events) {
-                    var event;
-                    for (var n in sensor.events) {
-                        event = sensor.events[n];
-                        if (event.timestamp < time) {
-                            sensor.url = event.url;
-                            sensor.status = event.status;
-                            sensor.posX = event.posX;
-                            sensor.posY = event.posY;
-                            break;
-                        }
-                    }
-                }
+                sensorStatus(sensor)
                 drawSensor(sensor);
             }
         }
@@ -59,18 +63,23 @@ $(function () {
 });
 
 $("#place_canvas").on("click", function (event) {
+    var sensors = window.sensors, time = window.time, floor = window.floor, sensor;
     var area = 34; //tamaño de las imágenes de los sensores
-    var modal = $("#popup-panel")
+    var modal = $("#popup-panel");
     var body = $("#popup-sensor");
-    var sensor;
 
     for (var i in sensors) {
-        sensor = sensors[i];
-        if ((sensor.posX <= event.offsetX && event.offsetX <= sensor.posX + area) &&
-            (sensor.posY <= event.offsetY && event.offsetY <= sensor.posY + area)) {
-            body.html("Sensor on " + (sensor.description || "Private Asset") + "<br/>Status: " + sensor.status);
-            modal.show();
-            return;
+        sensor = $.extend({}, sensors[i]);
+        if (!floor || sensor.floor === floor.number) {
+            if (!time || sensor.creationDate < time) {
+                sensorStatus(sensor);
+                if ((sensor.posX <= event.offsetX && event.offsetX <= sensor.posX + area) &&
+                    (sensor.posY <= event.offsetY && event.offsetY <= sensor.posY + area)) {
+                    body.html("Sensor on " + (sensor.description || "Private Asset") + "<br/>Status: " + sensor.status);
+                    modal.show();
+                    return;
+                }
+            }
         }
     }
     modal.hide();

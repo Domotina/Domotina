@@ -36,6 +36,11 @@ sensorStatus = function (sensor) {
     }
 };
 
+isValid = function (sensor) {
+    var floor = window.floor, time = window.time;
+    return ((!floor || sensor.floor === floor.number) && (!time || sensor.creationDate < time));
+};
+
 function showIcons() {
     var c = document.getElementById("place_canvas");
     var ctx = c.getContext("2d");
@@ -51,11 +56,9 @@ function showIcons() {
     for (var i in sensors) {
         if (sensors.hasOwnProperty(i)) {
             sensor = $.extend({}, sensors[i]);
-            if (!floor || sensor.floor === floor.number) {
-                if (!time || sensor.creationDate < time) {
-                    sensorStatus(sensor);
-                    drawSensor(sensor);
-                }
+            if (isValid(sensor)) {
+                sensorStatus(sensor);
+                drawSensor(sensor);
             }
         }
     }
@@ -75,15 +78,13 @@ $("#place_canvas").on("click", function (event) {
     for (var i in sensors) {
         if (sensors.hasOwnProperty(i)) {
             sensor = $.extend({}, sensors[i]);
-            if (!floor || sensor.floor === floor.number) {
-                if (!time || sensor.creationDate < time) {
-                    sensorStatus(sensor);
-                    if ((sensor.posX <= event.offsetX && event.offsetX <= sensor.posX + area) &&
-                        (sensor.posY <= event.offsetY && event.offsetY <= sensor.posY + area)) {
-                        body.html("Sensor on " + (sensor.description || "Private Asset") + "<br/>Status: " + sensor.status);
-                        modal.show();
-                        return;
-                    }
+            if (isValid(sensor)) {
+                sensorStatus(sensor);
+                if ((sensor.posX <= event.offsetX && event.offsetX <= sensor.posX + area) &&
+                    (sensor.posY <= event.offsetY && event.offsetY <= sensor.posY + area)) {
+                    body.html("Sensor on " + (sensor.description || "Private Asset") + "<br/>Status: " + sensor.status);
+                    modal.show();
+                    return;
                 }
             }
         }

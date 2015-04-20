@@ -5,13 +5,13 @@ function secondsFormatter(value) {
     var seconds = ("00" + Math.floor(value % 60)).slice(-2);
     var minutes = ("00" + Math.floor(value / 60 % 60)).slice(-2);
     var hours = ("00" + (Math.floor((value / 60 / 60 + 23) % 12) + 1)).slice(-2);
-    var am_pm;
+    var ampm;
     if (value / 60 / 60 > 12) {
-        am_pm = " p.m.";
+        ampm = " p.m.";
     } else {
-        am_pm = " a.m.";
+        ampm = " a.m.";
     }
-    return hours + ":" + minutes + ":" + seconds + am_pm;
+    return hours + ":" + minutes + ":" + seconds + ampm;
 };
 
 $(function () {
@@ -33,7 +33,7 @@ $(function () {
      */
     $("#floors").change(function(){
         var idx = $("#floors").find(":selected").val();
-        floor = floors[idx];
+        window.floor = floors[idx];
         $('#map').css("background-image", "url(" + floor.url + ")");
         showIcons();
     });
@@ -41,7 +41,7 @@ $(function () {
     /*
     Se crea el slider y se añade comportamiento cuando cambia su valor
      */
-    var slider = $('#slider').slider({formater: secondsFormatter})
+    var slider = $('#slider').slider({formater: secondsFormatter});
     slider.on('slide', function (value) {
         var seconds = value.value;
         time.setHours(seconds / 60 / 60);

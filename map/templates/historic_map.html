@@ -27,15 +27,18 @@
         {% endblock %}
 
         <div class="col-md-12">
-            <div class="col-md-6">
-                <input type="date" id="date" class="form-control"/>
+            <div class="col-md-4 col-md-offset-2">
+                <form id="goToDate" class="form-inline">
+                    <input type="date" id="calendar" name="calendar" class="form-control" required/>
+                    <input type="submit" class="form-control" value="Go"/>
+                </form>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <select id="floors" class="form-control">
                 </select>
             </div>
         </div>
-    <hr/>
+        <hr/>
         <div class="col-md-12">
             <div id="map" class="map center-block">
                 <canvas id="place_canvas" width="700" height="400">

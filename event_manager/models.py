@@ -1,12 +1,12 @@
-from django.db import models
-from map.models import Sensor
-from django.db.models.signals import post_save
-from django.dispatch import receiver
-from event_manager.notificator import send_email
 import threading
 import traceback
 
-# Create your models here.
+from django.db import models
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+
+from map.models import Sensor
+from event_manager.notificator import send_email
 
 
 class Event(models.Model):
@@ -26,7 +26,7 @@ class Event(models.Model):
         if self.value is not None:
             status += 'Status changed to %s' % (self.get_status())
         if self.pos_x is not None and self.pos_y is not None:
-            position += 'Moved to %d, %d' & (self.pos_x, self.pos_y)
+            position += 'Moved to %d, %d' % (self.pos_x, self.pos_y)
         if status and position:
             msg = status + ' and ' + position
         elif status:
@@ -66,6 +66,19 @@ class Event(models.Model):
             return sensor.get_status()
         else:
             return None
+
+    def to_json(self):
+        status = self.get_status()
+        if status is None:
+            return ''
+        current_sensor = '{status: "%s", url: "%s", pos_x: %d, pos_y: %d, description: "%s", sensor: %d}' \
+                         % (status.name,
+                            status.icon,
+                            self.pos_x,
+                            self.pos_y,
+                            self,
+                            self.sensor.pk)
+        return current_sensor
 
 
 class Alarm(models.Model):
@@ -109,3 +122,11 @@ def alarm_handler(sender, instance, created, **kwargs):
             d.join()
         instance.notified = True
         instance.save()
+
+
+@receiver(post_save, sender=Sensor)
+def sensor_handler(sender, instance, created, **kwargs):
+    if created:
+        first_event = Event(sensor=instance, value=instance.current_value, pos_x=instance.current_pos_x,
+                            pos_y=instance.current_pos_y)
+        first_event.save()

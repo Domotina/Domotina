@@ -1,6 +1,6 @@
-from django.conf import settings
 from django.db import models
 from django.contrib.auth.models import User
+
 
 class Neighborhood(models.Model):
     name = models.CharField("neighborhood", max_length=100)
@@ -31,11 +31,24 @@ class Place(models.Model):
     def __unicode__(self):
         return self.name
 
+    def get_sensors_json(self, sensor_type=None):
+        sensors_array = []
+        floors = self.floors.get_queryset()
+        for floor in floors:
+            sensors_array.extend(floor.get_sensors_json(sensor_type))
+        return sensors_array
+
+    def snapshot(self, date=None, json=False):
+        sensors_array = []
+        floors = self.floors.get_queryset()
+        for floor in floors:
+            sensors_array.extend(floor.snapshot(date, json))
+        return sensors_array
+
 
 class Floor(models.Model):
     place = models.ForeignKey(Place, verbose_name="place", related_name="floors")
     number = models.PositiveIntegerField("number", default=1)
-    #map = models.ImageField("map image", upload_to=settings.MAP_FILE_PATH)
     map = models.CharField("map image", max_length=255)
     date_created = models.DateTimeField("date created", auto_now_add=True)
     date_updated = models.DateTimeField("date updated", auto_now_add=True)
@@ -48,21 +61,30 @@ class Floor(models.Model):
     def __unicode__(self):
         return "%s Floor %s" % (self.place, self.number)
 
+    def to_json(self):
+        return '{number: %d, url: "%s"}' % (self.number, self.map)
 
-'''class Asset(models.Model):
-    floor = models.ForeignKey(Floor, verbose_name="floor", related_name="assets")
-    name = models.CharField("asset", max_length=50)
-    description = models.TextField("description", blank=True, null=True)
-    date_created = models.DateTimeField("date created", auto_now_add=True)
-    date_updated = models.DateTimeField("date updated", auto_now_add=True)
+    def get_sensors_json(self, sensor_type=None):
+        sensors_array = []
+        if sensor_type is None:
+            sensors = self.sensors.get_queryset()
+        else:
+            sensors = self.sensors.filter(type=sensor_type)
 
-    class Meta:
-        verbose_name = "asset"
-        verbose_name_plural = "assets"
-        ordering = ["floor", "name"]
+        for sensor in sensors:
+            sensor_json = sensor.to_json()
+            if sensor_json:
+                sensors_array.append(sensor_json)
+        return sensors_array
 
-    def __unicode__(self):
-        return self.name'''
+    def snapshot(self, date=None, json=False):
+        sensors_array = []
+        sensors = self.sensors.get_queryset()
+        for sensor in sensors:
+            sensor = sensor.snapshot(date, json)
+            if sensor:
+                sensors_array.append(sensor)
+        return sensors_array
 
 
 class SensorType(models.Model):
@@ -123,10 +145,49 @@ class Sensor(models.Model):
     def get_status(self):
         try:
             if self.type.is_continuous:
-                status = self.type.statuses.filter(min_value__lte=self.current_value, max_value__gte=self.current_value)[:1].get()
+                status = self.type.statuses.filter(min_value__lte=self.current_value,
+                                                   max_value__gte=self.current_value)[:1].get()
             else:
                 status = self.type.statuses.filter(value=self.current_value)[:1].get()
         except SensorStatus.DoesNotExist:
             status = None
         finally:
             return status
+
+    def to_json(self):
+        status = self.get_status()
+        if status is None:
+            return ''
+        current_sensor = '{status: "%s", url: "%s", pos_x: %d, pos_y: %d, description: "%s", floor: %d}' \
+                         % (status.name,
+                            status.icon,
+                            self.current_pos_x,
+                            self.current_pos_y,
+                            self,
+                            self.floor.number)
+        return current_sensor
+
+    def snapshot(self, date=None, json=False):
+        if date is not None:
+            tmp_value = False
+            tmp_x = False
+            tmp_y = False
+            events = self.event_set.filter(timestamp__lte=date).order_by("-timestamp")
+            for event in events:
+                if event.value is not None and not tmp_value:
+                    self.current_value = event.value
+                    tmp_value = True
+                if event.pos_x is not None and not tmp_x:
+                    self.current_pos_x = event.pos_x
+                    tmp_x = True
+                if event.pos_y is not None and not tmp_y:
+                    self.current_pos_y = event.pos_y
+                    tmp_y = True
+                if tmp_value and tmp_x and tmp_y:
+                    break
+        if json:
+            return self.to_json()
+        else:
+            return self
+
+

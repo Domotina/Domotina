@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% load static %}
+{% load event_status %}
+
+{% block head %}
+    <link rel="stylesheet" href='{% static "css/slider.css" %}'>
+    <script src='{% static "js/vendor/bootstrap-slider.js" %}'></script>
+    <script src='{% static "js/historic.js" %}'></script>
+{% endblock head %}
+
+{% block title %}
+    - Place {{ place }} - Historic
+{% endblock %}
+
+{% block navbar %}
+    <li><a href='{% url "map_home" %}'>My places</a></li>
+    <li><a href='{% url "map_place_view" place.pk %}'>Map of {{ place.name }}</a></li>
+{% endblock navbar %}
+
+{% block content %}
+    <div>
+        <h1><span id="floor_title">{{ place }}</span></h1>
+    </div>
+    <div class="col-md-12 map-container well">
+        {% block popup %}
+            {% include "popup_sensor.html" %}
+        {% endblock %}
+
+        <div class="col-md-12">
+            <div class="col-md-6">
+                <input type="date" id="date" class="form-control"/>
+            </div>
+            <div class="col-md-6">
+                <select id="floors" class="form-control">
+                </select>
+            </div>
+        </div>
+    <hr/>
+        <div class="col-md-12">
+            <div id="map" class="map center-block">
+                <canvas id="place_canvas" width="700" height="400">
+                    Your browser does not support the HTML5 canvas tag.
+                </canvas>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <span><strong>12:00 a.m.</strong> </span>
+            <input id="slider"
+                   type="number"
+                   class="form-control"
+                   data-slider-min="0"
+                   data-slider-max="86399"
+                   data-slider-step="1"
+                   data-slider-value="0"
+                   data-slider-tooltip="show"/>
+            <span> <strong>11:59 p.m.</strong></span>
+        </div>
+
+    </div>
+    <script type="text/javascript">
+        var floors = [{{ floors | safe }}];
+        var sensors = [{{ sensors | safe }}];
+        var floor = floors[0];
+    </script>
+    <script src='{% static "js/place_details.js" %}'></script>
+{% endblock %}

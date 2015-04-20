@@ -51,7 +51,7 @@ function showIcons() {
         ctx.drawImage(image, sensor.posX, sensor.posY);
     }
 
-    var sensors = window.sensors, time = window.time, floor = window.floor, sensor;
+    var sensors = window.sensors, sensor;
     ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
     for (var i in sensors) {
         if (sensors.hasOwnProperty(i)) {
@@ -70,7 +70,7 @@ $(function () {
 });
 
 $("#place_canvas").on("click", function (event) {
-    var sensors = window.sensors, time = window.time, floor = window.floor, sensor;
+    var sensors = window.sensors, sensor;
     var area = 34; //tamaño de las imágenes de los sensores
     var modal = $("#popup-panel");
     var body = $("#popup-sensor");

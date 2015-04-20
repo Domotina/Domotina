@@ -15,7 +15,7 @@ function secondsFormatter(value) {
 };
 
 $(function () {
-    var floors_element = $("#floors");
+    var floorsElement = $("#floors");
     /*
     Se carga el mapa del primer piso por defecto
      */
@@ -26,7 +26,7 @@ $(function () {
      */
     for (idx in window.floors) {
         if (window.floors.hasOwnProperty(idx)) {
-            floors_element.append("<option value=" + idx + ">Floor " + window.floors[idx].number + "</option>");
+            floorsElement.append("<option value=" + idx + ">Floor " + window.floors[idx].number + "</option>");
         }
     }
 
@@ -34,7 +34,7 @@ $(function () {
     Cuando se selecciona un piso, se pinta de nuevo el mapa del piso
     y los respectivos sensores
      */
-    floors_element.change(function(){
+    floorsElement.change(function(){
         var idx = $("#floors").find(":selected").val();
         window.floor = window.floors[idx];
         $('#map').css("background-image", "url(" + floor.url + ")");
@@ -50,7 +50,7 @@ $(function () {
         time.setHours(seconds / 60 / 60);
         time.setMinutes(seconds / 60 % 60);
         time.setSeconds(seconds % 60);
-        showIcons()
+        showIcons();
     });
 
     /*

@@ -1,4 +1,4 @@
-import datetime
+from datetime import datetime, time
 
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
@@ -58,7 +58,7 @@ def place_view(request, pk):
 
     types = SensorType.objects.all()
 
-    current_date = datetime.datetime.now().strftime("%Y%m%d")
+    current_date = datetime.now().strftime("%Y%m%d")
 
     context = {'floor': current_floor, 'sensors': sensors_json, 'floors': floors,
                'events': events, 'alarms': alarms, 'types': types,
@@ -149,12 +149,17 @@ def delete_neighborhood(request, neighborhood_pk):
 
 # @login_required
 def edit_neighborhood(request, neighborhood_pk):
-    return render(request, 'neighborhood.html', {'edited': True})
+    neighborhood = get_object_or_404(Neighborhood, pk=neighborhood_pk)
+    return render(request, 'neighborhood.html', {'edited': True, 'neighborhood': neighborhood})
 
 
 @login_required
 def map_history(request, place_pk, int_date):
-    date = datetime.datetime.strptime(int_date, "%Y%m%d")
+    date = datetime.combine(datetime.today(), time(0))
+    try:
+        date = datetime.strptime(int_date, "%Y%m%d")
+    except ValueError:
+        pass
     init_date = "new Date(%(year)s, %(month)s, %(day)s)" \
                 % {'year': date.strftime("%Y"),
                    'month': date.strftime("%m"),

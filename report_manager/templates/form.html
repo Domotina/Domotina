@@ -15,9 +15,19 @@
 <div class="well">
     <form class="form-horizontal" method="post" action='{% url "report_events_in_date_range" place.pk %}'>
         <h2>Events in {{place.name}}</h2>
-        <h5>Select the date range to view the events that happened in that moment in your place.</h5>
+        <h5>Select the date range to view the events that happened in your place.</h5>
         {% csrf_token %}
-        <br /><br /><br />
+        <br /><br />
+
+        {% if messages %}
+            <div class="alert alert-warning" role="alert">
+                <ul>
+                    {% for message in messages %}
+                        <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
         <fieldset>
             <div class="form-group col-md-6">
                 <label for="start_date" class="col-lg-2 control-label">Start date</label>

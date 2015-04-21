@@ -1,51 +1,72 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.messages import error
 from map.models import Place
 from event_manager.models import Event
-
-import time, datetime, calendar
+import datetime, calendar
 
 def home(request, place_pk):
-    print place_pk
     # Getting the place
     place = get_object_or_404(Place, pk=place_pk)
     context = {'place': place}
+
     return render(request, 'form.html', context)
 
-def events_in_date_range(request, place_pk):
 
+def events_in_date_range(request, place_pk):
+    # Scenario 1 is validated displaying a message when have no results!
+    # Scenario 2 is validated displaying all events in a place between a date range! (Ideal scenario)
+    # Scenario 3 and 4 are validated via js, indicating dates are required fields!
+
+    start_year = 0
+    end_year = 0
     if request.method == 'POST':
-        if request.POST['start_date'] and request.POST['end_date']:
-            start = request.POST['start_date'].replace("/", "")
-            end = request.POST['end_date'].replace("/", "")
-        else:
+        # Validating if dates are in valid format!
+        try:
+            start_year = datetime.datetime.strptime(request.POST['start_date'], "%Y/%m/%d").year
+        except ValueError:
+            error(request, "The start date must be with valid format.")
             return redirect('report_home', place_pk=place_pk)
+
+        try:
+            end_year = datetime.datetime.strptime(request.POST['end_date'], "%Y/%m/%d").year
+        except ValueError:
+            error(request, "The end date must be with valid format.")
+            return redirect('report_home', place_pk=place_pk)
+
     else:
         return redirect('report_home', place_pk=place_pk)
 
-
-    # Start date and end date MUST BE a string with 8 characters length (i.e. 20150401)
-    if len(start) != 8 or len(end) != 8:
-        print "Formato de fecha invalido"
-        return redirect('report_home', place_pk=place_pk)
-
-    start_year = datetime.datetime.strptime(start, "%Y%m%d").year
-    end_year = datetime.datetime.strptime(end, "%Y%m%d").year
-
-    if not start_year > 1900 or not end_year > 1900:
-        print "Formato de fecha invalido"
+    # Scenario 5 is validated redirecting to form page and indicating that
+    # end date must be greater than start date
+    if datetime.datetime.strptime(request.POST['start_date'], "%Y/%m/%d") > \
+            datetime.datetime.strptime(request.POST['end_date'], "%Y/%m/%d"):
+        error(request, "The end date must be greater than the start date.")
         return redirect('report_home', place_pk=place_pk)
 
 
-    start_month = datetime.datetime.strptime(start, "%Y%m%d").month
-    end_month = datetime.datetime.strptime(end, "%Y%m%d").month
+    if not start_year > 1900:
+        error(request, "The year in the start date must be greater than 1900.")
+        return redirect('report_home', place_pk=place_pk)
 
-    if not start_month in range(1,12) or not end_month in range(1,12):
-        print "Formato de fecha invalido"
+    if not end_year > 1900:
+        error(request, "The year in the end date must be greater than 1900.")
         return redirect('report_home', place_pk=place_pk)
 
 
-    start_day = datetime.datetime.strptime(start, "%Y%m%d").day
-    end_day = datetime.datetime.strptime(end, "%Y%m%d").day
+    start_month = datetime.datetime.strptime(request.POST['start_date'], "%Y/%m/%d").month
+    end_month = datetime.datetime.strptime(request.POST['end_date'], "%Y/%m/%d").month
+
+    if not start_month in range(1, 13):
+        error(request, "The month in the start date must be between 1 and 12.")
+        return redirect('report_home', place_pk=place_pk)
+
+    if not end_month in range(1, 13):
+        error(request, "The month in the end date must be between 1 and 12.")
+        return redirect('report_home', place_pk=place_pk)
+
+
+    start_day = datetime.datetime.strptime(request.POST['start_date'], "%Y/%m/%d").day
+    end_day = datetime.datetime.strptime(request.POST['start_date'], "%Y/%m/%d").day
 
     if start_day <= 0 or start_day >= 30:
         start_day = 1

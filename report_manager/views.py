@@ -23,10 +23,20 @@ def home(request, place_pk):
 def generate_pdf(html):
     # Generic function to generate a pdf file
     result = StringIO.StringIO()
-    pdf = pisa.pisaDocument(StringIO.StringIO(html.encode("UTF-8")), result)
+    pdf = pisa.pisaDocument(StringIO.StringIO(html.encode("UTF-8")), result, link_callback=fetch_resources)
     if not pdf.err:
         return HttpResponse(result.getvalue(), content_type='application/pdf')
     return HttpResponse('PDF document cannot be generated: %s' % cgi.escape(html))
+
+
+def fetch_resources(uri, rel):
+    import os.path
+    from django.conf import settings
+    path = os.path.join(
+            "index/static",
+            uri.replace(settings.STATIC_URL, ""))
+
+    return path
 
 
 def events_in_date_range(request, place_pk):

@@ -75,6 +75,12 @@ $("#place_canvas").on("click", function (event) {
     var modal = $("#popup-panel");
     var body = $("#popup-sensor");
 
+    if (typeof event.offsetX === "undefined" || typeof event.offsetY === "undefined") {
+        var targetOffset = $(event.target).offset();
+        event.offsetX = event.pageX - targetOffset.left;
+        event.offsetY = event.pageY - targetOffset.top;
+    }
+
     for (var i in sensors) {
         if (sensors.hasOwnProperty(i)) {
             sensor = $.extend({}, sensors[i]);

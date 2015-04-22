@@ -1,15 +1,32 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.messages import error
+from xhtml2pdf import pisa
+from django.http import HttpResponse
+from django.template import RequestContext
+from django.template.loader import render_to_string
+
 from map.models import Place
 from event_manager.models import Event
+
 import datetime, calendar
+import cStringIO as StringIO
+import cgi
 
 def home(request, place_pk):
     # Getting the place
     place = get_object_or_404(Place, pk=place_pk)
-    context = {'place': place}
 
+    context = {'place': place}
     return render(request, 'form.html', context)
+
+
+def generate_pdf(html):
+    # Generic function to generate a pdf file
+    result = StringIO.StringIO()
+    pdf = pisa.pisaDocument(StringIO.StringIO(html.encode("UTF-8")), result)
+    if not pdf.err:
+        return HttpResponse(result.getvalue(), content_type='application/pdf')
+    return HttpResponse('PDF document cannot be generated: %s' % cgi.escape(html))
 
 
 def events_in_date_range(request, place_pk):
@@ -18,6 +35,7 @@ def events_in_date_range(request, place_pk):
     # Scenario 3 and 4 are validated via js, indicating dates are required fields!
 
     start_year = 0
+    #math.fmod()
     end_year = 0
     if request.method == 'POST':
         # Validating if dates are in valid format!
@@ -33,13 +51,17 @@ def events_in_date_range(request, place_pk):
             error(request, "The end date must be with valid format.")
             return redirect('report_home', place_pk=place_pk)
 
+        start_date = request.POST['start_date']
+        end_date = request.POST['end_date']
+        as_pdf = request.POST['output'] != 'html'
+
     else:
         return redirect('report_home', place_pk=place_pk)
 
     # Scenario 5 is validated redirecting to form page and indicating that
     # end date must be greater than start date
-    if datetime.datetime.strptime(request.POST['start_date'], "%Y/%m/%d") > \
-            datetime.datetime.strptime(request.POST['end_date'], "%Y/%m/%d"):
+    if datetime.datetime.strptime(start_date, "%Y/%m/%d") > \
+            datetime.datetime.strptime(end_date, "%Y/%m/%d"):
         error(request, "The end date must be greater than the start date.")
         return redirect('report_home', place_pk=place_pk)
 
@@ -53,8 +75,8 @@ def events_in_date_range(request, place_pk):
         return redirect('report_home', place_pk=place_pk)
 
 
-    start_month = datetime.datetime.strptime(request.POST['start_date'], "%Y/%m/%d").month
-    end_month = datetime.datetime.strptime(request.POST['end_date'], "%Y/%m/%d").month
+    start_month = datetime.datetime.strptime(start_date, "%Y/%m/%d").month
+    end_month = datetime.datetime.strptime(end_date, "%Y/%m/%d").month
 
     if not start_month in range(1, 13):
         error(request, "The month in the start date must be between 1 and 12.")
@@ -65,8 +87,8 @@ def events_in_date_range(request, place_pk):
         return redirect('report_home', place_pk=place_pk)
 
 
-    start_day = datetime.datetime.strptime(request.POST['start_date'], "%Y/%m/%d").day
-    end_day = datetime.datetime.strptime(request.POST['start_date'], "%Y/%m/%d").day
+    start_day = datetime.datetime.strptime(start_date, "%Y/%m/%d").day
+    end_day = datetime.datetime.strptime(end_date, "%Y/%m/%d").day
 
     if start_day <= 0 or start_day >= 30:
         start_day = 1
@@ -83,7 +105,14 @@ def events_in_date_range(request, place_pk):
                             .filter(timestamp__gt=datetime.date(start_year, start_month, start_day),
                                     timestamp__lt=datetime.date(end_year, end_month, end_day))
 
-
     context = {'place': place, 'events': events,
-               'start_date': request.POST['start_date'], 'end_date': request.POST['end_date']}
+               'start_date': start_date, 'end_date': end_date}
+
+    # Generating pdf file
+    if as_pdf and events:
+        html = render_to_string('events_in_date_range_pdf.html', {'pagesize':'A4', 'place': place, 'events': events,
+               'start_date': start_date, 'end_date': end_date}, context_instance=RequestContext(request))
+        return generate_pdf(html)
+
+    # Displaying report in HTML
     return render(request, 'events_in_date_range.html', context)

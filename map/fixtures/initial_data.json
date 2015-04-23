@@ -135,551 +135,6 @@
     }
 },
 {
-    "pk": 1,
-    "model": "auth.permission",
-    "fields": {
-        "codename": "add_logentry",
-        "name": "Can add log entry",
-        "content_type": 1
-    }
-},
-{
-    "pk": 2,
-    "model": "auth.permission",
-    "fields": {
-        "codename": "change_logentry",
-        "name": "Can change log entry",
-        "content_type": 1
-    }
-},
-{
-    "pk": 3,
-    "model": "auth.permission",
-    "fields": {
-        "codename": "delete_logentry",
-        "name": "Can delete log entry",
-        "content_type": 1
-    }
-},
-{
-    "pk": 4,
-    "model": "auth.permission",
-    "fields": {
-        "codename": "add_permission",
-        "name": "Can add permission",
-        "content_type": 2
-    }
-},
-{
-    "pk": 5,
-    "model": "auth.permission",
-    "fields": {
-        "codename": "change_permission",
-        "name": "Can change permission",
-        "content_type": 2
-    }
-},
-{
-    "pk": 6,
-    "model": "auth.permission",
-    "fields": {
-        "codename": "delete_permission",
-        "name": "Can delete permission",
-        "content_type": 2
-    }
-},
-{
-    "pk": 7,
-    "model": "auth.permission",
-    "fields": {
-        "codename": "add_group",
-        "name": "Can add group",
-        "content_type": 3
-    }
-},
-{
-    "pk": 8,
-    "model": "auth.permission",
-    "fields": {
-        "codename": "change_group",
-        "name": "Can change group",
-        "content_type": 3
-    }
-},
-{
-    "pk": 9,
-    "model": "auth.permission",
-    "fields": {
-        "codename": "delete_group",
-        "name": "Can delete group",
-        "content_type": 3
-    }
-},
-{
-    "pk": 10,
-    "model": "auth.permission",
-    "fields": {
-        "codename": "add_user",
-        "name": "Can add user",
-        "content_type": 4
-    }
-},
-{
-    "pk": 11,
-    "model": "auth.permission",
-    "fields": {
-        "codename": "change_user",
-        "name": "Can change user",
-        "content_type": 4
-    }
-},
-{
-    "pk": 12,
-    "model": "auth.permission",
-    "fields": {
-        "codename": "delete_user",
-        "name": "Can delete user",
-        "content_type": 4
-    }
-},
-{
-    "pk": 13,
-    "model": "auth.permission",
-    "fields": {
-        "codename": "add_contenttype",
-        "name": "Can add content type",
-        "content_type": 5
-    }
-},
-{
-    "pk": 14,
-    "model": "auth.permission",
-    "fields": {
-        "codename": "change_contenttype",
-        "name": "Can change content type",
-        "content_type": 5
-    }
-},
-{
-    "pk": 15,
-    "model": "auth.permission",
-    "fields": {
-        "codename": "delete_contenttype",
-        "name": "Can delete content type",
-        "content_type": 5
-    }
-},
-{
-    "pk": 16,
-    "model": "auth.permission",
-    "fields": {
-        "codename": "add_session",
-        "name": "Can add session",
-        "content_type": 6
-    }
-},
-{
-    "pk": 17,
-    "model": "auth.permission",
-    "fields": {
-        "codename": "change_session",
-        "name": "Can change session",
-        "content_type": 6
-    }
-},
-{
-    "pk": 18,
-    "model": "auth.permission",
-    "fields": {
-        "codename": "delete_session",
-        "name": "Can delete session",
-        "content_type": 6
-    }
-},
-{
-    "pk": 19,
-    "model": "auth.permission",
-    "fields": {
-        "codename": "add_event",
-        "name": "Can add event",
-        "content_type": 7
-    }
-},
-{
-    "pk": 20,
-    "model": "auth.permission",
-    "fields": {
-        "codename": "change_event",
-        "name": "Can change event",
-        "content_type": 7
-    }
-},
-{
-    "pk": 21,
-    "model": "auth.permission",
-    "fields": {
-        "codename": "delete_event",
-        "name": "Can delete event",
-        "content_type": 7
-    }
-},
-{
-    "pk": 22,
-    "model": "auth.permission",
-    "fields": {
-        "codename": "add_alarm",
-        "name": "Can add alarm",
-        "content_type": 8
-    }
-},
-{
-    "pk": 23,
-    "model": "auth.permission",
-    "fields": {
-        "codename": "change_alarm",
-        "name": "Can change alarm",
-        "content_type": 8
-    }
-},
-{
-    "pk": 24,
-    "model": "auth.permission",
-    "fields": {
-        "codename": "delete_alarm",
-        "name": "Can delete alarm",
-        "content_type": 8
-    }
-},
-{
-    "pk": 25,
-    "model": "auth.permission",
-    "fields": {
-        "codename": "add_neighborhood",
-        "name": "Can add neighborhood",
-        "content_type": 9
-    }
-},
-{
-    "pk": 26,
-    "model": "auth.permission",
-    "fields": {
-        "codename": "change_neighborhood",
-        "name": "Can change neighborhood",
-        "content_type": 9
-    }
-},
-{
-    "pk": 27,
-    "model": "auth.permission",
-    "fields": {
-        "codename": "delete_neighborhood",
-        "name": "Can delete neighborhood",
-        "content_type": 9
-    }
-},
-{
-    "pk": 28,
-    "model": "auth.permission",
-    "fields": {
-        "codename": "add_place",
-        "name": "Can add place",
-        "content_type": 10
-    }
-},
-{
-    "pk": 29,
-    "model": "auth.permission",
-    "fields": {
-        "codename": "change_place",
-        "name": "Can change place",
-        "content_type": 10
-    }
-},
-{
-    "pk": 30,
-    "model": "auth.permission",
-    "fields": {
-        "codename": "delete_place",
-        "name": "Can delete place",
-        "content_type": 10
-    }
-},
-{
-    "pk": 31,
-    "model": "auth.permission",
-    "fields": {
-        "codename": "add_floor",
-        "name": "Can add floor",
-        "content_type": 11
-    }
-},
-{
-    "pk": 32,
-    "model": "auth.permission",
-    "fields": {
-        "codename": "change_floor",
-        "name": "Can change floor",
-        "content_type": 11
-    }
-},
-{
-    "pk": 33,
-    "model": "auth.permission",
-    "fields": {
-        "codename": "delete_floor",
-        "name": "Can delete floor",
-        "content_type": 11
-    }
-},
-{
-    "pk": 34,
-    "model": "auth.permission",
-    "fields": {
-        "codename": "add_sensortype",
-        "name": "Can add sensor type",
-        "content_type": 12
-    }
-},
-{
-    "pk": 35,
-    "model": "auth.permission",
-    "fields": {
-        "codename": "change_sensortype",
-        "name": "Can change sensor type",
-        "content_type": 12
-    }
-},
-{
-    "pk": 36,
-    "model": "auth.permission",
-    "fields": {
-        "codename": "delete_sensortype",
-        "name": "Can delete sensor type",
-        "content_type": 12
-    }
-},
-{
-    "pk": 37,
-    "model": "auth.permission",
-    "fields": {
-        "codename": "add_sensorstatus",
-        "name": "Can add sensor status",
-        "content_type": 13
-    }
-},
-{
-    "pk": 38,
-    "model": "auth.permission",
-    "fields": {
-        "codename": "change_sensorstatus",
-        "name": "Can change sensor status",
-        "content_type": 13
-    }
-},
-{
-    "pk": 39,
-    "model": "auth.permission",
-    "fields": {
-        "codename": "delete_sensorstatus",
-        "name": "Can delete sensor status",
-        "content_type": 13
-    }
-},
-{
-    "pk": 40,
-    "model": "auth.permission",
-    "fields": {
-        "codename": "add_sensor",
-        "name": "Can add sensor",
-        "content_type": 14
-    }
-},
-{
-    "pk": 41,
-    "model": "auth.permission",
-    "fields": {
-        "codename": "change_sensor",
-        "name": "Can change sensor",
-        "content_type": 14
-    }
-},
-{
-    "pk": 42,
-    "model": "auth.permission",
-    "fields": {
-        "codename": "delete_sensor",
-        "name": "Can delete sensor",
-        "content_type": 14
-    }
-},
-{
-    "pk": 43,
-    "model": "auth.permission",
-    "fields": {
-        "codename": "add_scheduledaily",
-        "name": "Can add Daily Schedule",
-        "content_type": 15
-    }
-},
-{
-    "pk": 44,
-    "model": "auth.permission",
-    "fields": {
-        "codename": "change_scheduledaily",
-        "name": "Can change Daily Schedule",
-        "content_type": 15
-    }
-},
-{
-    "pk": 45,
-    "model": "auth.permission",
-    "fields": {
-        "codename": "delete_scheduledaily",
-        "name": "Can delete Daily Schedule",
-        "content_type": 15
-    }
-},
-{
-    "pk": 1,
-    "model": "auth.group",
-    "fields": {
-        "name": "UsersCentral",
-        "permissions": [
-            2
-        ]
-    }
-},
-{
-    "pk": 2,
-    "model": "auth.group",
-    "fields": {
-        "name": "UsersOwners",
-        "permissions": [
-            34,
-            35,
-            36
-        ]
-    }
-},
-{
-    "pk": 1,
-    "model": "auth.user",
-    "fields": {
-        "username": "domotina",
-        "first_name": "",
-        "last_name": "",
-        "is_active": true,
-        "is_superuser": true,
-        "is_staff": true,
-        "last_login": "2015-04-12T05:53:17.775Z",
-        "groups": [],
-        "user_permissions": [],
-        "password": "pbkdf2_sha256$12000$jTeDaK4UwLqY$ytI9/vmZ15Z6Kvj8xKPmQCXGJlKBOcRPeDKxcXPRfBo=",
-        "email": "djimenez@ingenieros.com",
-        "date_joined": "2015-03-07T20:01:23Z"
-    }
-},
-{
-    "pk": 2,
-    "model": "auth.user",
-    "fields": {
-        "username": "central",
-        "first_name": "Usuario",
-        "last_name": "Central",
-        "is_active": true,
-        "is_superuser": false,
-        "is_staff": false,
-        "last_login": "2015-03-21T22:13:26.308Z",
-        "groups": [
-            1
-        ],
-        "user_permissions": [],
-        "password": "pbkdf2_sha256$12000$c59nhEY8EnFF$UbXvE/gDmDc2n928B9D+wN5wf9RojB/4r9TYmg/OYB0=",
-        "email": "raul.gomezn@hotmail.com",
-        "date_joined": "2015-03-21T15:59:16Z"
-    }
-},
-{
-    "pk": 3,
-    "model": "auth.user",
-    "fields": {
-        "username": "user",
-        "first_name": "Usuario",
-        "last_name": "Propietario",
-        "is_active": true,
-        "is_superuser": false,
-        "is_staff": false,
-        "last_login": "2015-03-21T22:12:47.770Z",
-        "groups": [
-            2
-        ],
-        "user_permissions": [],
-        "password": "pbkdf2_sha256$12000$VWJRLICOiKez$CtVqE1CjkxHkePTyXaw4ckodgDViaNIGfkCLPiyvcXc=",
-        "email": "raul.gomezn@hotmail.com",
-        "date_joined": "2015-03-21T17:21:32Z"
-    }
-},
-{
-    "pk": 4,
-    "model": "auth.user",
-    "fields": {
-        "username": "buildersmart",
-        "first_name": "Constructora",
-        "last_name": "Smart",
-        "is_active": true,
-        "is_superuser": false,
-        "is_staff": false,
-        "last_login": "2015-04-07T20:31:31Z",
-        "groups": [
-            2
-        ],
-        "user_permissions": [],
-        "password": "pbkdf2_sha256$12000$FkGl9x3UtHYP$48YYbAYdLDAXisurv687PPAy0fDbyqwGK+CyVKCUMBY=",
-        "email": "ra.gomez11@uniandes.edu.co",
-        "date_joined": "2015-04-07T20:31:31Z"
-    }
-},
-{
-    "pk": 5,
-    "model": "auth.user",
-    "fields": {
-        "username": "kaos",
-        "first_name": "a",
-        "last_name": "e",
-        "is_active": true,
-        "is_superuser": false,
-        "is_staff": false,
-        "last_login": "2015-04-09T20:14:16.761Z",
-        "groups": [
-            2
-        ],
-        "user_permissions": [],
-        "password": "pbkdf2_sha256$12000$xPjRrVS8DoGk$6KEiFopXiDRXDIL0w7Kfds6tBAnxmehzyW73Hs2ZbQ4=",
-        "email": "kaosterra@gmail.com",
-        "date_joined": "2015-04-09T20:14:16.761Z"
-    }
-},
-{
-    "pk": 6,
-    "model": "auth.user",
-    "fields": {
-        "username": "djimenez",
-        "first_name": "David",
-        "last_name": "Jimenez",
-        "is_active": true,
-        "is_superuser": true,
-        "is_staff": true,
-        "last_login": "2015-04-11T15:14:34.457Z",
-        "groups": [
-            2
-        ],
-        "user_permissions": [],
-        "password": "pbkdf2_sha256$12000$jTeDaK4UwLqY$ytI9/vmZ15Z6Kvj8xKPmQCXGJlKBOcRPeDKxcXPRfBo=",
-        "email": "djimenez@ingenieros.com",
-        "date_joined": "2015-03-07T20:01:23Z"
-    }
-},
-{
     "pk": 1, 
     "model": "map.neighborhood", 
     "fields": {
@@ -713,61 +168,6 @@
         "date_updated": "2015-03-08T03:36:52.714Z", 
         "date_created": "2015-03-08T03:36:52.714Z", 
         "name": "BD Bacata Building"
-    }
-},
-{
-    "pk": 1,
-    "model": "map.place",
-    "fields": {
-        "owner": 1,
-        "date_created": "2015-03-07T20:59:03.888Z",
-        "neighborhood": 1,
-        "name": "T10 AP602",
-        "date_updated": "2015-03-07T20:59:03.888Z"
-    }
-},
-{
-    "pk": 2,
-    "model": "map.place",
-    "fields": {
-        "owner": 1,
-        "date_created": "2015-03-07T20:59:27.651Z",
-        "neighborhood": 1,
-        "name": "T10 AP603",
-        "date_updated": "2015-03-07T20:59:27.651Z"
-    }
-},
-{
-    "pk": 3,
-    "model": "map.place",
-    "fields": {
-        "owner": 1,
-        "date_created": "2015-03-08T02:24:08.983Z",
-        "neighborhood": 3,
-        "name": "Kr 69D St 25-04",
-        "date_updated": "2015-03-08T02:24:08.983Z"
-    }
-},
-{
-    "pk": 4,
-    "model": "map.place",
-    "fields": {
-        "owner": 1,
-        "date_created": "2015-03-08T03:37:22.536Z",
-        "neighborhood": 4,
-        "name": "Office 201",
-        "date_updated": "2015-03-08T03:37:22.536Z"
-    }
-},
-{
-    "pk": 5,
-    "model": "map.place",
-    "fields": {
-        "owner": 1,
-        "date_created": "2015-03-17T17:24:15.155Z",
-        "neighborhood": 3,
-        "name": "Kr 69A St 24-12",
-        "date_updated": "2015-03-17T17:24:15.155Z"
     }
 },
 {
@@ -1002,195 +402,195 @@
     "pk": 1, 
     "model": "map.sensor", 
     "fields": {
-        "current_pos_x": 600, 
-        "description": "Main Access Door",
-        "floor": 1, 
-        "date_updated": "2015-04-12T00:17:08.912Z", 
-        "current_date": "2015-03-07T16:48:50Z", 
-        "current_value": 1,
-        "date_created": "2015-03-07T21:48:52.275Z", 
-        "type": 2, 
-        "current_pos_y": 350
+        "current_pos_x": 120, 
+        "description": "", 
+        "floor": 4, 
+        "date_updated": "2013-07-14T20:26:59.766Z", 
+        "current_date": "2013-07-14T20:26:59.766Z", 
+        "current_value": 0, 
+        "date_created": "2013-07-14T20:26:59.766Z", 
+        "type": 3, 
+        "current_pos_y": 290
     }
 },
 {
     "pk": 2, 
-    "model": "map.sensor",
+    "model": "map.sensor", 
     "fields": {
-        "current_pos_x": 468, 
-        "description": "Dinning Room Light", 
-        "floor": 1, 
-        "date_updated": "2015-04-12T00:16:44.605Z", 
-        "current_date": "2015-03-07T17:11:47Z", 
+        "current_pos_x": 100, 
+        "description": "", 
+        "floor": 4, 
+        "date_updated": "2014-02-16T20:26:59.766Z", 
+        "current_date": "2014-02-16T20:26:59.766Z", 
         "current_value": 1, 
-        "date_created": "2015-03-07T22:11:49.552Z", 
+        "date_created": "2014-02-16T20:26:59.766Z", 
         "type": 3, 
-        "current_pos_y": 310
+        "current_pos_y": 90
     }
 },
 {
     "pk": 3, 
     "model": "map.sensor", 
     "fields": {
-        "current_pos_x": 462, 
-        "description": "Living Room Light", 
-        "floor": 1, 
-        "date_updated": "2015-04-12T00:18:01.717Z", 
-        "current_date": "2015-03-07T20:30:49Z", 
+        "current_pos_x": 355, 
+        "description": "", 
+        "floor": 4, 
+        "date_updated": "2014-12-14T20:26:59.766Z", 
+        "current_date": "2014-12-14T20:26:59.766Z", 
         "current_value": 1, 
-        "date_created": "2015-03-08T01:30:52.231Z", 
+        "date_created": "2014-12-14T20:26:59.766Z", 
         "type": 3, 
-        "current_pos_y": 123
+        "current_pos_y": 325
     }
 },
 {
     "pk": 4, 
     "model": "map.sensor", 
     "fields": {
-        "current_pos_x": 125, 
-        "description": "", 
+        "current_pos_x": 340, 
+        "description": "Study Room Light", 
         "floor": 1, 
-        "date_updated": "2015-03-10T18:25:11.799Z", 
-        "current_date": "2015-03-07T20:31:33Z", 
+        "date_updated": "2014-05-25T20:26:59.766Z", 
+        "current_date": "2014-05-25T20:26:59.766Z", 
         "current_value": 0, 
-        "date_created": "2015-03-08T01:31:36.824Z", 
-        "type": 1, 
-        "current_pos_y": 145
+        "date_created": "2014-05-25T20:26:59.766Z", 
+        "type": 3, 
+        "current_pos_y": 345
     }
 },
 {
     "pk": 5, 
     "model": "map.sensor", 
     "fields": {
-        "current_pos_x": 462, 
-        "description": "Living Room Window", 
+        "current_pos_x": 65, 
+        "description": "Main Room Light", 
         "floor": 1, 
-        "date_updated": "2015-04-12T00:15:37.028Z", 
-        "current_date": "2015-03-07T20:45:16Z", 
+        "date_updated": "2014-11-02T20:26:59.766Z", 
+        "current_date": "2014-11-02T20:26:59.766Z", 
         "current_value": 0, 
-        "date_created": "2015-03-08T01:45:24.740Z", 
-        "type": 2, 
-        "current_pos_y": 40
+        "date_created": "2014-11-02T20:26:59.766Z", 
+        "type": 3, 
+        "current_pos_y": 150
     }
 },
 {
     "pk": 6, 
     "model": "map.sensor", 
     "fields": {
-        "current_pos_x": 425, 
-        "description": "", 
-        "floor": 2, 
-        "date_updated": "2015-03-10T18:25:11.883Z", 
-        "current_date": "2015-03-07T21:25:38Z", 
+        "current_pos_x": 462, 
+        "description": "Living Room Light", 
+        "floor": 1, 
+        "date_updated": "2014-01-12T20:26:59.766Z", 
+        "current_date": "2014-01-12T20:26:59.766Z", 
         "current_value": 1, 
-        "date_created": "2015-03-08T02:25:43.315Z", 
+        "date_created": "2014-01-12T20:26:59.766Z", 
         "type": 3, 
-        "current_pos_y": 95
+        "current_pos_y": 123
     }
 },
 {
     "pk": 7, 
     "model": "map.sensor", 
     "fields": {
-        "current_pos_x": 570, 
-        "description": "", 
-        "floor": 2, 
-        "date_updated": "2015-03-10T18:25:11.900Z", 
-        "current_date": "2015-03-07T21:29:04Z", 
+        "current_pos_x": 468, 
+        "description": "Dinning Room Light", 
+        "floor": 1, 
+        "date_updated": "2013-09-15T20:26:59.766Z", 
+        "current_date": "2013-09-15T20:26:59.766Z", 
         "current_value": 1, 
-        "date_created": "2015-03-08T02:29:07.638Z", 
+        "date_created": "2013-09-15T20:26:59.766Z", 
         "type": 3, 
-        "current_pos_y": 135
+        "current_pos_y": 310
     }
 },
 {
     "pk": 8, 
     "model": "map.sensor", 
     "fields": {
-        "current_pos_x": 640, 
+        "current_pos_x": 570, 
         "description": "", 
         "floor": 2, 
-        "date_updated": "2015-03-08T02:34:32.622Z", 
-        "current_date": "2015-03-07T21:30:23Z", 
+        "date_updated": "2014-03-02T20:26:59.766Z", 
+        "current_date": "2014-03-02T20:26:59.766Z", 
         "current_value": 1, 
-        "date_created": "2015-03-08T02:30:27.347Z", 
-        "type": 2, 
-        "current_pos_y": 335
+        "date_created": "2014-03-02T20:26:59.766Z", 
+        "type": 3, 
+        "current_pos_y": 135
     }
 },
 {
     "pk": 9, 
     "model": "map.sensor", 
     "fields": {
-        "current_pos_x": 193, 
+        "current_pos_x": 425, 
         "description": "", 
         "floor": 2, 
-        "date_updated": "2015-03-08T02:38:25.564Z", 
-        "current_date": "2015-03-07T21:30:59Z", 
+        "date_updated": "2014-08-10T20:26:59.766Z", 
+        "current_date": "2014-08-10T20:26:59.766Z", 
         "current_value": 1, 
-        "date_created": "2015-03-08T02:31:02.069Z", 
-        "type": 2, 
-        "current_pos_y": 205
+        "date_created": "2014-08-10T20:26:59.766Z", 
+        "type": 3, 
+        "current_pos_y": 95
     }
 },
 {
     "pk": 10, 
     "model": "map.sensor", 
     "fields": {
-        "current_pos_x": 408, 
-        "description": "", 
-        "floor": 2, 
-        "date_updated": "2015-03-10T18:25:11.916Z", 
-        "current_date": "2015-03-07T21:31:32Z", 
-        "current_value": 0, 
-        "date_created": "2015-03-08T02:31:35.039Z", 
-        "type": 1, 
-        "current_pos_y": 280
+        "current_pos_x": 340, 
+        "description": "Dinning Room Light", 
+        "floor": 5, 
+        "date_updated": "2014-05-11T20:26:59.766Z", 
+        "current_date": "2014-05-11T20:26:59.766Z", 
+        "current_value": 1, 
+        "date_created": "2014-05-11T20:26:59.766Z", 
+        "type": 3, 
+        "current_pos_y": 300
     }
 },
 {
     "pk": 11, 
     "model": "map.sensor", 
     "fields": {
-        "current_pos_x": 52, 
-        "description": "Dinning Room Light", 
-        "floor": 3, 
-        "date_updated": "2015-04-12T00:04:42.436Z", 
-        "current_date": "2015-03-07T21:46:41Z", 
+        "current_pos_x": 120, 
+        "description": "Living Room Light", 
+        "floor": 5, 
+        "date_updated": "2014-06-01T20:26:59.766Z", 
+        "current_date": "2014-06-01T20:26:59.766Z", 
         "current_value": 1, 
-        "date_created": "2015-03-08T02:46:44.004Z", 
+        "date_created": "2014-06-01T20:26:59.766Z", 
         "type": 3, 
-        "current_pos_y": 265
+        "current_pos_y": 280
     }
 },
 {
     "pk": 12, 
     "model": "map.sensor", 
     "fields": {
-        "current_pos_x": 150, 
-        "description": "Living Room Light", 
-        "floor": 3, 
-        "date_updated": "2015-04-12T00:05:03.042Z", 
-        "current_date": "2015-03-07T21:47:19Z", 
+        "current_pos_x": 120, 
+        "description": "Secondary Room Light", 
+        "floor": 6, 
+        "date_updated": "2014-12-28T20:26:59.766Z", 
+        "current_date": "2014-12-28T20:26:59.766Z", 
         "current_value": 1, 
-        "date_created": "2015-03-08T02:47:20.973Z", 
+        "date_created": "2014-12-28T20:26:59.766Z", 
         "type": 3, 
-        "current_pos_y": 295
+        "current_pos_y": 90
     }
 },
 {
     "pk": 13, 
     "model": "map.sensor", 
     "fields": {
-        "current_pos_x": 32, 
-        "description": "Main Access Door", 
-        "floor": 3, 
-        "date_updated": "2015-04-12T00:04:07.293Z", 
-        "current_date": "2015-03-07T21:48:01Z", 
+        "current_pos_x": 135, 
+        "description": "Main Room Light", 
+        "floor": 6, 
+        "date_updated": "2014-12-21T20:26:59.766Z", 
+        "current_date": "2014-12-21T20:26:59.766Z", 
         "current_value": 1, 
-        "date_created": "2015-03-08T02:48:02.937Z", 
-        "type": 2, 
-        "current_pos_y": 335
+        "date_created": "2014-12-21T20:26:59.766Z", 
+        "type": 3, 
+        "current_pos_y": 280
     }
 },
 {
@@ -1200,10 +600,10 @@
         "current_pos_x": 585, 
         "description": "Main Room Light", 
         "floor": 3, 
-        "date_updated": "2015-04-12T00:12:35.170Z", 
-        "current_date": "2015-03-07T21:48:30Z", 
+        "date_updated": "2013-10-13T20:26:59.766Z", 
+        "current_date": "2013-10-13T20:26:59.766Z", 
         "current_value": 1, 
-        "date_created": "2015-03-08T02:48:32.039Z", 
+        "date_created": "2013-10-13T20:26:59.766Z", 
         "type": 3, 
         "current_pos_y": 115
     }
@@ -1212,73 +612,73 @@
     "pk": 15, 
     "model": "map.sensor", 
     "fields": {
-        "current_pos_x": 660, 
-        "description": "", 
+        "current_pos_x": 150, 
+        "description": "Living Room Light", 
         "floor": 3, 
-        "date_updated": "2015-04-12T00:07:14.842Z", 
-        "current_date": "2015-03-07T21:48:58Z", 
-        "current_value": 0, 
-        "date_created": "2015-03-08T02:49:00.267Z", 
-        "type": 1, 
-        "current_pos_y": 105
+        "date_updated": "2014-12-07T20:26:59.766Z", 
+        "current_date": "2014-12-07T20:26:59.766Z", 
+        "current_value": 1, 
+        "date_created": "2014-12-07T20:26:59.766Z", 
+        "type": 3, 
+        "current_pos_y": 295
     }
 },
 {
     "pk": 16, 
     "model": "map.sensor", 
     "fields": {
-        "current_pos_x": 362, 
-        "description": "Study Room Laptop", 
+        "current_pos_x": 52, 
+        "description": "Dinning Room Light", 
         "floor": 3, 
-        "date_updated": "2015-04-12T00:05:42.054Z", 
-        "current_date": "2015-03-07T21:57:20Z", 
-        "current_value": 0, 
-        "date_created": "2015-03-08T02:57:22.793Z", 
-        "type": 1, 
-        "current_pos_y": 130
+        "date_updated": "2013-09-29T20:26:59.766Z", 
+        "current_date": "2013-09-29T20:26:59.766Z", 
+        "current_value": 1, 
+        "date_created": "2013-09-29T20:26:59.766Z", 
+        "type": 3, 
+        "current_pos_y": 265
     }
 },
 {
     "pk": 17, 
     "model": "map.sensor", 
     "fields": {
-        "current_pos_x": 335, 
-        "description": "Study Room Window", 
-        "floor": 3, 
-        "date_updated": "2015-04-12T00:08:26.206Z", 
-        "current_date": "2015-03-07T21:57:45Z", 
-        "current_value": 0, 
-        "date_created": "2015-03-08T02:57:47.926Z", 
+        "current_pos_x": 7, 
+        "description": "", 
+        "floor": 4, 
+        "date_updated": "2014-07-27T20:26:59.766Z", 
+        "current_date": "2014-07-27T20:26:59.766Z", 
+        "current_value": 1, 
+        "date_created": "2014-07-27T20:26:59.766Z", 
         "type": 2, 
-        "current_pos_y": 80
+        "current_pos_y": 75
     }
 },
 {
     "pk": 18, 
     "model": "map.sensor", 
     "fields": {
-        "current_pos_x": 65, 
-        "description": "Main Room Light", 
-        "floor": 1, 
-        "date_updated": "2015-04-12T00:14:04.509Z", 
-        "current_date": "2015-03-07T22:03:17Z", 
+        "current_pos_x": 355, 
+        "description": "", 
+        "floor": 4, 
+        "date_updated": "2015-04-12T20:26:59.766Z", 
+        "current_date": "2015-04-12T20:26:59.766Z", 
         "current_value": 0, 
-        "date_created": "2015-03-08T03:03:19.204Z", 
-        "type": 3, 
-        "current_pos_y": 150
+        "date_created": "2015-04-12T20:26:59.766Z", 
+        "type": 2, 
+        "current_pos_y": 375
     }
 },
 {
     "pk": 19, 
     "model": "map.sensor", 
     "fields": {
-        "current_pos_x": 65, 
-        "description": "Main Room Window", 
+        "current_pos_x": 200, 
+        "description": "Secondary Room Window", 
         "floor": 1, 
-        "date_updated": "2015-04-12T00:13:46.686Z", 
-        "current_date": "2015-03-07T22:06:25Z", 
-        "current_value": 1, 
-        "date_created": "2015-03-08T03:06:27.477Z", 
+        "date_updated": "2013-12-08T20:26:59.766Z", 
+        "current_date": "2013-12-08T20:26:59.766Z", 
+        "current_value": 0, 
+        "date_created": "2013-12-08T20:26:59.766Z", 
         "type": 2, 
         "current_pos_y": 40
     }
@@ -1287,315 +687,315 @@
     "pk": 20, 
     "model": "map.sensor", 
     "fields": {
-        "current_pos_x": 248, 
-        "description": "", 
+        "current_pos_x": 65, 
+        "description": "Main Room Window", 
         "floor": 1, 
-        "date_updated": "2015-03-10T18:25:11.816Z", 
-        "current_date": "2015-03-07T22:07:02Z", 
+        "date_updated": "2014-12-21T20:26:59.766Z", 
+        "current_date": "2014-12-21T20:26:59.766Z", 
         "current_value": 1, 
-        "date_created": "2015-03-08T03:07:04.306Z", 
-        "type": 1, 
-        "current_pos_y": 141
+        "date_created": "2014-12-21T20:26:59.766Z", 
+        "type": 2, 
+        "current_pos_y": 40
     }
 },
 {
     "pk": 21, 
     "model": "map.sensor", 
     "fields": {
-        "current_pos_x": 340, 
-        "description": "Study Room Light", 
+        "current_pos_x": 462, 
+        "description": "Living Room Window", 
         "floor": 1, 
-        "date_updated": "2015-04-12T00:15:11.857Z", 
-        "current_date": "2015-03-07T22:08:05Z", 
+        "date_updated": "2014-11-30T20:26:59.766Z", 
+        "current_date": "2014-11-30T20:26:59.766Z", 
         "current_value": 0, 
-        "date_created": "2015-03-08T03:08:09.763Z", 
-        "type": 3, 
-        "current_pos_y": 345
+        "date_created": "2014-11-30T20:26:59.766Z", 
+        "type": 2, 
+        "current_pos_y": 40
     }
 },
 {
     "pk": 22, 
     "model": "map.sensor", 
     "fields": {
-        "current_pos_x": 369, 
-        "description": "", 
+        "current_pos_x": 600, 
+        "description": "Main Access Door", 
         "floor": 1, 
-        "date_updated": "2015-03-10T18:25:11.849Z", 
-        "current_date": "2015-03-07T22:08:34Z", 
-        "current_value": 0, 
-        "date_created": "2015-03-08T03:08:36.495Z", 
-        "type": 1, 
-        "current_pos_y": 372
+        "date_updated": "2014-04-27T20:26:59.766Z", 
+        "current_date": "2014-04-27T20:26:59.766Z", 
+        "current_value": 1, 
+        "date_created": "2014-04-27T20:26:59.766Z", 
+        "type": 2, 
+        "current_pos_y": 350
     }
 },
 {
     "pk": 23, 
     "model": "map.sensor", 
     "fields": {
-        "current_pos_x": 200, 
-        "description": "Secondary Room Window", 
-        "floor": 1, 
-        "date_updated": "2015-04-12T00:14:39.081Z", 
-        "current_date": "2015-03-07T22:17:42Z", 
-        "current_value": 0, 
-        "date_created": "2015-03-08T03:17:44.597Z", 
+        "current_pos_x": 193, 
+        "description": "", 
+        "floor": 2, 
+        "date_updated": "2014-09-07T20:26:59.766Z", 
+        "current_date": "2014-09-07T20:26:59.766Z", 
+        "current_value": 1, 
+        "date_created": "2014-09-07T20:26:59.766Z", 
         "type": 2, 
-        "current_pos_y": 40
+        "current_pos_y": 205
     }
 },
 {
     "pk": 24, 
     "model": "map.sensor", 
     "fields": {
-        "current_pos_x": 355, 
+        "current_pos_x": 640, 
         "description": "", 
-        "floor": 4, 
-        "date_updated": "2015-03-10T18:25:11.666Z", 
-        "current_date": "2015-03-07T22:41:26Z", 
-        "current_value": 0, 
-        "date_created": "2015-03-08T03:41:30.150Z", 
+        "floor": 2, 
+        "date_updated": "2013-11-03T20:26:59.766Z", 
+        "current_date": "2013-11-03T20:26:59.766Z", 
+        "current_value": 1, 
+        "date_created": "2013-11-03T20:26:59.766Z", 
         "type": 2, 
-        "current_pos_y": 375
+        "current_pos_y": 335
     }
 },
 {
     "pk": 25, 
     "model": "map.sensor", 
     "fields": {
-        "current_pos_x": 355, 
-        "description": "", 
-        "floor": 4, 
-        "date_updated": "2015-03-10T18:25:11.716Z", 
-        "current_date": "2015-03-07T22:41:54Z", 
+        "current_pos_x": 1, 
+        "description": "Living Room Window", 
+        "floor": 5, 
+        "date_updated": "2013-11-24T20:26:59.766Z", 
+        "current_date": "2013-11-24T20:26:59.766Z", 
         "current_value": 1, 
-        "date_created": "2015-03-08T03:41:56.596Z", 
-        "type": 3, 
-        "current_pos_y": 325
+        "date_created": "2013-11-24T20:26:59.766Z", 
+        "type": 2, 
+        "current_pos_y": 250
     }
 },
 {
     "pk": 26, 
     "model": "map.sensor", 
     "fields": {
-        "current_pos_x": 355, 
-        "description": "", 
-        "floor": 4, 
-        "date_updated": "2015-03-10T18:25:11.700Z", 
-        "current_date": "2015-03-07T22:42:26Z", 
-        "current_value": 0, 
-        "date_created": "2015-03-08T03:42:28.174Z", 
-        "type": 1, 
-        "current_pos_y": 292
+        "current_pos_x": 680, 
+        "description": "Main Access Door", 
+        "floor": 5, 
+        "date_updated": "2014-10-19T20:26:59.766Z", 
+        "current_date": "2014-10-19T20:26:59.766Z", 
+        "current_value": 1, 
+        "date_created": "2014-10-19T20:26:59.766Z", 
+        "type": 2, 
+        "current_pos_y": 350
     }
 },
 {
     "pk": 27, 
     "model": "map.sensor", 
     "fields": {
-        "current_pos_x": 7, 
-        "description": "", 
-        "floor": 4, 
-        "date_updated": "2015-03-08T03:50:55.866Z", 
-        "current_date": "2015-03-07T22:48:34Z", 
+        "current_pos_x": 1, 
+        "description": "Main Room Window", 
+        "floor": 6, 
+        "date_updated": "2014-05-11T20:26:59.766Z", 
+        "current_date": "2014-05-11T20:26:59.766Z", 
         "current_value": 1, 
-        "date_created": "2015-03-08T03:48:36.483Z", 
+        "date_created": "2014-05-11T20:26:59.766Z", 
         "type": 2, 
-        "current_pos_y": 75
+        "current_pos_y": 265
     }
 },
 {
     "pk": 28, 
     "model": "map.sensor", 
     "fields": {
-        "current_pos_x": 37, 
-        "description": "", 
-        "floor": 4, 
-        "date_updated": "2015-03-10T18:25:11.623Z", 
-        "current_date": "2015-03-07T22:48:58Z", 
+        "current_pos_x": 335, 
+        "description": "Study Room Window", 
+        "floor": 3, 
+        "date_updated": "2015-03-08T20:26:59.766Z", 
+        "current_date": "2015-03-08T20:26:59.766Z", 
         "current_value": 0, 
-        "date_created": "2015-03-08T03:49:08.223Z", 
-        "type": 1, 
-        "current_pos_y": 110
+        "date_created": "2015-03-08T20:26:59.766Z", 
+        "type": 2, 
+        "current_pos_y": 80
     }
 },
 {
     "pk": 29, 
     "model": "map.sensor", 
     "fields": {
-        "current_pos_x": 100, 
-        "description": "", 
-        "floor": 4, 
-        "date_updated": "2015-03-10T18:25:11.649Z", 
-        "current_date": "2015-03-07T22:53:08Z", 
-        "current_value": 1, 
-        "date_created": "2015-03-08T03:53:10.052Z", 
-        "type": 3, 
-        "current_pos_y": 90
+        "current_pos_x": 32, 
+        "description": "Main Access Door", 
+        "floor": 3, 
+        "date_updated": "2013-07-21T20:26:59.766Z", 
+        "current_date": "2013-07-21T20:26:59.766Z", 
+        "current_value": 0, 
+        "date_created": "2013-07-21T20:26:59.766Z", 
+        "type": 2, 
+        "current_pos_y": 335
     }
 },
 {
     "pk": 30, 
     "model": "map.sensor", 
     "fields": {
-        "current_pos_x": 120, 
+        "current_pos_x": 37, 
         "description": "", 
         "floor": 4, 
-        "date_updated": "2015-03-10T18:25:11.683Z", 
-        "current_date": "2015-03-07T22:53:41Z", 
+        "date_updated": "2013-09-01T20:26:59.766Z", 
+        "current_date": "2013-09-01T20:26:59.766Z", 
         "current_value": 0, 
-        "date_created": "2015-03-08T03:53:46.127Z", 
-        "type": 3, 
-        "current_pos_y": 290
+        "date_created": "2013-09-01T20:26:59.766Z", 
+        "type": 1, 
+        "current_pos_y": 110
     }
 },
 {
     "pk": 31, 
     "model": "map.sensor", 
     "fields": {
-        "current_pos_x": 120, 
-        "description": "Living Room Light", 
-        "floor": 5, 
-        "date_updated": "2015-03-17T21:55:22.867Z", 
-        "current_date": "2015-03-17T16:43:23Z", 
-        "current_value": 1, 
-        "date_created": "2015-03-17T21:43:46.428Z", 
-        "type": 3, 
-        "current_pos_y": 280
+        "current_pos_x": 355, 
+        "description": "", 
+        "floor": 4, 
+        "date_updated": "2014-04-06T20:26:59.766Z", 
+        "current_date": "2014-04-06T20:26:59.766Z", 
+        "current_value": 0, 
+        "date_created": "2014-04-06T20:26:59.766Z", 
+        "type": 1, 
+        "current_pos_y": 292
     }
 },
 {
     "pk": 32, 
     "model": "map.sensor", 
     "fields": {
-        "current_pos_x": 340, 
-        "description": "Dinning Room Ligth", 
-        "floor": 5, 
-        "date_updated": "2015-03-17T21:57:17.220Z", 
-        "current_date": "2015-03-17T16:44:36Z", 
-        "current_value": 1, 
-        "date_created": "2015-03-17T21:44:37.925Z", 
-        "type": 3, 
-        "current_pos_y": 300
+        "current_pos_x": 369, 
+        "description": "", 
+        "floor": 1, 
+        "date_updated": "2014-12-28T20:26:59.766Z", 
+        "current_date": "2014-12-28T20:26:59.766Z", 
+        "current_value": 0, 
+        "date_created": "2014-12-28T20:26:59.766Z", 
+        "type": 1, 
+        "current_pos_y": 372
     }
 },
 {
     "pk": 33, 
     "model": "map.sensor", 
     "fields": {
-        "current_pos_x": 680, 
-        "description": "Main Access Door", 
-        "floor": 5, 
-        "date_updated": "2015-03-17T21:57:54.306Z", 
-        "current_date": "2015-03-17T16:45:52Z", 
+        "current_pos_x": 248, 
+        "description": "", 
+        "floor": 1, 
+        "date_updated": "2014-03-23T20:26:59.766Z", 
+        "current_date": "2014-03-23T20:26:59.766Z", 
         "current_value": 1, 
-        "date_created": "2015-03-17T21:45:55.032Z", 
-        "type": 2, 
-        "current_pos_y": 350
+        "date_created": "2014-03-23T20:26:59.766Z", 
+        "type": 1, 
+        "current_pos_y": 141
     }
 },
 {
     "pk": 34, 
     "model": "map.sensor", 
     "fields": {
-        "current_pos_x": 195, 
+        "current_pos_x": 125, 
         "description": "", 
-        "floor": 5, 
-        "date_updated": "2015-04-12T00:46:31.640Z", 
-        "current_date": "2015-03-28T00:57:03.695Z", 
+        "floor": 1, 
+        "date_updated": "2014-11-23T20:26:59.766Z", 
+        "current_date": "2014-11-23T20:26:59.766Z", 
         "current_value": 0, 
-        "date_created": "2015-03-17T21:48:16.956Z", 
+        "date_created": "2014-11-23T20:26:59.766Z", 
         "type": 1, 
-        "current_pos_y": 18
+        "current_pos_y": 145
     }
 },
 {
     "pk": 35, 
     "model": "map.sensor", 
     "fields": {
-        "current_pos_x": 1, 
-        "description": "Living Room Window", 
-        "floor": 5, 
-        "date_updated": "2015-03-28T00:26:17.696Z", 
-        "current_date": "2015-03-28T00:26:17.661Z", 
-        "current_value": 1, 
-        "date_created": "2015-03-17T21:49:38.163Z", 
-        "type": 2, 
-        "current_pos_y": 250
+        "current_pos_x": 408, 
+        "description": "", 
+        "floor": 2, 
+        "date_updated": "2015-04-12T20:26:59.766Z", 
+        "current_date": "2015-04-12T20:26:59.766Z", 
+        "current_value": 0, 
+        "date_created": "2015-04-12T20:26:59.766Z", 
+        "type": 1, 
+        "current_pos_y": 280
     }
 },
 {
     "pk": 36, 
     "model": "map.sensor", 
     "fields": {
-        "current_pos_x": 135, 
-        "description": "Main Room Light", 
-        "floor": 6, 
-        "date_updated": "2015-03-17T22:02:56.365Z", 
-        "current_date": "2015-03-17T16:58:44Z", 
-        "current_value": 1, 
-        "date_created": "2015-03-17T21:58:45.845Z", 
-        "type": 3, 
-        "current_pos_y": 280
+        "current_pos_x": 195, 
+        "description": "", 
+        "floor": 5, 
+        "date_updated": "2014-09-14T20:26:59.766Z", 
+        "current_date": "2014-09-14T20:26:59.766Z", 
+        "current_value": 0, 
+        "date_created": "2014-09-14T20:26:59.766Z", 
+        "type": 1, 
+        "current_pos_y": 18
     }
 },
 {
     "pk": 37, 
     "model": "map.sensor", 
     "fields": {
-        "current_pos_x": 120, 
-        "description": "Secondary Room Light", 
+        "current_pos_x": 575, 
+        "description": "Living Room Plasma TV", 
         "floor": 6, 
-        "date_updated": "2015-03-17T22:02:56.348Z", 
-        "current_date": "2015-03-17T16:59:35Z", 
-        "current_value": 1, 
-        "date_created": "2015-03-17T21:59:37.492Z", 
-        "type": 3, 
-        "current_pos_y": 90
+        "date_updated": "2015-02-22T20:26:59.766Z", 
+        "current_date": "2015-02-22T20:26:59.766Z", 
+        "current_value": 0, 
+        "date_created": "2015-02-22T20:26:59.766Z", 
+        "type": 1, 
+        "current_pos_y": 177
     }
 },
 {
     "pk": 38, 
     "model": "map.sensor", 
     "fields": {
-        "current_pos_x": 1, 
-        "description": "Main Room Window", 
-        "floor": 6, 
-        "date_updated": "2015-03-17T22:03:19.611Z", 
-        "current_date": "2015-03-17T17:00:19Z", 
-        "current_value": 1, 
-        "date_created": "2015-03-17T22:00:20.984Z", 
-        "type": 2, 
-        "current_pos_y": 265
+        "current_pos_x": 362, 
+        "description": "Study Room Laptop", 
+        "floor": 3, 
+        "date_updated": "2013-12-15T20:26:59.766Z", 
+        "current_date": "2013-12-15T20:26:59.766Z", 
+        "current_value": 0, 
+        "date_created": "2013-12-15T20:26:59.766Z", 
+        "type": 1, 
+        "current_pos_y": 130
     }
 },
 {
     "pk": 39, 
     "model": "map.sensor", 
     "fields": {
-        "current_pos_x": 575, 
-        "description": "Second Floor Living Room Tv Plasma", 
-        "floor": 6, 
-        "date_updated": "2015-03-17T22:06:59.895Z", 
-        "current_date": "2015-03-17T17:05:18Z", 
+        "current_pos_x": 660, 
+        "description": "", 
+        "floor": 3, 
+        "date_updated": "2013-09-08T20:26:59.766Z", 
+        "current_date": "2013-09-08T20:26:59.766Z", 
         "current_value": 0, 
-        "date_created": "2015-03-17T22:05:19.731Z", 
+        "date_created": "2013-09-08T20:26:59.766Z", 
         "type": 1, 
-        "current_pos_y": 177
+        "current_pos_y": 105
     }
 },
 {
     "pk": 40, 
     "model": "map.sensor", 
     "fields": {
-        "current_pos_x": 10, 
-        "description": "Main Room Thermostat", 
-        "floor": 1, 
-        "date_updated": "2015-04-11T23:45:41.760Z", 
-        "current_date": "2015-04-11T16:46:50.111Z", 
-        "current_value": 15, 
-        "date_created": "2015-04-11T16:46:50.111Z", 
+        "current_pos_x": 20, 
+        "description": "Meeting Room Thermostat", 
+        "floor": 4, 
+        "date_updated": "2014-05-25T20:26:59.766Z", 
+        "current_date": "2014-05-25T20:26:59.766Z", 
+        "current_value": 21, 
+        "date_created": "2014-05-25T20:26:59.766Z", 
         "type": 4, 
-        "current_pos_y": 235
+        "current_pos_y": 360
     }
 },
 {
@@ -1605,10 +1005,10 @@
         "current_pos_x": 170, 
         "description": "Boss Office Thermostat", 
         "floor": 4, 
-        "date_updated": "2015-04-11T23:44:28.634Z", 
-        "current_date": "2015-04-11T23:33:36.689Z", 
+        "date_updated": "2014-01-26T20:26:59.766Z", 
+        "current_date": "2014-01-26T20:26:59.766Z", 
         "current_value": 15, 
-        "date_created": "2015-04-11T23:33:36.689Z", 
+        "date_created": "2014-01-26T20:26:59.766Z", 
         "type": 4, 
         "current_pos_y": 15
     }
@@ -1617,30 +1017,30 @@
     "pk": 42, 
     "model": "map.sensor", 
     "fields": {
-        "current_pos_x": 20, 
-        "description": "Meeting Room Thermostat", 
-        "floor": 4, 
-        "date_updated": "2015-04-11T23:44:18.035Z", 
-        "current_date": "2015-04-11T23:34:13.992Z", 
-        "current_value": 21, 
-        "date_created": "2015-04-11T23:34:13.992Z", 
+        "current_pos_x": 595, 
+        "description": "Kitchen Thermostat", 
+        "floor": 1, 
+        "date_updated": "2013-11-03T20:26:59.766Z", 
+        "current_date": "2013-11-03T20:26:59.766Z", 
+        "current_value": 22, 
+        "date_created": "2013-11-03T20:26:59.766Z", 
         "type": 4, 
-        "current_pos_y": 360
+        "current_pos_y": 260
     }
 },
 {
     "pk": 43, 
     "model": "map.sensor", 
     "fields": {
-        "current_pos_x": 595, 
-        "description": "Kitchen Thermostat", 
+        "current_pos_x": 10, 
+        "description": "Main Room Thermostat", 
         "floor": 1, 
-        "date_updated": "2015-04-11T23:45:32.053Z", 
-        "current_date": "2015-04-11T23:38:15.114Z", 
-        "current_value": 22, 
-        "date_created": "2015-04-11T23:38:15.114Z", 
+        "date_updated": "2015-02-22T20:26:59.766Z", 
+        "current_date": "2015-02-22T20:26:59.766Z", 
+        "current_value": 15, 
+        "date_created": "2015-02-22T20:26:59.766Z", 
         "type": 4, 
-        "current_pos_y": 260
+        "current_pos_y": 235
     }
 },
 {
@@ -1650,10 +1050,10 @@
         "current_pos_x": 100, 
         "description": "Main Room Thermostat", 
         "floor": 2, 
-        "date_updated": "2015-04-11T23:47:23.779Z", 
-        "current_date": "2015-04-11T23:47:23.779Z", 
+        "date_updated": "2013-09-15T20:26:59.766Z", 
+        "current_date": "2013-09-15T20:26:59.766Z", 
         "current_value": 31, 
-        "date_created": "2015-04-11T23:47:23.779Z", 
+        "date_created": "2013-09-15T20:26:59.766Z", 
         "type": 4, 
         "current_pos_y": 10
     }
@@ -1662,45 +1062,45 @@
     "pk": 45, 
     "model": "map.sensor", 
     "fields": {
-        "current_pos_x": 210, 
-        "description": "Living Room Thermostat", 
+        "current_pos_x": 100, 
+        "description": "Study Room Thermostat", 
         "floor": 5, 
-        "date_updated": "2015-04-11T23:51:30.231Z", 
-        "current_date": "2015-04-11T23:49:59.056Z", 
-        "current_value": 21, 
-        "date_created": "2015-04-11T23:49:59.056Z", 
+        "date_updated": "2014-11-09T20:26:59.766Z", 
+        "current_date": "2014-11-09T20:26:59.766Z", 
+        "current_value": 18, 
+        "date_created": "2014-11-09T20:26:59.766Z", 
         "type": 4, 
-        "current_pos_y": 360
+        "current_pos_y": 50
     }
 },
 {
     "pk": 46, 
     "model": "map.sensor", 
     "fields": {
-        "current_pos_x": 100, 
-        "description": "Study Room Thermostat", 
+        "current_pos_x": 210, 
+        "description": "Living Room Thermostat", 
         "floor": 5, 
-        "date_updated": "2015-04-11T23:51:30.109Z", 
-        "current_date": "2015-04-11T23:50:53.084Z", 
-        "current_value": 18, 
-        "date_created": "2015-04-11T23:50:53.084Z", 
+        "date_updated": "2014-09-07T20:26:59.766Z", 
+        "current_date": "2014-09-07T20:26:59.766Z", 
+        "current_value": 21, 
+        "date_created": "2014-09-07T20:26:59.766Z", 
         "type": 4, 
-        "current_pos_y": 50
+        "current_pos_y": 360
     }
 },
 {
     "pk": 47, 
     "model": "map.sensor", 
     "fields": {
-        "current_pos_x": 215, 
-        "description": "Main Room Thermostat", 
+        "current_pos_x": 640, 
+        "description": "Living Room Thermostat", 
         "floor": 6, 
-        "date_updated": "2015-04-11T23:55:07.827Z", 
-        "current_date": "2015-04-11T23:53:33.427Z", 
-        "current_value": 15, 
-        "date_created": "2015-04-11T23:53:33.427Z", 
+        "date_updated": "2013-06-30T20:26:59.766Z", 
+        "current_date": "2013-06-30T20:26:59.766Z", 
+        "current_value": 21, 
+        "date_created": "2013-06-30T20:26:59.766Z", 
         "type": 4, 
-        "current_pos_y": 350
+        "current_pos_y": 30
     }
 },
 {
@@ -1710,10 +1110,10 @@
         "current_pos_x": 170, 
         "description": "Secondary Room Thermostat", 
         "floor": 6, 
-        "date_updated": "2015-04-11T23:55:07.740Z", 
-        "current_date": "2015-04-11T23:54:22.704Z", 
+        "date_updated": "2014-11-09T20:26:59.766Z", 
+        "current_date": "2014-11-09T20:26:59.766Z", 
         "current_value": 19, 
-        "date_created": "2015-04-11T23:54:22.704Z", 
+        "date_created": "2014-11-09T20:26:59.766Z", 
         "type": 4, 
         "current_pos_y": 20
     }
@@ -1722,85 +1122,1236 @@
     "pk": 49, 
     "model": "map.sensor", 
     "fields": {
-        "current_pos_x": 640, 
-        "description": "Living Room Thermostat", 
+        "current_pos_x": 215, 
+        "description": "Main Room Thermostat", 
         "floor": 6, 
-        "date_updated": "2015-04-11T23:57:25.352Z", 
-        "current_date": "2015-04-11T23:56:42.757Z", 
-        "current_value": 21, 
-        "date_created": "2015-04-11T23:56:42.757Z", 
+        "date_updated": "2014-03-02T20:26:59.766Z", 
+        "current_date": "2014-03-02T20:26:59.766Z", 
+        "current_value": 15, 
+        "date_created": "2014-03-02T20:26:59.766Z", 
         "type": 4, 
-        "current_pos_y": 30
+        "current_pos_y": 350
     }
 },
 {
     "pk": 50, 
     "model": "map.sensor", 
     "fields": {
-        "current_pos_x": 540, 
-        "description": "Main Room Thermostat", 
+        "current_pos_x": 10, 
+        "description": "Kitchen Thermostat", 
         "floor": 3, 
-        "date_updated": "2015-04-12T00:01:48.802Z", 
-        "current_date": "2015-04-12T00:00:34.470Z", 
-        "current_value": 18, 
-        "date_created": "2015-04-12T00:00:34.470Z", 
+        "date_updated": "2015-02-15T20:26:59.766Z", 
+        "current_date": "2015-02-15T20:26:59.766Z", 
+        "current_value": 32, 
+        "date_created": "2015-02-15T20:26:59.766Z", 
         "type": 4, 
-        "current_pos_y": 200
+        "current_pos_y": 100
     }
 },
 {
     "pk": 51, 
     "model": "map.sensor", 
     "fields": {
-        "current_pos_x": 10, 
-        "description": "Kitchen Thermostat", 
+        "current_pos_x": 540, 
+        "description": "Main Room Thermostat", 
         "floor": 3, 
-        "date_updated": "2015-04-12T00:01:13.018Z", 
-        "current_date": "2015-04-12T00:01:13.018Z", 
-        "current_value": 32, 
-        "date_created": "2015-04-12T00:01:13.018Z", 
+        "date_updated": "2013-10-27T20:26:59.766Z", 
+        "current_date": "2013-10-27T20:26:59.766Z", 
+        "current_value": 18, 
+        "date_created": "2013-10-27T20:26:59.766Z", 
         "type": 4, 
-        "current_pos_y": 100
+        "current_pos_y": 200
+    }
+},
+{
+    "pk": 1, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_logentry", 
+        "name": "Can add log entry", 
+        "content_type": 1
     }
 },
 {
     "pk": 2, 
-    "model": "rule_engine.scheduledaily", 
+    "model": "auth.permission", 
     "fields": {
-        "status": 5, 
-        "sensor": 34, 
-        "end_time": "23:59:59", 
-        "begin_time": "00:00:00"
+        "codename": "change_logentry", 
+        "name": "Can change log entry", 
+        "content_type": 1
+    }
+},
+{
+    "pk": 3, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_logentry", 
+        "name": "Can delete log entry", 
+        "content_type": 1
+    }
+},
+{
+    "pk": 4, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_permission", 
+        "name": "Can add permission", 
+        "content_type": 2
+    }
+},
+{
+    "pk": 5, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_permission", 
+        "name": "Can change permission", 
+        "content_type": 2
+    }
+},
+{
+    "pk": 6, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_permission", 
+        "name": "Can delete permission", 
+        "content_type": 2
+    }
+},
+{
+    "pk": 7, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_group", 
+        "name": "Can add group", 
+        "content_type": 3
+    }
+},
+{
+    "pk": 8, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_group", 
+        "name": "Can change group", 
+        "content_type": 3
+    }
+},
+{
+    "pk": 9, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_group", 
+        "name": "Can delete group", 
+        "content_type": 3
+    }
+},
+{
+    "pk": 10, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_user", 
+        "name": "Can add user", 
+        "content_type": 4
+    }
+},
+{
+    "pk": 11, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_user", 
+        "name": "Can change user", 
+        "content_type": 4
+    }
+},
+{
+    "pk": 12, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_user", 
+        "name": "Can delete user", 
+        "content_type": 4
+    }
+},
+{
+    "pk": 13, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_contenttype", 
+        "name": "Can add content type", 
+        "content_type": 5
+    }
+},
+{
+    "pk": 14, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_contenttype", 
+        "name": "Can change content type", 
+        "content_type": 5
+    }
+},
+{
+    "pk": 15, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_contenttype", 
+        "name": "Can delete content type", 
+        "content_type": 5
+    }
+},
+{
+    "pk": 16, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_session", 
+        "name": "Can add session", 
+        "content_type": 6
+    }
+},
+{
+    "pk": 17, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_session", 
+        "name": "Can change session", 
+        "content_type": 6
+    }
+},
+{
+    "pk": 18, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_session", 
+        "name": "Can delete session", 
+        "content_type": 6
+    }
+},
+{
+    "pk": 19, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_event", 
+        "name": "Can add event", 
+        "content_type": 7
+    }
+},
+{
+    "pk": 20, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_event", 
+        "name": "Can change event", 
+        "content_type": 7
+    }
+},
+{
+    "pk": 21, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_event", 
+        "name": "Can delete event", 
+        "content_type": 7
+    }
+},
+{
+    "pk": 22, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_alarm", 
+        "name": "Can add alarm", 
+        "content_type": 8
+    }
+},
+{
+    "pk": 23, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_alarm", 
+        "name": "Can change alarm", 
+        "content_type": 8
+    }
+},
+{
+    "pk": 24, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_alarm", 
+        "name": "Can delete alarm", 
+        "content_type": 8
+    }
+},
+{
+    "pk": 25, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_neighborhood", 
+        "name": "Can add neighborhood", 
+        "content_type": 9
+    }
+},
+{
+    "pk": 26, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_neighborhood", 
+        "name": "Can change neighborhood", 
+        "content_type": 9
+    }
+},
+{
+    "pk": 27, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_neighborhood", 
+        "name": "Can delete neighborhood", 
+        "content_type": 9
+    }
+},
+{
+    "pk": 28, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_place", 
+        "name": "Can add place", 
+        "content_type": 10
+    }
+},
+{
+    "pk": 29, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_place", 
+        "name": "Can change place", 
+        "content_type": 10
+    }
+},
+{
+    "pk": 30, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_place", 
+        "name": "Can delete place", 
+        "content_type": 10
+    }
+},
+{
+    "pk": 31, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_floor", 
+        "name": "Can add floor", 
+        "content_type": 11
+    }
+},
+{
+    "pk": 32, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_floor", 
+        "name": "Can change floor", 
+        "content_type": 11
+    }
+},
+{
+    "pk": 33, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_floor", 
+        "name": "Can delete floor", 
+        "content_type": 11
+    }
+},
+{
+    "pk": 34, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_sensortype", 
+        "name": "Can add sensor type", 
+        "content_type": 12
+    }
+},
+{
+    "pk": 35, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_sensortype", 
+        "name": "Can change sensor type", 
+        "content_type": 12
+    }
+},
+{
+    "pk": 36, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_sensortype", 
+        "name": "Can delete sensor type", 
+        "content_type": 12
+    }
+},
+{
+    "pk": 37, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_sensorstatus", 
+        "name": "Can add sensor status", 
+        "content_type": 13
+    }
+},
+{
+    "pk": 38, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_sensorstatus", 
+        "name": "Can change sensor status", 
+        "content_type": 13
+    }
+},
+{
+    "pk": 39, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_sensorstatus", 
+        "name": "Can delete sensor status", 
+        "content_type": 13
+    }
+},
+{
+    "pk": 40, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_sensor", 
+        "name": "Can add sensor", 
+        "content_type": 14
+    }
+},
+{
+    "pk": 41, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_sensor", 
+        "name": "Can change sensor", 
+        "content_type": 14
+    }
+},
+{
+    "pk": 42, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_sensor", 
+        "name": "Can delete sensor", 
+        "content_type": 14
+    }
+},
+{
+    "pk": 43, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "add_scheduledaily", 
+        "name": "Can add Daily Schedule", 
+        "content_type": 15
+    }
+},
+{
+    "pk": 44, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "change_scheduledaily", 
+        "name": "Can change Daily Schedule", 
+        "content_type": 15
+    }
+},
+{
+    "pk": 45, 
+    "model": "auth.permission", 
+    "fields": {
+        "codename": "delete_scheduledaily", 
+        "name": "Can delete Daily Schedule", 
+        "content_type": 15
+    }
+},
+{
+    "pk": 1, 
+    "model": "auth.group", 
+    "fields": {
+        "name": "UsersCentral", 
+        "permissions": [
+            2
+        ]
+    }
+},
+{
+    "pk": 2, 
+    "model": "auth.group", 
+    "fields": {
+        "name": "UsersOwners", 
+        "permissions": [
+            34, 
+            35, 
+            36
+        ]
+    }
+},
+{
+    "pk": 3, 
+    "model": "auth.group", 
+    "fields": {
+        "name": "Sensors", 
+        "permissions": [
+            41
+        ]
+    }
+},
+{
+    "pk": 1, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "domotina", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": true, 
+        "is_staff": true, 
+        "last_login": "2015-04-19T19:25:21.715Z", 
+        "groups": [], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$12000$jTeDaK4UwLqY$ytI9/vmZ15Z6Kvj8xKPmQCXGJlKBOcRPeDKxcXPRfBo=", 
+        "email": "djimenez@ingenieros.com", 
+        "date_joined": "2015-03-07T20:01:23Z"
+    }
+},
+{
+    "pk": 2, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "central", 
+        "first_name": "Usuario", 
+        "last_name": "Central", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2015-03-21T22:13:26.308Z", 
+        "groups": [
+            1
+        ], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$12000$c59nhEY8EnFF$UbXvE/gDmDc2n928B9D+wN5wf9RojB/4r9TYmg/OYB0=", 
+        "email": "raul.gomezn@hotmail.com", 
+        "date_joined": "2015-03-21T15:59:16Z"
+    }
+},
+{
+    "pk": 3, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "user", 
+        "first_name": "Usuario", 
+        "last_name": "Propietario", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2015-03-21T22:12:47.770Z", 
+        "groups": [
+            2
+        ], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$12000$VWJRLICOiKez$CtVqE1CjkxHkePTyXaw4ckodgDViaNIGfkCLPiyvcXc=", 
+        "email": "raul.gomezn@hotmail.com", 
+        "date_joined": "2015-03-21T17:21:32Z"
+    }
+},
+{
+    "pk": 4, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "buildersmart", 
+        "first_name": "Constructora", 
+        "last_name": "Smart", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2015-04-07T20:31:31Z", 
+        "groups": [
+            2
+        ], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$12000$FkGl9x3UtHYP$48YYbAYdLDAXisurv687PPAy0fDbyqwGK+CyVKCUMBY=", 
+        "email": "ra.gomez11@uniandes.edu.co", 
+        "date_joined": "2015-04-07T20:31:31Z"
+    }
+},
+{
+    "pk": 5, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "kaos", 
+        "first_name": "a", 
+        "last_name": "e", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2015-04-09T20:14:16.761Z", 
+        "groups": [
+            2
+        ], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$12000$xPjRrVS8DoGk$6KEiFopXiDRXDIL0w7Kfds6tBAnxmehzyW73Hs2ZbQ4=", 
+        "email": "kaosterra@gmail.com", 
+        "date_joined": "2015-04-09T20:14:16.761Z"
+    }
+},
+{
+    "pk": 6, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "djimenez", 
+        "first_name": "David", 
+        "last_name": "Jimenez", 
+        "is_active": true, 
+        "is_superuser": true, 
+        "is_staff": true, 
+        "last_login": "2015-04-11T15:14:34.457Z", 
+        "groups": [
+            2
+        ], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$12000$jTeDaK4UwLqY$ytI9/vmZ15Z6Kvj8xKPmQCXGJlKBOcRPeDKxcXPRfBo=", 
+        "email": "djimenez@ingenieros.com", 
+        "date_joined": "2015-03-07T20:01:23Z"
+    }
+},
+{
+    "pk": 7, 
+    "model": "auth.user", 
+    "fields": {
+        "username": "sensor1", 
+        "first_name": "", 
+        "last_name": "", 
+        "is_active": true, 
+        "is_superuser": false, 
+        "is_staff": false, 
+        "last_login": "2015-04-19T18:45:01Z", 
+        "groups": [
+            3
+        ], 
+        "user_permissions": [], 
+        "password": "pbkdf2_sha256$12000$PXq60jDGTSjr$BjHBHgegLpuT8aFv3SuLf6LGbplcHHoSDsyWLzfa+c8=", 
+        "email": "", 
+        "date_joined": "2015-04-19T18:45:01Z"
+    }
+},
+{
+    "pk": 1, 
+    "model": "map.place", 
+    "fields": {
+        "owner": 1, 
+        "date_created": "2015-03-07T20:59:03.888Z", 
+        "neighborhood": 1, 
+        "name": "T10 AP602", 
+        "date_updated": "2015-03-07T20:59:03.888Z"
+    }
+},
+{
+    "pk": 2, 
+    "model": "map.place", 
+    "fields": {
+        "owner": 1, 
+        "date_created": "2015-03-07T20:59:27.651Z", 
+        "neighborhood": 1, 
+        "name": "T10 AP603", 
+        "date_updated": "2015-03-07T20:59:27.651Z"
+    }
+},
+{
+    "pk": 3, 
+    "model": "map.place", 
+    "fields": {
+        "owner": 1, 
+        "date_created": "2015-03-08T02:24:08.983Z", 
+        "neighborhood": 3, 
+        "name": "Kr 69D St 25-04", 
+        "date_updated": "2015-03-08T02:24:08.983Z"
+    }
+},
+{
+    "pk": 4, 
+    "model": "map.place", 
+    "fields": {
+        "owner": 1, 
+        "date_created": "2015-03-08T03:37:22.536Z", 
+        "neighborhood": 4, 
+        "name": "Office 201", 
+        "date_updated": "2015-03-08T03:37:22.536Z"
+    }
+},
+{
+    "pk": 5, 
+    "model": "map.place", 
+    "fields": {
+        "owner": 1, 
+        "date_created": "2015-03-17T17:24:15.155Z", 
+        "neighborhood": 3, 
+        "name": "Kr 69A St 24-12", 
+        "date_updated": "2015-03-17T17:24:15.155Z"
     }
 },
 {
     "pk": 1,
     "model": "event_manager.event",
     "fields": {
-        "timestamp": "2015-03-28T00:28:50.505Z",
-        "pos_x": null,
-        "pos_y": null,
-        "sensor": 34,
-        "value": 1
+        "timestamp": "2013-07-14T20:26:59.766Z",
+        "pos_x": 120,
+        "pos_y": 290,
+        "sensor": 1,
+        "value": 0
     }
 },
 {
     "pk": 2,
     "model": "event_manager.event",
     "fields": {
-        "timestamp": "2015-03-28T00:57:03.695Z",
-        "pos_x": null,
-        "pos_y": null,
+        "timestamp": "2014-02-16T20:26:59.766Z",
+        "pos_x": 100,
+        "pos_y": 90,
+        "sensor": 2,
+        "value": 1
+    }
+},
+{
+    "pk": 3,
+    "model": "event_manager.event",
+    "fields": {
+        "timestamp": "2014-12-14T20:26:59.766Z",
+        "pos_x": 355,
+        "pos_y": 325,
+        "sensor": 3,
+        "value": 1
+    }
+},
+{
+    "pk": 4,
+    "model": "event_manager.event",
+    "fields": {
+        "timestamp": "2014-05-25T20:26:59.766Z",
+        "pos_x": 340,
+        "pos_y": 345,
+        "sensor": 4,
+        "value": 0
+    }
+},
+{
+    "pk": 5,
+    "model": "event_manager.event",
+    "fields": {
+        "timestamp": "2014-11-02T20:26:59.766Z",
+        "pos_x": 65,
+        "pos_y": 150,
+        "sensor": 5,
+        "value": 0
+    }
+},
+{
+    "pk": 6,
+    "model": "event_manager.event",
+    "fields": {
+        "timestamp": "2014-01-12T20:26:59.766Z",
+        "pos_x": 462,
+        "pos_y": 123,
+        "sensor": 6,
+        "value": 1
+    }
+},
+{
+    "pk": 7,
+    "model": "event_manager.event",
+    "fields": {
+        "timestamp": "2013-09-15T20:26:59.766Z",
+        "pos_x": 468,
+        "pos_y": 310,
+        "sensor": 7,
+        "value": 1
+    }
+},
+{
+    "pk": 8,
+    "model": "event_manager.event",
+    "fields": {
+        "timestamp": "2014-03-02T20:26:59.766Z",
+        "pos_x": 570,
+        "pos_y": 135,
+        "sensor": 8,
+        "value": 1
+    }
+},
+{
+    "pk": 9,
+    "model": "event_manager.event",
+    "fields": {
+        "timestamp": "2014-08-10T20:26:59.766Z",
+        "pos_x": 425,
+        "pos_y": 95,
+        "sensor": 9,
+        "value": 1
+    }
+},
+{
+    "pk": 10,
+    "model": "event_manager.event",
+    "fields": {
+        "timestamp": "2014-05-11T20:26:59.766Z",
+        "pos_x": 340,
+        "pos_y": 300,
+        "sensor": 10,
+        "value": 1
+    }
+},
+{
+    "pk": 11,
+    "model": "event_manager.event",
+    "fields": {
+        "timestamp": "2014-06-01T20:26:59.766Z",
+        "pos_x": 120,
+        "pos_y": 280,
+        "sensor": 11,
+        "value": 1
+    }
+},
+{
+    "pk": 12,
+    "model": "event_manager.event",
+    "fields": {
+        "timestamp": "2014-12-28T20:26:59.766Z",
+        "pos_x": 120,
+        "pos_y": 90,
+        "sensor": 12,
+        "value": 1
+    }
+},
+{
+    "pk": 13,
+    "model": "event_manager.event",
+    "fields": {
+        "timestamp": "2014-12-21T20:26:59.766Z",
+        "pos_x": 135,
+        "pos_y": 280,
+        "sensor": 13,
+        "value": 1
+    }
+},
+{
+    "pk": 14,
+    "model": "event_manager.event",
+    "fields": {
+        "timestamp": "2013-10-13T20:26:59.766Z",
+        "pos_x": 585,
+        "pos_y": 115,
+        "sensor": 14,
+        "value": 1
+    }
+},
+{
+    "pk": 15,
+    "model": "event_manager.event",
+    "fields": {
+        "timestamp": "2014-12-07T20:26:59.766Z",
+        "pos_x": 150,
+        "pos_y": 295,
+        "sensor": 15,
+        "value": 1
+    }
+},
+{
+    "pk": 16,
+    "model": "event_manager.event",
+    "fields": {
+        "timestamp": "2013-09-29T20:26:59.766Z",
+        "pos_x": 52,
+        "pos_y": 265,
+        "sensor": 16,
+        "value": 1
+    }
+},
+{
+    "pk": 17,
+    "model": "event_manager.event",
+    "fields": {
+        "timestamp": "2014-07-27T20:26:59.766Z",
+        "pos_x": 7,
+        "pos_y": 75,
+        "sensor": 17,
+        "value": 1
+    }
+},
+{
+    "pk": 18,
+    "model": "event_manager.event",
+    "fields": {
+        "timestamp": "2015-04-12T20:26:59.766Z",
+        "pos_x": 355,
+        "pos_y": 375,
+        "sensor": 18,
+        "value": 0
+    }
+},
+{
+    "pk": 19,
+    "model": "event_manager.event",
+    "fields": {
+        "timestamp": "2013-12-08T20:26:59.766Z",
+        "pos_x": 200,
+        "pos_y": 40,
+        "sensor": 19,
+        "value": 0
+    }
+},
+{
+    "pk": 20,
+    "model": "event_manager.event",
+    "fields": {
+        "timestamp": "2014-12-21T20:26:59.766Z",
+        "pos_x": 65,
+        "pos_y": 40,
+        "sensor": 20,
+        "value": 1
+    }
+},
+{
+    "pk": 21,
+    "model": "event_manager.event",
+    "fields": {
+        "timestamp": "2014-11-30T20:26:59.766Z",
+        "pos_x": 462,
+        "pos_y": 40,
+        "sensor": 21,
+        "value": 0
+    }
+},
+{
+    "pk": 22,
+    "model": "event_manager.event",
+    "fields": {
+        "timestamp": "2014-04-27T20:26:59.766Z",
+        "pos_x": 600,
+        "pos_y": 350,
+        "sensor": 22,
+        "value": 1
+    }
+},
+{
+    "pk": 23,
+    "model": "event_manager.event",
+    "fields": {
+        "timestamp": "2014-09-07T20:26:59.766Z",
+        "pos_x": 193,
+        "pos_y": 205,
+        "sensor": 23,
+        "value": 1
+    }
+},
+{
+    "pk": 24,
+    "model": "event_manager.event",
+    "fields": {
+        "timestamp": "2013-11-03T20:26:59.766Z",
+        "pos_x": 640,
+        "pos_y": 335,
+        "sensor": 24,
+        "value": 1
+    }
+},
+{
+    "pk": 25,
+    "model": "event_manager.event",
+    "fields": {
+        "timestamp": "2013-11-24T20:26:59.766Z",
+        "pos_x": 1,
+        "pos_y": 250,
+        "sensor": 25,
+        "value": 1
+    }
+},
+{
+    "pk": 26,
+    "model": "event_manager.event",
+    "fields": {
+        "timestamp": "2014-10-19T20:26:59.766Z",
+        "pos_x": 680,
+        "pos_y": 350,
+        "sensor": 26,
+        "value": 1
+    }
+},
+{
+    "pk": 27,
+    "model": "event_manager.event",
+    "fields": {
+        "timestamp": "2014-05-11T20:26:59.766Z",
+        "pos_x": 1,
+        "pos_y": 265,
+        "sensor": 27,
+        "value": 1
+    }
+},
+{
+    "pk": 28,
+    "model": "event_manager.event",
+    "fields": {
+        "timestamp": "2015-03-08T20:26:59.766Z",
+        "pos_x": 335,
+        "pos_y": 80,
+        "sensor": 28,
+        "value": 0
+    }
+},
+{
+    "pk": 29,
+    "model": "event_manager.event",
+    "fields": {
+        "timestamp": "2013-07-21T20:26:59.766Z",
+        "pos_x": 32,
+        "pos_y": 335,
+        "sensor": 29,
+        "value": 0
+    }
+},
+{
+    "pk": 30,
+    "model": "event_manager.event",
+    "fields": {
+        "timestamp": "2013-09-01T20:26:59.766Z",
+        "pos_x": 37,
+        "pos_y": 110,
+        "sensor": 30,
+        "value": 0
+    }
+},
+{
+    "pk": 31,
+    "model": "event_manager.event",
+    "fields": {
+        "timestamp": "2014-04-06T20:26:59.766Z",
+        "pos_x": 355,
+        "pos_y": 292,
+        "sensor": 31,
+        "value": 0
+    }
+},
+{
+    "pk": 32,
+    "model": "event_manager.event",
+    "fields": {
+        "timestamp": "2014-12-28T20:26:59.766Z",
+        "pos_x": 369,
+        "pos_y": 372,
+        "sensor": 32,
+        "value": 0
+    }
+},
+{
+    "pk": 33,
+    "model": "event_manager.event",
+    "fields": {
+        "timestamp": "2014-03-23T20:26:59.766Z",
+        "pos_x": 248,
+        "pos_y": 141,
+        "sensor": 33,
+        "value": 1
+    }
+},
+{
+    "pk": 34,
+    "model": "event_manager.event",
+    "fields": {
+        "timestamp": "2014-11-23T20:26:59.766Z",
+        "pos_x": 125,
+        "pos_y": 145,
         "sensor": 34,
         "value": 0
     }
 },
 {
-    "pk": 1,
-    "model": "event_manager.alarm",
+    "pk": 35,
+    "model": "event_manager.event",
     "fields": {
-        "notified": true,
-        "event": 1
+        "timestamp": "2015-04-12T20:26:59.766Z",
+        "pos_x": 408,
+        "pos_y": 280,
+        "sensor": 35,
+        "value": 0
+    }
+},
+{
+    "pk": 36,
+    "model": "event_manager.event",
+    "fields": {
+        "timestamp": "2014-09-14T20:26:59.766Z",
+        "pos_x": 195,
+        "pos_y": 18,
+        "sensor": 36,
+        "value": 0
+    }
+},
+{
+    "pk": 37,
+    "model": "event_manager.event",
+    "fields": {
+        "timestamp": "2015-02-22T20:26:59.766Z",
+        "pos_x": 575,
+        "pos_y": 177,
+        "sensor": 37,
+        "value": 0
+    }
+},
+{
+    "pk": 38,
+    "model": "event_manager.event",
+    "fields": {
+        "timestamp": "2013-12-15T20:26:59.766Z",
+        "pos_x": 362,
+        "pos_y": 130,
+        "sensor": 38,
+        "value": 0
+    }
+},
+{
+    "pk": 39,
+    "model": "event_manager.event",
+    "fields": {
+        "timestamp": "2013-09-08T20:26:59.766Z",
+        "pos_x": 660,
+        "pos_y": 105,
+        "sensor": 39,
+        "value": 0
+    }
+},
+{
+    "pk": 40,
+    "model": "event_manager.event",
+    "fields": {
+        "timestamp": "2014-05-25T20:26:59.766Z",
+        "pos_x": 20,
+        "pos_y": 360,
+        "sensor": 40,
+        "value": 21
+    }
+},
+{
+    "pk": 41,
+    "model": "event_manager.event",
+    "fields": {
+        "timestamp": "2014-01-26T20:26:59.766Z",
+        "pos_x": 170,
+        "pos_y": 15,
+        "sensor": 41,
+        "value": 15
+    }
+},
+{
+    "pk": 42,
+    "model": "event_manager.event",
+    "fields": {
+        "timestamp": "2013-11-03T20:26:59.766Z",
+        "pos_x": 595,
+        "pos_y": 260,
+        "sensor": 42,
+        "value": 22
+    }
+},
+{
+    "pk": 43,
+    "model": "event_manager.event",
+    "fields": {
+        "timestamp": "2015-02-22T20:26:59.766Z",
+        "pos_x": 10,
+        "pos_y": 235,
+        "sensor": 43,
+        "value": 15
+    }
+},
+{
+    "pk": 44,
+    "model": "event_manager.event",
+    "fields": {
+        "timestamp": "2013-09-15T20:26:59.766Z",
+        "pos_x": 100,
+        "pos_y": 10,
+        "sensor": 44,
+        "value": 31
+    }
+},
+{
+    "pk": 45,
+    "model": "event_manager.event",
+    "fields": {
+        "timestamp": "2014-11-09T20:26:59.766Z",
+        "pos_x": 100,
+        "pos_y": 50,
+        "sensor": 45,
+        "value": 18
+    }
+},
+{
+    "pk": 46,
+    "model": "event_manager.event",
+    "fields": {
+        "timestamp": "2014-09-07T20:26:59.766Z",
+        "pos_x": 210,
+        "pos_y": 360,
+        "sensor": 46,
+        "value": 21
+    }
+},
+{
+    "pk": 47,
+    "model": "event_manager.event",
+    "fields": {
+        "timestamp": "2013-06-30T20:26:59.766Z",
+        "pos_x": 640,
+        "pos_y": 30,
+        "sensor": 47,
+        "value": 21
+    }
+},
+{
+    "pk": 48,
+    "model": "event_manager.event",
+    "fields": {
+        "timestamp": "2014-11-09T20:26:59.766Z",
+        "pos_x": 170,
+        "pos_y": 20,
+        "sensor": 48,
+        "value": 19
+    }
+},
+{
+    "pk": 49,
+    "model": "event_manager.event",
+    "fields": {
+        "timestamp": "2014-03-02T20:26:59.766Z",
+        "pos_x": 215,
+        "pos_y": 350,
+        "sensor": 49,
+        "value": 15
+    }
+},
+{
+    "pk": 50,
+    "model": "event_manager.event",
+    "fields": {
+        "timestamp": "2015-02-15T20:26:59.766Z",
+        "pos_x": 10,
+        "pos_y": 100,
+        "sensor": 50,
+        "value": 32
+    }
+},
+{
+    "pk": 51,
+    "model": "event_manager.event",
+    "fields": {
+        "timestamp": "2013-10-27T20:26:59.766Z",
+        "pos_x": 540,
+        "pos_y": 200,
+        "sensor": 51,
+        "value": 18
     }
 }
 ]

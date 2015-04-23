@@ -1,23 +1,6 @@
 /**
  * Created by kaosterra on 15/04/15.
  */
-document.getElementById("popup-panel").style.display = 'none';
-
-function showIcons() {
-    var c = document.getElementById("place_canvas");
-    var ctx = c.getContext("2d");
-    var currentSensor;
-    ctx.clearRect ( 0 , 0 , ctx.canvas.width, ctx.canvas.height);
-    for (var i in sensors) {
-        if(!window.floor || sensors[i].floor === floor.number){
-            currentSensor = new Image();
-            currentSensor.src = sensors[i].url;
-            ctx.drawImage(currentSensor, sensors[i].pos_x, sensors[i].pos_y);
-        }
-    }
-}
-$(showIcons);
-$(window).load(showIcons);
 
 showAlarms = function () {
     $('#alarms').show();
@@ -35,52 +18,69 @@ showEvents = function () {
     $('#alarms_tab').removeClass('active');
 };
 
-$("#place_canvas").on("click", function (event) {
-    var modal = document.getElementById('popup-panel');
-    modal.style.display = "block";
-
-    modal.onclick = function (evt) {
-        if (evt.target.id == "popup-panel") {
-            var modal = document.getElementById('popup-panel');
-            modal.style.display = "none";
+sensorStatus = function (sensor) {
+    if (window.time && sensor.events) {
+        var event;
+        for (var n in sensor.events) {
+            event = sensor.events[n];
+            if (event.timestamp < time) {
+                sensor.url = event.url;
+                sensor.status = event.status;
+                sensor.posX = event.posX;
+                sensor.posY = event.posY;
+                break;
+            }
         }
-    };
+    }
+};
 
-    if (sensors != null) {
-        var totalOffsetX = 0;
-        var totalOffsetY = 0;
-        var canvasX = 0;
-        var canvasY = 0;
-        var currentElement = this;
+function showIcons() {
+    var c = document.getElementById("place_canvas");
+    var ctx = c.getContext("2d");
 
-        do {
-            totalOffsetX += currentElement.offsetLeft - currentElement.scrollLeft;
-            totalOffsetY += currentElement.offsetTop - currentElement.scrollTop;
-        } while (currentElement = currentElement.offsetParent)
+    function drawSensor(sensor) {
+        var image = new Image();
+        image.src = sensor.url;
+        ctx.drawImage(image, sensor.posX, sensor.posY);
+    }
 
-        canvasX = event.pageX - totalOffsetX;
-        canvasY = event.pageY - totalOffsetY;
+    var sensors = window.sensors, time = window.time, floor = window.floor, sensor;
+    ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+    for (var i in sensors) {
+        sensor = $.extend({}, sensors[i]);
+        if (!floor || sensor.floor === floor.number) {
+            if (!time || sensor.creationDate < time) {
+                sensorStatus(sensor)
+                drawSensor(sensor);
+            }
+        }
+    }
+}
+$(showIcons);
+$(window).load(showIcons);
+$(function () {
+    $("#popup-panel").hide();
+});
 
-        var is_any_sensor = false;
-        for (var i in sensors) {
-            if ((canvasX >= sensors[i].pos_x + 1 && canvasX <= sensors[i].pos_x + 30) &&
-                (canvasY >= sensors[i].pos_y - 2 && canvasY <= sensors[i].pos_y + 28)) {
-                //alert("canvasX:"+canvasX+"  "+"canvasY:"+canvasY);
-                if (sensors[i].description == "") {
-                    document.getElementById("popup-sensor").innerHTML =
-                        "Sensor on a hidden asset.<br/>Status: " + sensors[i].status;
-                    document.getElementById("popup-panel").style.display = 'block';
-                } else {
-                    document.getElementById("popup-sensor").innerHTML =
-                        "Sensor on " + sensors[i].description + "<br />Status: " + sensors[i].status;
-                    document.getElementById("popup-panel").style.display = 'block';
-                }
-                is_any_sensor = true;
-            } else {
-                if (!is_any_sensor) {
-                    document.getElementById("popup-panel").style.display = 'none';
+$("#place_canvas").on("click", function (event) {
+    var sensors = window.sensors, time = window.time, floor = window.floor, sensor;
+    var area = 34; //tamaño de las imágenes de los sensores
+    var modal = $("#popup-panel");
+    var body = $("#popup-sensor");
+
+    for (var i in sensors) {
+        sensor = $.extend({}, sensors[i]);
+        if (!floor || sensor.floor === floor.number) {
+            if (!time || sensor.creationDate < time) {
+                sensorStatus(sensor);
+                if ((sensor.posX <= event.offsetX && event.offsetX <= sensor.posX + area) &&
+                    (sensor.posY <= event.offsetY && event.offsetY <= sensor.posY + area)) {
+                    body.html("Sensor on " + (sensor.description || "Private Asset") + "<br/>Status: " + sensor.status);
+                    modal.show();
+                    return;
                 }
             }
         }
     }
+    modal.hide();
 });

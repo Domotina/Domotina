@@ -14,17 +14,17 @@ Owners
 {% endblock navbar %}
 
 {% block content %}
-<h3>Owners</h3>
+<h3>Delegates of Owners</h3>
 <div class="pane">
     <div class="contenedor" id="individual">
-        <a href='{% url "central_individual_load" %}'>
+        <a href='{% url "central_individual_delegate_load" %}'>
             <img class="icon" src='{% static "image/propietario.png" %}'>
-            <p class="text">Create Owner</p>
+            <p class="text">Create Delegate</p>
         </a>
     </div>
 
     <div class="contenedor" id="full">
-        <a href='{% url "central_huge_load" %}'>
+        <a href='{% url "central_huge_delegate_load" %}'>
             <img class="icon" src='{% static "image/huge-load.png" %}'>
             <p class="text">File Upload</p>
         </a>

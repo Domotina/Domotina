@@ -5,29 +5,34 @@ from rest_framework import status
 
 
 class APITests(APITestCase):
+    url = '/api/sensors/'
+
     def test_get_success(self):
-        url = '/api/events/'
+        "Prueba para un GET exitoso"
+
         self.client.login(username='domotina', password='domotina')
-        response = self.client.get(url, format='json')
+        response = self.client.get(self.url, format='json')
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     def test_get_forbidden(self):
-        url = '/api/events/'
-        response = self.client.get(url, format='json')
+        "Prueba para un GET fallido"
+
+        response = self.client.get(self.url, format='json')
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
 
-    def test_post_forbidden(self):
-        url = '/api/events/'
+    def test_put_forbidden(self):
+        "Prueba para un PUT fallido"
+
+        url = self.url + '1/'
         data = {}
-        response = self.client.post(url, data, format='json')
+        response = self.client.put(url, data, format='json')
         self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN)
-        self.client.login(username='domotina', password='domotina')
-        response = self.client.post(url, data, format='json')
-        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
 
-    def test_post_success(self):
-        url = '/api/events/'
-        data = {'sensor': 1}
+    def test_put_success(self):
+        "Prueba para un PUT exitoso"
+
+        url = self.url + '1/'
+        data = {'current_value': 1}
         self.client.login(username='domotina', password='domotina')
-        response = self.client.post(url, data, format='json')
-        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        response = self.client.put(url, data, format='json')
+        self.assertEqual(response.status_code, status.HTTP_200_OK)

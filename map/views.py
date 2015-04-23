@@ -1,12 +1,14 @@
-import datetime
+from datetime import datetime, time
 
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth.decorators import user_passes_test
+from rest_framework import viewsets
 
 from middleware.http import Http403
-from models import Place, Floor, Sensor, SensorType, Neighborhood
+from .models import Place, Floor, Sensor, SensorType, Neighborhood
+from .serializers import SensorSerializer
 from event_manager.models import Event, Alarm
 
 
@@ -52,11 +54,11 @@ def place_view(request, pk):
 
     sensor_type = request.GET.get('type') and SensorType.objects.get(pk=request.GET.get('type'))
 
-    sensors_json = ','.join(current_floor.get_sensors_json(sensor_type))
+    sensors_json = ','.join(current_floor.get_sensors_json(sensor_type=sensor_type))
 
     types = SensorType.objects.all()
 
-    current_date = datetime.datetime.now().strftime("%Y%m%d")
+    current_date = datetime.now().strftime("%Y%m%d")
 
     context = {'floor': current_floor, 'sensors': sensors_json, 'floors': floors,
                'events': events, 'alarms': alarms, 'types': types,
@@ -147,24 +149,36 @@ def delete_neighborhood(request, neighborhood_pk):
 
 # @login_required
 def edit_neighborhood(request, neighborhood_pk):
-    return render(request, 'neighborhood.html', {'edited': True})
+    neighborhood = get_object_or_404(Neighborhood, pk=neighborhood_pk)
+    return render(request, 'neighborhood.html', {'edited': True, 'neighborhood': neighborhood})
 
 
 @login_required
 def map_history(request, place_pk, int_date):
-    date = datetime.datetime.strptime(int_date, "%Y%m%d")
+    date = datetime.combine(datetime.today(), time(0))
+    try:
+        date = datetime.strptime(int_date, "%Y%m%d")
+    except ValueError:
+        pass
+    init_date = "new Date(%(year)s, %(month)s, %(day)s)" \
+                % {'year': date.strftime("%Y"),
+                   'month': date.strftime("%m"),
+                   'day': date.strftime("%d")}
     place = get_object_or_404(Place, pk=place_pk)
-    floors = []
-    first_floor = None
-    sensors = ','.join(place.snapshot(date, True))
-    for floor in place.floors.order_by("number"):
-        floors.append(floor.to_json())
-    if floors:
-        first_floor = place.floors.get_queryset()[:1].get()
-    floors_json = ','.join(floors)
+    floors = ','.join(place.floors_to_json())
+    sensors = ','.join(place.snapshot(date=date, json=True, include_events=True))
+
     events = Event.objects.filter(sensor__floor__place=place).order_by('-timestamp')
     return render(request, "historic_map.html", {'place': place,
                                                  'events': events,
-                                                 'floors': floors_json,
-                                                 'current_floor': first_floor,
-                                                 'sensors': sensors})
+                                                 'floors': floors,
+                                                 'sensors': sensors,
+                                                 'datetime': init_date})
+
+
+class SensorViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows sensors to be viewed or edited.
+    """
+    queryset = Sensor.objects.all()
+    serializer_class = SensorSerializer

@@ -1,0 +1,102 @@
+{% extends "base.html"%}
+{% load static %}
+
+{% block title %}
+Creation Owner
+{% endblock %}
+
+{% block navbar %}
+<li><a href='{% url "central_home" %}'>Home</a></li>
+<li><a href='{% url "central_create" %}'>Properties</a></li>
+<li><a href='{% url "central_owner_principal" %}'>Owners</a></li>
+<li><a href='{% url "central_delegate" %}'>Delegates</a></li>
+<li><a href='{% url "central_month_report" %}'>Report</a></li>
+{% endblock navbar %}
+
+{% block content %}
+<h3>Monthly Report Generator</h3>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">Instructions</h3>
+    </div>
+    <div class="panel-body">
+        <p>To create a new month report follow this steps:
+
+        <p>1. Select a year</p>
+
+        <p>2. Select the month of interest to you</p>
+
+        <p>3. Select one or more building/urbanizations that you are interested.</p>
+
+        <p>If you want all places registered onn Domotina, then you have no to select one.</p>
+    </div>
+</div>
+<div class="panel panel-info">
+    <div class="panel-heading">
+        <h3 class="panel-title">Configuration of the report</h3>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group" style="height: 35px">
+                    <label for=" " class="col-lg-2 control-label">Select a year </label>
+
+                    <div class="col-lg-10">
+                        <select class="form-control" id="year" name="year" required>
+                            <!-- cargar años a sostener -->
+                            <option selected>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group" style="height: 35px">
+                    <label for=" " class="col-lg-2 control-label">Select a month </label>
+
+                    <div class="col-lg-10">
+                        <select class="form-control" id="month" name="month" required>
+                            <!-- cargar propietarios -->
+                            <option selected>January</option>
+                            <option>February</option>
+                            <option>March</option>
+                            <option>April</option>
+                            <option>May</option>
+                            <option>June</option>
+                            <option>July</option>
+                            <option>August</option>
+                            <option>September</option>
+                            <option>Octuber</option>
+                            <option>November</option>
+                            <option>December</option>
+                        </select>
+                    </div>
+                </div>
+                <div style="text-align: center">
+                    <p style="display: inline"><input type="submit" class="btn btn-primary" value="Generate Report"/>
+                    </p>
+                    <a href='{% url "central_home" %}' class="btn btn-default">Return</a>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for=" ">Select buildings/urbanizations</label>
+                    <!-- cargar properties -->
+                    <div class="col-lg-10">
+                        <select multiple="" class="form-control" id="property" name="property" required>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+{% endblock %}
+
+
+

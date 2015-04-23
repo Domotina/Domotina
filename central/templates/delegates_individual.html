@@ -14,7 +14,18 @@ Creation Delegate
 {% endblock navbar %}
 
 {% block content %}
-<form class="form-horizontal" method="get" action=' '>
+<script>
+$(function() {
+    $("#owner").change(function() {
+    alert('hola');
+    $.get('/central/getHouses/', { owner_id: $("#owner").val() }, function(data){
+              alert(data);
+              alert('hola2');
+           });
+});
+});
+</script>
+<form class="form-horizontal" method="post" action='/central/delegate_individual/'>
     <fieldset>
         <legend>Create Delegate</legend>
 
@@ -47,20 +58,20 @@ Creation Delegate
             </div>
         </div>
         <div class="form-group">
-            <label for=" " class="col-lg-2 control-label">Owner</label>
+            <label for="owner" class="col-lg-2 control-label">Owner</label>
 
             <div class="col-lg-10">
                 <select class="form-control" id="owner" name="owner" required>
                     <!-- cargar propietarios -->
                     <option value="0">Select</option>
-                    {% for use in user %}
+                    {% for use in users %}
                     <option value="{{use.pk}}"> {{use.username|capfirst}}</option>
                     {% endfor %}
                 </select>
             </div>
         </div>
         <div class="form-group">
-            <label for=" " class="col-lg-2 control-label">Property</label>
+            <label for="property" class="col-lg-2 control-label">Property</label>
 
             <div class="col-lg-10">
                 <select class="form-control" id="property" name="property" required>

@@ -16,4 +16,5 @@ urlpatterns = patterns('',
                        url(r'^map/', include('map.urls')),
                        url(r'^', include('index.urls')),
                        url(r'^central/', include('central.urls')),
+                       url(r'^report/', include('report_manager.urls')),
                        )

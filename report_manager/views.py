@@ -112,7 +112,7 @@ def events_in_date_range(request, place_pk):
     # Filtering events in a place and a in a date range
     events = Event.objects.filter(sensor__floor__place=place)\
         .filter(timestamp__gt=date(start_year, start_month, start_day),
-                timestamp__lt=date(end_year, end_month, end_day))
+                timestamp__lt=date(end_year, end_month, end_day)).order_by('-timestamp')
 
     context = {'place': place, 'events': events,
                'start_date': start_date, 'end_date': end_date}

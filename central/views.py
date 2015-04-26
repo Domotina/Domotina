@@ -1,3 +1,4 @@
+from django.core import serializers
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.decorators import user_passes_test
@@ -6,7 +7,7 @@ from .notificator import send_email
 from map.models import Neighborhood, Place, Floor
 from django.template import RequestContext
 from django.shortcuts import render_to_response
-
+from django.http import StreamingHttpResponse,HttpResponse
 
 def user_can_see(user):
     return user.is_superuser or user.groups.filter(name='UsersCentral').exists()
@@ -127,19 +128,16 @@ def central_individual_delegate_load(request):
         return render(request, 'delegates_individual.html', context)
 
 def getHouses(request):
-    context = RequestContext(request)
-    print 'houses'
-    #if request.method == 'GET':
-    print 'get'
     owner_id = request.GET['owner_id']
     print owner_id
-    place = get_object_or_404(Place, pk=owner_id)
-    #place = Place.objects.filer(pk=int(owner_id))
-    print place
+    usersearch = User.objects.get(pk=int(owner_id))
+    print usersearch.username
+    placeOwner = Place.objects.all().filter(owner=usersearch)
+    print placeOwner
     print 'fin'
-    return render_to_response('central/delegates_individual.html', {'user': request.user, 'place': place}, context)
-
-
+    data = serializers.serialize('json', placeOwner)
+    print data
+    return HttpResponse(data, content_type="application/json")
 
 @login_required
 def central_huge_delegate_load(request):

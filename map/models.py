@@ -63,6 +63,18 @@ class Place(models.Model):
             floors.append(floor.to_json())
         return floors
 
+class Delegate(models.Model):
+    place = models.ForeignKey(Place, verbose_name="place", related_name="delegates")
+    delegate = models.ForeignKey(User, verbose_name="delegate", related_name="delegates",
+                                 limit_choices_to={'groups': 4})
+
+    class Meta:
+        verbose_name = "delegate"
+        verbose_name_plural = "delegates"
+        ordering = ["place", "delegate"]
+
+    def __unicode__(self):
+        return self.delegate.username
 
 class Floor(models.Model):
     place = models.ForeignKey(Place, verbose_name="place", related_name="floors")

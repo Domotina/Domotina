@@ -117,7 +117,7 @@ def central_individual_delegate_load(request):
         # userCreate.is_superuser = False
         # userCreate.is_active = True
         # userCreate.is_staff = False
-        # userCreate.groups.add(2)#Falta
+        # userCreate.groups.add(4)
         # userCreate.save()
         # send_email(userCreate)
         return redirect('central_home')

@@ -1677,7 +1677,7 @@
         "is_staff": false, 
         "last_login": "2015-04-07T20:31:31Z", 
         "groups": [
-            2
+            4
         ], 
         "user_permissions": [], 
         "password": "pbkdf2_sha256$12000$FkGl9x3UtHYP$48YYbAYdLDAXisurv687PPAy0fDbyqwGK+CyVKCUMBY=", 
@@ -1749,7 +1749,7 @@
     "pk": 1, 
     "model": "map.place", 
     "fields": {
-        "owner": 1, 
+        "owner": 3,
         "date_created": "2015-03-07T20:59:03.888Z", 
         "neighborhood": 1, 
         "name": "T10 AP602", 
@@ -1760,7 +1760,7 @@
     "pk": 2, 
     "model": "map.place", 
     "fields": {
-        "owner": 1, 
+        "owner": 6,
         "date_created": "2015-03-07T20:59:27.651Z", 
         "neighborhood": 1, 
         "name": "T10 AP603", 
@@ -1771,7 +1771,7 @@
     "pk": 3, 
     "model": "map.place", 
     "fields": {
-        "owner": 1, 
+        "owner": 3,
         "date_created": "2015-03-08T02:24:08.983Z", 
         "neighborhood": 3, 
         "name": "Kr 69D St 25-04", 
@@ -1793,7 +1793,7 @@
     "pk": 5, 
     "model": "map.place", 
     "fields": {
-        "owner": 1, 
+        "owner": 5,
         "date_created": "2015-03-17T17:24:15.155Z", 
         "neighborhood": 3, 
         "name": "Kr 69A St 24-12", 

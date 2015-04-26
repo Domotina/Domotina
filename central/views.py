@@ -7,14 +7,16 @@ from .notificator import send_email
 from map.models import Neighborhood, Place, Floor
 from django.template import RequestContext
 from django.shortcuts import render_to_response
-from django.http import StreamingHttpResponse,HttpResponse
+from django.contrib.auth.models import Permission
+from django.contrib.contenttypes.models import ContentType
+from django.http import StreamingHttpResponse, HttpResponse
 
 def user_can_see(user):
     return user.is_superuser or user.groups.filter(name='UsersCentral').exists()
 
 
 @login_required
-@user_passes_test(user_can_see, login_url='/map/')
+@user_passes_test(user_can_see, login_url='/central/')
 def central_home(request):
     context = {'user': request.user}
     return render(request, 'central_home.html', context)
@@ -99,7 +101,6 @@ def central_delegate(request):
     context = {'user': request.user}
     return render(request, 'delegates_owner_principal.html', context)
 
-#completar
 @login_required
 def central_individual_delegate_load(request):
     if request.method == "POST":
@@ -109,21 +110,28 @@ def central_individual_delegate_load(request):
         emailUser = str(request.POST.get("inputEmail", ""))
         owner = str(request.POST.get("owner", ""))
         property = str(request.POST.get("property", ""))
+        viewMap = str(request.POST.get("viewMap", ""))
         print owner
         print property
+        print viewMap
+        """
+        userCreate = User.objects.create_user(username=username, first_name=name, last_name=lastName, email=emailUser,
+                                            password='DOMOTINA123')
+        userCreate.is_superuser = False
+        userCreate.is_active = True
+        userCreate.is_staff = False
+        userCreate.groups.add(4)
 
-        # userCreate = User.objects.create_user(username=username, first_name=name, last_name=lastName, email=emailUser,
-        #                                     password='DOMOTINA123')
-        # userCreate.is_superuser = False
-        # userCreate.is_active = True
-        # userCreate.is_staff = False
-        # userCreate.groups.add(4)
-        # userCreate.save()
-        # send_email(userCreate)
+        content_type = ContentType.objects.get_for_model(Place)
+        permission = Permission.objects.get(content_type=content_type, codename='add_place')
+        userCreate.user_permissions.add(permission)
+
+        userCreate.save()
+        send_email(userCreate)
+        """
         return redirect('central_home')
     else:
         users = User.objects.all()
-        #place = Place.objects.all().order_by('name')
         context = {'user': request.user, 'users': users}
         return render(request, 'delegates_individual.html', context)
 

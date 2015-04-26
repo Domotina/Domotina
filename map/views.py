@@ -11,9 +11,9 @@ from .models import Place, Floor, Sensor, SensorType, Neighborhood
 from .serializers import SensorSerializer
 from event_manager.models import Event, Alarm
 
-
+# user.has_perm('map.add_place') es el permiso minimo para entrar a my_places
 def user_can_see(user):
-    return user.is_superuser or user.groups.filter(name='UsersOwners').exists()
+    return user.is_superuser or user.groups.filter(name='UsersOwners').exists() or user.has_perm('map.add_place')
 
 
 def paginator(qs, page, items_per_page):

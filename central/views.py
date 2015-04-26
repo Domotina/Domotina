@@ -129,14 +129,9 @@ def central_individual_delegate_load(request):
 
 def getHouses(request):
     owner_id = request.GET['owner_id']
-    print owner_id
     usersearch = User.objects.get(pk=int(owner_id))
-    print usersearch.username
     placeOwner = Place.objects.all().filter(owner=usersearch)
-    print placeOwner
-    print 'fin'
     data = serializers.serialize('json', placeOwner)
-    print data
     return HttpResponse(data, content_type="application/json")
 
 @login_required

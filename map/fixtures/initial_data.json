@@ -133,8 +133,16 @@
     "app_label": "map"
   }
 },
+    {"pk": 16,
+    "model": "contenttypes.contenttype",
+    "fields": {
+      "model": "zoomlocation",
+      "name": "zoom location",
+      "app_label": "map"
+    }
+  },
 {
-    "pk": 16,
+    "pk": 17,
     "model": "contenttypes.contenttype", 
     "fields": {
         "model": "scheduledaily", 
@@ -142,6 +150,7 @@
         "app_label": "rule_engine"
     }
 },
+
 {
     "pk": 1, 
     "model": "map.neighborhood", 
@@ -1579,25 +1588,49 @@
   {"pk": 46,
     "model": "auth.permission",
     "fields": {
-      "codename": "add_scheduledaily",
-      "name": "Can add Daily Schedule",
+      "codename": "add_zoomlocation",
+      "name": "Can add zoom location",
       "content_type": 16
     }
   },
   {"pk": 47,
     "model": "auth.permission",
     "fields": {
-      "codename": "change_scheduledaily",
-      "name": "Can change Daily Schedule",
+      "codename": "change_zoomlocation",
+      "name": "Can change zoom location",
       "content_type": 16
     }
   },
   {"pk": 48,
     "model": "auth.permission",
     "fields": {
+      "codename": "delete_zoomlocation",
+      "name": "Can delete zoom location",
+      "content_type": 16
+    }
+  },
+    {"pk": 49,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "add_scheduledaily",
+      "name": "Can add Daily Schedule",
+      "content_type": 17
+    }
+  },
+  {"pk": 50,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "change_scheduledaily",
+      "name": "Can change Daily Schedule",
+      "content_type": 17
+    }
+  },
+  {"pk": 51,
+    "model": "auth.permission",
+    "fields": {
       "codename": "delete_scheduledaily",
       "name": "Can delete Daily Schedule",
-      "content_type": 16
+      "content_type": 17
     }
   },
 {

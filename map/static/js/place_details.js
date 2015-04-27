@@ -1,6 +1,27 @@
 /**
  * Created by kaosterra on 15/04/15.
  */
+var datosDoomies = [
+    {
+        xPosition: 0,
+        yPosition: 0,
+        width: 300,
+        height: 200
+    },
+    {
+        xPosition: 100,
+        yPosition: 0,
+        width: 100,
+        height: 100
+    },
+    {
+        xPosition: 200,
+        yPosition: 0,
+        width: 100,
+        height: 100
+    }
+
+]
 
 showAlarms = function () {
     $('#alarms').show();
@@ -62,6 +83,7 @@ function showIcons() {
             }
         }
     }
+    showZoom();
 }
 $(showIcons);
 $(window).load(showIcons);
@@ -74,6 +96,11 @@ $("#place_canvas").on("click", function (event) {
     var area = 34; //tamaño de las imágenes de los sensores
     var modal = $("#popup-panel");
     var body = $("#popup-sensor");
+
+    var x = event.pageX - $(event.target).offset().left;
+    var y = event.pageY - $(event.target).offset().top;
+
+    console.log(x + ' ' + y);
 
     if (typeof event.offsetX === "undefined" || typeof event.offsetY === "undefined") {
         var targetOffset = $(event.target).offset();
@@ -97,3 +124,59 @@ $("#place_canvas").on("click", function (event) {
     }
     modal.hide();
 });
+
+$("#place_canvas").on('mousemove', function(evt){
+    var x = evt.pageX - $(evt.target).offset().left;
+    var y = evt.pageY - $(evt.target).offset().top;
+
+    var xFin = evt.pageX;
+    var yFin = evt.pageY;
+
+    var mapImg = $('.map.center-block').css('background-image');
+    mapImg = mapImg.replace('url(','').replace(')','').replace('"', '').replace('"','');
+
+    for(var i=0, j = datosDoomies.length; i < j; i++){
+        if(x >= datosDoomies[i].xPosition && x <= datosDoomies[i].xPosition+30){
+            if(y >= datosDoomies[i].yPosition && y <= datosDoomies[i].yPosition+30){
+                $('#zoom').remove();
+                var zoomed = $('<div id="zoom">');
+                zoomed.css({
+                    'position' : 'absolute',
+                    'top' : (yFin+20) + 'px',
+                    'left' : (xFin+20) + 'px',
+                    'border' : 'solid 5px #00F',
+                    'width' : '300px',
+                    'height' : '300px',
+                    'overflow' : 'hidden'
+                });
+
+                $('body').append(zoomed);
+
+                var canvasZoom = $('<canvas width="300" height="300">');
+                zoomed.append(canvasZoom);
+                var ctxZoom = canvasZoom[0].getContext("2d");
+                var img = new Image();
+                img.src = mapImg;
+                var imgData=ctxZoom.drawImage(img, datosDoomies[i].xPosition, datosDoomies[i].yPosition, datosDoomies[i].width, datosDoomies[i].height, 0 , 0, 300 , 300 );
+                break;
+            }else{
+                $('#zoom').remove();
+            }
+        }else{
+            $('#zoom').remove();
+        }
+    }
+});
+
+var showZoom = function(data){
+    var current = data || datosDoomies;
+    var c = document.getElementById("place_canvas");
+    var ctx = c.getContext("2d");
+    for(var i=0,j=current.length; i < j; i++){
+        var imageInfo = current[i];
+        var image = new Image();
+        image.src = 'http://png-3.findicons.com/files/icons/2338/reflection/128/zoom_in.png';
+        ctx.drawImage(image, imageInfo.xPosition, imageInfo.yPosition, 30, 30);
+    }
+
+}

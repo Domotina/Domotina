@@ -231,3 +231,35 @@ class Sensor(models.Model):
                 events_array.append(event_json)
         return events_array
 
+
+class Delegate(models.Model):
+    place = models.ForeignKey(Place, verbose_name="place", related_name="delegates")
+    delegate = models.ForeignKey(User, verbose_name="delegate", related_name="delegates",
+                                 limit_choices_to={'groups': 4})
+
+    class Meta:
+        verbose_name = "delegate"
+        verbose_name_plural = "delegates"
+        ordering = ["place", "delegate"]
+
+    def __unicode__(self):
+        return self.delegate.username
+
+class ZoomLocation(models.Model):
+    floor = models.ForeignKey(Floor, verbose_name="floor", related_name="zoom")
+    pos_x = models.PositiveIntegerField("X position in map", default=0)
+    pos_y = models.PositiveIntegerField("Y position in map", default=0)
+    width_zoom = models.PositiveIntegerField("Width zoom", default=0)
+    heigth_zoom = models.PositiveIntegerField("Heigth zoom", default=0)
+
+    class Meta:
+        ordering = ["floor"]
+
+    def to_json(self):
+        zoom = '{floor: "%d", pos_x: %d, pos_y: %d, ' \
+                 'width_zoom: "%d", heigth_zoom: %d' \
+                 % (self.floor.number,
+                    self.pos_x,
+                    self.pos_y,
+                    self.width_zoom,
+                    self.heigth_zoom)

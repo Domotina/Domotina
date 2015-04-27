@@ -1,3 +1,4 @@
+from django.core import serializers
 import cgi
 from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
@@ -8,6 +9,9 @@ from .notificator import send_email
 from map.models import Neighborhood, Place, Floor
 from django.contrib.messages import error
 from django.shortcuts import render_to_response
+from django.contrib.auth.models import Permission
+from django.contrib.contenttypes.models import ContentType
+from django.http import StreamingHttpResponse, HttpResponse
 from report_manager import central_report_gen
 import cStringIO as StringIO
 from xhtml2pdf import pisa
@@ -15,13 +19,12 @@ from django.template import RequestContext
 from django.template.loader import render_to_string
 from report_manager.views import fetch_resources
 
-
 def user_can_see(user):
     return user.is_superuser or user.groups.filter(name='UsersCentral').exists()
 
 
 @login_required
-@user_passes_test(user_can_see, login_url='/map/')
+@user_passes_test(user_can_see, login_url='/central/')
 def central_home(request):
     context = {'user': request.user}
     return render(request, 'central_home.html', context)
@@ -116,8 +119,18 @@ def central_individual_delegate_load(request):
         emailUser = str(request.POST.get("inputEmail", ""))
         owner = str(request.POST.get("owner", ""))
         property = str(request.POST.get("property", ""))
+        choices = request.POST.getlist('choice')
         print owner
         print property
+        print choices
+        print 'fin'
+        """
+        userCreate = User.objects.create_user(username=username, first_name=name, last_name=lastName, email=emailUser,
+                                            password='DOMOTINA123')
+        userCreate.is_superuser = False
+        userCreate.is_active = True
+        userCreate.is_staff = False
+        userCreate.groups.add(4)
 
         # userCreate = User.objects.create_user(username=username, first_name=name, last_name=lastName, email=emailUser,
         # password='DOMOTINA123')
@@ -127,27 +140,26 @@ def central_individual_delegate_load(request):
         # userCreate.groups.add(2)#Falta
         # userCreate.save()
         # send_email(userCreate)
+        content_type = ContentType.objects.get_for_model(Place)
+        permission = Permission.objects.get(content_type=content_type, codename='add_place')
+        userCreate.user_permissions.add(permission)
+
+        userCreate.save()
+        send_email(userCreate)
+        """
         return redirect('central_home')
     else:
         users = User.objects.all()
-        # place = Place.objects.all().order_by('name')
         context = {'user': request.user, 'users': users}
         return render(request, 'delegates_individual.html', context)
 
 
 def getHouses(request):
-    context = RequestContext(request)
-    print 'houses'
-    # if request.method == 'GET':
-    print 'get'
     owner_id = request.GET['owner_id']
-    print owner_id
-    place = get_object_or_404(Place, pk=owner_id)
-    # place = Place.objects.filer(pk=int(owner_id))
-    print place
-    print 'fin'
-    return render_to_response('central/delegates_individual.html', {'user': request.user, 'place': place}, context)
-
+    usersearch = User.objects.get(pk=int(owner_id))
+    placeOwner = Place.objects.all().filter(owner=usersearch)
+    data = serializers.serialize('json', placeOwner)
+    return HttpResponse(data, content_type="application/json")
 
 @login_required
 def central_huge_delegate_load(request):

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from models import Neighborhood, Place, Floor, SensorType, SensorStatus, Sensor
+from models import Neighborhood, Place, Floor, SensorType, SensorStatus, Sensor, Delegate
 
 
 class PlaceAdmin(admin.ModelAdmin):
@@ -53,3 +53,4 @@ admin.site.register(Floor, FloorAdmin)
 admin.site.register(SensorType)
 admin.site.register(SensorStatus)
 admin.site.register(Sensor, SensorAdmin)
+admin.site.register(Delegate)

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Handled events in {{place.name}}</title>
+    <style type="text/css">
+        .page-header td.image {
+            width: 64px;
+            text-align: left;
+        }
+
+        .page-header td.center{
+            text-align: center;
+        }
+
+        .report th, .report td {
+            border: 1px solid black;
+        }
+
+        .report {
+            border-collapse: separate;
+            border-spacing: 2px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .report th, .report td {
+            padding: 2px;
+            vertical-align: middle;
+        }
+
+        .report th {
+            background-color: #00abf1;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+<table class="page-header">
+    <tr>
+        <td class="image"><img src="/static/image/domotinaLogo.png" width="64px" height="64px"/></td>
+        <td><strong>DOMOTINA</strong> <br/> <i>El control de su hogar en sus manos!</i></td>
+        <td class="center"><h1>Monthly Report - {{month}}/{{year}}</h1></td>
+    </tr>
+</table>
+
+    <h1>Report of handled events in your place {{place.name}}</h1>
+    <h3>These are handled events in your place between {{start}} and {{end}}</h3>
+
+    <table class="report">
+        <thead>
+            <tr>
+                <th>Building/Urbanization</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Asset</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        {% for event in events %}
+            <tr>
+                <td>{{ event.sensor.floor.place.neighborhood.name }}</td>
+                <td>{{ event.timestamp.date }}</td>
+                <td>{{ event.timestamp.time }}</td>
+                <td>{{ event.sensor }}</td>
+                <td>Status changed to {{ event }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

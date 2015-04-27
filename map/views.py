@@ -4,6 +4,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth.decorators import user_passes_test
+from django.contrib.auth.decorators import permission_required
 from rest_framework import viewsets
 
 from middleware.http import Http403
@@ -14,6 +15,8 @@ from event_manager.models import Event, Alarm
 # user.has_perm('map.add_place') es el permiso minimo para entrar a my_places
 def user_can_see(user):
     return user.is_superuser or user.groups.filter(name='UsersOwners').exists() or user.has_perm('map.add_place')
+def user_can_see_central(user):
+    return user.groups.filter(name='UsersCentral').exists()
 
 
 def paginator(qs, page, items_per_page):
@@ -30,7 +33,9 @@ def paginator(qs, page, items_per_page):
 
 
 @login_required
-@user_passes_test(user_can_see, login_url='/central/')
+@user_passes_test(user_can_see, login_url='/')
+#@user_passes_test(user_can_see_central, login_url='/central/')
+#@permission_required('map.add_place', login_url='/map/')
 def my_places(request):
     places = Place.objects.filter(owner=request.user)
     context = {'user': request.user, 'places': places}

@@ -125,8 +125,16 @@
         "app_label": "map"
     }
 },
+{"pk": 15,
+  "model": "contenttypes.contenttype",
+  "fields": {
+    "model": "delegate",
+    "name": "delegate",
+    "app_label": "map"
+  }
+},
 {
-    "pk": 15, 
+    "pk": 16,
     "model": "contenttypes.contenttype", 
     "fields": {
         "model": "scheduledaily", 
@@ -1545,8 +1553,8 @@
     "pk": 43, 
     "model": "auth.permission", 
     "fields": {
-        "codename": "add_scheduledaily", 
-        "name": "Can add Daily Schedule", 
+        "codename": "add_delegate",
+        "name": "Can add delegate",
         "content_type": 15
     }
 },
@@ -1554,8 +1562,8 @@
     "pk": 44, 
     "model": "auth.permission", 
     "fields": {
-        "codename": "change_scheduledaily", 
-        "name": "Can change Daily Schedule", 
+        "codename": "change_delegate",
+        "name": "Can change delegate",
         "content_type": 15
     }
 },
@@ -1563,11 +1571,35 @@
     "pk": 45, 
     "model": "auth.permission", 
     "fields": {
-        "codename": "delete_scheduledaily", 
-        "name": "Can delete Daily Schedule", 
+        "codename": "delete_delegate",
+        "name": "Can delete delegate",
         "content_type": 15
     }
 },
+  {"pk": 46,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "add_scheduledaily",
+      "name": "Can add Daily Schedule",
+      "content_type": 16
+    }
+  },
+  {"pk": 47,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "change_scheduledaily",
+      "name": "Can change Daily Schedule",
+      "content_type": 16
+    }
+  },
+  {"pk": 48,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "delete_scheduledaily",
+      "name": "Can delete Daily Schedule",
+      "content_type": 16
+    }
+  },
 {
     "pk": 1, 
     "model": "auth.group", 

@@ -110,10 +110,11 @@ def central_individual_delegate_load(request):
         emailUser = str(request.POST.get("inputEmail", ""))
         owner = str(request.POST.get("owner", ""))
         property = str(request.POST.get("property", ""))
-        viewMap = str(request.POST.get("viewMap", ""))
+        choices = request.POST.getlist('choice')
         print owner
         print property
-        print viewMap
+        print choices
+        print 'fin'
         """
         userCreate = User.objects.create_user(username=username, first_name=name, last_name=lastName, email=emailUser,
                                             password='DOMOTINA123')

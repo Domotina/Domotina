@@ -63,6 +63,7 @@ class Place(models.Model):
             floors.append(floor.to_json())
         return floors
 
+
 class Floor(models.Model):
     place = models.ForeignKey(Place, verbose_name="place", related_name="floors")
     number = models.PositiveIntegerField("number", default=1)
@@ -229,6 +230,17 @@ class Sensor(models.Model):
             if event_json:
                 events_array.append(event_json)
         return events_array
+
+
+class ZoomLocation(models.Model):
+    floor = models.ForeignKey(Floor, verbose_name="floor", related_name="zoom")
+    pos_x = models.PositiveIntegerField("X position in map", default=0)
+    pos_y = models.PositiveIntegerField("Y position in map", default=0)
+    width_zoom = models.PositiveIntegerField("Width zoom", default=0)
+    heigth_zoom = models.PositiveIntegerField("Heigth zoom", default=0)
+
+    class Meta:
+        ordering = ["floor"]
 
 class Delegate(models.Model):
     place = models.ForeignKey(Place, verbose_name="place", related_name="delegates")

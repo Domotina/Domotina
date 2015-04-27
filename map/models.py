@@ -242,6 +242,15 @@ class ZoomLocation(models.Model):
     class Meta:
         ordering = ["floor"]
 
+    def to_json(self):
+        zoom = '{floor: "%d", pos_x: %d, pos_y: %d, ' \
+                 'width_zoom: "%d", heigth_zoom: %d' \
+                 % (self.floor.number,
+                    self.pos_x,
+                    self.pos_y,
+                    self.width_zoom,
+                    self.heigth_zoom)
+
 class Delegate(models.Model):
     place = models.ForeignKey(Place, verbose_name="place", related_name="delegates")
     delegate = models.ForeignKey(User, verbose_name="delegate", related_name="delegates",

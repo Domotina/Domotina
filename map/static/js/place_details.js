@@ -75,11 +75,6 @@ $("#place_canvas").on("click", function (event) {
     var modal = $("#popup-panel");
     var body = $("#popup-sensor");
 
-    var x = event.pageX - $(event.target).offset().left;
-    var y = event.pageY - $(event.target).offset().top;
-
-    console.log(x + ' ' + y);
-
     if (typeof event.offsetX === "undefined" || typeof event.offsetY === "undefined") {
         var targetOffset = $(event.target).offset();
         event.offsetX = event.pageX - targetOffset.left;
@@ -135,6 +130,15 @@ $("#place_canvas").on('mousemove', function(evt){
                 var img = new Image();
                 img.src = mapImg;
                 var imgData=ctxZoom.drawImage(img, zoom[i].pos_x, zoom[i].pos_y, zoom[i].width_zoom, zoom[i].heigth_zoom, 0 , 0, 300 , 300);
+
+                var sensors = window.sensors;
+
+                for(var j=0, le=sensors.length; j < le; j++){
+                    var sensor = sensors[j];
+                    var image = new Image();
+                    image.src = sensor.url;
+                    ctxZoom.drawImage(image, sensor.posX - zoom[i].pos_x, sensor.posY - zoom[i].pos_y);
+                }
                 break;
             }else{
                 $('#zoom').remove();

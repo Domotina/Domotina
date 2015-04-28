@@ -108,9 +108,9 @@ $("#place_canvas").on('mousemove', function(evt){
     var mapImg = $('.map.center-block').css('background-image');
     mapImg = mapImg.replace('url(','').replace(')','').replace('"', '').replace('"','');
 
-    for(var i=0, j = zoom.length; i < j; i++){
-        if(x >= zoom[i].pos_x && x <= zoom[i].pos_x+30){
-            if(y >= zoom[i].pos_y && y <= zoom[i].pos_y+30){
+    for(var i in zoom){
+        if (zoom.hasOwnProperty(i)) {
+            if(x >= zoom[i].pos_x && x <= zoom[i].pos_x+30 && y >= zoom[i].pos_y && y <= zoom[i].pos_y+30){
                 $('#zoom').remove();
                 var zoomed = $('<div id="zoom">');
                 zoomed.css({
@@ -141,12 +141,9 @@ $("#place_canvas").on('mousemove', function(evt){
                     ctxZoom.drawImage(image, sensor.posX - zoom[i].pos_x, sensor.posY - zoom[i].pos_y);
                 }
                 break;
-            }else{
-                $('#zoom').remove();
             }
-        }else{
-            $('#zoom').remove();
         }
+        $('#zoom').remove();
     }
 });
 

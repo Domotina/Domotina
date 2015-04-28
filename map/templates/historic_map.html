@@ -66,6 +66,7 @@
         var sensors = [{{ sensors | safe }}];
         var floor = floors[0];
         var time = {{ datetime | safe}};
+        var zoom = [{{ zoom | safe }}];
     </script>
     <script src='{% static "js/place_details.js" %}'></script>
 {% endblock %}

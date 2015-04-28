@@ -116,7 +116,7 @@ $("#place_canvas").on('mousemove', function(evt){
                     'position' : 'absolute',
                     'top' : (yFin+20) + 'px',
                     'left' : (xFin+20) + 'px',
-                    'border' : 'solid 5px #00F',
+                    'border' : 'solid 3px #000',
                     'width' : '300px',
                     'height' : '300px',
                     'overflow' : 'hidden'

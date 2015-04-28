@@ -1,28 +1,6 @@
 /**
  * Created by kaosterra on 15/04/15.
  */
-var datosDoomies = [
-    {
-        xPosition: 0,
-        yPosition: 0,
-        width: 300,
-        height: 200
-    },
-    {
-        xPosition: 100,
-        yPosition: 0,
-        width: 100,
-        height: 100
-    },
-    {
-        xPosition: 200,
-        yPosition: 0,
-        width: 100,
-        height: 100
-    }
-
-]
-
 showAlarms = function () {
     $('#alarms').show();
     $('#events').hide();
@@ -115,9 +93,8 @@ $("#place_canvas").on("click", function (event) {
                 sensorStatus(sensor);
                 if ((sensor.posX <= event.offsetX && event.offsetX <= sensor.posX + area) &&
                     (sensor.posY <= event.offsetY && event.offsetY <= sensor.posY + area)) {
-                    body.html("Sensor on " + (sensor.description || "Private Asset") + "<br/>Status: " + sensor.status);
-                    modal.show();
-                    return;
+
+                    break;
                 }
             }
         }
@@ -135,9 +112,9 @@ $("#place_canvas").on('mousemove', function(evt){
     var mapImg = $('.map.center-block').css('background-image');
     mapImg = mapImg.replace('url(','').replace(')','').replace('"', '').replace('"','');
 
-    for(var i=0, j = datosDoomies.length; i < j; i++){
-        if(x >= datosDoomies[i].xPosition && x <= datosDoomies[i].xPosition+30){
-            if(y >= datosDoomies[i].yPosition && y <= datosDoomies[i].yPosition+30){
+    for(var i=0, j = zoom.length; i < j; i++){
+        if(x >= zoom[i].pos_x && x <= zoom[i].pos_x+30){
+            if(y >= zoom[i].pos_y && y <= zoom[i].pos_y+30){
                 $('#zoom').remove();
                 var zoomed = $('<div id="zoom">');
                 zoomed.css({
@@ -157,7 +134,7 @@ $("#place_canvas").on('mousemove', function(evt){
                 var ctxZoom = canvasZoom[0].getContext("2d");
                 var img = new Image();
                 img.src = mapImg;
-                var imgData=ctxZoom.drawImage(img, datosDoomies[i].xPosition, datosDoomies[i].yPosition, datosDoomies[i].width, datosDoomies[i].height, 0 , 0, 300 , 300 );
+                var imgData=ctxZoom.drawImage(img, zoom[i].pos_x, zoom[i].pos_y, zoom[i].width_zoom, zoom[i].heigth_zoom, 0 , 0, 300 , 300);
                 break;
             }else{
                 $('#zoom').remove();
@@ -169,14 +146,14 @@ $("#place_canvas").on('mousemove', function(evt){
 });
 
 var showZoom = function(data){
-    var current = data || datosDoomies;
+    var current = data || zoom;
     var c = document.getElementById("place_canvas");
     var ctx = c.getContext("2d");
     for(var i=0,j=current.length; i < j; i++){
         var imageInfo = current[i];
         var image = new Image();
         image.src = 'http://png-3.findicons.com/files/icons/2338/reflection/128/zoom_in.png';
-        ctx.drawImage(image, imageInfo.xPosition, imageInfo.yPosition, 30, 30);
+        ctx.drawImage(image, imageInfo.pos_x, imageInfo.pos_y, 30, 30);
     }
 
 }

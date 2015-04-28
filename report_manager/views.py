@@ -109,9 +109,6 @@ def events_in_date_range(request, place_pk):
     # Getting the place to filter events
     place = get_object_or_404(Place, pk=place_pk)
 
-    print date(end_year, end_month, end_day)
-    print date(end_year, end_month, end_day) + timedelta(days=1)
-
     # Filtering events in a place and a in a date range
     events = Event.objects.filter(sensor__floor__place=place)\
         .filter(timestamp__gte=date(start_year, start_month, start_day),

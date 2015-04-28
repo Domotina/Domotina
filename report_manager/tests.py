@@ -1,5 +1,6 @@
 # -*- encoding: utf-8 -*-
 import unittest
+import datetime
 from report_manager import central_report_gen, owner_report_gen as owner_rg
 from map.models import Place
 
@@ -116,47 +117,64 @@ class CentralReportTests(unittest.TestCase):
 
     def setUp(self):
         self.month = 2
-        self.year = 2015
-        self.places = []
+        self.year = 2000
+        self.places = [1]
+        self.start_date = ""
+        self.end_date = ""
 
     def tearDown(self):
         del self.month
         del self.year
         del self.places
+        del self.start_date
+        del self.end_date
 
     def test_escenario1(self):
         "Escenario 1: Dado que soy un usuario de la central cuando seleccione un mes y aun año en el que no hay registros de eventos en los inmuebles que administro entonces no debe generar un reporte y debe informar que no hay registro disponibles para construir el reporte."
 
         #valida las entradas
-        self.assertTrue(central_report_gen.validation_entry(self.year,self.month,self.places))
+        self.assertTrue(central_report_gen.validation_entry(self.year,self.month))
+        # Ajusta fechas
+        self.start_date = central_report_gen.get_start_date(self.year,self.month)
+        self.end_date = central_report_gen.get_end_date(self.year,self.month)
         #busca los eventos
-        events = central_report_gen.find_events(self.year,self.month,self.places)
+        events = central_report_gen.find_events(self.start_date,self.end_date,self.places)
         #Generar el report, pero dado que no hay evento, debe regresar como Falsa la creación del report.
-        self.assertFalse(central_report_gen.generate_report(events))
+        self.assertFalse(central_report_gen.are_events_to_report(events))
 
     def test_escenario2(self):
         "Escenario 2: Dado que soy un usuario de la central Cuando seleccione un mes, un año y una urbanización o edificio Entonces se genera un reporte con los eventos ocurridos en los inmuebles en la urbanización o edificio seleccionado y en el periodo de año y mes referenciado."
 
         #Carga la urbanización/edificio
-        self.places = Place.objects.get(pk=1)
+        self.places = [4]
+        self.year=2015
+        self.month=4
         #valida las entradas
-        self.assertTrue(central_report_gen.validation_entry(self.year,self.month,self.places))
+        self.assertTrue(central_report_gen.validation_entry(self.year,self.month))
+        # Ajusta fechas
+        self.start_date = central_report_gen.get_start_date(self.year,self.month)
+        self.end_date = central_report_gen.get_end_date(self.year,self.month)
         #busca los eventos
-        events = central_report_gen.find_events(self.year,self.month,self.places)
+        events = central_report_gen.find_events(self.start_date,self.end_date,self.places)
         #Generar el report, pero dado que no hay evento, debe regresar como Falsa la creación del report.
-        self.assertTrue(central_report_gen.generate_report(events))
+        self.assertTrue(central_report_gen.are_events_to_report(events))
 
 
     def test_escenario3(self):
         "Escenario 3: Dado que soy un usuario de la central Cuando seleccione un mes y un año y pulse la opción de generar reporte de incidentes Entonces se genera un reporte con los incidentes ocurridos en todos los inmuebles registrados en la central"
         #Carga la urbanización/edificio
-        self.places = [1]
+        self.places = []
+        self.year=2015
+        self.month=4
         #valida las entradas
-        self.assertTrue(central_report_gen.validation_entry(self.year,self.month,self.places))
+        self.assertTrue(central_report_gen.validation_entry(self.year,self.month))
+        # Ajusta fechas
+        self.start_date = central_report_gen.get_start_date(self.year,self.month)
+        self.end_date = central_report_gen.get_end_date(self.year,self.month)
         #busca los eventos
-        events = central_report_gen.find_events(self.year,self.month,self.places)
+        events = central_report_gen.find_events(self.start_date,self.end_date,self.places)
         #Generar el report, pero dado que no hay evento, debe regresar como Falsa la creación del report.
-        self.assertTrue(central_report_gen.generate_report(events))
+        self.assertTrue(central_report_gen.are_events_to_report(events))
 
 
     def test_escenario4(self):
@@ -165,7 +183,7 @@ class CentralReportTests(unittest.TestCase):
         # Se ajusta a un mes inexistente
         self.month=0
         #Valida que esten todas las entradas
-        self.assertFalse(central_report_gen.validation_entry(self.year,self.month,self.places))
+        self.assertFalse(central_report_gen.validation_entry(self.year,self.month))
 
 
     def test_escenario5(self):
@@ -174,4 +192,4 @@ class CentralReportTests(unittest.TestCase):
         # Se ajusta a un mes inexistente
         self.year=0
         #Valida que esten todas las entradas
-        self.assertFalse(central_report_gen.validation_entry(self.year,self.month,self.places))
+        self.assertFalse(central_report_gen.validation_entry(self.year,self.month))

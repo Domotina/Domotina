@@ -1,15 +1,23 @@
 from django.core import serializers
+import cgi
+from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.decorators import user_passes_test
 from django.contrib.auth.models import User
 from .notificator import send_email
 from map.models import Neighborhood, Place, Floor
-from django.template import RequestContext
+from django.contrib.messages import error
 from django.shortcuts import render_to_response
 from django.contrib.auth.models import Permission
 from django.contrib.contenttypes.models import ContentType
 from django.http import StreamingHttpResponse, HttpResponse
+from report_manager import central_report_gen
+import cStringIO as StringIO
+from xhtml2pdf import pisa
+from django.template import RequestContext
+from django.template.loader import render_to_string
+from report_manager.views import fetch_resources
 
 def user_can_see(user):
     return user.is_superuser or user.groups.filter(name='UsersCentral').exists()
@@ -36,7 +44,7 @@ def central_create(request):
             place = Place(owner=request.user, neighborhood=neighborhood, name=name)
             place.save()
             for j in range(floors):
-                floor = Floor(place=place, number=(j+1), map=map_url)
+                floor = Floor(place=place, number=(j + 1), map=map_url)
                 floor.save()
         return redirect('central_home')
     else:
@@ -95,12 +103,13 @@ def central_huge_load(request):
     return render(request, 'owner_huge_load.html', context)
 
 
-
 @login_required
 def central_delegate(request):
     context = {'user': request.user}
     return render(request, 'delegates_owner_principal.html', context)
 
+
+# completar
 @login_required
 def central_individual_delegate_load(request):
     if request.method == "POST":
@@ -123,6 +132,14 @@ def central_individual_delegate_load(request):
         userCreate.is_staff = False
         userCreate.groups.add(4)
 
+        # userCreate = User.objects.create_user(username=username, first_name=name, last_name=lastName, email=emailUser,
+        # password='DOMOTINA123')
+        # userCreate.is_superuser = False
+        # userCreate.is_active = True
+        # userCreate.is_staff = False
+        # userCreate.groups.add(2)#Falta
+        # userCreate.save()
+        # send_email(userCreate)
         content_type = ContentType.objects.get_for_model(Place)
         permission = Permission.objects.get(content_type=content_type, codename='add_place')
         userCreate.user_permissions.add(permission)
@@ -136,6 +153,7 @@ def central_individual_delegate_load(request):
         context = {'user': request.user, 'users': users}
         return render(request, 'delegates_individual.html', context)
 
+
 def getHouses(request):
     owner_id = request.GET['owner_id']
     usersearch = User.objects.get(pk=int(owner_id))
@@ -147,6 +165,7 @@ def getHouses(request):
 def central_huge_delegate_load(request):
     context = {'user': request.user}
     return render(request, 'delegates_huge_load.html', context)
+
 
 @login_required
 def central_building_neigh(request):
@@ -162,5 +181,37 @@ def central_building_create(request):
 
 @login_required
 def central_month_report(request):
-    context = {'user': request.user}
+    neighborhoods = central_report_gen.get_neighborhood
+    context = {'user': request.user, 'neighborhoods': neighborhoods}
     return render(request, 'central_month_report.html', context)
+
+
+@login_required
+def generate_monthly_report(request):
+    year = int(request.POST['year'])
+    month = int(request.POST['month'])
+    neighborhoods = request.POST.getlist('neighborhood')
+    if neighborhoods[0] in '0':
+        neighborhoods = []
+
+    if central_report_gen.validation_entry(year, month):
+        start_date = central_report_gen.get_start_date(year, month)
+        end_date = central_report_gen.get_end_date(year, month)
+        events = central_report_gen.find_events(start_date, end_date, neighborhoods)
+        if central_report_gen.are_events_to_report(events):
+            html = render_to_string('report.html',
+                                    {'pagesize': 'A4', 'events': events, 'start': start_date, 'end': end_date, 'year': year,
+                                     'month': month}, context_instance=RequestContext(request))
+            result = StringIO.StringIO()
+            pdf = pisa.pisaDocument(StringIO.StringIO(html.encode("UTF-8")), result, link_callback=fetch_resources)
+            if not pdf.err:
+                return HttpResponse(result.getvalue(), content_type='application/pdf')
+            return HttpResponse('PDF document cannot be generated: %s' % cgi.escape(html))
+        else:
+            error(request, "No events to generate report.")
+            return redirect('central_month_report')
+    else:
+        error(request, "Error: Please, check if you selected correctly the month, year and buildings/urbanizations of interest to you.")
+        return redirect('central_month_report')
+
+

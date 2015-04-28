@@ -61,13 +61,15 @@ def place_view(request, pk):
 
     sensors_json = ','.join(current_floor.get_sensors_json(sensor_type=sensor_type))
 
+    zoom_json = ','.join(current_floor.get_zoom_json())
+
     types = SensorType.objects.all()
 
     current_date = datetime.now().strftime("%Y%m%d")
 
     context = {'floor': current_floor, 'sensors': sensors_json, 'floors': floors,
                'events': events, 'alarms': alarms, 'types': types,
-               'type': sensor_type, 'now': current_date}
+               'type': sensor_type, 'now': current_date, 'zoom': zoom_json}
     return render(request, 'place_details.html', context)
 
 
@@ -187,3 +189,4 @@ class SensorViewSet(viewsets.ModelViewSet):
     """
     queryset = Sensor.objects.all()
     serializer_class = SensorSerializer
+

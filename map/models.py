@@ -108,6 +108,15 @@ class Floor(models.Model):
                 sensors_array.append(sensor)
         return sensors_array
 
+    def get_zoom_json(self):
+        zoom_array = []
+        zooms = self.zooms.get_queryset()
+        for zoom in zooms:
+            zoom_json = zoom.zoom_to_json()
+            if zoom_json:
+                zoom_array.append(zoom_json)
+        return zoom_array
+
 
 class SensorType(models.Model):
     name = models.CharField("type", max_length=50)
@@ -246,7 +255,7 @@ class Delegate(models.Model):
         return self.delegate.username
 
 class ZoomLocation(models.Model):
-    floor = models.ForeignKey(Floor, verbose_name="floor", related_name="zoom")
+    floor = models.ForeignKey(Floor, verbose_name="floor", related_name="zooms")
     pos_x = models.PositiveIntegerField("X position in map", default=0)
     pos_y = models.PositiveIntegerField("Y position in map", default=0)
     width_zoom = models.PositiveIntegerField("Width zoom", default=0)
@@ -255,7 +264,7 @@ class ZoomLocation(models.Model):
     class Meta:
         ordering = ["floor"]
 
-    def to_json(self):
+    def zoom_to_json(self):
         zoom = '{floor: "%d", pos_x: %d, pos_y: %d, ' \
                  'width_zoom: "%d", heigth_zoom: %d' \
                  % (self.floor.number,
@@ -263,3 +272,4 @@ class ZoomLocation(models.Model):
                     self.pos_y,
                     self.width_zoom,
                     self.heigth_zoom)
+        zoom += '}'

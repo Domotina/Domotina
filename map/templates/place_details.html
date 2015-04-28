@@ -137,6 +137,9 @@
     </div>
     <script>
         var sensors = [{{sensors | safe }}];
+        var zoom = [{{zoom | safe }}];
+        console.log(sensors);
+        console.log(zoom);
     </script>
     <script src='{% static "js/place_details.js" %}'></script>
 {% endblock %}

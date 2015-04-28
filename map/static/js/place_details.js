@@ -88,8 +88,9 @@ $("#place_canvas").on("click", function (event) {
                 sensorStatus(sensor);
                 if ((sensor.posX <= event.offsetX && event.offsetX <= sensor.posX + area) &&
                     (sensor.posY <= event.offsetY && event.offsetY <= sensor.posY + area)) {
-
-                    break;
+                    body.html("Sensor on " + (sensor.description || "Private Asset") + "<br/>Status: " + sensor.status);
+                    modal.show();
+                    return;
                 }
             }
         }

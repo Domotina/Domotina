@@ -129,7 +129,7 @@ $("#place_canvas").on('mousemove', function(evt){
                 var ctxZoom = canvasZoom[0].getContext("2d");
                 var img = new Image();
                 img.src = mapImg;
-                var imgData=ctxZoom.drawImage(img, zoom[i].pos_x, zoom[i].pos_y, zoom[i].width_zoom, zoom[i].heigth_zoom, 0 , 0, 300 , 300);
+                var imgData=ctxZoom.drawImage(img, zoom[i].pos_x, zoom[i].pos_y, zoom[i].width_zoom, zoom[i].height_zoom, 0 , 0, 300 , 300);
 
                 var sensors = window.sensors;
 

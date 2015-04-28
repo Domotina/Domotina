@@ -259,16 +259,16 @@ class ZoomLocation(models.Model):
     pos_x = models.PositiveIntegerField("X position in map", default=0)
     pos_y = models.PositiveIntegerField("Y position in map", default=0)
     width_zoom = models.PositiveIntegerField("Width zoom", default=0)
-    heigth_zoom = models.PositiveIntegerField("Heigth zoom", default=0)
+    height_zoom = models.PositiveIntegerField("Height zoom", default=0)
 
     class Meta:
         ordering = ["floor"]
 
     def zoom_to_json(self):
         return '{floor: %d, pos_x: %d, pos_y: %d, ' \
-                 'width_zoom: %d, heigth_zoom: %d}' \
+                 'width_zoom: %d, height_zoom: %d}' \
                  % (self.floor.number,
                     self.pos_x,
                     self.pos_y,
                     self.width_zoom,
-                    self.heigth_zoom)
+                    self.height_zoom)

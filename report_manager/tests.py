@@ -1,16 +1,14 @@
 # -*- encoding: utf-8 -*-
 import unittest
-import datetime
 from report_manager import central_report_gen, owner_report_gen as owner_rg
-from map.models import Place
 
 
 class OwnerReportTests(unittest.TestCase):
 
     def test_us011_scenario1(self):
-        ''' Dado que soy un propietario
-            Cuando seleccione un rango de fechas en el que no hay registros de eventos ocurridos en alguno de mis inmuebles
-            Entonces no debe generar un reporte y debe informar que no hay registro disponibles según los datos ingresados'''
+        ''' US 11 - Scenario 1: Dado que soy un propietario > \
+Cuando seleccione un rango de fechas en el que no hay registros de eventos ocurridos en alguno de mis inmuebles > \
+Entonces no debe generar un reporte y debe informar que no hay registro disponibles según los datos ingresados'''
 
         self.start_date = "2013/01/01"
         self.end_date = "2013/01/10"
@@ -35,10 +33,9 @@ class OwnerReportTests(unittest.TestCase):
             self.assertTrue(False)
 
     def test_us011_scenario2(self):
-        ''' Dado que soy un propietario
-            Cuando seleccione un rango de fechas y hay eventos para el inmueble actual.
-            Entonces se genera un reporte con los eventos ocurridos en mi inmueble detallando principalmente el activo afectado,
-            cambio de estado y el momento en el que ocurrio el evento.'''
+        ''' US 11 - Scenario 2:  Dado que soy un propietario > \
+Cuando seleccione un rango de fechas y hay eventos para el inmueble actual > \
+Entonces se genera un reporte con los eventos ocurridos en mi inmueble detallando principalmente el activo afectado, cambio de estado y el momento en el que ocurrio el evento.'''
 
         self.start_date = "2013/01/01"
         self.end_date = "2015/12/31"
@@ -63,10 +60,9 @@ class OwnerReportTests(unittest.TestCase):
             self.assertTrue(False)
 
     def test_us011_scenario3(self):
-        ''' Dado que soy un propietario
-            Cuando seleccione unicamente la fecha inicial del rango de fechas y pulse la opción de generar reporte de eventos
-            Entonces no se genera el reporte y se informa al usuario que hace falta ingresar la fecha final y el inmueble para
-            la generacion.'''
+        ''' US 11 - Scenario 3:  Dado que soy un propietario > \
+Cuando seleccione unicamente la fecha inicial del rango de fechas y pulse la opción de generar reporte de eventos > \
+Entonces no se genera el reporte y se informa al usuario que hace falta ingresar la fecha final y el inmueble para la generacion.'''
 
         self.start_date = "2015/01/01"
         self.end_date = ""
@@ -78,10 +74,9 @@ class OwnerReportTests(unittest.TestCase):
         self.assertFalse(owner_rg.is_valid_format(self.end_date))
 
     def test_us011_scenario4(self):
-        ''' Dado que soy un propietario
-            Cuando seleccione unicamente la fecha final del rango de fechas y pulse la opción de generar reporte de eventos
-            Entonces no se genera el reporte y se informa al usuario que hace falta ingresar la fecha inicial y el inmueble
-            para la generacion.'''
+        ''' US 11 - Scenario 4: Dado que soy un propietario > \
+Cuando seleccione unicamente la fecha final del rango de fechas y pulse la opción de generar reporte de eventos > \
+Entonces no se genera el reporte y se informa al usuario que hace falta ingresar la fecha inicial y el inmueble para la generacion.'''
 
         self.start_date = ""
         self.end_date = "2015/01/20"
@@ -93,10 +88,9 @@ class OwnerReportTests(unittest.TestCase):
         self.assertTrue(owner_rg.is_valid_format(self.end_date))
 
     def test_us011_scenario5(self):
-        ''' Dado que soy un propietario
-            Cuando ingreso el rango de fechas y el inmueble, pero la fecha final es menor que la fecha inicial
-            Entonces no se genera el reporte y se informa al usuario que la fecha final es menor que la fecha inicial y
-            por ende no se puede especificar el rango de fechas para realizar la generacion.'''
+        ''' US 11 - Scenario 5: Dado que soy un propietario > \
+Cuando ingreso el rango de fechas y el inmueble, pero la fecha final es menor que la fecha inicial > \
+Entonces no se genera el reporte y se informa al usuario que la fecha final es menor que la fecha inicial y por ende no se puede especificar el rango de fechas para realizar la generacion.'''
 
         self.start_date = "2015/01/01"
         self.end_date = "2015/01/20"

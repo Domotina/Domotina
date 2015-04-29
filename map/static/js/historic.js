@@ -19,6 +19,7 @@ $(function () {
     calendar.datepicker({
         format: 'yyyymmdd',
         todayHighlight: true,
+        startDate: new Date(1900, 0, 1),
         endDate: new Date(),
         todayBtn: true
     });

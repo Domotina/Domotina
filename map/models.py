@@ -267,9 +267,9 @@ class ZoomLocation(models.Model):
 
     def zoom_to_json(self):
         return '{floor: %d, posX: %d, posY: %d, ' \
-                 'width_zoom: %d, height_zoom: %d}' \
-                 % (self.floor.number,
-                    self.pos_x,
-                    self.pos_y,
-                    self.width_zoom,
-                    self.height_zoom)
+               'width_zoom: %d, height_zoom: %d}' \
+               % (self.floor.number,
+                  self.pos_x,
+                  self.pos_y,
+                  self.width_zoom,
+                  self.height_zoom)

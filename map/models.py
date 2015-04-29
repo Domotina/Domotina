@@ -1,11 +1,11 @@
-from datetime import timedelta, time, datetime
+from datetime import timedelta
 
 from django.db import models
 from django.contrib.auth.models import User
 
 
 def datetime_to_js(dt):
-    return "new Date(%(year)s, %(month)s, %(day)s, %(h)s, %(m)s, %(s)s)" \
+    return "new Date('%(year)s, %(month)s, %(day)s %(h)s:%(m)s:%(s)s')" \
            % {'year': dt.strftime("%Y"),
               'month': dt.strftime("%m"),
               'day': dt.strftime("%d"),
@@ -254,6 +254,7 @@ class Delegate(models.Model):
     def __unicode__(self):
         return self.delegate.username
 
+
 class ZoomLocation(models.Model):
     floor = models.ForeignKey(Floor, verbose_name="floor", related_name="zooms")
     pos_x = models.PositiveIntegerField("X position in map", default=0)
@@ -266,9 +267,9 @@ class ZoomLocation(models.Model):
 
     def zoom_to_json(self):
         return '{floor: %d, pos_x: %d, pos_y: %d, ' \
-                 'width_zoom: %d, height_zoom: %d}' \
-                 % (self.floor.number,
-                    self.pos_x,
-                    self.pos_y,
-                    self.width_zoom,
-                    self.height_zoom)
+               'width_zoom: %d, height_zoom: %d}' \
+               % (self.floor.number,
+                  self.pos_x,
+                  self.pos_y,
+                  self.width_zoom,
+                  self.height_zoom)

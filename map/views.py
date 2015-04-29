@@ -167,7 +167,7 @@ def map_history(request, place_pk, int_date):
         date = datetime.strptime(int_date, "%Y%m%d")
     except ValueError:
         pass
-    init_date = "new Date(%(year)s, %(month)s, %(day)s)" \
+    init_date = "new Date('%(year)s %(month)s %(day)s')" \
                 % {'year': date.strftime("%Y"),
                    'month': date.strftime("%m"),
                    'day': date.strftime("%d")}

@@ -12,17 +12,32 @@ function secondsFormatter(value) {
         ampm = " a.m.";
     }
     return hours + ":" + minutes + ":" + seconds + ampm;
-};
+}
 
 $(function () {
+    var calendar = $('#calendar');
+    calendar.datepicker({
+        format: 'yyyymmdd',
+        todayHighlight: true,
+        endDate: new Date(),
+        todayBtn: true
+    });
+
+    calendar.on("changeDate", function (event) {
+        var value = calendar.datepicker('getFormattedDate');
+        if (value) {
+            var url = window.location.pathname.replace(/\d+\/$/, value + "/");
+            window.location.pathname = url;
+        }
+    });
     var floorsElement = $("#floors");
     /*
-    Se carga el mapa del primer piso por defecto
+     Se carga el mapa del primer piso por defecto
      */
     $('#map').css("background-image", "url(" + floor.url + ")");
 
     /*
-    Se registran todas las opciones de pisos una vez carga el documento
+     Se registran todas las opciones de pisos una vez carga el documento
      */
     for (idx in window.floors) {
         if (window.floors.hasOwnProperty(idx)) {
@@ -31,10 +46,10 @@ $(function () {
     }
 
     /*
-    Cuando se selecciona un piso, se pinta de nuevo el mapa del piso
-    y los respectivos sensores
+     Cuando se selecciona un piso, se pinta de nuevo el mapa del piso
+     y los respectivos sensores
      */
-    floorsElement.change(function(){
+    floorsElement.change(function () {
         var idx = $("#floors").find(":selected").val();
         window.floor = window.floors[idx];
         $('#map').css("background-image", "url(" + floor.url + ")");
@@ -42,7 +57,7 @@ $(function () {
     });
 
     /*
-    Se crea el slider y se añade comportamiento cuando cambia su valor
+     Se crea el slider y se añade comportamiento cuando cambia su valor
      */
     var slider = $('#slider').slider({formater: secondsFormatter});
     slider.on('slide', function (value) {
@@ -51,17 +66,5 @@ $(function () {
         time.setMinutes(seconds / 60 % 60);
         time.setSeconds(seconds % 60);
         showIcons();
-    });
-
-    /*
-    Cuando se selecciona una fecha, se navega hasta el histórico en dicha fecha
-     */
-    $("#goToDate").submit(function(event){
-        var value = $("#calendar").val();
-        if(value){
-            var url = window.location.pathname.replace(/\d+\/$/, value.replace(/-/g,"")+"/");
-            window.location.pathname = url;
-        }
-        event.preventDefault();
     });
 });

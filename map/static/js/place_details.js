@@ -108,9 +108,9 @@ $("#place_canvas").on('mousemove', function(evt){
     var mapImg = $('.map.center-block').css('background-image');
     mapImg = mapImg.replace('url(','').replace(')','').replace('"', '').replace('"','');
 
-    for(var i in zoom){
-        if (zoom.hasOwnProperty(i)) {
-            if(x >= zoom[i].pos_x && x <= zoom[i].pos_x+30 && y >= zoom[i].pos_y && y <= zoom[i].pos_y+30){
+
+   for(var i=0, j = zoom.length; i < j; i++){
+        if(x >= zoom[i].pos_x && x <= zoom[i].pos_x+30 && y >= zoom[i].pos_y && y <= zoom[i].pos_y+30){
                 $('#zoom').remove();
                 var zoomed = $('<div id="zoom">');
                 zoomed.css({
@@ -125,12 +125,19 @@ $("#place_canvas").on('mousemove', function(evt){
 
                 $('body').append(zoomed);
 
-                var canvasZoom = $('<canvas width="300" height="300">');
+                var canvasZoom = $('<canvas width="350" height="200">');
                 zoomed.append(canvasZoom);
                 var ctxZoom = canvasZoom[0].getContext("2d");
                 var img = new Image();
                 img.src = mapImg;
-                var imgData=ctxZoom.drawImage(img, zoom[i].pos_x, zoom[i].pos_y, zoom[i].width_zoom, zoom[i].height_zoom, 0 , 0, 300 , 300);
+
+                var imgWidth = img.width;
+                var imgHeight = img.height;
+
+                var xFactor = imgWidth / 700;
+                var yFactor = imgHeight / 395;
+
+                ctxZoom.drawImage(img, zoom[i].pos_x * xFactor, zoom[i].pos_y*yFactor, zoom[i].width_zoom, zoom[i].height_zoom, 0 , 0, 350 , 200);
 
                 var sensors = window.sensors;
 
@@ -138,10 +145,9 @@ $("#place_canvas").on('mousemove', function(evt){
                     var sensor = sensors[j];
                     var image = new Image();
                     image.src = sensor.url;
-                    ctxZoom.drawImage(image, sensor.posX - zoom[i].pos_x, sensor.posY - zoom[i].pos_y);
+                    ctxZoom.drawImage(image, ((sensor.posX) - (zoom[i].pos_x)) * xFactor, ((sensor.posY) - (zoom[i].pos_y)) * yFactor, 15, 15);
                 }
                 break;
-            }
         }
         $('#zoom').remove();
     }

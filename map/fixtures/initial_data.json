@@ -2446,7 +2446,7 @@
         "floor": 4,
         "pos_x": 0,
         "pos_y": 0,
-        "width_zoom": 400,
+        "width_zoom": 360,
         "height_zoom": 200
     }
 },
@@ -2478,9 +2478,9 @@
     "fields": {
         "floor": 4,
         "pos_x": 0,
-        "pos_y": 210,
-        "width_zoom": 250,
-        "height_zoom": 250
+        "pos_y": 205,
+        "width_zoom": 430,
+        "height_zoom": 190
     }
 },
 {

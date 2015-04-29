@@ -265,7 +265,7 @@ class ZoomLocation(models.Model):
         ordering = ["floor"]
 
     def zoom_to_json(self):
-        return '{floor: %d, pos_x: %d, pos_y: %d, ' \
+        return '{floor: %d, posX: %d, posY: %d, ' \
                  'width_zoom: %d, height_zoom: %d}' \
                  % (self.floor.number,
                     self.pos_x,

@@ -110,7 +110,7 @@ $("#place_canvas").on('mousemove', function(evt){
 
 
    for(var i=0, j = zoom.length; i < j; i++){
-        if(x >= zoom[i].pos_x && x <= zoom[i].pos_x+30 && y >= zoom[i].pos_y && y <= zoom[i].pos_y+30){
+        if(x >= zoom[i].pos_x && x <= zoom[i].posX+30 && y >= zoom[i].posY && y <= zoom[i].posY+30){
                 $('#zoom').remove();
                 var zoomed = $('<div id="zoom">');
                 zoomed.css({
@@ -137,15 +137,15 @@ $("#place_canvas").on('mousemove', function(evt){
                 var xFactor = imgWidth / 700;
                 var yFactor = imgHeight / 395;
 
-                ctxZoom.drawImage(img, zoom[i].pos_x * xFactor, zoom[i].pos_y*yFactor, zoom[i].width_zoom, zoom[i].height_zoom, 0 , 0, 350 , 200);
+                ctxZoom.drawImage(img, zoom[i].posX * xFactor, zoom[i].posY*yFactor, zoom[i].width_zoom, zoom[i].height_zoom, 0 , 0, 350 , 200);
 
                 var sensors = window.sensors;
 
-                for(var j=0, le=sensors.length; j < le; j++){
-                    var sensor = sensors[j];
+                for(var k=0, le=sensors.length; k < le; k++){
+                    var sensor = sensors[k];
                     var image = new Image();
                     image.src = sensor.url;
-                    ctxZoom.drawImage(image, ((sensor.posX) - (zoom[i].pos_x)) * xFactor, ((sensor.posY) - (zoom[i].pos_y)) * yFactor, 15, 15);
+                    ctxZoom.drawImage(image, ((sensor.posX) - (zoom[i].posX)) * xFactor, ((sensor.posY) - (zoom[i].posY)) * yFactor, 15, 15);
                 }
                 break;
         }
@@ -161,7 +161,7 @@ var showZoom = function(data){
         var imageInfo = current[i];
         var image = new Image();
         image.src = 'http://png-3.findicons.com/files/icons/2338/reflection/128/zoom_in.png';
-        ctx.drawImage(image, imageInfo.pos_x, imageInfo.pos_y, 30, 30);
+        ctx.drawImage(image, imageInfo.posX, imageInfo.posY, 30, 30);
     }
 
 }

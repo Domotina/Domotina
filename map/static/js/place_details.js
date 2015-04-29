@@ -110,7 +110,7 @@ $("#place_canvas").on('mousemove', function(evt){
 
 
    for(var i=0, j = zoom.length; i < j; i++){
-        if(x >= zoom[i].pos_x && x <= zoom[i].posX+30 && y >= zoom[i].posY && y <= zoom[i].posY+30){
+        if(x >= zoom[i].posX && x <= zoom[i].posX+30 && y >= zoom[i].posY && y <= zoom[i].posY+30){
                 $('#zoom').remove();
                 var zoomed = $('<div id="zoom">');
                 zoomed.css({

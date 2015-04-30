@@ -25,7 +25,7 @@ def user_can_see(user):
 
 
 @login_required
-@user_passes_test(user_can_see, login_url='/central/')
+@user_passes_test(user_can_see, login_url='/map/')
 def central_home(request):
     context = {'user': request.user}
     return render(request, 'central_home.html', context)

@@ -1745,8 +1745,8 @@
         "last_login": "2015-04-07T20:31:31Z", 
         "groups": [
             4
-        ], 
-        "user_permissions": [], 
+        ],
+        "user_permissions": [28],
         "password": "pbkdf2_sha256$12000$N86jDM6VMMBS$QSBrO+gI9xg1gF2uffrFTLoXSPILd0qfCP+Dm6f0bY4=",
         "email": "ra.gomez11@uniandes.edu.co", 
         "date_joined": "2015-04-07T20:31:31Z"
@@ -2768,5 +2768,21 @@
         "width_zoom": 450,
         "height_zoom": 250
     }
-}
+},
+  {
+    "pk": 1,
+    "model": "map.delegate",
+    "fields": {
+      "place": 4,
+      "delegate": 4
+    }
+  },
+  {
+    "pk": 2,
+    "model": "map.delegate",
+    "fields": {
+      "place": 5,
+      "delegate": 4
+    }
+  }
 ]

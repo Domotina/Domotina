@@ -5,6 +5,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.decorators import user_passes_test
 from django.contrib.auth.models import User
+from middleware.http import Http403
 from .notificator import send_email
 from map.models import Neighborhood, Place, Floor, Delegate
 from rule_engine.models import ScheduleDaily
@@ -120,11 +121,6 @@ def central_individual_delegate_load(request):
         owner = str(request.POST.get("owner", ""))
         property = int(request.POST.get("property", ""))
         choices = request.POST.getlist('choice')
-        print owner
-        print property
-        print emailUser
-        print choices
-        print 'fin'
 
         userCreate = User.objects.create_user(username=username, first_name=name, last_name=lastName, email=emailUser,
                                               password='DOMOTINA123')
@@ -161,6 +157,13 @@ def getHouses(request):
     placeOwner = Place.objects.all().filter(owner=usersearch)
     data = serializers.serialize('json', placeOwner)
     return HttpResponse(data, content_type="application/json")
+
+def delegateoption(request):
+    if request.user.groups.filter(name='UsersOwners').exists() == False:
+        raise Http403
+
+    return render(request, 'delegateoption.html')
+
 
 @login_required
 def central_huge_delegate_load(request):

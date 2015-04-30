@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+ - Delegate option
+{% endblock %}
+
+{% block navbar %}
+<li><a href='{% url "central_home" %}'>Home</a></li>
+<li><a href='{% url "central_create" %}'>Properties</a></li>
+<li><a href='{% url "central_owner_principal" %}'>Owners</a></li>
+<li><a href='{% url "central_delegate" %}'>Delegates</a></li>
+<li><a href='{% url "central_month_report" %}'>Report</a></li>
+{% endblock navbar %}
+
+{% block content %}
+<div>
+    <h2>{{ place.name }}</h2>
+</div>
+<div class="panel panel-warning">
+    <div class="panel-heading">
+        <h3 class="panel-title">Delegates</h3>
+    </div>
+    {% if sensors %}
+    <table class="table table-striped table-hover ">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for sensor in sensors %}
+        <tr>
+            <td>{{sensor}}</td>
+            <td>
+                <a href='{% url "edit_sensor" place.pk sensor.pk %}' class="btn btn-sm btn-default">Edit</a>
+            </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+    <ul class="list-group">
+        <li class="list-group-item">No delegates for this place</li>
+    </ul>
+    {% endif %}
+</div>
+{% endblock content %}

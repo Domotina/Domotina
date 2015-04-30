@@ -7,6 +7,7 @@ from django.contrib.auth.decorators import user_passes_test
 from django.contrib.auth.models import User
 from .notificator import send_email
 from map.models import Neighborhood, Place, Floor, Delegate
+from rule_engine.models import ScheduleDaily
 from django.contrib.messages import error
 from django.shortcuts import render_to_response
 from django.contrib.auth.models import Permission
@@ -134,8 +135,13 @@ def central_individual_delegate_load(request):
         send_email(userCreate)
 
         content_type = ContentType.objects.get_for_model(Place)
-        permission = Permission.objects.get(content_type=content_type, codename='add_place')
-        userCreate.user_permissions.add(permission)
+        for permi in choices:
+            if permi=='viewMap':
+                permission = Permission.objects.get(content_type=content_type, codename='add_place')
+                userCreate.user_permissions.add(permission)
+            elif permi=='viewRules':
+                permission = Permission.objects.get(content_type=ContentType.objects.get_for_model(ScheduleDaily), codename='add_scheduledaily')
+                userCreate.user_permissions.add(permission)
 
         userCreate.save()
 

@@ -172,9 +172,9 @@ class UserDelegate(unittest.TestCase):
     def testStage8(self):
         user = User.objects.get(username='buildersmart')
         content_type = ContentType.objects.get_for_model(Place)
-        permission = Permission.objects.get(content_type=content_type, codename='add_place')
+        permission = Permission.objects.get(content_type=content_type, codename='change_place')
 
-        self.assertTrue(user.has_perm('map.add_place') == False)
+        self.assertTrue(user.has_perm('map.change_place') == False)
 
         """
         Escenario 9

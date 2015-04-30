@@ -158,11 +158,21 @@ def getHouses(request):
     data = serializers.serialize('json', placeOwner)
     return HttpResponse(data, content_type="application/json")
 
-def delegateoption(request):
+def delegateoption(request, place_pk):
+
     if request.user.groups.filter(name='UsersOwners').exists() == False:
         raise Http403
 
-    return render(request, 'delegateoption.html')
+    place = get_object_or_404(Place, pk=place_pk)
+    placesDelegate = Delegate.objects.all().filter(place=place)
+
+    onlyUsername = []
+    for item in placesDelegate:
+        onlyUsername.append(item.getDelegate())
+        print onlyUsername
+
+    context = {'users': onlyUsername}
+    return render(request, 'delegateoption.html', context)
 
 
 @login_required

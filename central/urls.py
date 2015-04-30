@@ -15,5 +15,5 @@ urlpatterns = patterns('central.views',
     url(r'^report/$', 'central_month_report', name="central_month_report"),
     url(r'^report/gen/', 'generate_monthly_report', name="generate_monthly_report"),
     url(r'^getHouses/$', 'getHouses', name="getHouses"),
-    url(r'^delegateoption/', 'delegateoption', name="delegateoption"),
+    url(r'^delegateoption/(?P<place_pk>\d+)', 'delegateoption', name="delegateoption"),
 )

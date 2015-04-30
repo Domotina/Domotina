@@ -254,6 +254,9 @@ class Delegate(models.Model):
     def getPlace(self):
         return self.place
 
+    def getDelegate(self):
+        return self.delegate
+
     def __unicode__(self):
         return self.delegate.username
 

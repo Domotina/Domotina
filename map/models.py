@@ -251,6 +251,9 @@ class Delegate(models.Model):
         verbose_name_plural = "delegates"
         ordering = ["place", "delegate"]
 
+    def getPlace(self):
+        return self.place
+
     def __unicode__(self):
         return self.delegate.username
 

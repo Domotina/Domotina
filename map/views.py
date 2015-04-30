@@ -8,7 +8,7 @@ from django.contrib.auth.decorators import permission_required
 from rest_framework import viewsets
 
 from middleware.http import Http403
-from .models import Place, Floor, Sensor, SensorType, Neighborhood
+from .models import Place, Floor, Sensor, SensorType, Neighborhood, Delegate
 from .serializers import SensorSerializer
 from event_manager.models import Event, Alarm
 
@@ -33,21 +33,36 @@ def paginator(qs, page, items_per_page):
 
 
 @login_required
-@user_passes_test(user_can_see, login_url='/')
+#@user_passes_test(user_can_see, login_url='/')
 #@user_passes_test(user_can_see_central, login_url='/central/')
 #@permission_required('map.add_place', login_url='/map/')
 def my_places(request):
-    places = Place.objects.filter(owner=request.user)
-    context = {'user': request.user, 'places': places}
-    return render(request, 'myplaces.html', context)
+
+    if request.user.has_perm('map.add_place') == False and request.user.groups.filter(name='UsersOwners').exists() == False:
+        raise Http403
+
+    if request.user.groups.filter(name='UsersOwners').exists():
+        places = Place.objects.filter(owner=request.user)
+        context = {'user': request.user, 'places': places}
+        return render(request, 'myplaces.html', context)
+    else:
+        placesDelegate = Delegate.objects.all().filter(delegate=request.user)
+        print placesDelegate
+        place = []
+        for item in placesDelegate:
+            place.append(item.getPlace())
+            print item.getPlace()
+
+        context = {'user': request.user, 'places': place}
+        return render(request, 'myplaces.html', context)
 
 
 @login_required
 def place_view(request, pk):
     place = get_object_or_404(Place, pk=pk)
 
-    if request.user != place.owner:
-        raise Http403
+    #if request.user != place.owner:
+        #raise Http403
 
     floors = paginator(place.floors.order_by("number"), request.GET.get("floor_page"), 1)
     current_floor = floors.object_list[0]

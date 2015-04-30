@@ -6,7 +6,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.decorators import user_passes_test
 from django.contrib.auth.models import User
 from .notificator import send_email
-from map.models import Neighborhood, Place, Floor
+from map.models import Neighborhood, Place, Floor, Delegate
 from django.contrib.messages import error
 from django.shortcuts import render_to_response
 from django.contrib.auth.models import Permission
@@ -109,7 +109,6 @@ def central_delegate(request):
     return render(request, 'delegates_owner_principal.html', context)
 
 
-# completar
 @login_required
 def central_individual_delegate_load(request):
     if request.method == "POST":
@@ -118,35 +117,31 @@ def central_individual_delegate_load(request):
         lastName = str(request.POST.get("lastName", ""))
         emailUser = str(request.POST.get("inputEmail", ""))
         owner = str(request.POST.get("owner", ""))
-        property = str(request.POST.get("property", ""))
+        property = int(request.POST.get("property", ""))
         choices = request.POST.getlist('choice')
         print owner
         print property
+        print emailUser
         print choices
         print 'fin'
-        """
+
         userCreate = User.objects.create_user(username=username, first_name=name, last_name=lastName, email=emailUser,
-                                            password='DOMOTINA123')
+                                              password='DOMOTINA123')
         userCreate.is_superuser = False
         userCreate.is_active = True
         userCreate.is_staff = False
         userCreate.groups.add(4)
+        send_email(userCreate)
 
-        # userCreate = User.objects.create_user(username=username, first_name=name, last_name=lastName, email=emailUser,
-        # password='DOMOTINA123')
-        # userCreate.is_superuser = False
-        # userCreate.is_active = True
-        # userCreate.is_staff = False
-        # userCreate.groups.add(2)#Falta
-        # userCreate.save()
-        # send_email(userCreate)
         content_type = ContentType.objects.get_for_model(Place)
         permission = Permission.objects.get(content_type=content_type, codename='add_place')
         userCreate.user_permissions.add(permission)
 
         userCreate.save()
-        send_email(userCreate)
-        """
+
+        delegate = Delegate(place=Place.objects.get(pk=property), delegate=userCreate)
+        delegate.save()
+
         return redirect('central_home')
     else:
         users = User.objects.all()

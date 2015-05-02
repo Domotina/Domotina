@@ -17,10 +17,20 @@ Creation Delegate
 <script>
 $(function() {
     $("#owner").change(function() {
-    alert('hola');
+    var dinamic = '';
     $.get('/central/getHouses/', { owner_id: $("#owner").val() }, function(data){
-              alert(data);
-              alert('hola2');
+            dinamic += '<div class="form-group">'
+            dinamic += '<label for="property" class="col-lg-2 control-label">Property</label>'
+            dinamic += '<div class="col-lg-10">'
+            dinamic += '    <select class="form-control" id="property" name="property" required>'
+            dinamic += '        <!-- cargar propiedades del propietario seleccionado -->'
+            dinamic += '        <option value="0">Select</option>'
+                    for (var i=0;i<data.length;i++)
+                    {
+                        dinamic += '<option value="' + String(data[i].pk) + '">' + String(data[i].fields.name) + '</option>'
+                    }
+            dinamic += '</select></div></div>'
+            $('#result').html(dinamic);
            });
 });
 });
@@ -47,14 +57,14 @@ $(function() {
             <label class="col-lg-2 control-label">Last Name</label>
 
             <div class="col-lg-10">
-                <input class="form-control" id="lastName" placeholder="Last Name" type="text" name="lastname" required>
+                <input class="form-control" id="lastName" placeholder="Last Name" type="text" name="lastName" required>
             </div>
         </div>
         <div class="form-group">
             <label for="inputEmail" class="col-lg-2 control-label">Email</label>
 
             <div class="col-lg-10">
-                <input class="form-control" id="inputEmail" placeholder="Email" type="email" name="email" required>
+                <input class="form-control" id="inputEmail" placeholder="Email" type="email" name="inputEmail" required>
             </div>
         </div>
         <div class="form-group">
@@ -70,58 +80,48 @@ $(function() {
                 </select>
             </div>
         </div>
-        <div class="form-group">
-            <label for="property" class="col-lg-2 control-label">Property</label>
 
-            <div class="col-lg-10">
-                <select class="form-control" id="property" name="property" required>
-                    <!-- cargar propiedades del propietario seleccionado -->
-                    <option value="0">Select</option>
-                    {% for pla in place %}
-                    <option value="{{pla.pk}}"> {{pla.name|capfirst}}</option>
-                    {% endfor %}
-                </select>
-            </div>
-        </div>
+        <div id="result"></div>
+
         <div class="form-group">
             <label class="col-lg-2 control-label">Permissions</label>
 
             <div class="col-lg-10">
                 <div class="checkbox">
                     <label>
-                        <input type="checkbox"> View property (events and alarms)
+                        <input type="checkbox" name="choice" value="viewMap" checked> View property (events and alarms)
                     </label>
                 </div>
                 <div>
                     <label>
-                        <input type="checkbox"> Create or edit rules
+                        <input type="checkbox" name="choice" value="viewRules"> Create or edit rules
+                    </label>
+                </div>
+                <!--<div>
+                    <label>
+                        <input type="checkbox" name="choice" value="viewRules"> Delete rules
                     </label>
                 </div>
                 <div>
                     <label>
-                        <input type="checkbox"> Delete rules
+                        <input type="checkbox" name="choice" value="viewRules"> Create or edit sensors
                     </label>
                 </div>
                 <div>
                     <label>
-                        <input type="checkbox"> Create or edit sensors
+                        <input type="checkbox" name="choice" value="viewRules"> Delete sensors
                     </label>
                 </div>
                 <div>
                     <label>
-                        <input type="checkbox"> Delete sensors
+                        <input type="checkbox" name="choice" value="viewRules"> Sensors filter
                     </label>
                 </div>
                 <div>
                     <label>
-                        <input type="checkbox"> Sensors filter
+                        <input type="checkbox" name="choice" value="viewRules"> View delegates
                     </label>
-                </div>
-                <div>
-                    <label>
-                        <input type="checkbox"> View delegates
-                    </label>
-                </div>
+                </div>-->
             </div>
         </div>
         <div class="form-group">

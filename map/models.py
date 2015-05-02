@@ -1,11 +1,11 @@
-from datetime import timedelta, time, datetime
+from datetime import timedelta
 
 from django.db import models
 from django.contrib.auth.models import User
 
 
 def datetime_to_js(dt):
-    return "new Date(%(year)s, %(month)s, %(day)s, %(h)s, %(m)s, %(s)s)" \
+    return "new Date('%(year)s, %(month)s, %(day)s %(h)s:%(m)s:%(s)s')" \
            % {'year': dt.strftime("%Y"),
               'month': dt.strftime("%m"),
               'day': dt.strftime("%d"),
@@ -107,6 +107,15 @@ class Floor(models.Model):
             if sensor:
                 sensors_array.append(sensor)
         return sensors_array
+
+    def get_zoom_json(self):
+        zoom_array = []
+        zooms = self.zooms.get_queryset()
+        for zoom in zooms:
+            zoom_json = zoom.zoom_to_json()
+            if zoom_json:
+                zoom_array.append(zoom_json)
+        return zoom_array
 
 
 class SensorType(models.Model):
@@ -231,3 +240,42 @@ class Sensor(models.Model):
                 events_array.append(event_json)
         return events_array
 
+
+class Delegate(models.Model):
+    place = models.ForeignKey(Place, verbose_name="place", related_name="delegates")
+    delegate = models.ForeignKey(User, verbose_name="delegate", related_name="delegates",
+                                 limit_choices_to={'groups': 4})
+
+    class Meta:
+        verbose_name = "delegate"
+        verbose_name_plural = "delegates"
+        ordering = ["place", "delegate"]
+
+    def getPlace(self):
+        return self.place
+
+    def getDelegate(self):
+        return self.delegate
+
+    def __unicode__(self):
+        return self.delegate.username
+
+
+class ZoomLocation(models.Model):
+    floor = models.ForeignKey(Floor, verbose_name="floor", related_name="zooms")
+    pos_x = models.PositiveIntegerField("X position in map", default=0)
+    pos_y = models.PositiveIntegerField("Y position in map", default=0)
+    width_zoom = models.PositiveIntegerField("Width zoom", default=0)
+    height_zoom = models.PositiveIntegerField("Height zoom", default=0)
+
+    class Meta:
+        ordering = ["floor"]
+
+    def zoom_to_json(self):
+        return '{floor: %d, posX: %d, posY: %d, ' \
+               'width_zoom: %d, height_zoom: %d}' \
+               % (self.floor.number,
+                  self.pos_x,
+                  self.pos_y,
+                  self.width_zoom,
+                  self.height_zoom)

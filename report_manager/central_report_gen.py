@@ -14,7 +14,7 @@ def get_neighborhood():
 def validation_entry(year, month):
     validate = True
 
-    if not month in range(1, 12):
+    if not month in range(1, 13):
         validate = False
     if not year > 1900:
         validate = False

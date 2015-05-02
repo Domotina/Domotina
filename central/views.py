@@ -182,6 +182,8 @@ def editdelegate(request, place_pk, user_pk):
     if request.user.groups.filter(name='UsersOwners').exists() == False:
         raise Http403
 
+    userEdit = User.objects.get(pk= user_pk)
+
     place = get_object_or_404(Place, pk=place_pk)
     user = User.objects.filter(pk=user_pk)
     placesDelegate = Delegate.objects.all().filter(place=place)
@@ -191,7 +193,40 @@ def editdelegate(request, place_pk, user_pk):
         onlyUsername.append(item.getDelegate())
         print onlyUsername
 
-    context = {'users': onlyUsername, 'place': place, 'user': user}
+    permitions = []
+    if request.method == "POST":
+        choices = request.POST.getlist('choice')
+
+        #userEdit = User.objects.get(pk= user_pk)
+
+        content_type = ContentType.objects.get_for_model(Place)
+        for permi in choices:
+            if permi=='viewMap':
+                permission = Permission.objects.get(content_type=content_type, codename='add_place')
+                userEdit.user_permissions.add(permission)
+            else:
+                permission = Permission.objects.get(content_type=content_type, codename='add_place')
+                userEdit.user_permissions.delete(permission)
+
+            if permi=='viewRules':
+                permission = Permission.objects.get(content_type=ContentType.objects.get_for_model(ScheduleDaily), codename='add_scheduledaily')
+                userEdit.user_permissions.add(permission)
+            else:
+                permission = Permission.objects.get(content_type=ContentType.objects.get_for_model(ScheduleDaily), codename='add_scheduledaily')
+                userEdit.user_permissions.delete(permission)
+
+        userEdit.save()
+        context = {'users': onlyUsername, 'place': place, 'user': user, 'permitions': permitions}
+        return render(request, 'delegateoption.html', context)
+
+
+    if userEdit.has_perm('map.add_place') == True:
+        permitions.append('viewMap')
+    if userEdit.has_perm('rule_engine.add_scheduledaily') == True:
+        permitions.append('viewRules')
+
+    print permitions
+    context = {'users': onlyUsername, 'place': place, 'user': user, 'permitions': permitions}
     return render(request, 'edit_delegate.html', context)
 
 @login_required

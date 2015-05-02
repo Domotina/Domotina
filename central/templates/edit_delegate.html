@@ -11,6 +11,7 @@
 <div>
     <h2>{{ place.name }}</h2>
 </div>
+
 <div class="well">
     <form class="form-horizontal" method="post" action='/central/delegate_individual/'>
     <fieldset>
@@ -19,16 +20,35 @@
             <label class="col-lg-2 control-label">Permissions</label>
 
             <div class="col-lg-10">
+
+                {% if "viewMap" in permitions %}
                 <div class="checkbox">
                     <label>
                         <input type="checkbox" name="choice" value="viewMap" checked> View property (events and alarms)
                     </label>
                 </div>
+                {% else %}
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" name="choice" value="viewMap"> View property (events and alarms)
+                    </label>
+                </div>
+                {% endif %}
+
+                {% if "viewRules" in permitions %}
                 <div>
+                    <label>
+                        <input type="checkbox" name="choice" value="viewRules" checked> Create or edit rules
+                    </label>
+                </div>
+                {% else %}
+                    <div>
                     <label>
                         <input type="checkbox" name="choice" value="viewRules"> Create or edit rules
                     </label>
-                </div>
+                    </div>
+                {% endif %}
+
                 <!--<div>
                     <label>
                         <input type="checkbox" name="choice" value="viewRules"> Delete rules
@@ -64,6 +84,6 @@
         </div>
     </fieldset>
     {% csrf_token %}
-</form>
+    </form>
 </div>
 {% endblock content %}

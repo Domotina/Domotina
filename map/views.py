@@ -35,7 +35,7 @@ def my_places(request):
     if request.user.has_perm('map.add_place') == False and request.user.groups.filter(name='UsersOwners').exists() == False:
         raise Http403
 
-    if request.user.groups.filter(name='UsersOwners').exists():
+    if request.user.groups.filter(name='UsersOwners').exists() or request.user.is_superuser:
         places = Place.objects.filter(owner=request.user)
         context = {'user': request.user, 'places': places}
         return render(request, 'myplaces.html', context)

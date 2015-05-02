@@ -2776,13 +2776,5 @@
       "place": 4,
       "delegate": 4
     }
-  },
-  {
-    "pk": 2,
-    "model": "map.delegate",
-    "fields": {
-      "place": 5,
-      "delegate": 4
-    }
   }
 ]

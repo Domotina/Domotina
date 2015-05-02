@@ -161,8 +161,9 @@ def getHouses(request):
 @login_required
 def delegateoption(request, place_pk):
 
-    if request.user.groups.filter(name='UsersOwners').exists() == False:
-        raise Http403
+    if request.user.is_superuser == False:
+        if request.user.groups.filter(name='UsersOwners').exists() == False:
+            raise Http403
 
     place = get_object_or_404(Place, pk=place_pk)
     placesDelegate = Delegate.objects.all().filter(place=place)
@@ -178,14 +179,15 @@ def delegateoption(request, place_pk):
 
 @login_required
 def editdelegate(request, place_pk, user_pk):
-    print 'entro'
-    if request.user.groups.filter(name='UsersOwners').exists() == False:
-        raise Http403
-
+    """
+    if request.user.is_superuser == False:
+        if request.user.groups.filter(name='UsersOwners').exists() == False:
+            raise Http403
+    """
     userEdit = User.objects.get(pk= user_pk)
 
     place = get_object_or_404(Place, pk=place_pk)
-    user = User.objects.filter(pk=user_pk)
+    #user = User.objects.filter(pk=user_pk)
     placesDelegate = Delegate.objects.all().filter(place=place)
 
     onlyUsername = []
@@ -196,26 +198,33 @@ def editdelegate(request, place_pk, user_pk):
     permitions = []
     if request.method == "POST":
         choices = request.POST.getlist('choice')
-        print 'POST'
+        print choices
+
         #userEdit = User.objects.get(pk = user_pk)
         print userEdit
-        content_type = ContentType.objects.get_for_model(Place)
-        for permi in choices:
-            if permi == 'viewMap':
-                permission = Permission.objects.get(content_type=content_type, codename='add_place')
-                userEdit.user_permissions.add(permission)
-            else:
-                permission = Permission.objects.get(content_type=content_type, codename='add_place')
-                #userEdit.user_permissions.delete(permission)
+        userEdit.user_permissions.clear()
 
-            if permi == 'viewRules':
-                permission = Permission.objects.get(content_type=ContentType.objects.get_for_model(ScheduleDaily), codename='add_scheduledaily')
-                userEdit.user_permissions.add(permission)
-            else:
-                permission = Permission.objects.get(content_type=ContentType.objects.get_for_model(ScheduleDaily), codename='add_scheduledaily')
-                #userEdit.user_permissions.delete(permission)
+        if 'viewMap' in choices:
+            permissionPlace = Permission.objects.get(content_type=ContentType.objects.get_for_model(Place), codename='add_place')
+            #permitionsSelect.append(permissionPlace)
+            userEdit.user_permissions.add(permissionPlace)
+        else:
+            permissionPlace1 = Permission.objects.get(content_type=ContentType.objects.get_for_model(Place), codename='add_place')
+            userEdit.user_permissions.remove(permissionPlace1)
 
+        if 'viewRules' in choices:
+            permission = Permission.objects.get(content_type=ContentType.objects.get_for_model(ScheduleDaily), codename='add_scheduledaily')
+            #permitionsSelect.append(permission)
+            userEdit.user_permissions.add(permission)
+            #userEdit.save()
+        else:
+            permission1 = Permission.objects.get(content_type=ContentType.objects.get_for_model(ScheduleDaily), codename='add_scheduledaily')
+            #permitionsSelect.append(permission)
+            userEdit.user_permissions.remove(permission1)
+            #userEdit.save()
         userEdit.save()
+
+
         context = {'users': onlyUsername, 'place': place, 'user': userEdit, 'permitions': permitions}
         return render(request, 'delegateoption.html', context)
 

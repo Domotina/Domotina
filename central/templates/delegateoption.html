@@ -33,14 +33,14 @@
         </tr>
         </thead>
         <tbody>
-        {% for place in users %}
+        {% for user in users %}
         <tr>
-            <td>{{place.username}}</td>
-            <td>{{place.first_name}}</td>
-            <td>{{place.last_name}}</td>
-            <td>{{place.email}}</td>
+            <td>{{user.username}}</td>
+            <td>{{user.first_name}}</td>
+            <td>{{user.last_name}}</td>
+            <td>{{user.email}}</td>
             <td>
-                <a href='' class="btn btn-sm btn-default">Edit</a>
+                <a href='/central/{{ place.pk }}/edit/{{ user.pk }}/' class="btn btn-sm btn-default">Edit</a>
             </td>
         </tr>
         {% endfor %}

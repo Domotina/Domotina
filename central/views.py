@@ -158,6 +158,7 @@ def getHouses(request):
     data = serializers.serialize('json', placeOwner)
     return HttpResponse(data, content_type="application/json")
 
+@login_required
 def delegateoption(request, place_pk):
 
     if request.user.groups.filter(name='UsersOwners').exists() == False:
@@ -166,14 +167,32 @@ def delegateoption(request, place_pk):
     place = get_object_or_404(Place, pk=place_pk)
     placesDelegate = Delegate.objects.all().filter(place=place)
 
+    placeSend = Place.objects.get(pk=place_pk)
+    onlyUsername = []
+    for item in placesDelegate:
+        onlyUsername.append(item.getDelegate())
+        print onlyUsername
+    print placeSend.pk
+    context = {'users': onlyUsername, 'place': placeSend}
+    return render(request, 'delegateoption.html', context)
+
+@login_required
+def editdelegate(request, place_pk, user_pk):
+    print 'entro'
+    if request.user.groups.filter(name='UsersOwners').exists() == False:
+        raise Http403
+
+    place = get_object_or_404(Place, pk=place_pk)
+    user = User.objects.filter(pk=user_pk)
+    placesDelegate = Delegate.objects.all().filter(place=place)
+
     onlyUsername = []
     for item in placesDelegate:
         onlyUsername.append(item.getDelegate())
         print onlyUsername
 
-    context = {'users': onlyUsername}
-    return render(request, 'delegateoption.html', context)
-
+    context = {'users': onlyUsername, 'place': place, 'user': user}
+    return render(request, 'edit_delegate.html', context)
 
 @login_required
 def central_huge_delegate_load(request):

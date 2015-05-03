@@ -159,7 +159,8 @@
     "fields": {
         "date_updated": "2015-03-07T20:03:16.745Z", 
         "date_created": "2015-03-07T20:03:16.745Z", 
-        "name": "Ostende's Park"
+        "name": "Ostende's Park",
+        "type_neighborhood": "B"
     }
 },
 {
@@ -168,7 +169,8 @@
     "fields": {
         "date_updated": "2015-03-07T20:04:34.685Z", 
         "date_created": "2015-03-07T20:04:34.685Z", 
-        "name": "Capellania's Towers"
+        "name": "Capellania's Towers",
+        "type_neighborhood": "B"
     }
 },
 {
@@ -177,7 +179,8 @@
     "fields": {
         "date_updated": "2015-03-08T02:21:47.907Z", 
         "date_created": "2015-03-08T02:21:47.907Z", 
-        "name": "Salitre City"
+        "name": "Salitre City",
+        "type_neighborhood": "U"
     }
 },
 {
@@ -186,7 +189,8 @@
     "fields": {
         "date_updated": "2015-03-08T03:36:52.714Z", 
         "date_created": "2015-03-08T03:36:52.714Z", 
-        "name": "BD Bacata Building"
+        "name": "BD Bacata Building",
+        "type_neighborhood": "B"
     }
 },
 {

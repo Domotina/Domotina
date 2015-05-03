@@ -15,7 +15,12 @@ def datetime_to_js(dt):
 
 
 class Neighborhood(models.Model):
+    TYPE = (
+        ('B', 'Buildings'),
+        ('U', 'Urbanizations'),
+    )
     name = models.CharField("neighborhood", max_length=100)
+    type_neighborhood = models.CharField(max_length=1, choices=TYPE)
     date_created = models.DateTimeField("date created", auto_now_add=True)
     date_updated = models.DateTimeField("date updated", auto_now_add=True)
 

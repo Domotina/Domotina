@@ -2,11 +2,20 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from .models import ScheduleDaily
 from map.models import Place, Sensor, SensorStatus
+from django.contrib.auth.decorators import user_passes_test
+from middleware.http import Http403
 # Create your views here.
 
+#def user_can_see(user):
+    #return user.is_superuser or user.groups.filter(name='UsersOwners').exists() or user.has_perm('rule_engine.add_scheduledaily')
 
 @login_required
+#@user_passes_test(user_can_see, login_url='/')
 def list_rules(request, place):
+
+    if request.user.has_perm('rule_engine.add_scheduledaily') == False and request.user.groups.filter(name='UsersOwners').exists() == False:
+        raise Http403
+
     place_obj = get_object_or_404(Place, pk=place)
     rules = ScheduleDaily.objects.filter(sensor__floor__place=place)
     return render(request, 'list_rules.html', {'place': place_obj, 'rules': rules})

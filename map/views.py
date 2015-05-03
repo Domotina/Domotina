@@ -8,16 +8,12 @@ from django.contrib.auth.decorators import permission_required
 from rest_framework import viewsets
 
 from middleware.http import Http403
-from .models import Place, Floor, Sensor, SensorType, Neighborhood
+from .models import Place, Floor, Sensor, SensorType, Neighborhood, Delegate
 from .serializers import SensorSerializer
 from event_manager.models import Event, Alarm
 
-# user.has_perm('map.add_place') es el permiso minimo para entrar a my_places
 def user_can_see(user):
-    return user.is_superuser or user.groups.filter(name='UsersOwners').exists() or user.has_perm('map.add_place')
-def user_can_see_central(user):
-    return user.groups.filter(name='UsersCentral').exists()
-
+    return user.is_superuser or user.groups.filter(name='UsersOwners').exists() or user.groups.filter(name='UsersDelegate').exists()
 
 def paginator(qs, page, items_per_page):
     paginator_instance = Paginator(qs, items_per_page)
@@ -33,21 +29,34 @@ def paginator(qs, page, items_per_page):
 
 
 @login_required
-@user_passes_test(user_can_see, login_url='/')
-#@user_passes_test(user_can_see_central, login_url='/central/')
-#@permission_required('map.add_place', login_url='/map/')
+@user_passes_test(user_can_see, login_url='/central')
 def my_places(request):
-    places = Place.objects.filter(owner=request.user)
-    context = {'user': request.user, 'places': places}
-    return render(request, 'myplaces.html', context)
+
+    if request.user.has_perm('map.add_place') == False and request.user.groups.filter(name='UsersOwners').exists() == False:
+        raise Http403
+
+    if request.user.groups.filter(name='UsersOwners').exists() or request.user.is_superuser:
+        places = Place.objects.filter(owner=request.user)
+        context = {'user': request.user, 'places': places}
+        return render(request, 'myplaces.html', context)
+    else:
+        placesDelegate = Delegate.objects.all().filter(delegate=request.user)
+        print placesDelegate
+        place = []
+        for item in placesDelegate:
+            place.append(item.getPlace())
+            print item.getPlace()
+
+        context = {'user': request.user, 'places': place}
+        return render(request, 'myplaces.html', context)
 
 
 @login_required
 def place_view(request, pk):
     place = get_object_or_404(Place, pk=pk)
 
-    if request.user != place.owner:
-        raise Http403
+    #if request.user != place.owner:
+        #raise Http403
 
     floors = paginator(place.floors.order_by("number"), request.GET.get("floor_page"), 1)
     current_floor = floors.object_list[0]
@@ -61,13 +70,15 @@ def place_view(request, pk):
 
     sensors_json = ','.join(current_floor.get_sensors_json(sensor_type=sensor_type))
 
+    zoom_json = ','.join(current_floor.get_zoom_json())
+
     types = SensorType.objects.all()
 
     current_date = datetime.now().strftime("%Y%m%d")
 
     context = {'floor': current_floor, 'sensors': sensors_json, 'floors': floors,
                'events': events, 'alarms': alarms, 'types': types,
-               'type': sensor_type, 'now': current_date}
+               'type': sensor_type, 'now': current_date, 'zoom': zoom_json}
     return render(request, 'place_details.html', context)
 
 
@@ -165,7 +176,7 @@ def map_history(request, place_pk, int_date):
         date = datetime.strptime(int_date, "%Y%m%d")
     except ValueError:
         pass
-    init_date = "new Date(%(year)s, %(month)s, %(day)s)" \
+    init_date = "new Date('%(year)s %(month)s %(day)s')" \
                 % {'year': date.strftime("%Y"),
                    'month': date.strftime("%m"),
                    'day': date.strftime("%d")}
@@ -187,3 +198,4 @@ class SensorViewSet(viewsets.ModelViewSet):
     """
     queryset = Sensor.objects.all()
     serializer_class = SensorSerializer
+

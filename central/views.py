@@ -5,8 +5,10 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.decorators import user_passes_test
 from django.contrib.auth.models import User
+from middleware.http import Http403
 from .notificator import send_email
-from map.models import Neighborhood, Place, Floor
+from map.models import Neighborhood, Place, Floor, Delegate
+from rule_engine.models import ScheduleDaily
 from django.contrib.messages import error
 from django.shortcuts import render_to_response
 from django.contrib.auth.models import Permission
@@ -24,7 +26,7 @@ def user_can_see(user):
 
 
 @login_required
-@user_passes_test(user_can_see, login_url='/central/')
+@user_passes_test(user_can_see, login_url='/map/')
 def central_home(request):
     context = {'user': request.user}
     return render(request, 'central_home.html', context)
@@ -109,7 +111,6 @@ def central_delegate(request):
     return render(request, 'delegates_owner_principal.html', context)
 
 
-# completar
 @login_required
 def central_individual_delegate_load(request):
     if request.method == "POST":
@@ -118,35 +119,31 @@ def central_individual_delegate_load(request):
         lastName = str(request.POST.get("lastName", ""))
         emailUser = str(request.POST.get("inputEmail", ""))
         owner = str(request.POST.get("owner", ""))
-        property = str(request.POST.get("property", ""))
+        property = int(request.POST.get("property", ""))
         choices = request.POST.getlist('choice')
-        print owner
-        print property
-        print choices
-        print 'fin'
-        """
+
         userCreate = User.objects.create_user(username=username, first_name=name, last_name=lastName, email=emailUser,
-                                            password='DOMOTINA123')
+                                              password='DOMOTINA123')
         userCreate.is_superuser = False
         userCreate.is_active = True
         userCreate.is_staff = False
         userCreate.groups.add(4)
+        send_email(userCreate)
 
-        # userCreate = User.objects.create_user(username=username, first_name=name, last_name=lastName, email=emailUser,
-        # password='DOMOTINA123')
-        # userCreate.is_superuser = False
-        # userCreate.is_active = True
-        # userCreate.is_staff = False
-        # userCreate.groups.add(2)#Falta
-        # userCreate.save()
-        # send_email(userCreate)
         content_type = ContentType.objects.get_for_model(Place)
-        permission = Permission.objects.get(content_type=content_type, codename='add_place')
-        userCreate.user_permissions.add(permission)
+        for permi in choices:
+            if permi=='viewMap':
+                permission = Permission.objects.get(content_type=content_type, codename='add_place')
+                userCreate.user_permissions.add(permission)
+            elif permi=='viewRules':
+                permission = Permission.objects.get(content_type=ContentType.objects.get_for_model(ScheduleDaily), codename='add_scheduledaily')
+                userCreate.user_permissions.add(permission)
 
         userCreate.save()
-        send_email(userCreate)
-        """
+
+        delegate = Delegate(place=Place.objects.get(pk=property), delegate=userCreate)
+        delegate.save()
+
         return redirect('central_home')
     else:
         users = User.objects.all()
@@ -160,6 +157,86 @@ def getHouses(request):
     placeOwner = Place.objects.all().filter(owner=usersearch)
     data = serializers.serialize('json', placeOwner)
     return HttpResponse(data, content_type="application/json")
+
+@login_required
+def delegateoption(request, place_pk):
+
+    if request.user.is_superuser == False:
+        if request.user.groups.filter(name='UsersOwners').exists() == False:
+            raise Http403
+
+    place = get_object_or_404(Place, pk=place_pk)
+    placesDelegate = Delegate.objects.all().filter(place=place)
+
+    placeSend = Place.objects.get(pk=place_pk)
+    onlyUsername = []
+    for item in placesDelegate:
+        onlyUsername.append(item.getDelegate())
+        print onlyUsername
+    print placeSend.pk
+    context = {'users': onlyUsername, 'place': placeSend}
+    return render(request, 'delegateoption.html', context)
+
+@login_required
+def editdelegate(request, place_pk, user_pk):
+    """
+    if request.user.is_superuser == False:
+        if request.user.groups.filter(name='UsersOwners').exists() == False:
+            raise Http403
+    """
+    userEdit = User.objects.get(pk= user_pk)
+
+    place = get_object_or_404(Place, pk=place_pk)
+    #user = User.objects.filter(pk=user_pk)
+    placesDelegate = Delegate.objects.all().filter(place=place)
+
+    onlyUsername = []
+    for item in placesDelegate:
+        onlyUsername.append(item.getDelegate())
+        #print onlyUsername
+
+    permitions = []
+    if request.method == "POST":
+        choices = request.POST.getlist('choice')
+        print choices
+
+        #userEdit = User.objects.get(pk = user_pk)
+        print userEdit
+        userEdit.user_permissions.clear()
+
+        if 'viewMap' in choices:
+            permissionPlace = Permission.objects.get(content_type=ContentType.objects.get_for_model(Place), codename='add_place')
+            #permitionsSelect.append(permissionPlace)
+            userEdit.user_permissions.add(permissionPlace)
+        else:
+            permissionPlace1 = Permission.objects.get(content_type=ContentType.objects.get_for_model(Place), codename='add_place')
+            userEdit.user_permissions.remove(permissionPlace1)
+
+        if 'viewRules' in choices:
+            permission = Permission.objects.get(content_type=ContentType.objects.get_for_model(ScheduleDaily), codename='add_scheduledaily')
+            #permitionsSelect.append(permission)
+            userEdit.user_permissions.add(permission)
+            #userEdit.save()
+        else:
+            permission1 = Permission.objects.get(content_type=ContentType.objects.get_for_model(ScheduleDaily), codename='add_scheduledaily')
+            #permitionsSelect.append(permission)
+            userEdit.user_permissions.remove(permission1)
+            #userEdit.save()
+        userEdit.save()
+
+
+        context = {'users': onlyUsername, 'place': place, 'user': userEdit, 'permitions': permitions}
+        return render(request, 'delegateoption.html', context)
+
+
+    if userEdit.has_perm('map.add_place') == True:
+        permitions.append('viewMap')
+    if userEdit.has_perm('rule_engine.add_scheduledaily') == True:
+        permitions.append('viewRules')
+
+    print userEdit
+    context = {'users': onlyUsername, 'place': place, 'user': userEdit, 'permitions': permitions}
+    return render(request, 'edit_delegate.html', context)
 
 @login_required
 def central_huge_delegate_load(request):

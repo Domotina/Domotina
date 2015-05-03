@@ -15,4 +15,6 @@ urlpatterns = patterns('central.views',
     url(r'^report/$', 'central_month_report', name="central_month_report"),
     url(r'^report/gen/', 'generate_monthly_report', name="generate_monthly_report"),
     url(r'^getHouses/$', 'getHouses', name="getHouses"),
+    url(r'^(?P<place_pk>\d+)/delegateoption/', 'delegateoption', name="delegateoption"),
+    url(r'^([0-9])/edit/([0-9])/$', 'editdelegate', name='editdelegate'),
 )

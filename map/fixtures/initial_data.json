@@ -125,22 +125,24 @@
         "app_label": "map"
     }
 },
-{"pk": 15,
-  "model": "contenttypes.contenttype",
-  "fields": {
-    "model": "delegate",
-    "name": "delegate",
-    "app_label": "map"
-  }
+{
+    "pk": 15,
+    "model": "contenttypes.contenttype",
+    "fields": {
+      "model": "delegate",
+      "name": "delegate",
+      "app_label": "map"
+    }
 },
-    {"pk": 16,
+{
+    "pk": 16,
     "model": "contenttypes.contenttype",
     "fields": {
       "model": "zoomlocation",
       "name": "zoom location",
       "app_label": "map"
     }
-  },
+},
 {
     "pk": 17,
     "model": "contenttypes.contenttype", 
@@ -1743,8 +1745,8 @@
         "last_login": "2015-04-07T20:31:31Z", 
         "groups": [
             4
-        ], 
-        "user_permissions": [], 
+        ],
+        "user_permissions": [28],
         "password": "pbkdf2_sha256$12000$N86jDM6VMMBS$QSBrO+gI9xg1gF2uffrFTLoXSPILd0qfCP+Dm6f0bY4=",
         "email": "ra.gomez11@uniandes.edu.co", 
         "date_joined": "2015-04-07T20:31:31Z"
@@ -2425,5 +2427,354 @@
         "sensor": 51,
         "value": 18
     }
-}
+},
+{
+    "pk": 52,
+    "model": "event_manager.event",
+    "fields": {
+        "timestamp": "2013-12-15T17:26:59.766Z",
+        "pos_x": 10,
+        "pos_y": 10,
+        "sensor": 38,
+        "value": 0
+    }
+},
+{
+    "pk": 1,
+    "model": "map.zoomlocation",
+    "fields": {
+        "floor": 4,
+        "pos_x": 0,
+        "pos_y": 0,
+        "width_zoom": 360,
+        "height_zoom": 200
+    }
+},
+{
+    "pk": 2,
+    "model": "map.zoomlocation",
+    "fields": {
+        "floor": 4,
+        "pos_x": 190,
+        "pos_y": 0,
+        "width_zoom": 500,
+        "height_zoom": 220
+    }
+},
+{
+    "pk": 3,
+    "model": "map.zoomlocation",
+    "fields": {
+        "floor": 4,
+        "pos_x": 490,
+        "pos_y": 0,
+        "width_zoom": 280,
+        "height_zoom": 250
+    }
+},
+{
+    "pk": 4,
+    "model": "map.zoomlocation",
+    "fields": {
+        "floor": 4,
+        "pos_x": 0,
+        "pos_y": 205,
+        "width_zoom": 430,
+        "height_zoom": 190
+    }
+},
+{
+    "pk": 5,
+    "model": "map.zoomlocation",
+    "fields": {
+        "floor": 4,
+        "pos_x": 250,
+        "pos_y": 220,
+        "width_zoom": 400,
+        "height_zoom": 180
+    }
+},
+{
+    "pk": 6,
+    "model": "map.zoomlocation",
+    "fields": {
+        "floor": 4,
+        "pos_x": 480,
+        "pos_y": 210,
+        "width_zoom": 350,
+        "height_zoom": 180
+    }
+},
+{
+    "pk": 7,
+    "model": "map.zoomlocation",
+    "fields": {
+        "floor": 1,
+        "pos_x": 0,
+        "pos_y": 50,
+        "width_zoom": 270,
+        "height_zoom": 220
+    }
+},
+{
+    "pk": 8,
+    "model": "map.zoomlocation",
+    "fields": {
+        "floor": 1,
+        "pos_x": 140,
+        "pos_y": 50,
+        "width_zoom": 250,
+        "height_zoom": 250
+    }
+},
+{
+    "pk": 9,
+    "model": "map.zoomlocation",
+    "fields": {
+        "floor": 1,
+        "pos_x": 270,
+        "pos_y": 50,
+        "width_zoom": 250,
+        "height_zoom": 250
+    }
+},
+{
+    "pk": 10,
+    "model": "map.zoomlocation",
+    "fields": {
+        "floor": 1,
+        "pos_x": 385,
+        "pos_y": 0,
+        "width_zoom": 280,
+        "height_zoom": 250
+    }
+},
+{
+    "pk": 11,
+    "model": "map.zoomlocation",
+    "fields": {
+        "floor": 1,
+        "pos_x": 525,
+        "pos_y": 50,
+        "width_zoom": 300,
+        "height_zoom": 300
+    }
+},
+{
+    "pk": 12,
+    "model": "map.zoomlocation",
+    "fields": {
+        "floor": 1,
+        "pos_x": 0,
+        "pos_y": 260,
+        "width_zoom": 300,
+        "height_zoom": 130
+    }
+},
+{
+    "pk": 13,
+    "model": "map.zoomlocation",
+    "fields": {
+        "floor": 1,
+        "pos_x": 390,
+        "pos_y": 270,
+        "width_zoom": 350,
+        "height_zoom": 150
+    }
+},
+{
+    "pk": 14,
+    "model": "map.zoomlocation",
+    "fields": {
+        "floor": 1,
+        "pos_x": 210,
+        "pos_y": 310,
+        "width_zoom": 350,
+        "height_zoom": 100
+    }
+},
+{
+    "pk": 15,
+    "model": "map.zoomlocation",
+    "fields": {
+        "floor": 3,
+        "pos_x": 0,
+        "pos_y": 85,
+        "width_zoom": 400,
+        "height_zoom": 150
+    }
+},
+{
+    "pk": 16,
+    "model": "map.zoomlocation",
+    "fields": {
+        "floor": 3,
+        "pos_x": 0,
+        "pos_y": 220,
+        "width_zoom": 450,
+        "height_zoom": 200
+    }
+},
+{
+    "pk": 17,
+    "model": "map.zoomlocation",
+    "fields": {
+        "floor": 3,
+        "pos_x": 300,
+        "pos_y": 85,
+        "width_zoom": 410,
+        "height_zoom": 150
+    }
+},
+{
+    "pk": 18,
+    "model": "map.zoomlocation",
+    "fields": {
+        "floor": 3,
+        "pos_x": 500,
+        "pos_y": 0,
+        "width_zoom": 320,
+        "height_zoom": 260
+    }
+},
+{
+    "pk": 19,
+    "model": "map.zoomlocation",
+    "fields": {
+        "floor": 3,
+        "pos_x": 230,
+        "pos_y": 230,
+        "width_zoom": 270,
+        "height_zoom": 200
+    }
+},
+{
+    "pk": 20,
+    "model": "map.zoomlocation",
+    "fields": {
+        "floor": 3,
+        "pos_x": 380,
+        "pos_y": 230,
+        "width_zoom": 270,
+        "height_zoom": 200
+    }
+},
+{
+    "pk": 21,
+    "model": "map.zoomlocation",
+    "fields": {
+        "floor": 5,
+        "pos_x": 50,
+        "pos_y": 0,
+        "width_zoom": 400,
+        "height_zoom": 150
+    }
+},
+{
+    "pk": 22,
+    "model": "map.zoomlocation",
+    "fields": {
+        "floor": 5,
+        "pos_x": 280,
+        "pos_y": 0,
+        "width_zoom": 250,
+        "height_zoom": 250
+    }
+},
+{
+    "pk": 23,
+    "model": "map.zoomlocation",
+    "fields": {
+        "floor": 5,
+        "pos_x": 450,
+        "pos_y": 0,
+        "width_zoom": 430,
+        "height_zoom": 150
+    }
+},
+{
+    "pk": 24,
+    "model": "map.zoomlocation",
+    "fields": {
+        "floor": 5,
+        "pos_x": 0,
+        "pos_y": 200,
+        "width_zoom": 480,
+        "height_zoom": 250
+    }
+},
+{
+    "pk": 25,
+    "model": "map.zoomlocation",
+    "fields": {
+        "floor": 5,
+        "pos_x": 250,
+        "pos_y": 250,
+        "width_zoom": 350,
+        "height_zoom": 200
+    }
+},
+{
+    "pk": 26,
+    "model": "map.zoomlocation",
+    "fields": {
+        "floor": 5,
+        "pos_x": 450,
+        "pos_y": 100,
+        "width_zoom": 430,
+        "height_zoom": 270
+    }
+},
+{
+    "pk": 27,
+    "model": "map.zoomlocation",
+    "fields": {
+        "floor": 6,
+        "pos_x": 0,
+        "pos_y": 0,
+        "width_zoom": 500,
+        "height_zoom": 250
+    }
+},
+{
+    "pk": 28,
+    "model": "map.zoomlocation",
+    "fields": {
+        "floor": 6,
+        "pos_x": 0,
+        "pos_y": 200,
+        "width_zoom": 500,
+        "height_zoom": 200
+    }
+},
+{
+    "pk": 29,
+    "model": "map.zoomlocation",
+    "fields": {
+        "floor": 6,
+        "pos_x": 450,
+        "pos_y": 0,
+        "width_zoom": 400,
+        "height_zoom": 230
+    }
+},
+{
+    "pk": 30,
+    "model": "map.zoomlocation",
+    "fields": {
+        "floor": 6,
+        "pos_x": 450,
+        "pos_y": 180,
+        "width_zoom": 450,
+        "height_zoom": 250
+    }
+},
+  {
+    "pk": 1,
+    "model": "map.delegate",
+    "fields": {
+      "place": 4,
+      "delegate": 4
+    }
+  }
 ]

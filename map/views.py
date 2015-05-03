@@ -129,46 +129,6 @@ def delete_sensor(request, place_pk, sensor_pk):
     return redirect('list_sensors', place_pk=place_pk)
 
 
-# Metodos para Administracion de urbanizaciones y/o edificios
-
-# @login_required
-def list_neighborhoods(request):
-    # TO-DO
-    # Modificar, solo valido para las pruebas iniciales
-
-    # Deberia retrnar un query set
-    neighborhoods = []
-    n1 = Neighborhood(name="name1")
-    n2 = Neighborhood(name="name1")
-    neighborhoods.append(n1)
-    neighborhoods.append(n2)
-    return render(request, 'neighborhood.html', {'neighborhoods': neighborhoods})
-
-
-# @login_required
-def create_neighborhood(request):
-    # TO-DO, implementacion temporal valida solo para las pruebas iniciales
-    # print(request)
-    print(request.POST['name'])
-    # Render temporal, solo importa el context
-    return render(request, 'neighborhood.html', {'created': True})
-
-
-# @login_required
-def delete_neighborhood(request, neighborhood_pk):
-    # TO-DO, implementacion temporal valida solo para las pruebas iniciales
-    # print(request)
-    print(neighborhood_pk)
-    # Render temporal, solo importa el context
-    return render(request, 'neighborhood.html', {'deleted': True})
-
-
-# @login_required
-def edit_neighborhood(request, neighborhood_pk):
-    neighborhood = get_object_or_404(Neighborhood, pk=neighborhood_pk)
-    return render(request, 'neighborhood.html', {'edited': True, 'neighborhood': neighborhood})
-
-
 @login_required
 def map_history(request, place_pk, int_date):
     date = datetime.combine(datetime.today(), time(0))

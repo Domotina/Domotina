@@ -17,4 +17,10 @@ urlpatterns = patterns('central.views',
     url(r'^getHouses/$', 'getHouses', name="getHouses"),
     url(r'^(?P<place_pk>\d+)/delegateoption/', 'delegateoption', name="delegateoption"),
     url(r'^([0-9])/edit/([0-9])/$', 'editdelegate', name='editdelegate'),
+
+        # Administracion de urbanizaciones y/o edificios
+    url(r'^neighborhood$', 'list_neighborhoods', name='list_neighborhoods'),
+    url(r'^neighborhood/new$', 'create_neighborhood', name='create_neighborhood'),
+    url(r'^neighborhood/(?P<neighborhood_pk>\d+)/delete$', 'delete_neighborhood', name='delete_neighborhood'),
+    url(r'^neighborhood/(?P<neighborhood_pk>\d+)$', 'edit_neighborhood', name='edit_neighborhood'),
 )

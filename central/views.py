@@ -246,7 +246,16 @@ def central_huge_delegate_load(request):
 
 @login_required
 def central_building_neigh(request):
-    context = {'user': request.user}
+    urbanization = Neighborhood.objects.all().filter(type_neighborhood="U")
+    buildings = Neighborhood.objects.all().filter(type_neighborhood="B")
+    urbanization2 = Place.objects.all().filter(neighborhood=urbanization)
+    buildings2 = Place.objects.all().filter(neighborhood=buildings)
+    print buildings
+    print urbanization
+    print urbanization2
+    print buildings2
+    #placesDelegate = Delegate.objects.all().filter(place=place)
+    context = {'user': request.user, 'urbanizations': urbanization2, 'buildings': buildings2}
     return render(request, 'central_buildings_list.html', context)
 
 

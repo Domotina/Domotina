@@ -1,8 +1,8 @@
 import datetime
 import calendar
-from django.shortcuts import get_object_or_404
 from event_manager.models import Event
 from map.models import Neighborhood, Place
+import pytz
 
 
 def get_neighborhood():
@@ -61,3 +61,24 @@ def are_events_to_report(events):
         return True
     else:
         return False
+
+def get_graph_data(events,year, month):
+
+    month_range = calendar.monthrange(year, month)
+    end_day = month_range[1]
+    data = ['','']
+    for day in range (1,end_day+1):
+        freq = 0
+        start = datetime.datetime(year, month, day,0,0,0,0,pytz.UTC)
+        end = datetime.datetime(year, month, day,23,59,59,999,pytz.UTC)
+        for event in events:
+            if start <= event.timestamp <= end:
+                freq = freq + 1
+
+        data[0] = data[0] + str(day)
+        data[1] = data[1] + str(freq)
+        if day != end_day:
+            data[0] = data[0] + ','
+            data[1] = data[1] + ','
+
+    return data

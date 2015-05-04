@@ -346,7 +346,7 @@ def delete_neighborhood(request, urbanization_pk):
     #print 'delete_neighborhood'
     #print urbanization_pk
     Neighborhood.objects.filter(pk=urbanization_pk).delete()
-    return render(request, 'central_home.html')
+    return render(request, 'central_home.html', {'deleted': True})
 
 
 @login_required
@@ -354,3 +354,23 @@ def edit_neighborhood(request, neighborhood_pk):
     neighborhood = get_object_or_404(Neighborhood, pk=neighborhood_pk)
     return render(request, 'neighborhood.html', {'edited': True, 'neighborhood': neighborhood})
 
+def list_neighborhoods(request):
+    # TO-DO
+    # Modificar, solo valido para las pruebas iniciales
+
+   # Deberia retrnar un query set
+    neighborhoods = []
+    n1 = Neighborhood(name="name1")
+    n2 = Neighborhood(name="name1")
+    neighborhoods.append(n1)
+    neighborhoods.append(n2)
+    return render(request, 'neighborhood.html', {'neighborhoods': neighborhoods})
+
+
+# @login_required
+def create_neighborhood(request):
+    # TO-DO, implementacion temporal valida solo para las pruebas iniciales
+    # print(request)
+    print(request.POST['name'])
+    # Render temporal, solo importa el context
+    return render(request, 'neighborhood.html', {'created': True})

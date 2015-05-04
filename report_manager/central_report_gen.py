@@ -72,7 +72,8 @@ def get_graph_data(events,year, month):
         start = datetime.datetime(year, month, day,0,0,0,0,pytz.UTC)
         end = datetime.datetime(year, month, day,23,59,59,999,pytz.UTC)
         for event in events:
-            if start <= event.timestamp <= end:
+            date = pytz.UTC.localize(event.timestamp)
+            if start <= date <= end:
                 freq = freq + 1
 
         data[0] = data[0] + str(day)

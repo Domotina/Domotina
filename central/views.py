@@ -262,8 +262,26 @@ def central_building_create(request):
         return redirect('central_building_neigh')
     users = User.objects.all()
     types = NeighborhoodType.objects.all()
-    context = {'user': request.user, 'users': users, 'types': types}
+    context = {'user': request.user, 'users': users, 'types': types, 'create': True}
     return render(request, 'central_buildings_create.html', context)
+
+@login_required
+def edit_neighborhood(request, urbanization_pk):
+    neigh = get_object_or_404(Neighborhood, pk=urbanization_pk)
+    if request.method == 'POST':
+        neigh_type= get_object_or_404(NeighborhoodType(pk=request.POST['type']))
+        neigh.type_neighborhood = neigh_type
+        neigh.name = request.POST['name']
+        neigh.address= request.POST['address']
+        #neigh.type_neighborhood=NeighborhoodType.objects.get(pk=request.POST['type'])
+        neigh.owner_neigh= User.objects.get(pk=request.POST['owner'])
+        neigh.save()
+        return redirect('central_building_neigh')
+    users = User.objects.all()
+    types = NeighborhoodType.objects.all()
+    context = {'user': request.user, 'users': users, 'types': types, 'neigh': neigh, 'create': False}
+    return render(request, 'central_buildings_create.html', context)
+
 
 @login_required
 def delete_neighborhood(request, urbanization_pk):
@@ -341,13 +359,6 @@ def generate_monthly_report_web(request):
 
 
 ### Metodos para Administracion de urbanizaciones y/o edificios ###
-
-@login_required
-def edit_neighborhood(request, urbanization_pk):
-    neighborhood = get_object_or_404(Neighborhood, pk=urbanization_pk)
-    print neighborhood
-    return render(request, 'edit_neighborhood.html', {'urbanization': neighborhood})
-    #return render(request, 'edit_neighborhood.html')
 
 def list_neighborhoods(request):
     # TO-DO

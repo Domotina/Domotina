@@ -250,17 +250,19 @@ def central_building_neigh(request):
     buildings = Neighborhood.objects.all().filter(type_neighborhood="B")
     urbanization2 = Place.objects.all().filter(neighborhood=urbanization)
     buildings2 = Place.objects.all().filter(neighborhood=buildings)
-    print buildings
-    print urbanization
-    print urbanization2
-    print buildings2
-    #placesDelegate = Delegate.objects.all().filter(place=place)
+
     context = {'user': request.user, 'urbanizations': urbanization2, 'buildings': buildings2}
     return render(request, 'central_buildings_list.html', context)
 
 
 @login_required
 def central_building_create(request):
+    if request.method == 'POST':
+        name = str(request.POST.get("name", ""))
+        type = str(request.POST.get("type", "0"))
+        neighborhood = Neighborhood(name=name, type_neighborhood=type)
+        neighborhood.save()
+        return render(request, 'central_home.html')
     context = {'user': request.user}
     return render(request, 'central_buildings_create.html', context)
 

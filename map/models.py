@@ -14,13 +14,16 @@ def datetime_to_js(dt):
               's': dt.strftime("%S")}
 
 
+class NeighborhoodType(models.Model):
+    name = models.CharField("typeName", max_length=100)
+    def __unicode__(self):
+        return self.name
+
 class Neighborhood(models.Model):
-    TYPE = (
-        ('B', 'Buildings'),
-        ('U', 'Urbanizations'),
-    )
     name = models.CharField("neighborhood", max_length=100)
-    type_neighborhood = models.CharField(max_length=1, choices=TYPE)
+    address = models.CharField("address", max_length=200)
+    owner_neigh = models.ForeignKey(User, verbose_name="owner_neighborhood", related_name="owner")
+    type_neighborhood = models.ForeignKey(NeighborhoodType, verbose_name="type", related_name="type")
     date_created = models.DateTimeField("date created", auto_now_add=True)
     date_updated = models.DateTimeField("date updated", auto_now_add=True)
 

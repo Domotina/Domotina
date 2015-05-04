@@ -7,7 +7,7 @@ from django.contrib.auth.decorators import user_passes_test
 from django.contrib.auth.models import User
 from middleware.http import Http403
 from .notificator import send_email
-from map.models import Neighborhood, Place, Floor, Delegate
+from map.models import Neighborhood, Place, Floor, Delegate, NeighborhoodType
 from rule_engine.models import ScheduleDaily
 from django.contrib.messages import error
 from django.shortcuts import render_to_response
@@ -247,29 +247,22 @@ def central_huge_delegate_load(request):
 
 @login_required
 def central_building_neigh(request):
-    urbanization = Neighborhood.objects.all().filter(type_neighborhood="U")
-    buildings = Neighborhood.objects.all().filter(type_neighborhood="B")
-    urbanization2 = Place.objects.all().filter(neighborhood=urbanization)
-    buildings2 = Place.objects.all().filter(neighborhood=buildings)
-    places = Place.objects.all()
-    buildings3= Neighborhood.objects.all().filter(~Q(places__in=places))
+    urbanization = Neighborhood.objects.all().filter(type_neighborhood=2)
+    buildings = Neighborhood.objects.all().filter(type_neighborhood=1)
 
-    context = {'user': request.user, 'urbanizations': urbanization2, 'buildings': buildings2, 'empty': buildings3}
+    context = {'user': request.user, 'urbanizations': urbanization, 'buildings': buildings}
     return render(request, 'central_buildings_list.html', context)
 
 
 @login_required
 def central_building_create(request):
     if request.method == 'POST':
-        try:
-            name = str(request.POST.get("name", ""))
-            type = str(request.POST.get("type", "0"))
-            neighborhood = Neighborhood(name=name, type_neighborhood=type)
-            neighborhood.save()
-            return render(request, 'central_home.html')
-        except:
-            return render(request, 'central_home.html')
-    context = {'user': request.user}
+        neighborhood = Neighborhood(name=request.POST['name'], address=request.POST['address'], type_neighborhood=NeighborhoodType.objects.get(pk=request.POST['type']), owner_neigh=User.objects.get(pk=request.POST['owner']))
+        neighborhood.save()
+        return redirect('central_building_neigh')
+    users = User.objects.all()
+    types = NeighborhoodType.objects.all()
+    context = {'user': request.user, 'users': users, 'types': types}
     return render(request, 'central_buildings_create.html', context)
 
 

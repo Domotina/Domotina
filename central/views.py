@@ -265,6 +265,11 @@ def central_building_create(request):
     context = {'user': request.user, 'users': users, 'types': types}
     return render(request, 'central_buildings_create.html', context)
 
+@login_required
+def delete_neighborhood(request, urbanization_pk):
+    Neighborhood.objects.filter(pk=urbanization_pk).delete()
+    return redirect('central_building_neigh')
+
 
 ### Montly report generator ###
 
@@ -336,14 +341,6 @@ def generate_monthly_report_web(request):
 
 
 ### Metodos para Administracion de urbanizaciones y/o edificios ###
-
-@login_required
-def delete_neighborhood(request, urbanization_pk):
-    #print 'delete_neighborhood'
-    #print urbanization_pk
-    Neighborhood.objects.filter(pk=urbanization_pk).delete()
-    return render(request, 'central_home.html', {'deleted': True})
-
 
 @login_required
 def edit_neighborhood(request, urbanization_pk):

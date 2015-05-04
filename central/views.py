@@ -261,11 +261,14 @@ def central_building_neigh(request):
 @login_required
 def central_building_create(request):
     if request.method == 'POST':
-        name = str(request.POST.get("name", ""))
-        type = str(request.POST.get("type", "0"))
-        neighborhood = Neighborhood(name=name, type_neighborhood=type)
-        neighborhood.save()
-        return render(request, 'central_home.html')
+        try:
+            name = str(request.POST.get("name", ""))
+            type = str(request.POST.get("type", "0"))
+            neighborhood = Neighborhood(name=name, type_neighborhood=type)
+            neighborhood.save()
+            return render(request, 'central_home.html')
+        except:
+            return render(request, 'central_home.html')
     context = {'user': request.user}
     return render(request, 'central_buildings_create.html', context)
 

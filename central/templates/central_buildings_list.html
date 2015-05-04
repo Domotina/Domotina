@@ -38,7 +38,6 @@
             <th>{{ building.owner.username }}</th>
             <td>
                 <a href=' ' class="btn btn-sm btn-default">Edit</a>
-                <a href=' ' class="btn btn-sm btn-danger">Delete</a>
             </td>
         </tr>
         {% empty %}
@@ -49,12 +48,10 @@
         </tbody>
     </table>
 </div>
-<!-- En este panel se filtran las urbanizations -->
-<div class="panel panel-warning">
+    <div class="panel panel-warning">
     <div class="panel-heading">
-        <h3 class="panel-title">Urbanizations</h3>
+        <h3 class="panel-title">Buildings</h3>
     </div>
-
     <table class="table table-striped table-hover ">
         <thead>
         <tr>
@@ -66,25 +63,64 @@
         </tr>
         </thead>
         <tbody>
-        {% for urbanization in urbanizations %}
+        {% for building in buildings %}
         <tr>
-            <td>{{ urbanization.name }}</td>
-            <td>{{ urbanization.neighborhood.name }}</td>
-            <td>Urbanization</td>
-            <th>{{ urbanization.owner.username }}</th>
+            <td>{{ building.name }}</td>
+            <td>{{ building.neighborhood.name }}</td>
+            <td>Building</td>
+            <th>{{ building.owner.username }}</th>
             <td>
                 <a href=' ' class="btn btn-sm btn-default">Edit</a>
-                <a href=' ' class="btn btn-sm btn-danger">Delete</a>
             </td>
         </tr>
         {% empty %}
         <tr>
-            <td>No urbanizations registered.</td>
+            <td>No buildings registered.</td>
         </tr>
         {% endfor%}
         </tbody>
     </table>
 </div>
+        <div class="panel panel-warning">
+    <div class="panel-heading">
+        <h3 class="panel-title">Empty Urbanizations/buildings</h3>
+    </div>
+
+    <table class="table table-striped table-hover ">
+        <thead>
+        <tr>
+            <th>Neighborhood</th>
+            <th>Type</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for urbanization in empty %}
+        <tr>
+            <td>{{ urbanization.name }}</td>
+            {% if urbanization.type_neighborhood == 'B' %}
+            <td>Building</td>
+            {% else %}
+            <td>Urbanization</td>
+            {% endif%}
+            <td>
+                <a href=' ' class="btn btn-sm btn-default">Edit</a>
+                <a href='{% url "delete_neighborhood" urbanization.pk %} ' class="btn btn-sm btn-danger">Delete</a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td>No urbanizations/Buildings registered.</td>
+        </tr>
+        {% endfor%}
+        </tbody>
+    </table>
+</div>
+
+
+
+<!-- En este panel se filtran las urbanizations -->
+
 <div class="form-group">
     <div style="text-align: center">
         <a href='{% url "central_home" %}' class="btn btn-default">Return</a>

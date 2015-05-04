@@ -20,8 +20,6 @@ urlpatterns = patterns('central.views',
     url(r'^([0-9])/edit/([0-9])/$', 'editdelegate', name='editdelegate'),
 
         # Administracion de urbanizaciones y/o edificios
-    url(r'^neighborhood$', 'list_neighborhoods', name='list_neighborhoods'),
-    url(r'^neighborhood/new$', 'create_neighborhood', name='create_neighborhood'),
-    url(r'^neighborhood/(?P<neighborhood_pk>\d+)/delete$', 'delete_neighborhood', name='delete_neighborhood'),
+    url(r'^neighborhood/(?P<urbanization_pk>\d+)/delete$', 'delete_neighborhood', name='delete_neighborhood'),
     url(r'^neighborhood/(?P<neighborhood_pk>\d+)$', 'edit_neighborhood', name='edit_neighborhood'),
 )

@@ -21,6 +21,7 @@ from django.template import RequestContext
 from django.template.loader import render_to_string
 from report_manager.views import fetch_resources
 
+
 def user_can_see(user):
     return user.is_superuser or user.groups.filter(name='UsersCentral').exists()
 
@@ -267,15 +268,26 @@ def central_building_create(request):
     return render(request, 'central_buildings_create.html', context)
 
 
+### Montly report generator ###
+
 @login_required
 def central_month_report(request):
+    "This method is created to preload all buildings and urbanizations registered in Domotina on the view designed to generate the monthly report. of events"
     neighborhoods = central_report_gen.get_neighborhood
     context = {'user': request.user, 'neighborhoods': neighborhoods}
     return render(request, 'central_month_report.html', context)
 
-
 @login_required
 def generate_monthly_report(request):
+    kind = int(request.POST['kind'])
+    if kind:
+        if kind == 1:
+            return generate_monthly_report_pdf(request)
+        else:
+            return generate_monthly_report_web(request)
+
+@login_required
+def generate_monthly_report_pdf(request):
     year = int(request.POST['year'])
     month = int(request.POST['month'])
     neighborhoods = request.POST.getlist('neighborhood')
@@ -301,6 +313,29 @@ def generate_monthly_report(request):
     else:
         error(request, "Error: Please, check if you selected correctly the month, year and buildings/urbanizations of interest to you.")
         return redirect('central_month_report')
+
+def generate_monthly_report_web(request):
+    year = int(request.POST['year'])
+    month = int(request.POST['month'])
+    neighborhoods = request.POST.getlist('neighborhood')
+    if neighborhoods[0] in '0':
+        neighborhoods = []
+
+    if central_report_gen.validation_entry(year, month):
+        start_date = central_report_gen.get_start_date(year, month)
+        end_date = central_report_gen.get_end_date(year, month)
+        events = central_report_gen.find_events(start_date, end_date, neighborhoods)
+        if central_report_gen.are_events_to_report(events):
+            graph = central_report_gen.get_graph_data(events,year,month)
+            context={'events': events, 'start': start_date, 'end': end_date, 'year': year,'month': month,'graph_X':graph[0],'graph_data':graph[1]}
+            return render(request, 'report_web.html', context)
+        else:
+            error(request, "No events to generate report.")
+            return redirect('central_month_report')
+    else:
+        error(request, "Error: Please, check if you selected correctly the month, year and buildings/urbanizations of interest to you.")
+        return redirect('central_month_report')
+
 
 # Metodos para Administracion de urbanizaciones y/o edificios
 

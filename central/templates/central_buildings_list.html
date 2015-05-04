@@ -30,14 +30,14 @@
         </tr>
         </thead>
         <tbody>
-        {% for building in buildings %}
+        {% for urbanization in buildings %}
         <tr>
-            <td>{{ building.name }}</td>
-            <td>{{ building.neighborhood.name }}</td>
+            <td>{{ urbanization.name }}</td>
+            <td>{{ urbanization.neighborhood.name }}</td>
             <td>Building</td>
-            <th>{{ building.owner.username }}</th>
+            <th>{{ urbanization.owner.username }}</th>
             <td>
-                <a href=' ' class="btn btn-sm btn-default">Edit</a>
+                <a href='{% url "edit_neighborhood" urbanization.pk %}' class="btn btn-sm btn-default">Edit</a>
             </td>
         </tr>
         {% empty %}
@@ -63,19 +63,19 @@
         </tr>
         </thead>
         <tbody>
-        {% for building in buildings %}
+        {% for urbanization in urbanizations %}
         <tr>
-            <td>{{ building.name }}</td>
-            <td>{{ building.neighborhood.name }}</td>
-            <td>Building</td>
-            <th>{{ building.owner.username }}</th>
+            <td>{{ urbanization.name }}</td>
+            <td>{{ urbanization.neighborhood.name }}</td>
+            <td>Urbanization</td>
+            <th>{{ urbanization.owner.username }}</th>
             <td>
-                <a href=' ' class="btn btn-sm btn-default">Edit</a>
+                <a href='{% url "edit_neighborhood" urbanization.pk %}' class="btn btn-sm btn-default">Edit</a>
             </td>
         </tr>
         {% empty %}
         <tr>
-            <td>No buildings registered.</td>
+            <td>No urbanizations registered.</td>
         </tr>
         {% endfor%}
         </tbody>
@@ -104,8 +104,8 @@
             <td>Urbanization</td>
             {% endif%}
             <td>
-                <a href=' ' class="btn btn-sm btn-default">Edit</a>
-                <a href='{% url "delete_neighborhood" urbanization.pk %} ' class="btn btn-sm btn-danger">Delete</a>
+                <a href='{% url "edit_neighborhood" urbanization.pk %}' class="btn btn-sm btn-default">Edit</a>
+                <a href='{% url "delete_neighborhood" urbanization.pk %}' class="btn btn-sm btn-danger">Delete</a>
             </td>
         </tr>
         {% empty %}

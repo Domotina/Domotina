@@ -350,9 +350,11 @@ def delete_neighborhood(request, urbanization_pk):
 
 
 @login_required
-def edit_neighborhood(request, neighborhood_pk):
-    neighborhood = get_object_or_404(Neighborhood, pk=neighborhood_pk)
-    return render(request, 'neighborhood.html', {'edited': True, 'neighborhood': neighborhood})
+def edit_neighborhood(request, urbanization_pk):
+    neighborhood = get_object_or_404(Neighborhood, pk=urbanization_pk)
+    print neighborhood
+    return render(request, 'edit_neighborhood.html', {'urbanization': neighborhood})
+    #return render(request, 'edit_neighborhood.html')
 
 def list_neighborhoods(request):
     # TO-DO

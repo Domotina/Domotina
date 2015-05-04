@@ -114,7 +114,7 @@ class NeighborhoodTests(TestCase):
                                                     date_created=date_created,
                                                     date_updated=date_updated)
         n1 = Neighborhood.objects.get(name="neighborhood1")
-        response = self.client.put(reverse('edit_neighborhood', kwargs={'neighborhood_pk': n1.id}))
+        response = self.client.put(reverse('edit_neighborhood', kwargs={'urbanization_pk': n1.id}))
         self.assertTrue(True)
 
     #Pruebas para dar edificios

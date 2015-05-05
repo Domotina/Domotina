@@ -11,9 +11,4 @@ urlpatterns = patterns('map.views',
     url(r'^(?P<place>\d+)/rules/', include('rule_engine.urls')),
     url(r'^(?P<place_pk>\d+)/history/(?P<int_date>\d+)/$', 'map_history', name='map_history'),
 
-    # Administracion de urbanizaciones y/o edificios
-    url(r'^neighborhood$', 'list_neighborhoods', name='list_neighborhoods'),
-    url(r'^neighborhood/new$', 'create_neighborhood', name='create_neighborhood'),
-    url(r'^neighborhood/(?P<neighborhood_pk>\d+)/delete$', 'delete_neighborhood', name='delete_neighborhood'),
-    url(r'^neighborhood/(?P<neighborhood_pk>\d+)$', 'edit_neighborhood', name='edit_neighborhood'),
 )

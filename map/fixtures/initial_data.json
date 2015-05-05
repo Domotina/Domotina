@@ -72,7 +72,16 @@
     }
 },
 {
-    "pk": 9, 
+    "pk": 9,
+    "model": "contenttypes.contenttype",
+    "fields": {
+      "model": "neighborhoodtype",
+      "name": "neighborhood type",
+      "app_label": "map"
+    }
+},
+{
+    "pk": 10,
     "model": "contenttypes.contenttype", 
     "fields": {
         "model": "neighborhood", 
@@ -81,7 +90,7 @@
     }
 },
 {
-    "pk": 10, 
+    "pk": 11,
     "model": "contenttypes.contenttype", 
     "fields": {
         "model": "place", 
@@ -90,7 +99,7 @@
     }
 },
 {
-    "pk": 11, 
+    "pk": 12,
     "model": "contenttypes.contenttype", 
     "fields": {
         "model": "floor", 
@@ -99,7 +108,7 @@
     }
 },
 {
-    "pk": 12, 
+    "pk": 13,
     "model": "contenttypes.contenttype", 
     "fields": {
         "model": "sensortype", 
@@ -108,7 +117,7 @@
     }
 },
 {
-    "pk": 13, 
+    "pk": 14,
     "model": "contenttypes.contenttype", 
     "fields": {
         "model": "sensorstatus", 
@@ -117,7 +126,7 @@
     }
 },
 {
-    "pk": 14, 
+    "pk": 15,
     "model": "contenttypes.contenttype", 
     "fields": {
         "model": "sensor", 
@@ -126,7 +135,7 @@
     }
 },
 {
-    "pk": 15,
+    "pk": 16,
     "model": "contenttypes.contenttype",
     "fields": {
       "model": "delegate",
@@ -135,7 +144,7 @@
     }
 },
 {
-    "pk": 16,
+    "pk": 17,
     "model": "contenttypes.contenttype",
     "fields": {
       "model": "zoomlocation",
@@ -144,7 +153,7 @@
     }
 },
 {
-    "pk": 17,
+    "pk": 18,
     "model": "contenttypes.contenttype", 
     "fields": {
         "model": "scheduledaily", 
@@ -154,12 +163,30 @@
 },
 
 {
+    "pk": 1,
+    "model": "map.neighborhoodtype",
+    "fields": {
+        "name": "Building"
+    }
+},
+{
+    "pk": 2,
+    "model": "map.neighborhoodtype",
+    "fields": {
+        "name": "Urbanization"
+    }
+},
+
+{
     "pk": 1, 
     "model": "map.neighborhood", 
     "fields": {
         "date_updated": "2015-03-07T20:03:16.745Z", 
         "date_created": "2015-03-07T20:03:16.745Z", 
-        "name": "Ostende's Park"
+        "name": "Ostende's Park",
+        "type_neighborhood": 1,
+        "address": "1699 Elm Ave Point Pleasant, NJ 08742",
+        "owner_neigh": 5
     }
 },
 {
@@ -168,7 +195,10 @@
     "fields": {
         "date_updated": "2015-03-07T20:04:34.685Z", 
         "date_created": "2015-03-07T20:04:34.685Z", 
-        "name": "Capellania's Towers"
+        "name": "Capellania's Towers",
+        "type_neighborhood": 2,
+        "address": "1120 Trenton Ave Point Pleasant, NJ 08742",
+        "owner_neigh": 3
     }
 },
 {
@@ -177,7 +207,10 @@
     "fields": {
         "date_updated": "2015-03-08T02:21:47.907Z", 
         "date_created": "2015-03-08T02:21:47.907Z", 
-        "name": "Salitre City"
+        "name": "Salitre City",
+        "type_neighborhood": 1,
+        "address": "Calle 25B Bis # 73A - 45",
+        "owner_neigh": 6
     }
 },
 {
@@ -186,7 +219,10 @@
     "fields": {
         "date_updated": "2015-03-08T03:36:52.714Z", 
         "date_created": "2015-03-08T03:36:52.714Z", 
-        "name": "BD Bacata Building"
+        "name": "BD Bacata Building",
+        "type_neighborhood": 2,
+        "address": "518 Arnold Ave Point Pleasant Beach, NJ 08742",
+        "owner_neigh": 3
     }
 },
 {
@@ -1399,240 +1435,267 @@
     }
 },
 {
-    "pk": 25, 
+    "pk": 25,
+    "model": "auth.permission",
+    "fields": {
+        "codename": "add_neighborhoodtype",
+        "name": "Can add neighborhood type",
+        "content_type": 9
+    }
+},
+{
+    "pk": 26,
+    "model": "auth.permission",
+    "fields": {
+        "codename": "change_neighborhoodtype",
+        "name": "Can change neighborhood type",
+        "content_type": 9
+    }
+},
+{
+    "pk": 27,
+    "model": "auth.permission",
+    "fields": {
+        "codename": "delete_neighborhood type",
+        "name": "Can delete neighborhood type",
+        "content_type": 9
+    }
+},
+{
+    "pk": 28,
     "model": "auth.permission", 
     "fields": {
         "codename": "add_neighborhood", 
         "name": "Can add neighborhood", 
-        "content_type": 9
+        "content_type": 10
     }
 },
 {
-    "pk": 26, 
+    "pk": 29,
     "model": "auth.permission", 
     "fields": {
         "codename": "change_neighborhood", 
         "name": "Can change neighborhood", 
-        "content_type": 9
+        "content_type": 10
     }
 },
 {
-    "pk": 27, 
+    "pk": 30,
     "model": "auth.permission", 
     "fields": {
         "codename": "delete_neighborhood", 
         "name": "Can delete neighborhood", 
-        "content_type": 9
+        "content_type": 10
     }
 },
 {
-    "pk": 28, 
+    "pk": 31,
     "model": "auth.permission", 
     "fields": {
         "codename": "add_place", 
         "name": "Can add place", 
-        "content_type": 10
+        "content_type": 11
     }
 },
 {
-    "pk": 29, 
+    "pk": 32,
     "model": "auth.permission", 
     "fields": {
         "codename": "change_place", 
         "name": "Can change place", 
-        "content_type": 10
+        "content_type": 11
     }
 },
 {
-    "pk": 30, 
+    "pk": 33,
     "model": "auth.permission", 
     "fields": {
         "codename": "delete_place", 
         "name": "Can delete place", 
-        "content_type": 10
+        "content_type": 11
     }
 },
 {
-    "pk": 31, 
+    "pk": 34,
     "model": "auth.permission", 
     "fields": {
         "codename": "add_floor", 
         "name": "Can add floor", 
-        "content_type": 11
+        "content_type": 12
     }
 },
 {
-    "pk": 32, 
+    "pk": 35,
     "model": "auth.permission", 
     "fields": {
         "codename": "change_floor", 
         "name": "Can change floor", 
-        "content_type": 11
+        "content_type": 12
     }
 },
 {
-    "pk": 33, 
+    "pk": 36,
     "model": "auth.permission", 
     "fields": {
         "codename": "delete_floor", 
         "name": "Can delete floor", 
-        "content_type": 11
+        "content_type": 12
     }
 },
 {
-    "pk": 34, 
+    "pk": 37,
     "model": "auth.permission", 
     "fields": {
         "codename": "add_sensortype", 
         "name": "Can add sensor type", 
-        "content_type": 12
+        "content_type": 13
     }
 },
 {
-    "pk": 35, 
+    "pk": 38,
     "model": "auth.permission", 
     "fields": {
         "codename": "change_sensortype", 
         "name": "Can change sensor type", 
-        "content_type": 12
+        "content_type": 13
     }
 },
 {
-    "pk": 36, 
+    "pk": 39,
     "model": "auth.permission", 
     "fields": {
         "codename": "delete_sensortype", 
         "name": "Can delete sensor type", 
-        "content_type": 12
+        "content_type": 13
     }
 },
 {
-    "pk": 37, 
+    "pk": 40,
     "model": "auth.permission", 
     "fields": {
         "codename": "add_sensorstatus", 
         "name": "Can add sensor status", 
-        "content_type": 13
+        "content_type": 14
     }
 },
 {
-    "pk": 38, 
+    "pk": 41,
     "model": "auth.permission", 
     "fields": {
         "codename": "change_sensorstatus", 
         "name": "Can change sensor status", 
-        "content_type": 13
+        "content_type": 14
     }
 },
 {
-    "pk": 39, 
+    "pk": 42,
     "model": "auth.permission", 
     "fields": {
         "codename": "delete_sensorstatus", 
         "name": "Can delete sensor status", 
-        "content_type": 13
+        "content_type": 14
     }
 },
 {
-    "pk": 40, 
+    "pk": 43,
     "model": "auth.permission", 
     "fields": {
         "codename": "add_sensor", 
         "name": "Can add sensor", 
-        "content_type": 14
+        "content_type": 15
     }
 },
 {
-    "pk": 41, 
+    "pk": 44,
     "model": "auth.permission", 
     "fields": {
         "codename": "change_sensor", 
         "name": "Can change sensor", 
-        "content_type": 14
+        "content_type": 15
     }
 },
 {
-    "pk": 42, 
+    "pk": 45,
     "model": "auth.permission", 
     "fields": {
         "codename": "delete_sensor", 
         "name": "Can delete sensor", 
-        "content_type": 14
+        "content_type": 15
     }
 },
 {
-    "pk": 43, 
+    "pk": 46,
     "model": "auth.permission", 
     "fields": {
         "codename": "add_delegate",
         "name": "Can add delegate",
-        "content_type": 15
+        "content_type": 16
     }
 },
 {
-    "pk": 44, 
+    "pk": 47,
     "model": "auth.permission", 
     "fields": {
         "codename": "change_delegate",
         "name": "Can change delegate",
-        "content_type": 15
+        "content_type": 16
     }
 },
 {
-    "pk": 45, 
+    "pk": 48,
     "model": "auth.permission", 
     "fields": {
         "codename": "delete_delegate",
         "name": "Can delete delegate",
-        "content_type": 15
+        "content_type": 16
     }
 },
-  {"pk": 46,
+  {"pk": 49,
     "model": "auth.permission",
     "fields": {
       "codename": "add_zoomlocation",
       "name": "Can add zoom location",
-      "content_type": 16
-    }
-  },
-  {"pk": 47,
-    "model": "auth.permission",
-    "fields": {
-      "codename": "change_zoomlocation",
-      "name": "Can change zoom location",
-      "content_type": 16
-    }
-  },
-  {"pk": 48,
-    "model": "auth.permission",
-    "fields": {
-      "codename": "delete_zoomlocation",
-      "name": "Can delete zoom location",
-      "content_type": 16
-    }
-  },
-    {"pk": 49,
-    "model": "auth.permission",
-    "fields": {
-      "codename": "add_scheduledaily",
-      "name": "Can add Daily Schedule",
       "content_type": 17
     }
   },
   {"pk": 50,
     "model": "auth.permission",
     "fields": {
-      "codename": "change_scheduledaily",
-      "name": "Can change Daily Schedule",
+      "codename": "change_zoomlocation",
+      "name": "Can change zoom location",
       "content_type": 17
     }
   },
   {"pk": 51,
     "model": "auth.permission",
     "fields": {
+      "codename": "delete_zoomlocation",
+      "name": "Can delete zoom location",
+      "content_type": 17
+    }
+  },
+    {"pk": 52,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "add_scheduledaily",
+      "name": "Can add Daily Schedule",
+      "content_type": 18
+    }
+  },
+  {"pk": 53,
+    "model": "auth.permission",
+    "fields": {
+      "codename": "change_scheduledaily",
+      "name": "Can change Daily Schedule",
+      "content_type": 18
+    }
+  },
+  {"pk": 54,
+    "model": "auth.permission",
+    "fields": {
       "codename": "delete_scheduledaily",
       "name": "Can delete Daily Schedule",
-      "content_type": 17
+      "content_type": 18
     }
   },
 {
@@ -1745,8 +1808,8 @@
         "last_login": "2015-04-07T20:31:31Z", 
         "groups": [
             4
-        ],
-        "user_permissions": [28],
+        ], 
+        "user_permissions": [], 
         "password": "pbkdf2_sha256$12000$N86jDM6VMMBS$QSBrO+gI9xg1gF2uffrFTLoXSPILd0qfCP+Dm6f0bY4=",
         "email": "ra.gomez11@uniandes.edu.co", 
         "date_joined": "2015-04-07T20:31:31Z"
@@ -2768,13 +2831,5 @@
         "width_zoom": 450,
         "height_zoom": 250
     }
-},
-  {
-    "pk": 1,
-    "model": "map.delegate",
-    "fields": {
-      "place": 4,
-      "delegate": 4
-    }
-  }
+}
 ]

@@ -14,40 +14,80 @@ Creation Building/Urbanization
 {% endblock navbar %}
 
 {% block content %}
-<!-- colocar action para el submit -->
-<form class="form-horizontal" method="get" action=' '>
+{% if create%}
+<form class="form-horizontal" method="POST" action='{% url "central_building_create" %}'>
+{% else %}
+<form class="form-horizontal" method="POST" action='{% url "edit_neighborhood" neigh.pk %}'>
+{% endif %}
     <fieldset>
+        {% if create %}
         <legend>Create Building/Urbanization</legend>
+        {% else %}
+        <legend>Edit Building/Urbanization</legend>
+        {% endif %}
 
         <div class="form-group">
             <label class="col-lg-2 control-label">Name</label>
 
             <div class="col-lg-10">
-                <input class="form-control" id="name" placeholder="Name" type="text" name="name" required>
+                <input class="form-control" id="name" placeholder="Name" type="text" name="name" maxlength="100" {% if neigh %} value="{{neigh.name}}"{%endif %} required>
             </div>
         </div>
         <div class="form-group">
             <label class="col-lg-2 control-label">Address</label>
 
             <div class="col-lg-10">
-                <input class="form-control" id="address" placeholder="Address" type="text" name="address" required>
+                <input class="form-control" id="address" placeholder="Address" type="text" name="address" {% if neigh %} value="{{neigh.address}}"{%endif %} required>
             </div>
         </div>
         <div class="form-group" style="height: 35px">
-            <label for=" " class="col-lg-2 control-label">Type</label>
+            <label for="type" class="col-lg-2 control-label">Type</label>
 
             <div class="col-lg-10">
                 <select class="form-control" id="type" name="type" required>
-                    <!-- verificar si es mejor quemar los datos o cargarlos de la tabla para persistir -->
-                    <option selected>Building</option>
-                    <option>Urbanization</option>
+                    {% for type in types %}
+                        {% if neigh %}
+                            {% if type = neigh.type_neighborhood%}
+                            <option value="{{type.pk}}" selected>{{type}}</option>
+                            {% else %}
+                            <option value="{{type.pk}}"> {{type.name|capfirst}}</option>
+                            {% endif %}
+                        {% else %}
+                        <option value="{{type.pk}}"> {{type.name|capfirst}}</option>
+                        {% endif %}
+                    {% endfor %}
                 </select>
             </div>
         </div>
         <div class="form-group">
+            <label for="owner" class="col-lg-2 control-label">Owner</label>
+
+            <div class="col-lg-10">
+                <select class="form-control" id="owner" name="owner" required>
+                    <option value="0">Select</option>
+                    {% for user in users %}
+                        {% if neigh %}
+                            {% if user = neigh.owner_neigh%}
+                            <option value="{{user.pk}}" selected>{{user}}</option>
+                            {% else %}
+                            <option value="{{user.pk}}"> {{user.username|capfirst}}</option>
+                            {% endif %}
+                        {% else %}
+                        <option value="{{user.pk}}"> {{user.username|capfirst}}</option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+        <br/>
+        <div class="form-group">
             <div style="margin-left: 210px">
+                {% if create%}
                 <p style="display: inline"><input type="submit" class="btn btn-primary" value="Create Building/Urbanization"/></p>
-                <a href='{% url "central_owner_principal" %}' class="btn btn-default">Return</a>
+                {% else %}
+                <p style="display: inline"><input type="submit" class="btn btn-primary" value="Edit Building/Urbanization"/></p>
+                {% endif%}
+                <a href='{% url "central_building_neigh" %}' class="btn btn-default">Return</a>
             </div>
         </div>
     </fieldset>

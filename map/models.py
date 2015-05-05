@@ -38,7 +38,7 @@ class Neighborhood(models.Model):
 
 class Place(models.Model):
     owner = models.ForeignKey(User, verbose_name="owner", related_name="places")
-    neighborhood = models.ForeignKey(Neighborhood, verbose_name="neighborhood", related_name="places")
+    neighborhood = models.ForeignKey(Neighborhood, verbose_name="neighborhood", related_name="places", on_delete=models.PROTECT)
     name = models.CharField("place", max_length=100)
     date_created = models.DateTimeField("date created", auto_now_add=True)
     date_updated = models.DateTimeField("date updated", auto_now_add=True)

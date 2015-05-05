@@ -14,7 +14,11 @@ Creation Building/Urbanization
 {% endblock navbar %}
 
 {% block content %}
+{% if create%}
 <form class="form-horizontal" method="POST" action='{% url "central_building_create" %}'>
+{% else %}
+<form class="form-horizontal" method="POST" action='{% url "edit_neighborhood" neigh.pk %}'>
+{% endif %}
     <fieldset>
         {% if create %}
         <legend>Create Building/Urbanization</legend>

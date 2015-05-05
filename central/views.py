@@ -269,11 +269,9 @@ def central_building_create(request):
 def edit_neighborhood(request, urbanization_pk):
     neigh = get_object_or_404(Neighborhood, pk=urbanization_pk)
     if request.method == 'POST':
-        neigh_type= get_object_or_404(NeighborhoodType(pk=request.POST['type']))
-        neigh.type_neighborhood = neigh_type
         neigh.name = request.POST['name']
         neigh.address= request.POST['address']
-        #neigh.type_neighborhood=NeighborhoodType.objects.get(pk=request.POST['type'])
+        neigh.type_neighborhood=NeighborhoodType.objects.get(pk=request.POST['type'])
         neigh.owner_neigh= User.objects.get(pk=request.POST['owner'])
         neigh.save()
         return redirect('central_building_neigh')

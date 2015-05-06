@@ -1,11 +1,25 @@
+from django.core import serializers
+import cgi
+from django.db.models import Q
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.decorators import user_passes_test
 from django.contrib.auth.models import User
+from middleware.http import Http403
 from .notificator import send_email
-from map.models import Neighborhood, Place, Floor
-from django.template import RequestContext
+from map.models import Neighborhood, Place, Floor, Delegate, NeighborhoodType
+from rule_engine.models import ScheduleDaily
+from django.contrib.messages import error
 from django.shortcuts import render_to_response
+from django.contrib.auth.models import Permission
+from django.contrib.contenttypes.models import ContentType
+from django.http import StreamingHttpResponse, HttpResponse
+from report_manager import central_report_gen
+import cStringIO as StringIO
+from xhtml2pdf import pisa
+from django.template import RequestContext
+from django.template.loader import render_to_string
+from report_manager.views import fetch_resources
 
 
 def user_can_see(user):
@@ -33,7 +47,7 @@ def central_create(request):
             place = Place(owner=request.user, neighborhood=neighborhood, name=name)
             place.save()
             for j in range(floors):
-                floor = Floor(place=place, number=(j+1), map=map_url)
+                floor = Floor(place=place, number=(j + 1), map=map_url)
                 floor.save()
         return redirect('central_home')
     else:
@@ -92,13 +106,12 @@ def central_huge_load(request):
     return render(request, 'owner_huge_load.html', context)
 
 
-
 @login_required
 def central_delegate(request):
     context = {'user': request.user}
     return render(request, 'delegates_owner_principal.html', context)
 
-#completar
+
 @login_required
 def central_individual_delegate_load(request):
     if request.method == "POST":
@@ -107,58 +120,261 @@ def central_individual_delegate_load(request):
         lastName = str(request.POST.get("lastName", ""))
         emailUser = str(request.POST.get("inputEmail", ""))
         owner = str(request.POST.get("owner", ""))
-        property = str(request.POST.get("property", ""))
-        print owner
-        print property
+        property = int(request.POST.get("property", ""))
+        choices = request.POST.getlist('choice')
 
-        # userCreate = User.objects.create_user(username=username, first_name=name, last_name=lastName, email=emailUser,
-        #                                     password='DOMOTINA123')
-        # userCreate.is_superuser = False
-        # userCreate.is_active = True
-        # userCreate.is_staff = False
-        # userCreate.groups.add(2)#Falta
-        # userCreate.save()
-        # send_email(userCreate)
+        userCreate = User.objects.create_user(username=username, first_name=name, last_name=lastName, email=emailUser,
+                                              password='DOMOTINA123')
+        userCreate.is_superuser = False
+        userCreate.is_active = True
+        userCreate.is_staff = False
+        userCreate.groups.add(4)
+        send_email(userCreate)
+
+        content_type = ContentType.objects.get_for_model(Place)
+        for permi in choices:
+            if permi=='viewMap':
+                permission = Permission.objects.get(content_type=content_type, codename='add_place')
+                userCreate.user_permissions.add(permission)
+            elif permi=='viewRules':
+                permission = Permission.objects.get(content_type=ContentType.objects.get_for_model(ScheduleDaily), codename='add_scheduledaily')
+                userCreate.user_permissions.add(permission)
+
+        userCreate.save()
+
+        delegate = Delegate(place=Place.objects.get(pk=property), delegate=userCreate)
+        delegate.save()
+
         return redirect('central_home')
     else:
         users = User.objects.all()
-        #place = Place.objects.all().order_by('name')
         context = {'user': request.user, 'users': users}
         return render(request, 'delegates_individual.html', context)
 
+
 def getHouses(request):
-    context = RequestContext(request)
-    print 'houses'
-    #if request.method == 'GET':
-    print 'get'
     owner_id = request.GET['owner_id']
-    print owner_id
-    place = get_object_or_404(Place, pk=owner_id)
-    #place = Place.objects.filer(pk=int(owner_id))
-    print place
-    print 'fin'
-    return render_to_response('central/delegates_individual.html', {'user': request.user, 'place': place}, context)
+    usersearch = User.objects.get(pk=int(owner_id))
+    placeOwner = Place.objects.all().filter(owner=usersearch)
+    data = serializers.serialize('json', placeOwner)
+    return HttpResponse(data, content_type="application/json")
+
+@login_required
+def delegateoption(request, place_pk):
+
+    if request.user.is_superuser == False:
+        if request.user.groups.filter(name='UsersOwners').exists() == False:
+            raise Http403
+
+    place = get_object_or_404(Place, pk=place_pk)
+    placesDelegate = Delegate.objects.all().filter(place=place)
+
+    placeSend = Place.objects.get(pk=place_pk)
+    onlyUsername = []
+    for item in placesDelegate:
+        onlyUsername.append(item.getDelegate())
+        print onlyUsername
+    print placeSend.pk
+    context = {'users': onlyUsername, 'place': placeSend}
+    return render(request, 'delegateoption.html', context)
+
+@login_required
+def editdelegate(request, place_pk, user_pk):
+    """
+    if request.user.is_superuser == False:
+        if request.user.groups.filter(name='UsersOwners').exists() == False:
+            raise Http403
+    """
+    userEdit = User.objects.get(pk= user_pk)
+
+    place = get_object_or_404(Place, pk=place_pk)
+    #user = User.objects.filter(pk=user_pk)
+    placesDelegate = Delegate.objects.all().filter(place=place)
+
+    onlyUsername = []
+    for item in placesDelegate:
+        onlyUsername.append(item.getDelegate())
+        #print onlyUsername
+
+    permitions = []
+    if request.method == "POST":
+        choices = request.POST.getlist('choice')
+        print choices
+
+        #userEdit = User.objects.get(pk = user_pk)
+        print userEdit
+        userEdit.user_permissions.clear()
+
+        if 'viewMap' in choices:
+            permissionPlace = Permission.objects.get(content_type=ContentType.objects.get_for_model(Place), codename='add_place')
+            #permitionsSelect.append(permissionPlace)
+            userEdit.user_permissions.add(permissionPlace)
+        else:
+            permissionPlace1 = Permission.objects.get(content_type=ContentType.objects.get_for_model(Place), codename='add_place')
+            userEdit.user_permissions.remove(permissionPlace1)
+
+        if 'viewRules' in choices:
+            permission = Permission.objects.get(content_type=ContentType.objects.get_for_model(ScheduleDaily), codename='add_scheduledaily')
+            #permitionsSelect.append(permission)
+            userEdit.user_permissions.add(permission)
+            #userEdit.save()
+        else:
+            permission1 = Permission.objects.get(content_type=ContentType.objects.get_for_model(ScheduleDaily), codename='add_scheduledaily')
+            #permitionsSelect.append(permission)
+            userEdit.user_permissions.remove(permission1)
+            #userEdit.save()
+        userEdit.save()
 
 
+        context = {'users': onlyUsername, 'place': place, 'user': userEdit, 'permitions': permitions}
+        return render(request, 'delegateoption.html', context)
+
+
+    if userEdit.has_perm('map.add_place') == True:
+        permitions.append('viewMap')
+    if userEdit.has_perm('rule_engine.add_scheduledaily') == True:
+        permitions.append('viewRules')
+
+    print userEdit
+    context = {'users': onlyUsername, 'place': place, 'user': userEdit, 'permitions': permitions}
+    return render(request, 'edit_delegate.html', context)
 
 @login_required
 def central_huge_delegate_load(request):
     context = {'user': request.user}
     return render(request, 'delegates_huge_load.html', context)
 
+
 @login_required
 def central_building_neigh(request):
-    context = {'user': request.user}
+    urbanization = Neighborhood.objects.all().filter(type_neighborhood=2)
+    buildings = Neighborhood.objects.all().filter(type_neighborhood=1)
+
+    context = {'user': request.user, 'urbanizations': urbanization, 'buildings': buildings}
     return render(request, 'central_buildings_list.html', context)
 
 
 @login_required
 def central_building_create(request):
-    context = {'user': request.user}
+    if request.method == 'POST':
+        neighborhood = Neighborhood(name=request.POST['name'], address=request.POST['address'], type_neighborhood=NeighborhoodType.objects.get(pk=request.POST['type']), owner_neigh=User.objects.get(pk=request.POST['owner']))
+        neighborhood.save()
+        return redirect('central_building_neigh')
+    users = User.objects.all()
+    types = NeighborhoodType.objects.all()
+    context = {'user': request.user, 'users': users, 'types': types, 'create': True}
+    return render(request, 'central_buildings_create.html', context)
+
+@login_required
+def edit_neighborhood(request, urbanization_pk):
+    neigh = get_object_or_404(Neighborhood, pk=urbanization_pk)
+    if request.method == 'POST':
+        neigh.name = request.POST['name']
+        neigh.address= request.POST['address']
+        neigh.type_neighborhood=NeighborhoodType.objects.get(pk=request.POST['type'])
+        neigh.owner_neigh= User.objects.get(pk=request.POST['owner'])
+        neigh.save()
+        return redirect('central_building_neigh')
+    users = User.objects.all()
+    types = NeighborhoodType.objects.all()
+    context = {'user': request.user, 'users': users, 'types': types, 'neigh': neigh, 'create': False}
     return render(request, 'central_buildings_create.html', context)
 
 
 @login_required
+def delete_neighborhood(request, urbanization_pk):
+    Neighborhood.objects.filter(pk=urbanization_pk).delete()
+    return redirect('central_building_neigh')
+
+
+### Montly report generator ###
+
+@login_required
 def central_month_report(request):
-    context = {'user': request.user}
+    "This method is created to preload all buildings and urbanizations registered in Domotina on the view designed to generate the monthly report. of events"
+    neighborhoods = central_report_gen.get_neighborhood
+    context = {'user': request.user, 'neighborhoods': neighborhoods}
     return render(request, 'central_month_report.html', context)
+
+@login_required
+def generate_monthly_report(request):
+    kind = int(request.POST['kind'])
+    if kind:
+        if kind == 1:
+            return generate_monthly_report_pdf(request)
+        else:
+            return generate_monthly_report_web(request)
+
+@login_required
+def generate_monthly_report_pdf(request):
+    year = int(request.POST['year'])
+    month = int(request.POST['month'])
+    neighborhoods = request.POST.getlist('neighborhood')
+    if neighborhoods[0] in '0':
+        neighborhoods = []
+
+    if central_report_gen.validation_entry(year, month):
+        start_date = central_report_gen.get_start_date(year, month)
+        end_date = central_report_gen.get_end_date(year, month)
+        events = central_report_gen.find_events(start_date, end_date, neighborhoods)
+        if central_report_gen.are_events_to_report(events):
+            html = render_to_string('report.html',
+                                    {'pagesize': 'A4', 'events': events, 'start': start_date, 'end': end_date, 'year': year,
+                                     'month': month}, context_instance=RequestContext(request))
+            result = StringIO.StringIO()
+            pdf = pisa.pisaDocument(StringIO.StringIO(html.encode("UTF-8")), result, link_callback=fetch_resources)
+            if not pdf.err:
+                return HttpResponse(result.getvalue(), content_type='application/pdf')
+            return HttpResponse('PDF document cannot be generated: %s' % cgi.escape(html))
+        else:
+            error(request, "No events to generate report.")
+            return redirect('central_month_report')
+    else:
+        error(request, "Error: Please, check if you selected correctly the month, year and buildings/urbanizations of interest to you.")
+        return redirect('central_month_report')
+
+def generate_monthly_report_web(request):
+    year = int(request.POST['year'])
+    month = int(request.POST['month'])
+    neighborhoods = request.POST.getlist('neighborhood')
+    if neighborhoods[0] in '0':
+        neighborhoods = []
+
+    if central_report_gen.validation_entry(year, month):
+        start_date = central_report_gen.get_start_date(year, month)
+        end_date = central_report_gen.get_end_date(year, month)
+        events = central_report_gen.find_events(start_date, end_date, neighborhoods)
+        if central_report_gen.are_events_to_report(events):
+            graph = central_report_gen.get_graph_data(events,year,month)
+            context={'events': events, 'start': start_date, 'end': end_date, 'year': year,'month': month,'graph_X':graph[0],'graph_data':graph[1]}
+            return render(request, 'report_web.html', context)
+        else:
+            error(request, "No events to generate report.")
+            return redirect('central_month_report')
+    else:
+        error(request, "Error: Please, check if you selected correctly the month, year and buildings/urbanizations of interest to you.")
+        return redirect('central_month_report')
+
+
+### Metodos para Administracion de urbanizaciones y/o edificios ###
+
+def list_neighborhoods(request):
+    # TO-DO
+    # Modificar, solo valido para las pruebas iniciales
+
+   # Deberia retrnar un query set
+    neighborhoods = []
+    n1 = Neighborhood(name="name1")
+    n2 = Neighborhood(name="name1")
+    neighborhoods.append(n1)
+    neighborhoods.append(n2)
+    return render(request, 'neighborhood.html', {'neighborhoods': neighborhoods})
+
+
+# @login_required
+def create_neighborhood(request):
+    # TO-DO, implementacion temporal valida solo para las pruebas iniciales
+    # print(request)
+    print(request.POST['name'])
+    # Render temporal, solo importa el context
+    return render(request, 'neighborhood.html', {'created': True})

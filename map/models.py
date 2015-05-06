@@ -1,11 +1,11 @@
-from datetime import timedelta, time, datetime
+from datetime import timedelta
 
 from django.db import models
 from django.contrib.auth.models import User
 
 
 def datetime_to_js(dt):
-    return "new Date(%(year)s, %(month)s, %(day)s, %(h)s, %(m)s, %(s)s)" \
+    return "new Date('%(year)s, %(month)s, %(day)s %(h)s:%(m)s:%(s)s')" \
            % {'year': dt.strftime("%Y"),
               'month': dt.strftime("%m"),
               'day': dt.strftime("%d"),
@@ -14,8 +14,16 @@ def datetime_to_js(dt):
               's': dt.strftime("%S")}
 
 
+class NeighborhoodType(models.Model):
+    name = models.CharField("typeName", max_length=100)
+    def __unicode__(self):
+        return self.name
+
 class Neighborhood(models.Model):
     name = models.CharField("neighborhood", max_length=100)
+    address = models.CharField("address", max_length=200)
+    owner_neigh = models.ForeignKey(User, verbose_name="owner_neighborhood", related_name="owner")
+    type_neighborhood = models.ForeignKey(NeighborhoodType, verbose_name="type", related_name="type")
     date_created = models.DateTimeField("date created", auto_now_add=True)
     date_updated = models.DateTimeField("date updated", auto_now_add=True)
 
@@ -30,7 +38,7 @@ class Neighborhood(models.Model):
 
 class Place(models.Model):
     owner = models.ForeignKey(User, verbose_name="owner", related_name="places")
-    neighborhood = models.ForeignKey(Neighborhood, verbose_name="neighborhood", related_name="places")
+    neighborhood = models.ForeignKey(Neighborhood, verbose_name="neighborhood", related_name="places", on_delete=models.PROTECT)
     name = models.CharField("place", max_length=100)
     date_created = models.DateTimeField("date created", auto_now_add=True)
     date_updated = models.DateTimeField("date updated", auto_now_add=True)
@@ -107,6 +115,15 @@ class Floor(models.Model):
             if sensor:
                 sensors_array.append(sensor)
         return sensors_array
+
+    def get_zoom_json(self):
+        zoom_array = []
+        zooms = self.zooms.get_queryset()
+        for zoom in zooms:
+            zoom_json = zoom.zoom_to_json()
+            if zoom_json:
+                zoom_array.append(zoom_json)
+        return zoom_array
 
 
 class SensorType(models.Model):
@@ -231,3 +248,42 @@ class Sensor(models.Model):
                 events_array.append(event_json)
         return events_array
 
+
+class Delegate(models.Model):
+    place = models.ForeignKey(Place, verbose_name="place", related_name="delegates")
+    delegate = models.ForeignKey(User, verbose_name="delegate", related_name="delegates",
+                                 limit_choices_to={'groups': 4})
+
+    class Meta:
+        verbose_name = "delegate"
+        verbose_name_plural = "delegates"
+        ordering = ["place", "delegate"]
+
+    def getPlace(self):
+        return self.place
+
+    def getDelegate(self):
+        return self.delegate
+
+    def __unicode__(self):
+        return self.delegate.username
+
+
+class ZoomLocation(models.Model):
+    floor = models.ForeignKey(Floor, verbose_name="floor", related_name="zooms")
+    pos_x = models.PositiveIntegerField("X position in map", default=0)
+    pos_y = models.PositiveIntegerField("Y position in map", default=0)
+    width_zoom = models.PositiveIntegerField("Width zoom", default=0)
+    height_zoom = models.PositiveIntegerField("Height zoom", default=0)
+
+    class Meta:
+        ordering = ["floor"]
+
+    def zoom_to_json(self):
+        return '{floor: %d, posX: %d, posY: %d, ' \
+               'width_zoom: %d, height_zoom: %d}' \
+               % (self.floor.number,
+                  self.pos_x,
+                  self.pos_y,
+                  self.width_zoom,
+                  self.height_zoom)

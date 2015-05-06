@@ -1,23 +1,12 @@
 import threading
 import traceback
-from datetime import time, datetime
 
 from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
-from map.models import Sensor
+from map.models import Sensor, datetime_to_js
 from event_manager.notificator import send_email
-
-
-def datetime_to_js(dt):
-    return "new Date(%(year)s, %(month)s, %(day)s, %(h)s, %(m)s, %(s)s)" \
-           % {'year': dt.strftime("%Y"),
-              'month': dt.strftime("%m"),
-              'day': dt.strftime("%d"),
-              'h': dt.strftime("%H"),
-              'm': dt.strftime("%M"),
-              's': dt.strftime("%S")}
 
 
 class Event(models.Model):

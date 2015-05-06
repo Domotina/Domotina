@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block navbar %}
+<li><a href='{% url "map_home" %}'>My places</a></li>
+<li><a href='{% url "map_place_view" place.pk%}'>Map of {{place.name}}</a></li>
+<li><a href='{% url "list_sensors" place.pk %}'>Sensors</a></li>
+{% endblock navbar %}
+
+{% block content %}
+<div>
+    <h2>{{ place.name }}</h2>
+</div>
+
+<div class="well">
+    <form class="form-horizontal" method="post" action='/central/{{ place.pk }}/edit/{{ user.pk }}/'>
+    <fieldset>
+        <legend>Edit Delegate: {{ user.username }}</legend>
+            <div class="form-group">
+            <label class="col-lg-2 control-label">Permissions</label>
+
+            <div class="col-lg-10">
+
+                {% if "viewMap" in permitions %}
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" name="choice" value="viewMap" checked> View property (events and alarms)
+                    </label>
+                </div>
+                {% else %}
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" name="choice" value="viewMap"> View property (events and alarms)
+                    </label>
+                </div>
+                {% endif %}
+
+                {% if "viewRules" in permitions %}
+                <div>
+                    <label>
+                        <input type="checkbox" name="choice" value="viewRules" checked> Create or edit rules
+                    </label>
+                </div>
+                {% else %}
+                    <div>
+                    <label>
+                        <input type="checkbox" name="choice" value="viewRules"> Create or edit rules
+                    </label>
+                    </div>
+                {% endif %}
+
+                <!--<div>
+                    <label>
+                        <input type="checkbox" name="choice" value="viewRules"> Delete rules
+                    </label>
+                </div>
+                <div>
+                    <label>
+                        <input type="checkbox" name="choice" value="viewRules"> Create or edit sensors
+                    </label>
+                </div>
+                <div>
+                    <label>
+                        <input type="checkbox" name="choice" value="viewRules"> Delete sensors
+                    </label>
+                </div>
+                <div>
+                    <label>
+                        <input type="checkbox" name="choice" value="viewRules"> Sensors filter
+                    </label>
+                </div>
+                <div>
+                    <label>
+                        <input type="checkbox" name="choice" value="viewRules"> View delegates
+                    </label>
+                </div>-->
+            </div>
+        </div>
+        <div class="form-group">
+            <div style="margin-left: 210px">
+                <p style="display: inline"><input type="submit" class="btn btn-primary" value="Edit Delegate"/></p>
+                <a href='{% url "map_place_view" place.pk%}' class="btn btn-default">Return</a>
+            </div>
+        </div>
+    </fieldset>
+    {% csrf_token %}
+    </form>
+</div>
+{% endblock content %}

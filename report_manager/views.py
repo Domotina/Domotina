@@ -8,9 +8,11 @@ from django.template.loader import render_to_string
 from map.models import Place
 from event_manager.models import Event
 
-import datetime, calendar
+import calendar
+from datetime import datetime, date, timedelta
 import cStringIO as StringIO
 import cgi
+
 
 def home(request, place_pk):
     # Getting the place
@@ -32,9 +34,7 @@ def generate_pdf(html):
 def fetch_resources(uri, rel):
     import os.path
     from django.conf import settings
-    path = os.path.join(
-            "index/static",
-            uri.replace(settings.STATIC_URL, ""))
+    path = os.path.join("index/static", uri.replace(settings.STATIC_URL, ""))
 
     return path
 
@@ -45,18 +45,17 @@ def events_in_date_range(request, place_pk):
     # Scenario 3 and 4 are validated via js, indicating dates are required fields!
 
     start_year = 0
-    #math.fmod()
     end_year = 0
     if request.method == 'POST':
         # Validating if dates are in valid format!
         try:
-            start_year = datetime.datetime.strptime(request.POST['start_date'], "%Y/%m/%d").year
+            start_year = datetime.strptime(request.POST['start_date'], "%Y-%m-%d").year
         except ValueError:
             error(request, "The start date must be with valid format.")
             return redirect('report_home', place_pk=place_pk)
 
         try:
-            end_year = datetime.datetime.strptime(request.POST['end_date'], "%Y/%m/%d").year
+            end_year = datetime.strptime(request.POST['end_date'], "%Y-%m-%d").year
         except ValueError:
             error(request, "The end date must be with valid format.")
             return redirect('report_home', place_pk=place_pk)
@@ -70,8 +69,8 @@ def events_in_date_range(request, place_pk):
 
     # Scenario 5 is validated redirecting to form page and indicating that
     # end date must be greater than start date
-    if datetime.datetime.strptime(start_date, "%Y/%m/%d") > \
-            datetime.datetime.strptime(end_date, "%Y/%m/%d"):
+    if datetime.strptime(start_date, "%Y-%m-%d") > \
+            datetime.strptime(end_date, "%Y-%m-%d"):
         error(request, "The end date must be greater than the start date.")
         return redirect('report_home', place_pk=place_pk)
 
@@ -85,8 +84,8 @@ def events_in_date_range(request, place_pk):
         return redirect('report_home', place_pk=place_pk)
 
 
-    start_month = datetime.datetime.strptime(start_date, "%Y/%m/%d").month
-    end_month = datetime.datetime.strptime(end_date, "%Y/%m/%d").month
+    start_month = datetime.strptime(start_date, "%Y-%m-%d").month
+    end_month = datetime.strptime(end_date, "%Y-%m-%d").month
 
     if not start_month in range(1, 13):
         error(request, "The month in the start date must be between 1 and 12.")
@@ -97,8 +96,8 @@ def events_in_date_range(request, place_pk):
         return redirect('report_home', place_pk=place_pk)
 
 
-    start_day = datetime.datetime.strptime(start_date, "%Y/%m/%d").day
-    end_day = datetime.datetime.strptime(end_date, "%Y/%m/%d").day
+    start_day = datetime.strptime(start_date, "%Y-%m-%d").day
+    end_day = datetime.strptime(end_date, "%Y-%m-%d").day
 
     if start_day <= 0 or start_day >= 30:
         start_day = 1
@@ -112,8 +111,8 @@ def events_in_date_range(request, place_pk):
 
     # Filtering events in a place and a in a date range
     events = Event.objects.filter(sensor__floor__place=place)\
-                            .filter(timestamp__gt=datetime.date(start_year, start_month, start_day),
-                                    timestamp__lt=datetime.date(end_year, end_month, end_day))
+        .filter(timestamp__gte=date(start_year, start_month, start_day),
+                timestamp__lt=date(end_year, end_month, end_day) + timedelta(days=1)).order_by('-timestamp')
 
     context = {'place': place, 'events': events,
                'start_date': start_date, 'end_date': end_date}

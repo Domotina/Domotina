@@ -25,7 +25,6 @@ class UserDelegate(unittest.TestCase):
         del self.email
         del self.password
 
-    #TODO crear el nuevo grupo para delegado con sus permisos (falta)"
     """
     Escenario 1
     Dado que soy un usuario de la central
@@ -38,7 +37,7 @@ class UserDelegate(unittest.TestCase):
         userTest.is_superuser = False
         userTest.is_active = True
         userTest.is_staff = False
-        #userTest.groups.add()
+        userTest.groups.add(4)
         self.assertEqual(userTest.username, self.username)
         self.assertEqual(userTest.first_name, self.name)
         self.assertEqual(userTest.last_name, self.lastName)
@@ -55,7 +54,7 @@ class UserDelegate(unittest.TestCase):
         userTest.is_superuser = False
         userTest.is_active = True
         userTest.is_staff = False
-        #userTest.groups.add()
+        userTest.groups.add(4)
         self.assertEqual(userTest.username, self.username)
 
         userTest.delete() #No borrar
@@ -71,7 +70,7 @@ class UserDelegate(unittest.TestCase):
             userTest.is_superuser = False
             userTest.is_active = True
             userTest.is_staff = False
-            #userTest.groups.add()
+            userTest.groups.add(4)
             self.error_occured = False
             userTest.delete()
         except:
@@ -92,19 +91,19 @@ class UserDelegate(unittest.TestCase):
              userTest.is_superuser = False
              userTest.is_active = True
              userTest.is_staff = False
-             #userTest.groups.add()
+             userTest.groups.add(4)
 
              self.error_occured = False
         except:
              self.error_occured = True
 
         self.assertTrue(self.error_occured == True)
-        """
-        Escenario 5
-        Dado que soy un usuario de la central
-        Cuando voy a crear un nuevo delegado en el sistema y selecciono unicamente el inmueble para el que va a ser delegado
-        Entonces no se crea el nuevo usuario con rol delegado y se saca un mensaje en el cual se pida el ingreso de los valores requeridos.
-        """
+    """
+    Escenario 5
+    Dado que soy un usuario de la central
+    Cuando voy a crear un nuevo delegado en el sistema y selecciono unicamente el inmueble para el que va a ser delegado
+    Entonces no se crea el nuevo usuario con rol delegado y se saca un mensaje en el cual se pida el ingreso de los valores requeridos.
+    """
     def testStage5(self):
         try:
              place = Place.objects.get(name='Salitre City') #inmueble
@@ -112,7 +111,7 @@ class UserDelegate(unittest.TestCase):
              userTest.is_superuser = False
              userTest.is_active = True
              userTest.is_staff = False
-             #userTest.groups.add()
+             userTest.groups.add(4)
 
              self.error_occured = False
         except:
@@ -131,7 +130,7 @@ class UserDelegate(unittest.TestCase):
         userTest.is_superuser = False
         userTest.is_active = True
         userTest.is_staff = False
-        #userTest.groups.add()
+        userTest.groups.add(4)
 
         content_type = ContentType.objects.get_for_model(Place)
         permission = Permission.objects.get(content_type=content_type, codename='add_place')
@@ -157,7 +156,7 @@ class UserDelegate(unittest.TestCase):
             user = User.objects.get(username='')
             content_type = ContentType.objects.get_for_model(Place)
             permission = Permission.objects.get(content_type=content_type, codename='add_place')
-            #user.groups.add()
+            user.groups.add(4)
             place = Place.objects.get(name='Salitre City') #inmueble
             self.error_occured = False
         except:
@@ -173,9 +172,9 @@ class UserDelegate(unittest.TestCase):
     def testStage8(self):
         user = User.objects.get(username='buildersmart')
         content_type = ContentType.objects.get_for_model(Place)
-        permission = Permission.objects.get(content_type=content_type, codename='add_place')
+        permission = Permission.objects.get(content_type=content_type, codename='change_place')
 
-        self.assertTrue(user.has_perm('map.add_place') == False)
+        self.assertTrue(user.has_perm('map.change_place') == False)
 
         """
         Escenario 9

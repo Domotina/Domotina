@@ -1,0 +1,49 @@
+{% extends "base.html"%}
+{% load static %}
+
+{% block title %}
+Edit Building/Urbanization
+{% endblock %}
+
+{% block navbar %}
+<li><a href='{% url "central_home" %}'>Home</a></li>
+<li><a href='{% url "central_create" %}'>Properties</a></li>
+<li><a href='{% url "central_owner_principal" %}'>Owners</a></li>
+<li><a href='{% url "central_delegate" %}'>Delegates</a></li>
+<li><a href='{% url "central_month_report" %}'>Report</a></li>
+{% endblock navbar %}
+
+{% block content %}
+<form class="form-horizontal" method="POST" action='{% url "edit_neighborhood" urbanization.pk %}'>
+    <fieldset>
+        <legend>Edit {{ urbanization.name }}</legend>
+
+        <div class="form-group">
+            <label class="col-lg-2 control-label">Name</label>
+
+            <div class="col-lg-10">
+                <input class="form-control" id="name" placeholder="Name" type="text" name="name" maxlength="100" required>
+            </div>
+        </div>
+
+        <div class="form-group" style="height: 35px">
+            <label for="type" class="col-lg-2 control-label">Type</label>
+
+            <div class="col-lg-10">
+                <select class="form-control" id="type" name="type" required>
+                    <option value="B" selected>Building</option>
+                    <option value="U">Urbanization</option>
+                </select>
+            </div>
+        </div>
+        <br/>
+        <div class="form-group">
+            <div style="margin-left: 210px">
+                <p style="display: inline"><input type="submit" class="btn btn-primary" value="Create Building/Urbanization"/></p>
+                <a href='{% url "central_owner_principal" %}' class="btn btn-default">Return</a>
+            </div>
+        </div>
+    </fieldset>
+    {% csrf_token %}
+</form>
+{% endblock %}

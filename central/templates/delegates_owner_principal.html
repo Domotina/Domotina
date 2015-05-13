@@ -1,0 +1,33 @@
+{% extends "base.html"%}
+{% load static %}
+
+{% block title %}
+Owners
+{% endblock %}
+
+{% block navbar %}
+<li><a href='{% url "central_home" %}'>Home</a></li>
+<li><a href='{% url "central_create" %}'>Properties</a></li>
+<li><a href='{% url "central_owner_principal" %}'>Owners</a></li>
+<li><a href='{% url "central_delegate" %}'>Delegates</a></li>
+<li><a href='{% url "central_month_report" %}'>Report</a></li>
+{% endblock navbar %}
+
+{% block content %}
+<h3>Delegates of Owners</h3>
+<div class="pane">
+    <div class="contenedor" id="individual">
+        <a href='{% url "central_individual_delegate_load" %}'>
+            <img class="icon" src='{% static "image/propietario.png" %}'>
+            <p class="text">Create Delegate</p>
+        </a>
+    </div>
+
+    <!--<div class="contenedor" id="full">
+        <a href='{% url "central_huge_delegate_load" %}'>
+            <img class="icon" src='{% static "image/huge-load.png" %}'>
+            <p class="text">File Upload</p>
+        </a>
+    </div>-->
+</div>
+{% endblock %}

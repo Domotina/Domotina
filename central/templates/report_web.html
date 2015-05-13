@@ -1,0 +1,142 @@
+{% extends "base.html"%}
+{% load static %}
+
+{% block head %}
+<meta charset="UTF-8">
+<style type="text/css">
+    .page-header td.image {
+        width: 64px;
+        text-align: left;
+    }
+
+    .page-header td.center {
+        text-align: center;
+    }
+
+    .report th, .report td {
+        border: 1px solid black;
+    }
+
+    .report {
+        border-collapse: separate;
+        border-spacing: 2px;
+        margin: 0 auto;
+        width: 95%;
+    }
+
+    .report th, .report td {
+        padding: 2px;
+        vertical-align: middle;
+    }
+
+    .report th {
+        background-color: #00abf1;
+        text-align: left;
+    }
+</style>
+<script src="http://code.highcharts.com/highcharts.js"></script>
+<script src="http://code.highcharts.com/modules/exporting.js"></script>
+
+<script>
+    $(function () {
+        $('#container').highcharts({
+            title: {
+                text: 'Monthly Events',
+                x: -20 //center
+            },
+            xAxis: {
+                categories: [{{graph_X}}]
+            },
+            yAxis: {
+                title: {
+                    text: 'Frequency'
+                },
+                plotLines: [{
+                    value: 0,
+                    width: 1,
+                    color: '#808080'
+                }]
+            },
+            legend: {
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'middle',
+                borderWidth: 0
+            },
+            series: [{
+                name: 'Events',
+                data: [{{graph_data}}]
+            }]
+        });
+    });
+</script>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script type="text/javascript">
+    google.load('visualization', '1.0', {'packages': ['corechart']});
+    google.setOnLoadCallback(drawChart);
+    function drawChart() {
+        var data = new google.visualization.DataTable();
+        data.addColumn('number', 'Day');
+        data.addColumn('number', 'Frequency');
+
+        data.addRows([
+            {{graph | escapejs
+    }
+    }
+    ])
+    ;
+    var options = {
+        'title': 'Events in the Month',
+        'width': 800,
+        'height': 300
+    };
+
+    var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+    chart.draw(data, options);
+    }
+</script>
+{% endblock %}
+
+{% block title %}
+Monthly Report Generator
+{% endblock %}
+
+{% block navbar %}
+<li><a href='{% url "central_home" %}'>Home</a></li>
+<li><a href='{% url "central_create" %}'>Properties</a></li>
+<li><a href='{% url "central_owner_principal" %}'>Owners</a></li>
+<li><a href='{% url "central_delegate" %}'>Delegates</a></li>
+<li><a href='{% url "central_month_report" %}'>Report</a></li>
+{% endblock navbar %}
+
+{% block content %}
+<h1>Monthly Report - {{month}}/{{year}}</h1>
+<br/>
+<h4>These are handled events in your place between {{start}} and {{end}}</h4>
+<br/>
+<div id="container" align="center" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+<br/>
+<table class="report">
+    <thead>
+    <tr>
+        <th>Building/Urbanization</th>
+        <th>Date</th>
+        <th>Time</th>
+        <th>Asset</th>
+        <th>Description</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    {% for event in events %}
+    <tr>
+        <td>{{ event.sensor.floor.place.neighborhood.name }}</td>
+        <td>{{ event.timestamp.date }}</td>
+        <td>{{ event.timestamp.time }}</td>
+        <td>{{ event.sensor }}</td>
+        <td>Status changed to {{ event }}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

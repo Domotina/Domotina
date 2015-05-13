@@ -9,13 +9,15 @@ Creation Owner
 <li><a href='{% url "central_home" %}'>Home</a></li>
 <li><a href='{% url "central_create" %}'>Properties</a></li>
 <li><a href='{% url "central_owner_principal" %}'>Owners</a></li>
+<li><a href='{% url "central_delegate" %}'>Delegates</a></li>
+<li><a href='{% url "central_month_report" %}'>Report</a></li>
 {% endblock navbar %}
 
 {% block content %}
 <h3>Owners batch creation</h3>
 <div class="well">
     <p>Upload a CSV file with the following format:
-        <pre>username,firstname,lastname,email,password</pre>
+        <pre>username,firstname,lastname,email</pre>
     </p>
     <form action='{% url "central_huge_load" %}' method="post" enctype="multipart/form-data">
         <div class="form-group">

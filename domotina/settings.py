@@ -35,6 +35,7 @@ INSTALLED_APPS = (
     'map',
     'central',
     'rule_engine',
+    'report_manager',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -48,7 +49,7 @@ MIDDLEWARE_CLASSES = (
 )
 
 REST_FRAMEWORK = {
-    'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.IsAdminUser',),
+    'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.DjangoModelPermissions',),
     'PAGINATE_BY': 10
 }
 LOGIN_URL='/api-auth/login/'
@@ -67,7 +68,7 @@ LANGUAGE_CODE = 'en-us'
 TIME_ZONE = 'America/Bogota'
 USE_I18N = True
 USE_L10N = True
-USE_TZ = True
+#USE_TZ = True
 
 # Parse database configuration from $DATABASE_URL
 import dj_database_url
@@ -95,7 +96,3 @@ EMAIL_PORT = os.environ.get('EMAIL_PORT')
 EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
 URL = os.environ.get('URL')
-
-#Especificar ruta para guardar los archivos que se suben
-MEDIA_ROOT = 'C:/files'
-MEDIA_URL = '/files/'

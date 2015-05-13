@@ -1,0 +1,143 @@
+{% extends "base.html"%}
+{% load static %}
+
+{% block title %}
+Monthly Report Generator
+{% endblock %}
+
+{% block navbar %}
+
+<li><a href='{% url "central_home" %}'>Home</a></li>
+<li><a href='{% url "central_create" %}'>Properties</a></li>
+<li><a href='{% url "central_owner_principal" %}'>Owners</a></li>
+<li><a href='{% url "central_delegate" %}'>Delegates</a></li>
+<li><a href='{% url "central_month_report" %}'>Report</a></li>
+
+{% endblock navbar %}
+
+{% block content %}
+
+<h3>Monthly Report Generator</h3>
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">Instructions</h3>
+    </div>
+    <div class="panel-body">
+        <p>To create a new month report follow this steps:
+
+        <p>1. Select a year</p>
+
+        <p>2. Select the month of interest to you</p>
+
+        <p>3. Select one or more building/urbanizations that you are interested.</p>
+
+        <p>If you want all places registered onn Domotina, then you select the option "Select
+            All".</p>
+    </div>
+</div>
+<div class="panel panel-info">
+    <div class="panel-heading">
+        <h3 class="panel-title">Configuration of the report</h3>
+    </div>
+    <div class="panel-body">
+        <form class="form-horizontal" method="post" action='{% url "generate_monthly_report" %}'>
+            {% csrf_token %}
+            {% if messages %}
+            <div class="alert alert-warning" role="alert">
+                <ul>
+                    {% for message in messages %}
+                    <li>{{ message }}</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group" style="height: 35px">
+                        <label for="year" class="col-lg-2 control-label">Select a year </label>
+
+                        <div class="col-lg-10">
+                            <select class="form-control" id="year" name="year" required>
+                                <script>
+                                    var start = new Date().getFullYear();
+                                    var end = 2000;
+                                    var options = "";
+                                    for (var year = start; year >= end; year--) {
+                                        options += "<option value='" + year + "'>" + year + "</option>";
+                                    }
+                                    document.getElementById("year").innerHTML = options;
+                                </script>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group" style="height: 35px">
+                        <label for="month" class="col-lg-2 control-label">Select a month </label>
+
+                        <div class="col-lg-10">
+                            <select class="form-control" id="month" name="month" required>
+                                <!-- cargar propietarios -->
+                                <option value="1">January</option>
+                                <option value="2">February</option>
+                                <option value="3">March</option>
+                                <option value="4">April</option>
+                                <option value="5">May</option>
+                                <option value="6">June</option>
+                                <option value="7">July</option>
+                                <option value="8">August</option>
+                                <option value="9">September</option>
+                                <option value="10">October</option>
+                                <option value="11">November</option>
+                                <option value="12">December</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group" style="height: 35px">
+                        <label for="month" class="col-lg-2 control-label">Report Output: </label>
+
+                        <div class="col-lg-10">
+                            <select class="form-control" id="kind" name="kind" required>
+                                <!-- cargar propietarios -->
+                                <option value="1">PDF</option>
+                                <option value="2">Screen</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div style="text-align: center">
+                        <p style="display: inline">
+                            <input type="submit" class="btn btn-primary" value="Generate Report"/>
+                        </p>
+                        <a href='{% url "central_home" %}' class="btn btn-default">Return</a>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label for="neighborhood">Select buildings/urbanizations</label>
+                        <!-- cargar properties -->
+                        <div class="col-lg-10">
+                            <select multiple="multiple" class="form-control" id="neighborhood" name="neighborhood"
+                                    required>
+
+                                {% if neighborhoods %}
+                                <option value="0">Select All</option>
+                                {% for n in neighborhoods %}
+                                <option value='{{ n.id }}'>{{n.name}}</option>
+                                {% endfor %}
+                                {% else %}
+                                <option value="-2">No neighborhoods registered</option>
+                                {% endif %}
+
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
+</div>
+
+{% endblock %}
+
+
+
